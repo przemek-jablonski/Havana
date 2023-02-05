@@ -1,4 +1,5 @@
 import SwiftUI
+import LoginFeature
 
 struct ContentView: View {
   var body: some View {
@@ -6,7 +7,7 @@ struct ContentView: View {
       Image(systemName: "globe")
         .imageScale(.large)
         .foregroundColor(.accentColor)
-      Text("Hello, World!")
+      Text("Hello, World!") + Text("\(Login.publicInt)")
     }
     .padding()
   }
