@@ -2,21 +2,32 @@
 
 import PackageDescription
 
+// MARK: - Global Constraints
+
 let globalDependencies: [Package.Dependency] = []
 
-let platforms: [SupportedPlatform] = [
+let supportedPlatforms: [SupportedPlatform] = [
   .iOS(.v15),
   .macOS(.v13)
 ]
 
-let featureTargets: [Target] = [
-  .target(
-    name: "LoginFeature",
-    path: "Sources/Features/Login"
-  )
-]
+// MARK: - Core Targets definitions and assembly
 
 let coreTargets: [Target] = []
+
+// MARK: - Feature Targets definitions and assembly
+
+let loginFeature = Target.target(
+  name: "LoginFeature",
+  dependencies: [],
+  path: "Sources/Features/Login"
+)
+
+let featureTargets: [Target] = [
+  loginFeature
+]
+
+// MARK: - Umbrella product and all targets assembly
 
 let allTargets = coreTargets + featureTargets
 
@@ -25,13 +36,17 @@ let umbrellaProduct = PackageDescription.Product.library(
   targets: allTargets.regularTargets.names
 )
 
+// MARK: - Umbrella Package assembly
+
 let package = Package(
   name: "Packages",
-  platforms: platforms,
+  platforms: supportedPlatforms,
   products: umbrellaProduct + allTargets.regularTargets.asLibraryProducts,
   dependencies: globalDependencies,
   targets: allTargets
 )
+
+// MARK: - Conveniences
 
 private extension Array where Element == Target {
   var regularTargets: [Target] {
