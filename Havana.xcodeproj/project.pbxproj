@@ -10,7 +10,6 @@
 		1F0AB5FA298F38E8008D146E /* HavanaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AB5F9298F38E8008D146E /* HavanaApp.swift */; };
 		1F0AB5FC298F38E8008D146E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FB298F38E8008D146E /* ContentView.swift */; };
 		1F0AB5FE298F38E9008D146E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FD298F38E9008D146E /* Assets.xcassets */; };
-		1F0AB602298F38E9008D146E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0AB601298F38E9008D146E /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +18,7 @@
 		1F0AB5FB298F38E8008D146E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1F0AB5FD298F38E9008D146E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F0AB5FF298F38E9008D146E /* Havana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Havana.entitlements; sourceTree = "<group>"; };
-		1F0AB601298F38E9008D146E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1F0AB60C298F42CD008D146E /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +35,7 @@
 		1F0AB5ED298F38E8008D146E = {
 			isa = PBXGroup;
 			children = (
+				1F0AB60C298F42CD008D146E /* Packages */,
 				1F0AB5F8298F38E8008D146E /* Havana */,
 				1F0AB5F7298F38E8008D146E /* Products */,
 			);
@@ -56,17 +56,8 @@
 				1F0AB5FB298F38E8008D146E /* ContentView.swift */,
 				1F0AB5FD298F38E9008D146E /* Assets.xcassets */,
 				1F0AB5FF298F38E9008D146E /* Havana.entitlements */,
-				1F0AB600298F38E9008D146E /* Preview Content */,
 			);
 			path = Havana;
-			sourceTree = "<group>";
-		};
-		1F0AB600298F38E9008D146E /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1F0AB601298F38E9008D146E /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +118,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F0AB602298F38E9008D146E /* Preview Assets.xcassets in Resources */,
 				1F0AB5FE298F38E9008D146E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +254,6 @@
 				CODE_SIGN_ENTITLEMENTS = Havana/Havana.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Havana/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CKFSV7EZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -279,10 +268,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.przemekjablonski.Havana;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,7 +291,6 @@
 				CODE_SIGN_ENTITLEMENTS = Havana/Havana.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Havana/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CKFSV7EZ6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -317,10 +305,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.przemekjablonski.Havana;
 				PRODUCT_NAME = "$(TARGET_NAME)";
