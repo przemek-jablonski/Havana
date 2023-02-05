@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Havana
-//
-//  Created by Przemyslaw Jablonski on 05/02/2023.
-//
-
 import SwiftUI
 
 struct ContentView: View {
