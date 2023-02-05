@@ -3,7 +3,6 @@
 import PackageDescription
 
 let globalDependencies: [Package.Dependency] = [
-  
 ]
 
 let platforms: [SupportedPlatform] = [
