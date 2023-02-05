@@ -1,0 +1,3 @@
+[submodule "Casimir"]
+	path = Casimir
+	url = git@github.com:przemek-jablonski/Casimir.git
