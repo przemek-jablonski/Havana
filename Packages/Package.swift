@@ -7,8 +7,14 @@ import PackageDescription
 let casimir = Package.Dependency.package(path: "../Casimir")
 let casimirTarget = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
+let composableArchitecture = Package.Dependency.package(
+  url: "https://github.com/pointfreeco/swift-composable-architecture",
+  exact: "0.50.1"
+)
+
 let globalDependencies: [Package.Dependency] = [
-  casimir
+  casimir,
+  composableArchitecture
 ]
 
 let supportedPlatforms: [SupportedPlatform] = [
