@@ -4,7 +4,18 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
-let globalDependencies: [Package.Dependency] = []
+let casimir = Package.Dependency.package(path: "../Casimir")
+let casimirTarget = Target.Dependency.product(name: "Casimir", package: "Casimir")
+
+let composableArchitecture = Package.Dependency.package(
+  url: "https://github.com/pointfreeco/swift-composable-architecture",
+  exact: "0.50.1"
+)
+
+let globalDependencies: [Package.Dependency] = [
+  casimir,
+  composableArchitecture
+]
 
 let supportedPlatforms: [SupportedPlatform] = [
   .iOS(.v15),
@@ -12,14 +23,15 @@ let supportedPlatforms: [SupportedPlatform] = [
 ]
 
 // MARK: - Core Targets definitions and assembly
-
 let coreTargets: [Target] = []
 
 // MARK: - Feature Targets definitions and assembly
 
 let loginFeature = Target.target(
   name: "LoginFeature",
-  dependencies: [],
+  dependencies: [
+    casimirTarget
+  ],
   path: "Sources/Features/Login"
 )
 
