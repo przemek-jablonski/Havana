@@ -11,6 +11,8 @@
 		1F0AB5FC298F38E8008D146E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FB298F38E8008D146E /* ContentView.swift */; };
 		1F0AB5FE298F38E9008D146E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FD298F38E9008D146E /* Assets.xcassets */; };
 		1F1E8641299000470091362C /* Packages in Frameworks */ = {isa = PBXBuildFile; productRef = 1F1E8640299000470091362C /* Packages */; };
+		1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */; };
+		1FF7DBC529931A7D001245CF /* AnalyticsEventsRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBC429931A7D001245CF /* AnalyticsEventsRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		1F0AB5FF298F38E9008D146E /* Havana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Havana.entitlements; sourceTree = "<group>"; };
 		1F0AB60C298F42CD008D146E /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		1F1E864229900B9E0091362C /* Casimir */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Casimir; sourceTree = "<group>"; };
+		1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaiOSAppDelegate.swift; sourceTree = "<group>"; };
+		1FF7DBC429931A7D001245CF /* AnalyticsEventsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEventsRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,12 @@
 		1F0AB5F8298F38E8008D146E /* Havana */ = {
 			isa = PBXGroup;
 			children = (
-				1F0AB5F9298F38E8008D146E /* HavanaApp.swift */,
+				1F0AB5FF298F38E9008D146E /* Havana.entitlements */,
 				1F0AB5FB298F38E8008D146E /* ContentView.swift */,
 				1F0AB5FD298F38E9008D146E /* Assets.xcassets */,
-				1F0AB5FF298F38E9008D146E /* Havana.entitlements */,
+				1FF7DBBF29931752001245CF /* Common */,
+				1FF7DBBE2993172C001245CF /* iOS */,
+				1FF7DBC029931759001245CF /* macOS */,
 			);
 			path = Havana;
 			sourceTree = "<group>";
@@ -70,6 +76,46 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1FF7DBBE2993172C001245CF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1FF7DBBF29931752001245CF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1F0AB5F9298F38E8008D146E /* HavanaApp.swift */,
+				1FF7DBC229931A5B001245CF /* Analytics */,
+				1FF7DBC329931A5F001245CF /* Logging */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1FF7DBC029931759001245CF /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1FF7DBC229931A5B001245CF /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1FF7DBC429931A7D001245CF /* AnalyticsEventsRecorder.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		1FF7DBC329931A5F001245CF /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +192,8 @@
 			files = (
 				1F0AB5FC298F38E8008D146E /* ContentView.swift in Sources */,
 				1F0AB5FA298F38E8008D146E /* HavanaApp.swift in Sources */,
+				1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */,
+				1FF7DBC529931A7D001245CF /* AnalyticsEventsRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
