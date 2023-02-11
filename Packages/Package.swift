@@ -4,17 +4,17 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
-let casimir = Package.Dependency.package(path: "../Casimir")
-let casimirTarget = Target.Dependency.product(name: "Casimir", package: "Casimir")
+let casimirRemote = Package.Dependency.package(path: "../Casimir")
+let casimir = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
-let composableArchitecture = Package.Dependency.package(
+let composableArchitectureRemote = Package.Dependency.package(
   url: "https://github.com/pointfreeco/swift-composable-architecture",
   exact: "0.50.1"
 )
 
 let globalDependencies: [Package.Dependency] = [
-  casimir,
-  composableArchitecture
+  casimirRemote,
+  composableArchitectureRemote
 ]
 
 let supportedPlatforms: [SupportedPlatform] = [
@@ -23,14 +23,25 @@ let supportedPlatforms: [SupportedPlatform] = [
 ]
 
 // MARK: - Core Targets definitions and assembly
-let coreTargets: [Target] = []
+
+let octokitSwift = Target.target(
+  name: "Octokit",
+  dependencies: [
+    casimir
+  ],
+  path: "Sources/Core/Octokit"
+)
+
+let coreTargets: [Target] = [
+  octokitSwift
+]
 
 // MARK: - Feature Targets definitions and assembly
 
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    casimirTarget
+    casimir
   ],
   path: "Sources/Features/Login"
 )
