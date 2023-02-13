@@ -3,10 +3,10 @@ import Combine
 
 internal struct NetworkClient {
   enum Error: Swift.Error {
-    case unableToConstructRequest(error: Swift.Error?)
+    case serverRequestConstructionFailed(error: Swift.Error?)
     case serverReturnedNonHTTPContent
-    case serverReturnedBadStatusCode
-    case serverReturnedGenericError(error: Swift.Error)
+    case serverReturnedBadStatusCode(code: Int)
+    case internalNetworkClientFailure(error: Swift.Error)
   }
   
   var get: (
