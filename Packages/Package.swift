@@ -4,17 +4,19 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
+let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.50.1")
+let composableArchitectur = Target.Dependency.product(name: "swift-composable-architecture")
+
+let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")
+let keychainAccess = Target.Dependency.product(name: "KeychainAccess", package: "KeychainAccess")
+
 let casimirRemote = Package.Dependency.package(path: "../Casimir")
 let casimir = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
-let composableArchitectureRemote = Package.Dependency.package(
-  url: "https://github.com/pointfreeco/swift-composable-architecture",
-  exact: "0.50.1"
-)
-
 let globalDependencies: [Package.Dependency] = [
+  composableArchitectureRemote,
   casimirRemote,
-  composableArchitectureRemote
+  keychainAccessRemote
 ]
 
 let supportedPlatforms: [SupportedPlatform] = [
@@ -24,16 +26,17 @@ let supportedPlatforms: [SupportedPlatform] = [
 
 // MARK: - Core Targets definitions and assembly
 
-let octokitSwift = Target.target(
+let octokit = Target.target(
   name: "Octokit",
   dependencies: [
-    casimir
+    casimir,
+    keychainAccess
   ],
   path: "Sources/Core/Octokit"
 )
 
 let coreTargets: [Target] = [
-  octokitSwift
+  octokit
 ]
 
 // MARK: - Feature Targets definitions and assembly
