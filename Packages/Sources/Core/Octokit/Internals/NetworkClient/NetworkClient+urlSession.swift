@@ -49,6 +49,33 @@ private extension URLSession.DataTaskPublisher {
   }
 }
 
+extension Publisher {
+  public func flatMap<NewPublisher: Publisher, NewOutput, NewFailure: Error>(
+    maxPublishers: Subscribers.Demand = .unlimited,
+    publisher: @escaping (Self.Output) -> NewPublisher,
+    error: @escaping (NewPublisher.Failure) -> NewFailure
+  ) -> AnyPublisher<NewOutput, NewFailure> where NewPublisher.Output == NewOutput {
+    self
+      .flatMap({ output in publisher(output) })
+      .mapError({ intermediateError in error(intermediateError) })
+    .erased()
+//    self.flatMap(publisher).mapError(error)
+      
+//      .flatMap(
+//        maxPublishers: maxPublishers, { output in
+//          publisher(output).mapError({ error in mapError(error) })
+//        }
+//      )
+//      .flatMap { output in
+//        publisher($0)
+//          .mapError { error in mapError(error )
+//
+//        }
+//
+//      }
+  }
+}
+
 //// TODO: refine this
 //@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 //extension Publisher {
