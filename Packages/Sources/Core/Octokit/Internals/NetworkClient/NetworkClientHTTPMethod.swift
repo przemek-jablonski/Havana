@@ -1,6 +1,6 @@
 import Foundation
 
-enum NetworkClientHTTPMethod {
+internal enum NetworkClientHTTPMethod {
     case get
     case post
 }

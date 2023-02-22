@@ -1,3 +1,4 @@
+import Casimir
 import Combine
 @testable import Octokit
 import XCTest
@@ -19,10 +20,24 @@ final class Tests: XCTestCase {
                 ],
                 queryItems: nil
             )
-            .sinkValue { output in
-                let ou = output
-                expc.fulfill()
-            }.store(in: &cancellables)
+            .mapError { error in error as Error }
+            .flatMap { data in
+                GithubApiJsonDeserializer()
+                    .deserialize(data, into: [ReceivedEvent].self)
+                    .mapError { error in error as Error }
+//                    .mapError { _ in .serverReturnedNonHTTPContent } // TODO
+                    .map { ($0, data) }
+            }
+            .on(event: { event in
+                let ev = event
+                let asd = 2
+            })
+            .sink()
+//            .sinkValue { output in
+//                let ou = output
+//                expc.fulfill()
+//            }
+            .store(in: &cancellables)
         
         waitForExpectations(timeout: 5, handler: nil)
     }

@@ -17,7 +17,7 @@ extension URLSessionNetworkClient: NetworkClient {
         body: Encodable?,
         headers: Headers?,
         queryItems: QueryItems?
-    ) -> any Publisher<Data, NetworkClientError> {
+    ) -> some Publisher<Data, NetworkClientError> {
         URLRequest
             .from(url, body, headers ?? [:], queryItems ?? [:])
             .mapError { NetworkClientError.serverRequestConstructionFailed(error: $0) }

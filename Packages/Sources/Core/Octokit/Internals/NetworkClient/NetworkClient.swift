@@ -2,13 +2,14 @@ import Foundation
 import Combine
 
 internal protocol NetworkClient {
+    associatedtype RequestPublisher: Publisher<Data, NetworkClientError>
     func request(
         url: String,
         method: NetworkClientHTTPMethod,
         body: Encodable?,
         headers: Headers?,
         queryItems: QueryItems?
-    ) -> any Publisher<Data, NetworkClientError>
+    ) -> RequestPublisher
 }
 
 extension NetworkClient {

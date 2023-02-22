@@ -1,8 +1,8 @@
 import Foundation
 
-internal enum NetworkClientError: Swift.Error {
-    case serverRequestConstructionFailed(error: Swift.Error?)
+internal enum NetworkClientError: Error {
+    case serverRequestConstructionFailed(error: Error?)
     case serverReturnedNonHTTPContent
     case serverReturnedInvalidStatusCode(code: Int)
-    case internalNetworkClientFailure(error: Swift.Error)
+    case internalNetworkClientFailure(error: Error)
 }
