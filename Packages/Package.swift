@@ -29,7 +29,6 @@ let supportedPlatforms: [SupportedPlatform] = [
 let octokit = Target.target(
   name: "Octokit",
   dependencies: [
-    casimir,
     keychainAccess
   ],
   path: "Sources/Core/Octokit"

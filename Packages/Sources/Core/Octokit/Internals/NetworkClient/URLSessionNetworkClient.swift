@@ -1,4 +1,3 @@
-import Casimir
 import Combine
 import Foundation
 
@@ -17,7 +16,7 @@ extension URLSessionNetworkClient: NetworkClient {
     body: Encodable?,
     headers: Headers?,
     queryItems: QueryItems?
-  ) -> some Publisher<Data, NetworkClientError> {
+  ) -> AnyPublisher<Data, NetworkClientError> {
     URLRequest
       .from(url, body, headers ?? [:], queryItems ?? [:])
       .mapError { NetworkClientError.serverRequestConstructionFailed(error: $0) }
@@ -27,6 +26,7 @@ extension URLSessionNetworkClient: NetworkClient {
           .processResponse()
       }
       .map { (data: Data, response: URLResponse) in data }
+      .eraseToAnyPublisher()
   }
 }
 
@@ -37,7 +37,7 @@ private extension URLRequest {
     _ headers: [String: String],
     _ queryItems: NetworkClient.QueryItems
   ) -> Result<Self, Error>.Publisher {
-    .success(URLRequest(url: URL(string: url)!))
+    Result.success(URLRequest(url: URL(string: url)!)).publisher // TODO: !
   }
 }
 
@@ -47,14 +47,14 @@ private extension URLSession.DataTaskPublisher {
       .mapError { .internalNetworkClientFailure(error: $0 )}
       .flatMap { (data: Data, response: URLResponse) in
         guard let response = response as? HTTPURLResponse else {
-          return Fail<Output, NetworkClientError>(error: NetworkClientError.serverReturnedNonHTTPContent).erased()
+          return Fail<Output, NetworkClientError>(error: NetworkClientError.serverReturnedNonHTTPContent).eraseToAnyPublisher()
         }
         
         guard (200..<300) ~= response.statusCode else {
-          return Fail(error: .serverReturnedInvalidStatusCode(code: response.statusCode)).erased()
+          return Fail(error: .serverReturnedInvalidStatusCode(code: response.statusCode)).eraseToAnyPublisher()
         }
         
-        return Just((data, response)).setFailureType(to: NetworkClientError.self).erased()
+        return Just((data, response)).setFailureType(to: NetworkClientError.self).eraseToAnyPublisher()
       }
   }
 }

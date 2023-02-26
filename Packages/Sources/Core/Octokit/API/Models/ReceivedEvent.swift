@@ -6,15 +6,15 @@
 import Foundation
 
 // MARK: - ReceivedEvent
-struct ReceivedEvent: Codable, Identifiable {
-  let id: String
-  let type: ReceivedEventType
-  let actor: Actor
-  let repo: Repo
-  let payload: Payload
-  let receivedEventPublic: Bool
-  let createdAt: Date
-  let org: Actor?
+public struct ReceivedEvent: Codable, Identifiable {
+  public let id: String
+  public let type: ReceivedEventType
+  public let actor: Actor
+  public let repo: Repo
+  public let payload: Payload
+  public let receivedEventPublic: Bool
+  public let createdAt: Date
+  public let org: Actor?
   
   enum CodingKeys: String, CodingKey {
     case id = "id"
@@ -29,7 +29,7 @@ struct ReceivedEvent: Codable, Identifiable {
 }
 
 // MARK: - Actor
-struct Actor: Codable {
+public struct Actor: Codable {
   let id: Int
   let login: String
   let displayLogin: String?
@@ -48,7 +48,7 @@ struct Actor: Codable {
 }
 
 // MARK: - Payload
-struct Payload: Codable {
+public struct Payload: Codable {
   let action: Action?
   let release: Release?
   let ref: JSONNull?
@@ -70,93 +70,93 @@ struct Payload: Codable {
   }
 }
 
-enum Action: String, Codable {
+public enum Action: String, Codable {
   case published = "published"
   case started = "started"
 }
 
 // MARK: - Forkee
-struct Forkee: Codable {
-  let id: Int
-  let nodeID: String
-  let name: String
-  let fullName: String
-  let forkeePrivate: Bool
-  let owner: Owner
-  let htmlURL: String
-  let description: String
-  let fork: Bool
-  let url: String
-  let forksURL: String
-  let keysURL: String
-  let collaboratorsURL: String
-  let teamsURL: String
-  let hooksURL: String
-  let issueEventsURL: String
-  let eventsURL: String
-  let assigneesURL: String
-  let branchesURL: String
-  let tagsURL: String
-  let blobsURL: String
-  let gitTagsURL: String
-  let gitRefsURL: String
-  let treesURL: String
-  let statusesURL: String
-  let languagesURL: String
-  let stargazersURL: String
-  let contributorsURL: String
-  let subscribersURL: String
-  let subscriptionURL: String
-  let commitsURL: String
-  let gitCommitsURL: String
-  let commentsURL: String
-  let issueCommentURL: String
-  let contentsURL: String
-  let compareURL: String
-  let mergesURL: String
-  let archiveURL: String
-  let downloadsURL: String
-  let issuesURL: String
-  let pullsURL: String
-  let milestonesURL: String
-  let notificationsURL: String
-  let labelsURL: String
-  let releasesURL: String
-  let deploymentsURL: String
-  let createdAt: Date
-  let updatedAt: Date
-  let pushedAt: Date
-  let gitURL: String
-  let sshURL: String
-  let cloneURL: String
-  let svnURL: String
-  let homepage: String?
-  let size: Int
-  let stargazersCount: Int
-  let watchersCount: Int
-  let language: JSONNull?
-  let hasIssues: Bool
-  let hasProjects: Bool
-  let hasDownloads: Bool
-  let hasWiki: Bool
-  let hasPages: Bool
-  let hasDiscussions: Bool
-  let forksCount: Int
-  let mirrorURL: JSONNull?
-  let archived: Bool
-  let disabled: Bool
-  let openIssuesCount: Int
-  let license: License?
-  let allowForking: Bool
-  let isTemplate: Bool
-  let webCommitSignoffRequired: Bool
-  let topics: [JSONAny]
-  let visibility: String
-  let forks: Int
-  let openIssues: Int
-  let watchers: Int
-  let defaultBranch: String
-  let forkeePublic: Bool
+public struct Forkee: Codable {
+  public let id: Int
+  public let nodeID: String
+  public let name: String
+  public let fullName: String
+  public let forkeePrivate: Bool
+  public let owner: Owner
+  public let htmlURL: String
+  public let description: String
+  public let fork: Bool
+  public let url: String
+  public let forksURL: String
+  public let keysURL: String
+  public let collaboratorsURL: String
+  public let teamsURL: String
+  public let hooksURL: String
+  public let issueEventsURL: String
+  public let eventsURL: String
+  public let assigneesURL: String
+  public let branchesURL: String
+  public let tagsURL: String
+  public let blobsURL: String
+  public let gitTagsURL: String
+  public let gitRefsURL: String
+  public let treesURL: String
+  public let statusesURL: String
+  public let languagesURL: String
+  public let stargazersURL: String
+  public let contributorsURL: String
+  public let subscribersURL: String
+  public let subscriptionURL: String
+  public let commitsURL: String
+  public let gitCommitsURL: String
+  public let commentsURL: String
+  public let issueCommentURL: String
+  public let contentsURL: String
+  public let compareURL: String
+  public let mergesURL: String
+  public let archiveURL: String
+  public let downloadsURL: String
+  public let issuesURL: String
+  public let pullsURL: String
+  public let milestonesURL: String
+  public let notificationsURL: String
+  public let labelsURL: String
+  public let releasesURL: String
+  public let deploymentsURL: String
+  public let createdAt: Date
+  public let updatedAt: Date
+  public let pushedAt: Date
+  public let gitURL: String
+  public let sshURL: String
+  public let cloneURL: String
+  public let svnURL: String
+  public let homepage: String?
+  public let size: Int
+  public let stargazersCount: Int
+  public let watchersCount: Int
+  public let language: JSONNull?
+  public let hasIssues: Bool
+  public let hasProjects: Bool
+  public let hasDownloads: Bool
+  public let hasWiki: Bool
+  public let hasPages: Bool
+  public let hasDiscussions: Bool
+  public let forksCount: Int
+  public let mirrorURL: JSONNull?
+  public let archived: Bool
+  public let disabled: Bool
+  public let openIssuesCount: Int
+  public let license: License?
+  public let allowForking: Bool
+  public let isTemplate: Bool
+  public let webCommitSignoffRequired: Bool
+  public let topics: [JSONAny]
+  public let visibility: String
+  public let forks: Int
+  public let openIssues: Int
+  public let watchers: Int
+  public let defaultBranch: String
+  public let forkeePublic: Bool
   
   enum CodingKeys: String, CodingKey {
     case id = "id"
@@ -243,7 +243,7 @@ struct Forkee: Codable {
 }
 
 // MARK: - License
-struct License: Codable {
+public struct License: Codable {
   let key: String
   let name: String
   let spdxID: String
@@ -260,25 +260,25 @@ struct License: Codable {
 }
 
 // MARK: - Owner
-struct Owner: Codable {
-  let login: String
-  let id: Int
-  let nodeID: String
-  let avatarURL: String
-  let gravatarID: String
-  let url: String
-  let htmlURL: String
-  let followersURL: String
-  let followingURL: String
-  let gistsURL: String
-  let starredURL: String
-  let subscriptionsURL: String
-  let organizationsURL: String
-  let reposURL: String
-  let eventsURL: String
-  let receivedEventsURL: String
-  let type: OwnerType
-  let siteAdmin: Bool
+public struct Owner: Codable {
+  public let login: String
+  public let id: Int
+  public let nodeID: String
+  public let avatarURL: String
+  public let gravatarID: String
+  public let url: String
+  public let htmlURL: String
+  public let followersURL: String
+  public let followingURL: String
+  public let gistsURL: String
+  public let starredURL: String
+  public let subscriptionsURL: String
+  public let organizationsURL: String
+  public let reposURL: String
+  public let eventsURL: String
+  public let receivedEventsURL: String
+  public let type: OwnerType
+  public let siteAdmin: Bool
   
   enum CodingKeys: String, CodingKey {
     case login = "login"
@@ -302,34 +302,34 @@ struct Owner: Codable {
   }
 }
 
-enum OwnerType: String, Codable {
+public enum OwnerType: String, Codable {
   case user = "User"
 }
 
 // MARK: - Release
-struct Release: Codable {
-  let url: String
-  let assetsURL: String
-  let uploadURL: String
-  let htmlURL: String
-  let id: Int
-  let author: Owner
-  let nodeID: String
-  let tagName: String
-  let targetCommitish: TargetCommitish
-  let name: String
-  let draft: Bool
-  let prerelease: Bool
-  let createdAt: Date
-  let publishedAt: Date
-  let assets: [Asset]
-  let tarballURL: String
-  let zipballURL: String
-  let body: String
-  let mentionsCount: Int?
-  let mentions: [Mention]?
-  let shortDescriptionHTML: String
-  let isShortDescriptionHTMLTruncated: Bool
+public struct Release: Codable {
+  public let url: String
+  public let assetsURL: String
+  public let uploadURL: String
+  public let htmlURL: String
+  public let id: Int
+  public let author: Owner
+  public let nodeID: String
+  public let tagName: String
+  public let targetCommitish: TargetCommitish
+  public let name: String
+  public let draft: Bool
+  public let prerelease: Bool
+  public let createdAt: Date
+  public let publishedAt: Date
+  public let assets: [Asset]
+  public let tarballURL: String
+  public let zipballURL: String
+  public let body: String
+  public let mentionsCount: Int?
+  public let mentions: [Mention]?
+  public let shortDescriptionHTML: String
+  public let isShortDescriptionHTMLTruncated: Bool
   
   enum CodingKeys: String, CodingKey {
     case url = "url"
@@ -358,20 +358,20 @@ struct Release: Codable {
 }
 
 // MARK: - Asset
-struct Asset: Codable {
-  let url: String
-  let id: Int
-  let nodeID: String
-  let name: String
-  let label: JSONNull?
-  let uploader: Owner
-  let contentType: String
-  let state: String
-  let size: Int
-  let downloadCount: Int
-  let createdAt: Date
-  let updatedAt: Date
-  let browserDownloadURL: String
+public struct Asset: Codable {
+  public let url: String
+  public let id: Int
+  public let nodeID: String
+  public let name: String
+  public let label: JSONNull?
+  public let uploader: Owner
+  public let contentType: String
+  public let state: String
+  public let size: Int
+  public let downloadCount: Int
+  public let createdAt: Date
+  public let updatedAt: Date
+  public let browserDownloadURL: String
   
   enum CodingKeys: String, CodingKey {
     case url = "url"
@@ -391,12 +391,12 @@ struct Asset: Codable {
 }
 
 // MARK: - Mention
-struct Mention: Codable {
-  let avatarURL: String
-  let login: String
-  let profileName: String
-  let profileURL: String
-  let avatarUserActor: Bool
+public struct Mention: Codable {
+  public let avatarURL: String
+  public let login: String
+  public let profileName: String
+  public let profileURL: String
+  public let avatarUserActor: Bool
   
   enum CodingKeys: String, CodingKey {
     case avatarURL = "avatar_url"
@@ -407,16 +407,16 @@ struct Mention: Codable {
   }
 }
 
-enum TargetCommitish: String, Codable {
+public enum TargetCommitish: String, Codable {
   case main = "main"
   case master = "master"
 }
 
 // MARK: - Repo
-struct Repo: Codable {
-  let id: Int
-  let name: String
-  let url: String
+public struct Repo: Codable {
+  public let id: Int
+  public let name: String
+  public let url: String
   
   enum CodingKeys: String, CodingKey {
     case id = "id"
@@ -425,7 +425,7 @@ struct Repo: Codable {
   }
 }
 
-enum ReceivedEventType: String, Codable {
+public enum ReceivedEventType: String, Codable {
   case createEvent = "CreateEvent"
   case forkEvent = "ForkEvent"
   case publicEvent = "PublicEvent"
@@ -435,7 +435,8 @@ enum ReceivedEventType: String, Codable {
 
 // MARK: - Encode/decode helpers
 
-class JSONNull: Codable, Hashable {
+// TODO: try to remove it, it should be public in the first place at all
+public class JSONNull: Codable, Hashable {
   
   public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
     return true
@@ -480,7 +481,7 @@ class JSONCodingKey: CodingKey {
   }
 }
 
-class JSONAny: Codable {
+public class JSONAny: Codable {
   
   let value: Any
   
