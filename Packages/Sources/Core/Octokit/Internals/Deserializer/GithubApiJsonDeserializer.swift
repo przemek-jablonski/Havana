@@ -4,10 +4,10 @@ import Foundation
 internal struct GithubApiJsonDeserializer {
   private let jsonDecoder: JSONDecoder
   
-  internal init() {
-    let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .iso8601
-    self.jsonDecoder = decoder
+  internal init(
+    jsonDecoder: JSONDecoder = JSONDecoder(dateDecodingStrategy: .iso8601)
+  ) {
+    self.jsonDecoder = jsonDecoder
   }
 }
 
@@ -18,7 +18,24 @@ extension GithubApiJsonDeserializer: Deserializer {
   ) -> AnyPublisher<Target, DeserializerError> {
     jsonDecoder.decode(to: type, from: data)
       .publisher
-      .mapError { .internalDeserializationEngineError(targetType: type, error: $0) }
-      .erased()
+      .mapError { DeserializerError.internalDeserializationEngineError(targetType: type, error: $0) }
+      .eraseToAnyPublisher()
+  }
+}
+
+private extension JSONDecoder {
+  convenience init(dateDecodingStrategy: DateDecodingStrategy) {
+    self.init()
+    self.dateDecodingStrategy = dateDecodingStrategy
+  }
+}
+
+private extension JSONDecoder {
+  func decode<Target: Decodable>(to type: Target.Type, from data: Data) -> Result<Target, Error> {
+    do {
+      return .success(try decode(type, from: data))
+    } catch {
+      return .failure(error)
+    }
   }
 }
