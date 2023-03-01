@@ -11,14 +11,10 @@ internal struct URLSessionNetworkClient {
 
 extension URLSessionNetworkClient: NetworkClient {
   func request(
-    url: String,
-    method: NetworkClientHTTPMethod, // TODO: use this
-    body: Encodable?,
-    headers: Headers?,
-    queryItems: QueryItems?
+    _ data: NetworkClientRequestData
   ) -> AnyPublisher<Data, NetworkClientError> {
     URLRequest
-      .from(url, body, headers ?? [:], queryItems ?? [:])
+      .from(data.url, data.body, data.headers ?? [:], data.queryItems ?? [:])
       .mapError { NetworkClientError.serverRequestConstructionFailed(error: $0) }
       .flatMap { [urlSessionInstance] request in
         urlSessionInstance
@@ -28,6 +24,15 @@ extension URLSessionNetworkClient: NetworkClient {
       .map { (data: Data, response: URLResponse) in data }
       .eraseToAnyPublisher()
   }
+  
+//  func request(
+//    url: String,
+//    method: NetworkClientHTTPMethod, // TODO: use this
+//    body: Encodable?,
+//    headers: Headers?,
+//    queryItems: QueryItems?
+//  ) -> AnyPublisher<Data, NetworkClientError> {
+//  }
 }
 
 private extension URLRequest {
@@ -35,7 +40,7 @@ private extension URLRequest {
     _ url: String,
     _ body: Encodable?,
     _ headers: [String: String],
-    _ queryItems: NetworkClient.QueryItems
+    _ queryItems: [String: String]
   ) -> Result<Self, Error>.Publisher {
     Result.success(URLRequest(url: URL(string: url)!)).publisher // TODO: !
   }

@@ -21,7 +21,7 @@ extension GithubLoginService: LoginService {
   func login(using privateAccessToken: String) -> AnyPublisher<Void, PrivateAccessTokenLoginError> {
     secretsService
       .store(.privateAccessToken, value: privateAccessToken)
-      .mapError(PrivateAccessTokenLoginError.unableToStorePrivateAccessToken(error: ))
+      .mapError(PrivateAccessTokenLoginError.unableToStorePrivateAccessToken)
       .eraseToAnyPublisher()
   }
 }

@@ -3,15 +3,6 @@ import Combine
 
 internal protocol NetworkClient {
   func request(
-    url: String,
-    method: NetworkClientHTTPMethod,
-    body: Encodable?,
-    headers: Headers?,
-    queryItems: QueryItems?
+    _ data: NetworkClientRequestData
   ) -> AnyPublisher<Data, NetworkClientError>
-}
-
-extension NetworkClient {
-  typealias Headers = [String: String]
-  typealias QueryItems = [String: String]
 }
