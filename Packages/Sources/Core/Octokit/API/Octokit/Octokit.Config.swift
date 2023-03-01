@@ -13,7 +13,7 @@ public extension Octokit.Config {
     Octokit.Config(
       acceptFormatHeader: "application/vnd.github+json",
       githubApiVersionHeader: "2022-11-28",
-      remoteBaseUrl: "https://api.github.com/"
+      remoteBaseUrl: "https://api.github.com"
     )
   }
 }

@@ -7,6 +7,8 @@ public struct Octokit {
   private let deserializer: Deserializer
   private let secretsService: SecretsService
   
+  public static let shared = Octokit()
+  
   public init(
     config: Config = .default,
     dispatchQueue: DispatchQueue = .global()
