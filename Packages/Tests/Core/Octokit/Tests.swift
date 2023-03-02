@@ -12,7 +12,7 @@ final class Tests: XCTestCase {
     let octokit = Octokit(dispatchQueue: .global())
     
     octokit.loginService
-      .login(using: "github_pat_***REMOVED***")
+      .login(using: "...")
       .typeEraseError()
       .flatMap {
         octokit.userService.receivedEvents("przemek-jablonski", 1)
