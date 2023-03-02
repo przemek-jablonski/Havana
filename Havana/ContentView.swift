@@ -13,11 +13,11 @@ class ContentViewModel: ObservableObject {
     self.userService = Octokit.shared.userService
     
     loginService
-      .login(using: "11github_pat_***REMOVED***")
-      .typeEraseError()
+      .login(using: "...")
+      .eraseErrorType()
       .flatMap { [userService] in
         userService.receivedEvents("przemek-jablonski", 1)
-          .typeEraseError()
+          .eraseErrorType()
       }
       .on(event: { event in
         let ev = event
@@ -46,12 +46,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
-  }
-}
-
-// TODO: to Casimir
-private extension Publisher {
-  func typeEraseError() -> some Publisher<Output, Error> {
-    self.mapError { error in error as Error }
   }
 }

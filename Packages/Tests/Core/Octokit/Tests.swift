@@ -60,10 +60,3 @@ final class Tests: XCTestCase {
     waitForExpectations(timeout: 5, handler: nil)
   }
 }
-
-// TODO: to Casimir
-private extension Publisher {
-  func typeEraseError() -> some Publisher<Output, Error> {
-    self.mapError { error in error as Error }
-  }
-}
