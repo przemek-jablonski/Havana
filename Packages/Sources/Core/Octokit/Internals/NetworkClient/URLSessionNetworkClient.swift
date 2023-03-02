@@ -4,20 +4,36 @@ import Foundation
 internal struct URLSessionNetworkClient {
   private let urlSessionInstance: URLSession
   private let jsonEncoder: JSONEncoder
+  private let deserializer: Deserializer
   
   internal init(
     urlSessionInstance: URLSession = .shared,
-    jsonEncoder: JSONEncoder = JSONEncoder()
+    jsonEncoder: JSONEncoder = JSONEncoder(),
+    deserializer: Deserializer
   ) {
     self.urlSessionInstance = urlSessionInstance
     self.jsonEncoder = jsonEncoder
+    self.deserializer = deserializer
   }
 }
 
 extension URLSessionNetworkClient: NetworkClient {
-  func request(
+  func request<ReturnType>(
+    data: NetworkClientRequestData,
+    type: ReturnType.Type
+  ) -> AnyPublisher<ReturnType, NetworkClientError> where ReturnType : Decodable {
+    request(data)
+      .flatMap { [deserializer] response in
+        deserializer
+          .deserialize(response, into: type)
+          .mapError(NetworkClientError.serverResponseDeserializationFailure(error: ))
+      }
+      .eraseToAnyPublisher()
+  }
+  
+  private func request(
     _ data: NetworkClientRequestData
-  ) -> AnyPublisher<Data, NetworkClientError> {
+  ) -> some Publisher<Data, NetworkClientError> {
     URLRequest
       .from(
         data.url,
@@ -34,7 +50,6 @@ extension URLSessionNetworkClient: NetworkClient {
           .processResponse()
       }
       .map { (data: Data, response: URLResponse) in data }
-      .eraseToAnyPublisher()
   }
 }
 
@@ -71,7 +86,6 @@ private extension URLRequest {
     headers.forEach {
       request.addValue($0.value, forHTTPHeaderField: $0.key)
     }
-    
     
     do {
       request.httpBody = try body?.data(using: jsonEncoder)

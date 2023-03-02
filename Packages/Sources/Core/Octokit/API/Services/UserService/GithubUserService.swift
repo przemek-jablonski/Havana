@@ -6,20 +6,17 @@ internal struct GithubUserService {
   private let config: Octokit.Config
   private let dispatchQueue: DispatchQueue
   private let networkClient: NetworkClient
-  private let deserializer: Deserializer
   private let secretsService: SecretsService
   
   internal init(
     config: Octokit.Config,
     dispatchQueue: DispatchQueue,
     networkClient: NetworkClient,
-    deserializer: Deserializer,
     secretsService: SecretsService
   ) {
     self.config = config
     self.dispatchQueue = dispatchQueue
     self.networkClient = networkClient
-    self.deserializer = deserializer
     self.secretsService = secretsService
   }
 }
@@ -35,21 +32,15 @@ extension GithubUserService: UserService {
       .mapError(ReceivedEventsError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         networkClient.request(
-          .receivedEvents(
+          data: .receivedEvents(
             baseUrl: config.remoteBaseUrl,
             username: username,
             privateAccessToken: token,
             page: page
-          )
+          ),
+          type: [ReceivedEvent].self
         )
         .mapError(ReceivedEventsError.networkRequestFailed)
-      }
-      .flatMap { [deserializer] response in
-        deserializer.deserialize(
-          response,
-          into: [ReceivedEvent].self
-        )
-        .mapError(ReceivedEventsError.contentDecodingFailed)
       }
       .eraseToAnyPublisher()
   }

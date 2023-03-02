@@ -5,4 +5,5 @@ internal enum NetworkClientError: Error {
   case serverReturnedNonHTTPContent
   case serverReturnedInvalidStatusCode(code: Int)
   case internalNetworkClientFailure(error: Error)
+  case serverResponseDeserializationFailure(error: Error)
 }
