@@ -22,47 +22,72 @@ internal struct GithubUserService {
 }
 
 extension GithubUserService: UserService {
-  public func receivedEvents(
-    _ username: String,
-    _ page: Int
-  ) -> AnyPublisher<[ReceivedEvent], ReceivedEventsError> {
+  func userMetadata() -> AnyPublisher<User, NetworkServiceError> {
     secretsService
       .retrieve(.privateAccessToken)
       .subscribe(on: dispatchQueue)
-      .mapError(ReceivedEventsError.privateAccessTokenFetchingFailed)
+      .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
+      .flatMap { [networkClient] token in
+        networkClient.request(
+          data: .user(
+            config: config,
+            privateAccessToken: token
+          ),
+          type: User.self
+        )
+        .mapError(NetworkServiceError.networkRequestFailed)
+      }
+      .eraseToAnyPublisher()
+  }
+  
+  public func receivedEvents(
+    _ username: String,
+    _ page: Int
+  ) -> AnyPublisher<[ReceivedEvent], NetworkServiceError> {
+    secretsService
+      .retrieve(.privateAccessToken)
+      .subscribe(on: dispatchQueue)
+      .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         networkClient.request(
           data: .receivedEvents(
-            baseUrl: config.remoteBaseUrl,
+            config: config,
             username: username,
             privateAccessToken: token,
             page: page
           ),
           type: [ReceivedEvent].self
         )
-        .mapError(ReceivedEventsError.networkRequestFailed)
+        .mapError(NetworkServiceError.networkRequestFailed)
       }
       .eraseToAnyPublisher()
   }
 }
 
 extension NetworkClientRequestData {
+  static func user(
+    config: Octokit.Config,
+    privateAccessToken: String
+  ) -> NetworkClientRequestData {
+    config.standardRequest(
+      endpoint: "/user",
+      method: .get,
+      privateAccessToken: privateAccessToken
+    )
+  }
+  
   static func receivedEvents(
-    baseUrl: String,
+    config: Octokit.Config,
     username: String,
     privateAccessToken: String,
     amount: Int = 100,
     page: Int
   ) -> NetworkClientRequestData {
-    NetworkClientRequestData(
-      url: "\(baseUrl)/users/\(username)/received_events/public",
+    config.standardRequest(
+      endpoint: "/users/\(username)/received_events/public",
       method: .get,
-      body: nil,
-      headers: [
-        "Accept": "application/vnd.github+json",
-        "Authorization": "Bearer \(privateAccessToken)",
-        "X-GitHub-Api-Version": "2022-11-28"
-      ],
+      privateAccessToken: privateAccessToken
+    ).appending(
       queryItems: [
         "per_page": amount.string,
         "page": page.string

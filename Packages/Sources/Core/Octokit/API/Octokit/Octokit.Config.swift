@@ -1,10 +1,35 @@
 public extension Octokit {
   struct Config {
-    let acceptFormatHeader: String
-    let githubApiVersionHeader: String
-    let remoteBaseUrl: String
-//    var authorizationScheme: ( String
-    //    let token: AuthenticationService.PrivateAccessToken? // TODO: to keychain etc
+    public let acceptFormatHeader: String
+    public let githubApiVersionHeader: String
+    public let remoteBaseUrl: String
+    
+    public init(
+      acceptFormatHeader: String,
+      githubApiVersionHeader: String,
+      remoteBaseUrl: String
+    ) {
+      self.acceptFormatHeader = acceptFormatHeader
+      self.githubApiVersionHeader = githubApiVersionHeader
+      self.remoteBaseUrl = remoteBaseUrl
+    }
+    
+    internal func standardRequest(
+      endpoint: String,
+      method: NetworkClientHTTPMethod,
+      privateAccessToken: String?
+    ) -> NetworkClientRequestData {
+      NetworkClientRequestData(
+        url: "\(remoteBaseUrl)\(endpoint)",
+        method: method,
+        headers: [
+          "Accept": acceptFormatHeader,
+          "Authorization": privateAccessToken.map { "Bearer \($0)" },
+          "X-GitHub-Api-Version": githubApiVersionHeader
+        ]
+          .compactMapValues { $0 }
+      )
+    }
   }
 }
 
