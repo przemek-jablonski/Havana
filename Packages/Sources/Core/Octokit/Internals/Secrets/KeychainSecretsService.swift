@@ -6,9 +6,14 @@ private let octokitKeychainEntry = "com.octokit.keychain"
 
 internal struct KeychainSecretsService {
   private let keychain: Keychain
+  private let dispatchQueue: DispatchQueue
   
-  internal init(keychain: Keychain = Keychain(service: octokitKeychainEntry)) {
+  internal init(
+    keychain: Keychain = Keychain(service: octokitKeychainEntry),
+    dispatchQueue: DispatchQueue
+  ) {
     self.keychain = keychain
+    self.dispatchQueue = dispatchQueue
   }
 }
 
@@ -16,6 +21,7 @@ extension KeychainSecretsService: SecretsService {
   func store(_ entry: SecretsServiceEntry, value: String) -> AnyPublisher<Void, StoreError> {
     keychain
       .set(entry, value: value)
+      .subscribe(on: dispatchQueue)
       .mapError(StoreError.internalKeychainError(error: ))
       .eraseToAnyPublisher()
   }
@@ -23,6 +29,7 @@ extension KeychainSecretsService: SecretsService {
   func retrieve(_ entry: SecretsServiceEntry) -> AnyPublisher<String, RetrieveError> {
     keychain
       .get(entry)
+      .subscribe(on: dispatchQueue)
       .mapError(RetrieveError.internalKeychainError(error: ))
       .replaceNil(with: .entryNotFoundInKeychain(entry: entry))
       .eraseToAnyPublisher()
@@ -40,20 +47,11 @@ private extension SecretsServiceEntry {
 
 private extension Keychain {
   func get(_ entry: SecretsServiceEntry) -> some Publisher<String?, Error> {
-    Result(catching: <#T##() throws -> Success#>) // ?
-    do {
-      return Just(try self.getString(entry.string)).setFailureType(to: Error.self).eraseToAnyPublisher()
-    } catch {
-      return Fail(error: error).eraseToAnyPublisher()
-    }
+    Result { try self.getString(entry.string) }.publisher
   }
   
   func set(_ entry: SecretsServiceEntry, value: String) -> some Publisher<Void, Error> {
-    do {
-      return Just(try self.set(value, key: entry.string)).setFailureType(to: Error.self).eraseToAnyPublisher()
-    } catch {
-      return Fail(error: error).eraseToAnyPublisher()
-    }
+    Result { try self.set(value, key: entry.string) }.publisher
   }
 }
 

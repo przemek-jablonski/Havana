@@ -1,8 +1,9 @@
 import Foundation
 
 internal enum NetworkClientError: Error {
-  case serverRequestConstructionFailed(error: Error?)
+  case serverRequestConstructionFailed(Error?)
   case serverReturnedNonHTTPContent
   case serverReturnedInvalidStatusCode(code: Int)
-  case internalNetworkClientFailure(error: Error)
+  case internalNetworkClientFailure(Error)
+  case serverResponseDeserializationFailure(Error)
 }

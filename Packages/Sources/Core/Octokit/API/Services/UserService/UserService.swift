@@ -1,5 +1,10 @@
 import Combine
 
 public protocol UserService {
-  func receivedEvents(_ userName: String, _ page: Int) -> AnyPublisher<[ReceivedEvent], Error>
+  func userMetadata() -> AnyPublisher<User, NetworkServiceError>
+  
+  func receivedEvents(
+    _ username: String,
+    _ page: Int
+  ) -> AnyPublisher<[ReceivedEvent], NetworkServiceError>
 }
