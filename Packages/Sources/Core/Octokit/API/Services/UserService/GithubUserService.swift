@@ -29,11 +29,11 @@ extension GithubUserService: UserService {
       .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         networkClient.request(
-          data: .user(
+          User.self,
+          using: .user(
             config: config,
             privateAccessToken: token
-          ),
-          type: User.self
+          )
         )
         .mapError(NetworkServiceError.networkRequestFailed)
       }
@@ -50,13 +50,13 @@ extension GithubUserService: UserService {
       .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         networkClient.request(
-          data: .receivedEvents(
+          [ReceivedEvent].self,
+          using: .receivedEvents(
             config: config,
             username: username,
             privateAccessToken: token,
             page: page
-          ),
-          type: [ReceivedEvent].self
+          )
         )
         .mapError(NetworkServiceError.networkRequestFailed)
       }

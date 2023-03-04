@@ -19,14 +19,14 @@ internal struct URLSessionNetworkClient {
 
 extension URLSessionNetworkClient: NetworkClient {
   func request<ReturnType>(
-    data: NetworkClientRequestData,
-    type: ReturnType.Type
+    _ type: ReturnType.Type,
+    using data: NetworkClientRequestData
   ) -> AnyPublisher<ReturnType, NetworkClientError> where ReturnType : Decodable {
     request(data)
       .flatMap { [deserializer] response in
         deserializer
           .deserialize(response, into: type)
-          .mapError(NetworkClientError.serverResponseDeserializationFailure(error: ))
+          .mapError(NetworkClientError.serverResponseDeserializationFailure)
       }
       .eraseToAnyPublisher()
   }
@@ -43,7 +43,7 @@ extension URLSessionNetworkClient: NetworkClient {
         data.queryItems ?? [:],
         using: jsonEncoder
       )
-      .mapError { NetworkClientError.serverRequestConstructionFailed(error: $0) }
+      .mapError(NetworkClientError.serverRequestConstructionFailed)
       .flatMap { [urlSessionInstance] request in
         urlSessionInstance
           .dataTaskPublisher(for: request)
@@ -100,7 +100,7 @@ private extension URLRequest {
 private extension URLSession.DataTaskPublisher {
   func processResponse() -> some Publisher<Output, NetworkClientError> {
     self
-      .mapError { .internalNetworkClientFailure(error: $0 )}
+      .mapError(NetworkClientError.internalNetworkClientFailure)
       .flatMap { (data: Data, response: URLResponse) in
         guard let response = response as? HTTPURLResponse else {
           return Fail<Output, NetworkClientError>(error: NetworkClientError.serverReturnedNonHTTPContent).eraseToAnyPublisher()

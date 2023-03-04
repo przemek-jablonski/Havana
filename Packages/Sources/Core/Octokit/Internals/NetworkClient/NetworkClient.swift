@@ -3,7 +3,7 @@ import Combine
 
 internal protocol NetworkClient {
   func request<ReturnType: Decodable>(
-    data: NetworkClientRequestData,
-    type: ReturnType.Type
+    _ type: ReturnType.Type,
+    using data: NetworkClientRequestData
   ) -> AnyPublisher<ReturnType, NetworkClientError>
 }
