@@ -14,7 +14,7 @@ public extension Octokit {
       self.remoteBaseUrl = remoteBaseUrl
     }
     
-    internal func standardRequest(
+    internal func standardRequest( // TODO: to +live
       endpoint: String,
       method: NetworkClientHTTPMethod,
       privateAccessToken: String?
@@ -35,7 +35,7 @@ public extension Octokit {
 
 public extension Octokit.Config {
   static var `default`: Octokit.Config {
-    Octokit.Config(
+    Octokit.Config( // TODO: to +live
       acceptFormatHeader: "application/vnd.github+json",
       githubApiVersionHeader: "2022-11-28",
       remoteBaseUrl: "https://api.github.com"

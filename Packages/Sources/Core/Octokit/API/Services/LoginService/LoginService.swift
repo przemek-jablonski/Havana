@@ -1,10 +1,11 @@
 import Combine
 import Foundation
 
-public protocol LoginService {
-  func login(
-    using privateAccessToken: String
-  ) -> AnyPublisher<Void, PrivateAccessTokenLoginError>
+public extension Octokit {
+  struct LoginService {
+    public typealias PrivateAccessToken = String
+    public var login: (_ token: PrivateAccessToken) -> any Publisher<Void, PrivateAccessTokenLoginError>
+  }
 }
 
 public enum PrivateAccessTokenLoginError: Error {

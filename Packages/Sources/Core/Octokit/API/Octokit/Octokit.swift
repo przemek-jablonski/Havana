@@ -36,9 +36,7 @@ public struct Octokit {
   }
   
   public var loginService: LoginService {
-    GithubLoginService(
-      secretsService: secretsService
-    )
+    LoginService.live(secretsService: secretsService) // TODO: to +live
   }
   
   public var userService: UserService {

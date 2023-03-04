@@ -1,5 +1,3 @@
-//
-
 import Foundation
 
 // TODO: try to remove it, it should not be public in the first place at all

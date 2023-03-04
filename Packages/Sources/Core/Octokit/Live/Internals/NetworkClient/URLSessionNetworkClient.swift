@@ -21,7 +21,7 @@ extension URLSessionNetworkClient: NetworkClient {
   func request<ReturnType>(
     _ type: ReturnType.Type,
     using data: NetworkClientRequestData
-  ) -> AnyPublisher<ReturnType, NetworkClientError> where ReturnType : Decodable {
+  ) -> AnyPublisher<ReturnType, NetworkClientError> where ReturnType: Decodable {
     request(data)
       .flatMap { [deserializer] response in
         deserializer
@@ -34,6 +34,7 @@ extension URLSessionNetworkClient: NetworkClient {
   private func request(
     _ data: NetworkClientRequestData
   ) -> some Publisher<Data, NetworkClientError> {
+    // TODO: move some of this to Casimir
     URLRequest
       .from(
         data.url,
