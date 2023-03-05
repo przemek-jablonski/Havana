@@ -49,3 +49,10 @@ private func + (
   }
   return updated
 }
+
+private func +<Key: Hashable, Value>(
+  lhs: Dictionary<Key, Value>,
+  rhs: Dictionary<Key, Value>
+) -> Dictionary<Key, Value> {
+  lhs
+}

@@ -44,7 +44,8 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    casimir
+    casimir,
+    octokit.asDependency
   ],
   path: "Sources/Features/Login"
 )

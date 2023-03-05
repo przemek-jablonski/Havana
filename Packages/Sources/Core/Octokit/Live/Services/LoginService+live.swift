@@ -1,10 +1,10 @@
 import Foundation
 import Combine
 
-public extension Octokit.LoginService {
-  internal static func live(secretsService: SecretsService) -> Self {
+internal extension Octokit.LoginService {
+  static func live(secretsService: SecretsService) -> Octokit.LoginService {
     Self(
-      login: { token in
+      login: { [secretsService] token in
         secretsService
           .store(.privateAccessToken, value: token)
           .mapError(PrivateAccessTokenLoginError.unableToStorePrivateAccessToken)
