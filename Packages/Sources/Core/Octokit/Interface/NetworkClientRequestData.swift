@@ -1,16 +1,16 @@
 import Foundation
 
-internal struct NetworkClientRequestData {
-  internal typealias Headers = [String: String]
-  internal typealias QueryItems = [String: String]
+public struct NetworkClientRequestData {
+  public typealias Headers = [String: String]
+  public typealias QueryItems = [String: String]
   
-  internal let url: String
-  internal let method: NetworkClientHTTPMethod
-  internal let body: Encodable?
-  internal let headers: Headers?
-  internal let queryItems: QueryItems?
+  public let url: String
+  public let method: NetworkClientHTTPMethod
+  public let body: Encodable?
+  public let headers: Headers?
+  public let queryItems: QueryItems?
   
-  internal init(
+  public init(
     url: String,
     method: NetworkClientHTTPMethod,
     body: Encodable? = nil,
@@ -24,7 +24,7 @@ internal struct NetworkClientRequestData {
     self.queryItems = queryItems
   }
   
-  internal func appending(
+  public func appending(
     body: Encodable? = nil,
     headers: Headers? = nil,
     queryItems: QueryItems? = nil
@@ -50,6 +50,7 @@ private func + (
   return updated
 }
 
+// TODO: fill + to Casimir
 private func +<Key: Hashable, Value>(
   lhs: Dictionary<Key, Value>,
   rhs: Dictionary<Key, Value>

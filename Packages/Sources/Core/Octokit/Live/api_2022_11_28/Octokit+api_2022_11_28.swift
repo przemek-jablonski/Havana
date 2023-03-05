@@ -1,3 +1,4 @@
+import Octokit
 import Foundation
 
 internal extension Octokit {

@@ -1,5 +1,6 @@
-import Foundation
 import Combine
+import Foundation
+import Octokit
 
 internal protocol NetworkClient {
   func request<ReturnType: Decodable>(

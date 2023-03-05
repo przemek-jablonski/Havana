@@ -1,6 +1,7 @@
 import Casimir
 import Combine
 import Foundation
+import Octokit
 
 internal extension Octokit.UserService {
   static func live(
@@ -52,9 +53,11 @@ private extension NetworkClientRequestData {
     privateAccessToken: String
   ) -> NetworkClientRequestData {
     config.commonRequestData(
-      "/user",
-      .get,
-      privateAccessToken
+      .init(
+        endpoint: "/user",
+        method: .get,
+        token: privateAccessToken
+      )
     )
   }
   
@@ -66,14 +69,18 @@ private extension NetworkClientRequestData {
     page: Int
   ) -> NetworkClientRequestData {
     config.commonRequestData(
-      "/users/\(username)/received_events/public",
-      .get,
-      privateAccessToken
-    ).appending(
+      .init(
+        endpoint: "/users/\(username)/received_events/public",
+        method: .get,
+        token: privateAccessToken
+      )
+    )
+    .appending(
       queryItems: [
         "per_page": amount.string,
         "page": page.string
       ]
     )
+    
   }
 }

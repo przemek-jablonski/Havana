@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import Octokit
 
 internal struct URLSessionNetworkClient {
   private let urlSessionInstance: URLSession

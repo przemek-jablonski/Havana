@@ -1,5 +1,6 @@
-import Foundation
 import Combine
+import Foundation
+import Octokit
 
 internal extension Octokit.LoginService {
   static func live(secretsService: SecretsService) -> Octokit.LoginService {

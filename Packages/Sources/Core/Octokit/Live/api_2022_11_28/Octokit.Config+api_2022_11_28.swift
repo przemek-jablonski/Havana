@@ -1,4 +1,5 @@
 import Foundation
+import Octokit
 
 internal extension Octokit.Config {
   static func api_2022_11_28() -> Self {
@@ -16,13 +17,13 @@ internal extension Octokit.Config {
       apiVersionHeaderValue: {
         apiVersionHeaderValue
       },
-      commonRequestData: { endpoint, method, token in
+      commonRequestData: { payload in
         NetworkClientRequestData(
-          url: "\(baseUrl)\(endpoint)",
-          method: method,
+          url: "\(baseUrl)\(payload.endpoint)",
+          method: payload.method,
           headers: [
             "Accept": acceptContentTypeHeaderValue,
-            "Authorization": token.map { "Bearer \($0)" },
+            "Authorization": payload.token.map { "Bearer \($0)" },
             "X-GitHub-Api-Version": apiVersionHeaderValue
           ]
             .compactMapValues { $0 }
