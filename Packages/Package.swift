@@ -29,14 +29,24 @@ let supportedPlatforms: [SupportedPlatform] = [
 let octokit = Target.target(
   name: "Octokit",
   dependencies: [
+    casimir
+  ],
+  path: "Sources/Core/Octokit/Interface"
+)
+
+let octokitLive = Target.target(
+  name: "OctokitLive",
+  dependencies: [
+    octokit.dependency,
     casimir,
     keychainAccess
   ],
-  path: "Sources/Core/Octokit"
+  path: "Sources/Core/Octokit/Live"
 )
 
 let coreTargets: [Target] = [
-  octokit
+  octokit,
+  octokitLive
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -44,7 +54,8 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    casimir
+    casimir,
+    octokit.dependency
   ],
   path: "Sources/Features/Login"
 )
@@ -83,12 +94,31 @@ let umbrellaProduct = PackageDescription.Product.library(
 let package = Package(
   name: "Packages",
   platforms: supportedPlatforms,
-  products: umbrellaProduct + allTargets.regularTargets.asLibraryProducts,
+  products: umbrellaProduct + allTargets.regularTargets.libraries,
   dependencies: globalDependencies,
   targets: allTargets
 )
 
 // MARK: - Conveniences
+
+private extension Target {
+  /**
+   Returns this `Target` in a `Dependency` format, to be linked as a dependency for other `Product`s or `Target`s.
+   */
+  var dependency: Target.Dependency {
+    Target.Dependency(stringLiteral: self.name)
+  }
+  
+  /**
+   Returns this `Target` as a `Product`, in `Library` format. Can be linked as a product of any `Package`.
+   */
+  var library: Product {
+    PackageDescription.Product.library(
+      name: self.name,
+      targets: [self.name]
+    )
+  }
+}
 
 private extension Array where Element == Target {
   var regularTargets: [Target] {
@@ -99,13 +129,8 @@ private extension Array where Element == Target {
     self.filter { $0.type == .test }
   }
   
-  var asLibraryProducts: [Product] {
-    self.map { target in
-      PackageDescription.Product.library(
-        name: target.name,
-        targets: [target.name]
-      )
-    }
+  var libraries: [Product] {
+    self.map(\.library)
   }
   
   var names: [String] {
@@ -113,12 +138,7 @@ private extension Array where Element == Target {
   }
 }
 
-private extension Target {
-  var asDependency: Target.Dependency {
-    Target.Dependency(stringLiteral: self.name)
-  }
-}
 
 private func +<Element>(left: Element, right: [Element]) -> [Element] {
-  return [left] + right
+  [left] + right
 }
