@@ -61,7 +61,7 @@ public struct Payload: ModelProtocol {
     )
   }
   
-  public var id: String { "\(action ?? "")\(issue?.id)"}
+  public var id: String { "\(action ?? "")\(issue?.id)" }
   
   public let action: String?
   /// Comments provide a way for people to collaborate on an issue.
