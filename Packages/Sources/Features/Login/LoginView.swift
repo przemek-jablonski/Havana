@@ -5,11 +5,11 @@ import SwiftUI
 public struct LoginView: View {
   private let store: StoreOf<LoginReducer>
   
-//  struct ViewState: Equatable {
-//    init(state: LoginReducer.State) {
-//
-//    }
-//  }
+  struct ViewState: Equatable {
+    init(state: LoginReducer.State) {
+
+    }
+  }
   
   public init(
     store: StoreOf<LoginReducer>
@@ -18,8 +18,7 @@ public struct LoginView: View {
   }
   
   public var body: some View {
-//    WithViewStore(store, observe: ViewState.init) { viewStore in
-    WithViewStore(store) { viewStore in
+    WithViewStore(store, observe: ViewState.init) { viewStore in
       ZStack {
         gradientBackground()
           .ignoresSafeArea()
@@ -27,7 +26,7 @@ public struct LoginView: View {
         overlay(viewStore)
           .maxHeight(.infinity)
         
-        Text(viewStore.rawValue)
+//        Text(viewStore.rawValue)
       }
     }
   }
@@ -49,8 +48,7 @@ private extension View {
   
   @ViewBuilder
   func overlay(
-//    _ viewStore: ViewStore<LoginView.ViewState, LoginReducer.Action>
-    _ viewStore: ViewStore<LoginReducer.State, LoginReducer.Action>
+    _ viewStore: ViewStore<LoginView.ViewState, LoginReducer.Action>
   ) -> some View {
     VStack {
       VStack {
@@ -70,12 +68,13 @@ private extension View {
         Button("Login with Private Access Token") {
           viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton)
         }
+        .buttonStyle(.borderedProminent)
+        
         Button("Login with GitHub.com") {
           viewStore.send(.userDidTapLoginWithGithubButton)
         }
       }
       .maxHeight(.infinity)
-      .background(.white)
     }
     .padding()
   }

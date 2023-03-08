@@ -1,16 +1,17 @@
-//import Casimir
-//import Combine
-//@testable import Octokit
-//import XCTest
-//
-//final class Tests: XCTestCase {
-//  
-//  func testCall() throws {
+import Casimir
+import Combine
+@testable import Octokit
+import XCTest
+
+final class Tests: XCTestCase {
+  
+  func testCall() throws {
+    let asd = "2"
 //    let expc = expectation(description: "")
 //    var cancellables = Set<AnyCancellable>()
-//    
+//
 //    let octokit = Octokit(dispatchQueue: .global())
-//    
+//
 //    octokit.loginService
 //      .login(using: "...")
 //      .typeEraseError()
@@ -24,7 +25,7 @@
 //      })
 //      .sink()
 //      .store(in: &cancellables)
-//    
+//
 //    waitForExpectations(timeout: 5, handler: nil)
-//  }
-//}
+  }
+}

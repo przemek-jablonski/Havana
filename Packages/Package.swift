@@ -44,9 +44,15 @@ let octokitLive = Target.target(
   path: "Sources/Core/Octokit/Live"
 )
 
+let grace = Target.target(
+  name: "Grace",
+  path: "Sources/Core/Grace"
+)
+
 let coreTargets: [Target] = [
   octokit,
-  octokitLive
+  octokitLive,
+  grace
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -54,6 +60,7 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
+    grace.dependency,
     composableArchitecture,
     octokit.dependency
   ],
@@ -77,7 +84,7 @@ let octokitTests = Target.testTarget(
 
 let testTargets: [Target] = [
   octokitTests
-//  loginFeatureTests
+  //  loginFeatureTests
 ]
 
 // MARK: - Umbrella product and all targets assembly
