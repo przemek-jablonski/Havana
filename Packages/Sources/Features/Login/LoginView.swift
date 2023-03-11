@@ -5,11 +5,11 @@ import SwiftUI
 public struct LoginView: View {
   private let store: StoreOf<LoginReducer>
   
-  struct ViewState: Equatable {
-    init(state: LoginReducer.State) {
-
-    }
-  }
+//  struct ViewState: Equatable {
+//    init(state: LoginReducer.State) {
+//
+//    }
+//  }
   
   public init(
     store: StoreOf<LoginReducer>
@@ -18,8 +18,9 @@ public struct LoginView: View {
   }
   
   public var body: some View {
-    WithViewStore(store, observe: ViewState.init) { viewStore in
+    WithViewStore(store) { viewStore in
       ZStack {
+        let _ = Self._printChanges()
         gradientBackground()
           .ignoresSafeArea()
         
@@ -48,7 +49,7 @@ private extension View {
   
   @ViewBuilder
   func overlay(
-    _ viewStore: ViewStore<LoginView.ViewState, LoginReducer.Action>
+    _ viewStore: ViewStoreOf<LoginReducer>
   ) -> some View {
     VStack {
       VStack {
@@ -56,7 +57,7 @@ private extension View {
         .maxHeight(.infinity)
         
         VStack {
-          Text("Welcome to Havana, your new GitHub client.")
+          Text("ble ble ble")
             .font(.title)
         }
         .multilineTextAlignment(.center)
@@ -65,13 +66,40 @@ private extension View {
       .maxHeight(.infinity)
       
       VStack {
-        Button("Login with Private Access Token") {
-          viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton)
-        }
-        .buttonStyle(.borderedProminent)
-        
-        Button("Login with GitHub.com") {
-          viewStore.send(.userDidTapLoginWithGithubButton)
+        switch viewStore.state {
+          case .greeting:
+            Button("Login with Private Access Token") {
+              viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton)
+            }
+            .buttonStyle(.borderedProminent)
+            .id(1)
+            .transition(
+              .slide.combined(with: .opacity)
+              .animation(.easeOut)
+            )
+            
+            Button("Login with GitHub.com") {
+              viewStore.send(.userDidTapLoginWithGithubButton)
+            }
+            .id(2)
+            .transition(
+              .slide.combined(with: .opacity)
+              .animation(.easeOut)
+            )
+          case .privateAccessTokenLoginFlow:
+            Text("PAT")
+              .id(1)
+              .transition(
+                .slide.combined(with: .opacity)
+                .animation(.easeOut)
+              )
+          case .oauthLoginFlow:
+            Text("Oauth")
+              .id(1)
+              .transition(
+                .slide.combined(with: .opacity)
+                .animation(.easeOut)
+              )
         }
       }
       .maxHeight(.infinity)

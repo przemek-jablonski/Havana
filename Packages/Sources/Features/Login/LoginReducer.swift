@@ -2,16 +2,16 @@ import ComposableArchitecture
 import Foundation
 
 public struct LoginReducer: ReducerProtocol {
-  public enum State: String, Equatable {
+  public enum State: Equatable {
     /**
-     Initial state of the screen - presenting greeting to the user. Here user can select which login flow to use.
+     Initial state of the screen - presenting greeting to the user. Here user can select which login flow to use (private access token login or oauth).
      */
-    case greeting
+    case initial
     
     /**
      Displaying editable fields where user can input Private Access Token.
      */
-    case privateAccessTokenLoginFlow
+    case privateAccessTokenLoginFlow(PrivateAccessTokenLoginReducer.State)
     
     /**
       Displaying webview with the oAuth2 login.
@@ -24,7 +24,7 @@ public struct LoginReducer: ReducerProtocol {
     case userDidTapLoginWithGithubButton
   }
   
-  public var body: some ReducerProtocol<State, Action> {
+  public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
         case .userDidTapLoginWithGithubButton:

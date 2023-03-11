@@ -1,15 +1,25 @@
-//
-
+import ComposableArchitecture
 import SwiftUI
 
-struct SwiftUIView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct PrivateAccessTokenLoginView: View {
+  private let store: StoreOf<PrivateAccessTokenLoginReducer>
+  
+  internal init(store: StoreOf<PrivateAccessTokenLoginReducer>) {
+    self.store = store
+  }
+  
+  var body: some View {
+    Text("PrivateAccessTokenLogin")
+  }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftUIView()
-    }
+struct PrivateAccessTokenLogin_Previews: PreviewProvider {
+  static var previews: some View {
+    PrivateAccessTokenLoginView(
+      store: Store(
+        initialState: PrivateAccessTokenLoginReducer.State(),
+        reducer: PrivateAccessTokenLoginReducer()
+      )
+    )
+  }
 }

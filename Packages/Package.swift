@@ -84,7 +84,6 @@ let octokitTests = Target.testTarget(
 
 let testTargets: [Target] = [
   octokitTests
-  //  loginFeatureTests
 ]
 
 // MARK: - Umbrella product and all targets assembly
@@ -144,7 +143,6 @@ private extension Array where Element == Target {
     self.map(\.name)
   }
 }
-
 
 private func +<Element>(left: Element, right: [Element]) -> [Element] {
   [left] + right
