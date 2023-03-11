@@ -3,16 +3,10 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct LoginView: View {
-  private let store: StoreOf<LoginReducer>
-  
-//  struct ViewState: Equatable {
-//    init(state: LoginReducer.State) {
-//
-//    }
-//  }
+  private let store: StoreOf<Login>
   
   public init(
-    store: StoreOf<LoginReducer>
+    store: StoreOf<Login>
   ) {
     self.store = store
   }
@@ -20,14 +14,11 @@ public struct LoginView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       ZStack {
-        let _ = Self._printChanges()
         gradientBackground()
           .ignoresSafeArea()
         
         overlay(viewStore)
           .maxHeight(.infinity)
-        
-//        Text(viewStore.rawValue)
       }
     }
   }
@@ -49,7 +40,7 @@ private extension View {
   
   @ViewBuilder
   func overlay(
-    _ viewStore: ViewStoreOf<LoginReducer>
+    _ viewStore: ViewStoreOf<Login>
   ) -> some View {
     VStack {
       VStack {
@@ -67,7 +58,7 @@ private extension View {
       
       VStack {
         switch viewStore.state {
-          case .greeting:
+          case .loginFlowSelection:
             Button("Login with Private Access Token") {
               viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton)
             }
@@ -112,8 +103,8 @@ struct LoginView_Previews: PreviewProvider {
   static var previews: some View {
     LoginView(
       store: Store(
-        initialState: LoginReducer.State.greeting,
-        reducer: LoginReducer()
+        initialState: Login.State.loginFlowSelection,
+        reducer: Login()
       )
     )
   }
