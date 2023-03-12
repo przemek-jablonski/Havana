@@ -14,13 +14,13 @@ public struct Login: ReducerProtocol {
     case privateAccessTokenLoginFlow(PrivateAccessTokenLogin.State)
     
     /**
-      Displaying webview with the oAuth2 login.
+     Displaying webview with the oAuth2 login.
      */
     case oauthLoginFlow
   }
   
   public enum Action: Equatable {
-    case userDidTapLoginWithPrivateAccessTokenButton
+    case userDidTapLoginWithPrivateAccessTokenButton(PrivateAccessTokenLogin.Action)
     case userDidTapLoginWithGithubButton
   }
   
@@ -34,6 +34,12 @@ public struct Login: ReducerProtocol {
           state = .privateAccessTokenLoginFlow(.tokenInput)
           return .none
       }
+    }
+    .ifCaseLet(
+      /State.privateAccessTokenLoginFlow,
+       action: /Action.userDidTapLoginWithPrivateAccessTokenButton
+    ) {
+      PrivateAccessTokenLogin()
     }
   }
 }

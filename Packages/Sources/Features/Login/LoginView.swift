@@ -12,15 +12,16 @@ public struct LoginView: View {
   }
   
   public var body: some View {
-    WithViewStore(store) { viewStore in
-      ZStack {
-        gradientBackground()
-          .ignoresSafeArea()
-        
-        overlay(viewStore)
-          .maxHeight(.infinity)
-      }
-    }
+    Text("asd")
+//    WithViewStore(store) { viewStore in
+//      ZStack {
+//        gradientBackground()
+//          .ignoresSafeArea()
+//
+//        overlay(viewStore)
+//          .maxHeight(.infinity)
+//      }
+//    }
   }
 }
 
@@ -59,15 +60,15 @@ private extension View {
       VStack {
         switch viewStore.state {
           case .loginFlowSelection:
-            Button("Login with Private Access Token") {
-              viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton)
-            }
-            .buttonStyle(.borderedProminent)
-            .id(1)
-            .transition(
-              .slide.combined(with: .opacity)
-              .animation(.easeOut)
-            )
+//            Button("Login with Private Access Token") {
+//              viewStore.send(.userDidTapLoginWithPrivateAccessTokenButton(.))
+//            }
+//            .buttonStyle(.borderedProminent)
+//            .id(1)
+//            .transition(
+//              .slide.combined(with: .opacity)
+//              .animation(.easeOut)
+//            )
             
             Button("Login with GitHub.com") {
               viewStore.send(.userDidTapLoginWithGithubButton)
