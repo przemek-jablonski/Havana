@@ -1,9 +1,9 @@
 import SwiftUI
 
-public extension Grace.Button {
+public extension Motif.Button {
   struct Filled: View {
     public init(
-      image: Grace.SFSymbol,
+      image: Motif.SFSymbol,
       title: String,
       backgroundColor: Color,
       action: @escaping () -> Void
@@ -18,7 +18,7 @@ public extension Grace.Button {
     }
     
     internal init(
-      image: Grace.SFSymbol,
+      image: Motif.SFSymbol,
       title: String,
       backgroundColor: Color,
       action: @escaping () -> Void,
@@ -31,9 +31,9 @@ public extension Grace.Button {
       self.haptics = haptics
     }
     
-    public let image: Grace.SFSymbol
+    public let image: Motif.SFSymbol
     public let title: String
-    public let backgroundColor: Color // TODO: should be derived from some Grace config
+    public let backgroundColor: Color // TODO: should be derived from some Motif config
     public let action: () -> Void
     private let haptics: Haptics
     
@@ -74,9 +74,9 @@ public struct FilledButtonStyle: ButtonStyle {
   }
 }
 
-struct GraceButtonFilled_Previews: PreviewProvider {
+struct MotifButtonFilled_Previews: PreviewProvider {
   static var previews: some View {
-    Grace.Button.Filled(
+    Motif.Button.Filled(
       image: "cube.transparent",
       title: "asdasdasd",
       backgroundColor: .red,

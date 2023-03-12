@@ -1,3 +1,3 @@
-public extension Grace {
+public extension Motif {
   typealias SFSymbol = String
 }

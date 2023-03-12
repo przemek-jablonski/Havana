@@ -44,15 +44,15 @@ let octokitLive = Target.target(
   path: "Sources/Core/Octokit/Live"
 )
 
-let grace = Target.target(
-  name: "Grace",
-  path: "Sources/Core/Grace"
+let Motif = Target.target(
+  name: "Motif",
+  path: "Sources/Core/Motif"
 )
 
 let coreTargets: [Target] = [
   octokit,
   octokitLive,
-  grace
+  Motif
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -60,7 +60,7 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    grace.dependency,
+    Motif.dependency,
     composableArchitecture,
     octokit.dependency
   ],
