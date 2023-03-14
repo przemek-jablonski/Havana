@@ -7,7 +7,7 @@ public extension Octokit {
     public typealias ReceivedPublicEventsPayload = (username: String, page: Int)
     public var receivedPublicEvents: (ReceivedPublicEventsPayload) -> any Publisher<[UserReceivedPublicEvent], NetworkServiceError>
     
-    public init(
+    internal init(
       user: @escaping () -> any Publisher<User, NetworkServiceError>,
       receivedPublicEvents: @escaping (Octokit.UserService.ReceivedPublicEventsPayload) -> any Publisher<[UserReceivedPublicEvent], NetworkServiceError>
     ) {

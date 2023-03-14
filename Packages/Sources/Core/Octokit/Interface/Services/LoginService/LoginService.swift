@@ -6,7 +6,7 @@ public extension Octokit {
     public typealias PrivateAccessToken = String
     public var login: (_ token: PrivateAccessToken) -> any Publisher<Void, PrivateAccessTokenLoginError>
     
-    public init(
+    internal init(
       login: @escaping (Octokit.LoginService.PrivateAccessToken) -> any Publisher<Void, PrivateAccessTokenLoginError>
     ) {
       self.login = login

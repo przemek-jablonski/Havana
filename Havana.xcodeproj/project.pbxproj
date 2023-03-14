@@ -25,6 +25,7 @@
 		1F0AB60C298F42CD008D146E /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		1F1E864229900B9E0091362C /* Casimir */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Casimir; sourceTree = "<group>"; };
 		1F1EA754299802DA0022D51C /* ComposableAnalyticsRecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableAnalyticsRecoder.swift; sourceTree = "<group>"; };
+		1F3D6DC829BF6EA60002BE51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaiOSAppDelegate.swift; sourceTree = "<group>"; };
 		1FF7DBC429931A7D001245CF /* EventsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +64,7 @@
 		1F0AB5F8298F38E8008D146E /* Havana */ = {
 			isa = PBXGroup;
 			children = (
+				1F3D6DC829BF6EA60002BE51 /* Info.plist */,
 				1F0AB5FF298F38E9008D146E /* Havana.entitlements */,
 				1F0AB5FB298F38E8008D146E /* ContentView.swift */,
 				1F0AB5FD298F38E9008D146E /* Assets.xcassets */,
@@ -319,6 +321,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Havana/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -357,6 +360,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Havana/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

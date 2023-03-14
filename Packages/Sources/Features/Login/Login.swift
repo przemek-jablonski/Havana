@@ -1,5 +1,7 @@
 import ComposableArchitecture
 import Foundation
+import Octokit
+import OctokitLive
 
 public struct Login: ReducerProtocol {
   public enum State: Equatable {
@@ -39,7 +41,7 @@ public struct Login: ReducerProtocol {
       /State.privateAccessTokenLoginFlow,
        action: /Action.userDidTapLoginWithPrivateAccessTokenButton
     ) {
-      PrivateAccessTokenLogin()
+      PrivateAccessTokenLogin(loginService: Octokit.shared.loginService())
     }
   }
 }

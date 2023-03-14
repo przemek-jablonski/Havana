@@ -1,10 +1,10 @@
 import Foundation
 
 public struct Octokit {
-  var loginService: () -> LoginService
-  var userService: () -> UserService
+  public var loginService: () -> LoginService
+  public var userService: () -> UserService
   
-  public init(
+  internal init(
     loginService: @escaping () -> LoginService,
     userService: @escaping () -> UserService
   ) {
