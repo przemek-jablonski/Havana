@@ -17,7 +17,7 @@ internal extension Octokit.UserService {
           .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
           .flatMap { [networkClient] token in
             networkClient.request(
-              User.self,
+              Octokit.User.self,
               using: .user(
                 config: config,
                 privateAccessToken: token
@@ -32,7 +32,7 @@ internal extension Octokit.UserService {
           .mapError(NetworkServiceError.privateAccessTokenFetchingFailed)
           .flatMap { [networkClient] token in
             networkClient.request(
-              [UserReceivedPublicEvent].self,
+              [Octokit.UserReceivedPublicEvent].self,
               using: .receivedEvents(
                 config: config,
                 username: username,

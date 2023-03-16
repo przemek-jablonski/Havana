@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Octokit
 import SwiftUI
 
 private extension PrivateAccessTokenLoginView {
@@ -71,7 +72,7 @@ struct PrivateAccessTokenLogin_Previews: PreviewProvider {
     PrivateAccessTokenLoginView(
       store: Store(
         initialState: PrivateAccessTokenLogin.State.tokenInput,
-        reducer: PrivateAccessTokenLogin(loginService: .Mock)
+        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginService.Mock.loginSuccessful)
       )
     )
   }
