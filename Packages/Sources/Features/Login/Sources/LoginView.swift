@@ -27,19 +27,6 @@ public struct LoginView: View {
 
 private extension View {
   @ViewBuilder
-  func gradientBackground() -> some View {
-    LinearGradient(
-      stops: [
-        .init(color: Color.red, location: .zero),
-        .init(color: Color.green, location: 1)
-      ],
-      startPoint: .bottomLeading,
-      endPoint: .topTrailing
-    )
-    .opacity(0.33)
-  }
-  
-  @ViewBuilder
   func overlay(
     _ viewStore: ViewStoreOf<Login>
   ) -> some View {
@@ -105,7 +92,7 @@ struct LoginView_Previews: PreviewProvider {
     LoginView(
       store: Store(
         initialState: Login.State.loginFlowSelection,
-        reducer: Login()
+        reducer: Login(loginService: .Mock.loginSuccessful)
       )
     )
   }

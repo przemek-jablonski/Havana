@@ -5,14 +5,14 @@ public struct NetworkClientRequestData {
   public typealias QueryItems = [String: String]
   
   public let url: String
-  public let method: NetworkClientHTTPMethod
+  public let method: URLRequest.HTTPMethod
   public let body: Encodable?
   public let headers: Headers?
   public let queryItems: QueryItems?
   
   public init(
     url: String,
-    method: NetworkClientHTTPMethod,
+    method: URLRequest.HTTPMethod,
     body: Encodable? = nil,
     headers: NetworkClientRequestData.Headers? = nil,
     queryItems: NetworkClientRequestData.QueryItems? = nil

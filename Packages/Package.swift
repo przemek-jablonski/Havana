@@ -29,7 +29,7 @@ let supportedPlatforms: [SupportedPlatform] = [
 let octokit = Target.target(
   name: "Octokit",
   dependencies: [
-    casimir
+    casimir // TODO: this could be removed
   ],
   path: "Sources/Core/Octokit/Interface"
 )
@@ -37,7 +37,7 @@ let octokit = Target.target(
 let octokitLive = Target.target(
   name: "OctokitLive",
   dependencies: [
-    casimir,
+    casimir, // TODO: this could be removed
     octokit.dependency,
     keychainAccess
   ],
@@ -64,7 +64,7 @@ let loginFeature = Target.target(
     composableArchitecture,
     octokit.dependency
   ],
-  path: "Sources/Features/Login"
+  path: "Sources/Features/Login/Sources"
 )
 
 let featureTargets: [Target] = [
@@ -82,8 +82,19 @@ let octokitTests = Target.testTarget(
   path: "Tests/Core/Octokit"
 )
 
+let loginFeatureTests = Target.testTarget(
+  name: "LoginFeatureTests",
+  dependencies: [
+    casimir,
+    .byName(name: loginFeature.name) // TODO:
+  ],
+  path: "Sources/Features/Login/Tests"
+)
+
+
 let testTargets: [Target] = [
-  octokitTests
+  octokitTests,
+  loginFeatureTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

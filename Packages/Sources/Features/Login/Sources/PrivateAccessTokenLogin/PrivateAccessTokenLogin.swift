@@ -23,16 +23,18 @@ public extension PrivateAccessTokenLogin {
   }
   
   enum Action: Equatable {
-    case userDidRequestLoginUsingToken(token: String)
+    case userRequestedLoginUsingToken(token: String)
+//    case loginServiceRequestedLoginSuccessfully
+//    case loginServiceRequestedLogin(failure: Octokit.PrivateAccessTokenLoginError)
   }
 }
 
 public struct PrivateAccessTokenLogin: ReducerProtocol {
   
-  private let loginService: Octokit.LoginService
+  private let loginService: OctokitLoginService
   
   public init(
-    loginService: Octokit.LoginService
+    loginService: OctokitLoginService
   ) {
     self.loginService = loginService
   }
@@ -40,9 +42,15 @@ public struct PrivateAccessTokenLogin: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
-        case .userDidRequestLoginUsingToken(let token):
+        case .userRequestedLoginUsingToken(let token):
           state = .loginInProgress
           return .none
+//          return .run(
+//            loginService.login(token)
+//              .map { _ in .loginServiceRequestedLoginSuccessfully }
+//              .mapError { .loginServiceRequestedLogin(failure:) }
+//              .eraseToEffect()
+//          )
       }
     }
   }

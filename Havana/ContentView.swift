@@ -9,8 +9,8 @@ struct ContentView: View {
   var body: some View {
     PrivateAccessTokenLoginView(
       store: Store(
-        initialState: PrivateAccessTokenLogin.State.tokenInput(token: nil),
-        reducer: PrivateAccessTokenLogin()._printChanges()
+        initialState: PrivateAccessTokenLogin.State.tokenInput,
+        reducer: PrivateAccessTokenLogin(loginService: .Mock.loginSuccessful)._printChanges()
       )
     )
   }
