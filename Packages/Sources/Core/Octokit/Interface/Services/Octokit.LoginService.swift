@@ -1,3 +1,4 @@
+import Casimir
 import Combine
 
 public extension Octokit {
@@ -9,8 +10,18 @@ public protocol OctokitLoginService {
 }
 
 public extension Octokit {
-  enum PrivateAccessTokenLoginError: Error, Equatable {
+  enum PrivateAccessTokenLoginError: ErrorProtocol {
     case unableToStorePrivateAccessToken(_ error: Error)
+    
+    public static var random: Octokit.PrivateAccessTokenLoginError {
+      allCases.random
+    }
+    
+    public static var allCases: [Octokit.PrivateAccessTokenLoginError] {
+      [
+        .unableToStorePrivateAccessToken(EmptyError())
+      ]
+    }
     
     public static func == (
       lhs: Octokit.PrivateAccessTokenLoginError,

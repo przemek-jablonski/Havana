@@ -1,7 +1,7 @@
 import Foundation
 
 public extension Octokit {
-  public struct RequestCommonData {
+  struct RequestCommonData {
     public typealias Headers = [String: String]
     public typealias QueryItems = [String: String]
     

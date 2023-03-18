@@ -1,31 +1,108 @@
-//import Casimir
-//import Foundation
-//import Combine
-//
-//public extension Octokit.UserService {
-//  enum Mock {}
-//}
-//
-//public extension Octokit.UserService.Mock {
-//  static var happyPath: Octokit.UserService {
-//    Octokit.UserService(
-//      user: {
-//        Just(.random).setFailureType(to: NetworkServiceError.self)
-//      },
-//      receivedPublicEvents: { _, _ in
-//        Just(.random).setFailureType(to: NetworkServiceError.self)
-//      }
-//    )
-//  }
-//  
-//  static var randomError: Octokit.UserService {
-//    Octokit.UserService(
-//      user: {
-//        Fail(error: NetworkServiceError.networkRequestFailed(EmptyError()))
-//      },
-//      receivedPublicEvents: { _, _ in
-//        Fail(error: NetworkServiceError.networkRequestFailed(EmptyError()))
-//      }
-//    )
-//  }
-//}
+import Casimir
+import Foundation
+import Combine
+
+public extension Octokit {
+  struct UserServiceMock {}
+}
+
+extension Octokit.UserServiceMock: Octokit.ServiceMock {
+  public func happyPath() -> Octokit.UserService {
+    struct Mock: Octokit.UserService {
+      func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            return .success(.random)
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+      
+      func receivedPublicEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            return .success(.random)
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+    }
+    
+    return Mock()
+  }
+  
+  public func unhappyPath() -> Octokit.UserService {
+    struct Mock: Octokit.UserService {
+      func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            return .failure(.random)
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+      
+      func receivedPublicEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            return .failure(.random)
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+    }
+    
+    return Mock()
+  }
+  
+  public func noResponses() -> Octokit.UserService {
+    struct Mock: Octokit.UserService {
+      func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
+        do {
+          return .success(
+            try await Task {
+              try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+              await Task.yield()
+              return .random
+            }.value
+          )
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+      
+      func receivedPublicEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+        do {
+          return .success(
+            try await Task {
+              try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+              await Task.yield()
+              return .random
+            }.value
+          )
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+    }
+    
+    return Mock()
+  }
+}
