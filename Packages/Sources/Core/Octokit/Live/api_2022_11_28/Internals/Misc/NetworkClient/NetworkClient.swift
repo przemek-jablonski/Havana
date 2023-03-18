@@ -5,6 +5,6 @@ import Octokit
 internal protocol NetworkClient {
   func request<ReturnType: Decodable>(
     _ type: ReturnType.Type,
-    using data: NetworkClientRequestData
+    using data: Octokit.RequestCommonData
   ) async -> Result<ReturnType, NetworkClientError>
 }

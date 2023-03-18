@@ -1,5 +1,4 @@
 import Combine
-import Foundation
 
 public extension Octokit {
   typealias LoginService = OctokitLoginService

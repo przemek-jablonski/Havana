@@ -1,3 +1,4 @@
+import Casimir
 import Combine
 import Foundation
 import Octokit
@@ -5,23 +6,21 @@ import Octokit
 internal struct URLSessionNetworkClient {
   private let urlSessionInstance: URLSession
   private let jsonEncoder: JSONEncoder
-  private let deserializer: Deserializer
+  private let jsonDecoder: JSONDecoder
   
   internal init(
-    urlSessionInstance: URLSession = .shared,
-    jsonEncoder: JSONEncoder = JSONEncoder(),
-    deserializer: Deserializer
+    urlSessionInstance: URLSession = .shared
   ) {
     self.urlSessionInstance = urlSessionInstance
-    self.jsonEncoder = jsonEncoder
-    self.deserializer = deserializer
+    self.jsonEncoder = JSONEncoder()
+    self.jsonDecoder = JSONDecoder(dateDecodingStrategy: .iso8601)
   }
 }
 
 extension URLSessionNetworkClient: NetworkClient {
   func request<ReturnType: Decodable>(
     _ type: ReturnType.Type,
-    using data: NetworkClientRequestData
+    using data: Octokit.RequestCommonData
   ) async -> Result<ReturnType, NetworkClientError> {
     await urlSessionInstance.perform(
       requestTo: data.url,
@@ -31,13 +30,11 @@ extension URLSessionNetworkClient: NetworkClient {
       encoding: data.body,
       using: jsonEncoder
     )
-    
-//    request(data)
-//      .flatMap { [deserializer] response in
-//        deserializer
-//          .deserialize(response, into: type)
-//          .mapError(NetworkClientError.serverResponseDeserializationFailure)
-//      }
-//      .eraseToAnyPublisher()
+    .mapError(NetworkClientError.networkRequestFailure)
+    .flatMap { [jsonDecoder] response in
+      jsonDecoder
+        .decode(type, from: response.response)
+        .mapError(NetworkClientError.responseDecodingFailure)
+    }
   }
 }
