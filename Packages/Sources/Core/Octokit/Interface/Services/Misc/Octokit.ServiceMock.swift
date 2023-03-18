@@ -6,7 +6,7 @@ public extension Octokit {
 
 public protocol OctokitServiceMock {
   associatedtype Mock
-  func happyPath() -> Mock
-  func unhappyPath() -> Mock
-  func noResponses() -> Mock
+  static func happyPath() -> Mock
+  static func unhappyPath() -> Mock
+  static func noResponses() -> Mock
 }

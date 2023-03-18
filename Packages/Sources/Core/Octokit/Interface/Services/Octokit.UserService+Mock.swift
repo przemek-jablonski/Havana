@@ -7,7 +7,7 @@ public extension Octokit {
 }
 
 extension Octokit.UserServiceMock: Octokit.ServiceMock {
-  public func happyPath() -> Octokit.UserService {
+  public static func happyPath() -> Octokit.UserService {
     struct Mock: Octokit.UserService {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
         do {
@@ -38,7 +38,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
     return Mock()
   }
   
-  public func unhappyPath() -> Octokit.UserService {
+  public static func unhappyPath() -> Octokit.UserService {
     struct Mock: Octokit.UserService {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
         do {
@@ -69,7 +69,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
     return Mock()
   }
   
-  public func noResponses() -> Octokit.UserService {
+  public static func noResponses() -> Octokit.UserService {
     struct Mock: Octokit.UserService {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
         do {

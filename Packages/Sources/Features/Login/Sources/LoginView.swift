@@ -1,5 +1,6 @@
 import Casimir
 import ComposableArchitecture
+import Octokit
 import SwiftUI
 
 public struct LoginView: View {
@@ -92,7 +93,7 @@ struct LoginView_Previews: PreviewProvider {
     LoginView(
       store: Store(
         initialState: Login.State.loginFlowSelection,
-        reducer: Login(loginService: .Mock.loginSuccessful)
+        reducer: Login(loginService: Octokit.LoginServiceMock.happyPath())
       )
     )
   }

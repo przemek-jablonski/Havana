@@ -7,7 +7,7 @@ public extension Octokit {
 }
 
 extension Octokit.LoginServiceMock: Octokit.ServiceMock {
-  public func happyPath() -> Octokit.LoginService {
+  public static func happyPath() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {
@@ -23,7 +23,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
     return Mock()
   }
   
-  public func unhappyPath() -> Octokit.LoginService {
+  public static func unhappyPath() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {
@@ -39,7 +39,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
     return Mock()
   }
   
-  public func noResponses() -> Octokit.LoginService {
+  public static func noResponses() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {

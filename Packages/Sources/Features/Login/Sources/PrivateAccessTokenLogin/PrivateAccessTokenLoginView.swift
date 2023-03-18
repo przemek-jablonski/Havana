@@ -36,7 +36,7 @@ private extension PrivateAccessTokenLoginView {
     static func convertToReducerAction(using viewAction: ViewAction) -> PrivateAccessTokenLogin.Action {
       switch viewAction {
         case .userDidRequestLoginUsingToken(let token):
-          return .userDidRequestLoginUsingToken(token: token)
+          return .userRequestedLoginUsingToken(token: token)
       }
     }
   }
@@ -60,7 +60,7 @@ public struct PrivateAccessTokenLoginView: View {
     ) { viewStore in
       VStack {
         TextField("Token", text: $token)
-        Button("Log In", action: { viewStore.send(.userDidRequestLoginUsingToken(token: token)) })
+        Button("Log In", action: { viewStore.send(.userRequestedLoginUsingToken(token: token)) })
       }
       .padding()
     }
@@ -72,7 +72,7 @@ struct PrivateAccessTokenLogin_Previews: PreviewProvider {
     PrivateAccessTokenLoginView(
       store: Store(
         initialState: PrivateAccessTokenLogin.State.tokenInput,
-        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginService.Mock.loginSuccessful)
+        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginServiceMock.happyPath())
       )
     )
   }
