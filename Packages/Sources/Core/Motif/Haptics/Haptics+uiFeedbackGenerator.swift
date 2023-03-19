@@ -1,3 +1,5 @@
+#if canImport(UIKit)
+// TODO: support non-UIKit platforms as well (macOS, watchOS!)
 import UIKit
 
 internal extension Haptics {
@@ -27,3 +29,4 @@ internal extension Haptics {
     )
   }
 }
+#endif

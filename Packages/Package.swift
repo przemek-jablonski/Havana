@@ -67,8 +67,17 @@ let loginFeature = Target.target(
   path: "Sources/Features/Login/Sources"
 )
 
+let loginFeaturePreview = Target.executableTarget(
+  name: "LoginPreview",
+  dependencies: [
+    .byName(name: loginFeature.name)
+  ],
+  path: "Sources/Features/Login/Preview"
+)
+
 let featureTargets: [Target] = [
-  loginFeature
+  loginFeature,
+  loginFeaturePreview
 ]
 
 // MARK: - Testing Targets definitions and assembly

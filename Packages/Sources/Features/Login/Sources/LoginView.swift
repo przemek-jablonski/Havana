@@ -13,7 +13,6 @@ public struct LoginView: View {
   }
   
   public var body: some View {
-    Text("asd")
 //    WithViewStore(store) { viewStore in
 //      ZStack {
 //        gradientBackground()
@@ -81,6 +80,7 @@ private extension View {
                 .animation(.easeOut)
               )
         }
+        
       }
       .maxHeight(.infinity)
     }

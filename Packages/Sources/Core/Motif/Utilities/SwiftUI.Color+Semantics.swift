@@ -1,3 +1,4 @@
+#if canImport(UKit)
 import SwiftUI
 
 internal extension Color {
@@ -39,3 +40,6 @@ struct Color_Previews: PreviewProvider {
     Color.link
   }
 }
+#endif
+
+

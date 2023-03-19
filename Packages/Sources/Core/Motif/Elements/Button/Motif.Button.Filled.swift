@@ -2,40 +2,41 @@ import SwiftUI
 
 public extension Motif.Button {
   struct Filled: View {
-    public init(
-      image: Motif.SFSymbol,
-      title: String,
-      backgroundColor: Color,
-      action: @escaping () -> Void
-    ) {
-      self.init(
-        image: image,
-        title: title,
-        backgroundColor: backgroundColor,
-        action: action,
-        haptics: .shared
-      )
-    }
+//    public init(
+//      image: Motif.SFSymbol,
+//      title: String,
+//      backgroundColor: Color,
+//      action: @escaping () -> Void
+//    ) {
+//      self.init(
+//        image: image,
+//        title: title,
+//        backgroundColor: backgroundColor,
+//        action: action,
+////        haptics: .shared
+//      )
+//    }
     
     internal init(
       image: Motif.SFSymbol,
       title: String,
       backgroundColor: Color,
-      action: @escaping () -> Void,
-      haptics: Haptics
+      action: @escaping () -> Void
+//      ,
+//      haptics: Haptics
     ) {
       self.image = image
       self.title = title
       self.backgroundColor = backgroundColor
       self.action = action
-      self.haptics = haptics
+//      self.haptics = haptics
     }
     
     public let image: Motif.SFSymbol
     public let title: String
     public let backgroundColor: Color // TODO: should be derived from some Motif config
     public let action: () -> Void
-    private let haptics: Haptics
+//    private let haptics: Haptics
     
     public var body: some View {
       SwiftUI.Button(action: action) {
@@ -50,8 +51,8 @@ public extension Motif.Button {
         }
       }
       .buttonStyle(FilledButtonStyle())
-      .onAppear { haptics.lightClick(.prepare) }
-      .onTapGesture { haptics.lightClick(.trigger) }
+//      .onAppear { haptics.lightClick(.prepare) }
+//      .onTapGesture { haptics.lightClick(.trigger) }
     }
   }
 }
@@ -60,7 +61,7 @@ public struct FilledButtonStyle: ButtonStyle {
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .padding()
-      .foregroundColor(Color.label)
+//      .foregroundColor(Color.label) TODO: macOS
       .background(Color.accentColor.opacity(configuration.isPressed ? 0.66 : 1.00))
       .cornerRadius(8, antialiased: true)
       .scaleEffect(configuration.isPressed ? 0.99 : 1.0)
