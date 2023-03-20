@@ -12,24 +12,24 @@ public protocol OctokitLoginService {
 public extension Octokit {
   enum PrivateAccessTokenLoginError: ErrorProtocol {
     case unableToStorePrivateAccessToken(_ error: Error)
-    
+
     public static var random: Octokit.PrivateAccessTokenLoginError {
       allCases.random
     }
-    
+
     public static var allCases: [Octokit.PrivateAccessTokenLoginError] {
       [
         .unableToStorePrivateAccessToken(EmptyError())
       ]
     }
-    
+
     public static func == (
       lhs: Octokit.PrivateAccessTokenLoginError,
       rhs: Octokit.PrivateAccessTokenLoginError
     ) -> Bool {
       switch (lhs, rhs) {
-        case (.unableToStorePrivateAccessToken, .unableToStorePrivateAccessToken):
-          return true
+      case (.unableToStorePrivateAccessToken, .unableToStorePrivateAccessToken):
+        return true
       }
     }
   }

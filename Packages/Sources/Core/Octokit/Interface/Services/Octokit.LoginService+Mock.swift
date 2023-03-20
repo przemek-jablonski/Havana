@@ -1,6 +1,6 @@
 import Casimir
-import Foundation
 import Combine
+import Foundation
 
 public extension Octokit {
   struct LoginServiceMock {}
@@ -22,7 +22,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
     }
     return Mock()
   }
-  
+
   public static func unhappyPath() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
@@ -38,7 +38,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
     }
     return Mock()
   }
-  
+
   public static func noResponses() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {

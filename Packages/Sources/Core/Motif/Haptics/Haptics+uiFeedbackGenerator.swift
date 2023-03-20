@@ -10,20 +10,20 @@ internal extension Haptics {
     return Haptics(
       lightNudge: { action in
         switch action {
-          case .prepare: softFeedbackGenerator.prepare()
-          case .trigger: softFeedbackGenerator.impactOccurred()
+        case .prepare: softFeedbackGenerator.prepare()
+        case .trigger: softFeedbackGenerator.impactOccurred()
         }
       },
       lightClick: { action in
         switch action {
-          case .prepare: regularFeedbackGenerator.prepare()
-          case .trigger: regularFeedbackGenerator.impactOccurred(intensity: 0.66)
+        case .prepare: regularFeedbackGenerator.prepare()
+        case .trigger: regularFeedbackGenerator.impactOccurred(intensity: 0.66)
         }
       },
       heavyClick: { action in
         switch action {
-          case .prepare: heavyFeedbackGenerator.prepare()
-          case .trigger: heavyFeedbackGenerator.impactOccurred()
+        case .prepare: heavyFeedbackGenerator.prepare()
+        case .trigger: heavyFeedbackGenerator.impactOccurred()
         }
       }
     )

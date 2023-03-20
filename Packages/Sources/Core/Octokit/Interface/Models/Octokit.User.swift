@@ -1,6 +1,8 @@
 import Casimir
 import Foundation
 
+// TODO: nest the objects so that don't pollute global namespace
+// TODO: eg. Octokit.User, but Octokit.User.Plan
 public extension Octokit {
   // MARK: - User
   struct User: ModelProtocol {
@@ -46,7 +48,7 @@ public extension Octokit {
     public let type: String
     public let updatedAt: Date
     public let url: String
-    
+
     public static var random: User {
       User(
         avatarUrl: .random,
@@ -94,7 +96,7 @@ public extension Octokit {
       )
     }
   }
-  
+
   // MARK: - Plan
   struct Plan: ModelProtocol {
     public var id: String { name }
@@ -102,7 +104,7 @@ public extension Octokit {
     public let name: String
     public let privateRepos: Int
     public let space: Int
-    
+
     public static var random: Plan {
       Plan(
         collaborators: .random,

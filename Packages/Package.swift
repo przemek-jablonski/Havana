@@ -2,6 +2,9 @@
 
 import PackageDescription
 
+// swiftlint:disable explicit_acl
+// swiftlint:disable explicit_top_level_acl
+
 // MARK: - Global Constraints
 
 let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.51.0")
@@ -44,7 +47,7 @@ let octokitLive = Target.target(
   path: "Sources/Core/Octokit/Live"
 )
 
-let Motif = Target.target(
+let motif = Target.target(
   name: "Motif",
   path: "Sources/Core/Motif"
 )
@@ -52,7 +55,7 @@ let Motif = Target.target(
 let coreTargets: [Target] = [
   octokit,
   octokitLive,
-  Motif
+  motif
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -60,7 +63,7 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    Motif.dependency,
+    motif.dependency,
     composableArchitecture,
     octokit.dependency
   ],
@@ -100,7 +103,6 @@ let loginFeatureTests = Target.testTarget(
   path: "Sources/Features/Login/Tests"
 )
 
-
 let testTargets: [Target] = [
   octokitTests,
   loginFeatureTests
@@ -134,7 +136,7 @@ private extension Target {
   var dependency: Target.Dependency {
     Target.Dependency(stringLiteral: self.name)
   }
-  
+
   /**
    Returns this `Target` as a `Product`, in `Library` format. Can be linked as a product of any `Package`.
    */
@@ -150,15 +152,15 @@ private extension Array where Element == Target {
   var regularTargets: [Target] {
     self.filter { $0.type == .regular }
   }
-  
+
   var testTargets: [Target] {
     self.filter { $0.type == .test }
   }
-  
+
   var libraries: [Product] {
     self.map(\.library)
   }
-  
+
   var names: [String] {
     self.map(\.name)
   }

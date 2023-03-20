@@ -7,7 +7,7 @@ internal struct URLSessionNetworkClient {
   private let urlSessionInstance: URLSession
   private let jsonEncoder: JSONEncoder
   private let jsonDecoder: JSONDecoder
-  
+
   internal init(
     urlSessionInstance: URLSession = .shared
   ) {

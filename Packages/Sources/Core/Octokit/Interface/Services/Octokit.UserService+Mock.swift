@@ -1,6 +1,6 @@
 import Casimir
-import Foundation
 import Combine
+import Foundation
 
 public extension Octokit {
   struct UserServiceMock {}
@@ -19,7 +19,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
           unimplementedFatalError()
         }
       }
-      
+
       func receivedPublicEvents(
         username: String,
         page: Int
@@ -34,10 +34,10 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
     }
-    
+
     return Mock()
   }
-  
+
   public static func unhappyPath() -> Octokit.UserService {
     struct Mock: Octokit.UserService {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
@@ -50,7 +50,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
           unimplementedFatalError()
         }
       }
-      
+
       func receivedPublicEvents(
         username: String,
         page: Int
@@ -65,10 +65,10 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
     }
-    
+
     return Mock()
   }
-  
+
   public static func noResponses() -> Octokit.UserService {
     struct Mock: Octokit.UserService {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
@@ -84,7 +84,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
           unimplementedFatalError()
         }
       }
-      
+
       func receivedPublicEvents(
         username: String,
         page: Int
@@ -102,7 +102,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
     }
-    
+
     return Mock()
   }
 }

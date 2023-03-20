@@ -6,7 +6,7 @@ internal protocol SecretsService {
     _ entry: SecretsServiceEntry,
     value: String
   ) async -> Result<Void, StoreError>
-  
+
   func retrieve(
     _ entry: SecretsServiceEntry
   ) async -> Result<String, RetrieveError>
@@ -24,4 +24,3 @@ enum RetrieveError: Error {
   case entryNotFoundInKeychain(entry: SecretsServiceEntry)
   case internalKeychainError(error: Error)
 }
-

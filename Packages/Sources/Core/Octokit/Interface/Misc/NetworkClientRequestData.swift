@@ -4,13 +4,13 @@ public extension Octokit {
   struct RequestCommonData {
     public typealias Headers = [String: String]
     public typealias QueryItems = [String: String]
-    
+
     public let url: String
     public let method: URLRequest.HTTPMethod
     public let body: Encodable?
     public let headers: Headers?
     public let queryItems: QueryItems?
-    
+
     public init(
       url: String,
       method: URLRequest.HTTPMethod,
@@ -24,7 +24,7 @@ public extension Octokit {
       self.headers = headers
       self.queryItems = queryItems
     }
-    
+
     public func appending(
       body: Encodable? = nil,
       headers: Headers? = nil,
@@ -54,8 +54,8 @@ private func + (
 
 // TODO: fill + to Casimir
 private func +<Key: Hashable, Value>(
-  lhs: Dictionary<Key, Value>,
-  rhs: Dictionary<Key, Value>
-) -> Dictionary<Key, Value> {
+  lhs: [Key: Value],
+  rhs: [Key: Value]
+) -> [Key: Value] {
   lhs
 }

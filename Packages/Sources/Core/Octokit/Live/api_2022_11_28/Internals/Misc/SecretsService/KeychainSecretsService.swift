@@ -6,7 +6,7 @@ private let octokitKeychainEntry = "com.octokit.keychain"
 
 internal struct KeychainSecretsService {
   private let keychain: Keychain
-  
+
   internal init(
     keychain: Keychain = Keychain(service: octokitKeychainEntry)
   ) {
@@ -24,7 +24,7 @@ extension KeychainSecretsService: SecretsService {
         .mapError { StoreError.internalKeychainError(error: $0) }
     }.value
   }
-  
+
   func retrieve(
     _ entry: SecretsServiceEntry
   ) async -> Result<String, RetrieveError> {
@@ -39,8 +39,8 @@ extension KeychainSecretsService: SecretsService {
 private extension SecretsServiceEntry {
   var key: String {
     switch self {
-      case .privateAccessToken:
-        return "private_access_token"
+    case .privateAccessToken:
+      return "private_access_token"
     }
   }
 }

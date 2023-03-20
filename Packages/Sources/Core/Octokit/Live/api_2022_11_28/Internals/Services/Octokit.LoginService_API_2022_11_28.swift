@@ -2,10 +2,11 @@ import Combine
 import Foundation
 import Octokit
 
-internal extension Octokit {
-  struct LoginService_API_2022_11_28 {
+extension Octokit {
+  // swiftlint:disable:next type_name
+  internal struct LoginService_API_2022_11_28 {
     private let secretsService: SecretsService
-    
+
     internal init(
       secretsService: SecretsService
     ) {
@@ -15,7 +16,7 @@ internal extension Octokit {
 }
 
 extension Octokit.LoginService_API_2022_11_28: Octokit.LoginService {
-  func login(
+  internal func login(
     using privateAccessToken: String
   ) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
     await secretsService

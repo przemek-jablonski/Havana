@@ -6,7 +6,7 @@ public extension Octokit {
 
 public protocol OctokitUserService {
   func user() async -> Result<Octokit.User, Octokit.NetworkServiceError>
-  
+
   func receivedPublicEvents(
     username: String,
     page: Int

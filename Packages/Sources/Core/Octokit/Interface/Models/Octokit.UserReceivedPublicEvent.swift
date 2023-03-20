@@ -1,6 +1,8 @@
 import Casimir
 import Foundation
 
+// swiftlint:disable file_length
+
 public extension Octokit {
   /// Event
   // MARK: - Event
@@ -17,7 +19,7 @@ public extension Octokit {
         type: .random
       )
     }
-    
+
     /// Actor
     public let actor: Actor
     public let createdAt: Date?
@@ -29,7 +31,7 @@ public extension Octokit {
     public let repo: Repo
     public let type: String?
   }
-  
+
   /// Actor
   // MARK: - Actor
   struct Actor: ModelProtocol {
@@ -50,20 +52,19 @@ public extension Octokit {
     public let login: String
     public let url: String
   }
-  
+
   // MARK: - Payload
   struct Payload: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        action: .random,
-        comment: .random,
-        issue: .random,
-        pages: .random
-      )
+    public static var random: Self {Self(
+      action: .random,
+      comment: .random,
+      issue: .random,
+      pages: .random
+    )
     }
-    
+
     public var id: String { "\(action ?? "")\(issue?.id)" }
-    
+
     public let action: String?
     /// Comments provide a way for people to collaborate on an issue.
     public let comment: IssueComment?
@@ -71,29 +72,28 @@ public extension Octokit {
     public let issue: Issue?
     public let pages: [Page]?
   }
-  
+
   /// Comments provide a way for people to collaborate on an issue.
   // MARK: - IssueComment
   struct IssueComment: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        authorAssociation: .random,
-        body: .random,
-        bodyHtml: .random,
-        bodyText: .random,
-        createdAt: .random,
-        htmlUrl: .random,
-        id: .random,
-        issueUrl: .random,
-        nodeId: .random,
-        performedViaGithubApp: .random,
-        reactions: .random,
-        updatedAt: .random,
-        url: .random,
-        user: .random
-      )
+    public static var random: Self {Self(
+      authorAssociation: .random,
+      body: .random,
+      bodyHtml: .random,
+      bodyText: .random,
+      createdAt: .random,
+      htmlUrl: .random,
+      id: .random,
+      issueUrl: .random,
+      nodeId: .random,
+      performedViaGithubApp: .random,
+      reactions: .random,
+      updatedAt: .random,
+      url: .random,
+      user: .random
+    )
     }
-    
+
     /// How the author is associated with the repository.
     public let authorAssociation: AuthorAssociation
     /// Contents of the issue comment
@@ -113,15 +113,15 @@ public extension Octokit {
     public let url: String
     public let user: GithubUser?
   }
-  
+
   /// How the author is associated with the repository.
   enum AuthorAssociation: String, CaseIterable, ModelProtocol {
     public static var random: Self {
       Self.allCases.random
     }
-    
+
     public var id: RawValue { rawValue }
-    
+
     case collaborator
     case contributor
     case firstTimeContributor
@@ -131,35 +131,34 @@ public extension Octokit {
     case none
     case owner
   }
-  
+
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
   /// organizations and user accounts and granted access to specific repositories. They come
   /// with granular permissions and built-in webhooks. GitHub apps are first class actors
   /// within GitHub.
   // MARK: - CommentGitHubApp
   struct CommentGitHubApp: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        clientId: .random,
-        clientSecret: .random,
-        createdAt: .random,
-        description: .random,
-        events: .random,
-        externalUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        installationsCount: .random,
-        name: .random,
-        nodeId: .random,
-        owner: .random,
-        pem: .random,
-        permissions: .random,
-        slug: .random,
-        updatedAt: .random,
-        webhookSecret: .random
-      )
+    public static var random: Self {Self(
+      clientId: .random,
+      clientSecret: .random,
+      createdAt: .random,
+      description: .random,
+      events: .random,
+      externalUrl: .random,
+      htmlUrl: .random,
+      id: .random,
+      installationsCount: .random,
+      name: .random,
+      nodeId: .random,
+      owner: .random,
+      pem: .random,
+      permissions: .random,
+      slug: .random,
+      updatedAt: .random,
+      webhookSecret: .random
+    )
     }
-    
+
     public let clientId: String?
     public let clientSecret: String?
     public let createdAt: Date
@@ -184,36 +183,35 @@ public extension Octokit {
     public let updatedAt: Date
     public let webhookSecret: String?
   }
-  
+
   /// A GitHub user.
   // MARK: - GithubUser
   struct GithubUser: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        avatarUrl: .random,
-        email: .random,
-        eventsUrl: .random,
-        followersUrl: .random,
-        followingUrl: .random,
-        gistsUrl: .random,
-        gravatarId: .random,
-        htmlUrl: .random,
-        id: .random,
-        login: .random,
-        name: .random,
-        nodeId: .random,
-        organizationsUrl: .random,
-        receivedEventsUrl: .random,
-        reposUrl: .random,
-        siteAdmin: .random,
-        starredAt: .random,
-        starredUrl: .random,
-        subscriptionsUrl: .random,
-        type: .random,
-        url: .random
-      )
+    public static var random: Self {Self(
+      avatarUrl: .random,
+      email: .random,
+      eventsUrl: .random,
+      followersUrl: .random,
+      followingUrl: .random,
+      gistsUrl: .random,
+      gravatarId: .random,
+      htmlUrl: .random,
+      id: .random,
+      login: .random,
+      name: .random,
+      nodeId: .random,
+      organizationsUrl: .random,
+      receivedEventsUrl: .random,
+      reposUrl: .random,
+      siteAdmin: .random,
+      starredAt: .random,
+      starredUrl: .random,
+      subscriptionsUrl: .random,
+      type: .random,
+      url: .random
+    )
     }
-    
+
     public let avatarUrl: String
     public let email: String?
     public let eventsUrl: String
@@ -236,26 +234,25 @@ public extension Octokit {
     public let type: String
     public let url: String
   }
-  
+
   // MARK: - Reactions
   struct Reactions: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        the1: .random,
-        reactionRollup1: .random,
-        confused: .random,
-        eyes: .random,
-        heart: .random,
-        hooray: .random,
-        laugh: .random,
-        rocket: .random,
-        totalCount: .random,
-        url: .random
-      )
+    public static var random: Self {Self(
+      the1: .random,
+      reactionRollup1: .random,
+      confused: .random,
+      eyes: .random,
+      heart: .random,
+      hooray: .random,
+      laugh: .random,
+      rocket: .random,
+      totalCount: .random,
+      url: .random
+    )
     }
-    
+
     public var id: String { url }
-    
+
     public let the1: Int
     public let reactionRollup1: Int
     public let confused: Int
@@ -267,7 +264,7 @@ public extension Octokit {
     public let totalCount: Int
     public let url: String
   }
-  
+
   /// Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
   // MARK: - Issue
   struct Issue: ModelProtocol {
@@ -355,23 +352,23 @@ public extension Octokit {
     public let url: String
     public let user: GithubUser?
   }
-  
+
   enum LabelElement: ModelProtocol {
     public static var random: Self {
       Bool.random() ? .string(.random) : .labelClass(.random)
     }
-    
+
     public var id: String {
       switch self {
-        case .labelClass(let labelClass): return labelClass.id?.string ?? ""
-        case .string(let string): return string
+      case .labelClass(let labelClass): return labelClass.id?.string ?? ""
+      case .string(let string): return string
       }
     }
-    
+
     case labelClass(LabelClass)
     case string(String)
   }
-  
+
   // MARK: - LabelClass
   struct LabelClass: ModelProtocol {
     public static var random: Self {
@@ -385,7 +382,7 @@ public extension Octokit {
         url: .random
       )
     }
-    
+
     public let color: String?
     public let labelDefault: Bool?
     public let description: String?
@@ -394,7 +391,7 @@ public extension Octokit {
     public let nodeId: String?
     public let url: String?
   }
-  
+
   /// A collection of related issues and pull requests.
   // MARK: - Milestone
   struct Milestone: ModelProtocol {
@@ -418,7 +415,7 @@ public extension Octokit {
         url: .random
       )
     }
-    
+
     public let closedAt: Date?
     public let closedIssues: Int
     public let createdAt: Date
@@ -439,7 +436,7 @@ public extension Octokit {
     public let updatedAt: Date
     public let url: String
   }
-  
+
   /// The state of the milestone.
   enum State: String, ModelProtocol {
     public static var random: Self {
@@ -449,33 +446,32 @@ public extension Octokit {
     case closed
     case stateOpen
   }
-  
+
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
   /// organizations and user accounts and granted access to specific repositories. They come
   /// with granular permissions and built-in webhooks. GitHub apps are first class actors
   /// within GitHub.
   // MARK: - IssueGitHubApp
   struct IssueGitHubApp: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        clientId: .random,
-        clientSecret: .random,
-        createdAt: .random,
-        description: .random,
-        events: .random,
-        externalUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        installationsCount: .random,
-        name: .random,
-        nodeId: .random,
-        owner: .random,
-        pem: .random,
-        permissions: .random,
-        slug: .random,
-        updatedAt: .random,
-        webhookSecret: .random
-      )
+    public static var random: Self {Self(
+      clientId: .random,
+      clientSecret: .random,
+      createdAt: .random,
+      description: .random,
+      events: .random,
+      externalUrl: .random,
+      htmlUrl: .random,
+      id: .random,
+      installationsCount: .random,
+      name: .random,
+      nodeId: .random,
+      owner: .random,
+      pem: .random,
+      permissions: .random,
+      slug: .random,
+      updatedAt: .random,
+      webhookSecret: .random
+    )
     }
     public let clientId: String?
     public let clientSecret: String?
@@ -501,17 +497,16 @@ public extension Octokit {
     public let updatedAt: Date
     public let webhookSecret: String?
   }
-  
+
   // MARK: - PullRequest
   struct PullRequest: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        diffUrl: .random,
-        htmlUrl: .random,
-        mergedAt: .random,
-        patchUrl: .random,
-        url: .random
-      )
+    public static var random: Self {Self(
+      diffUrl: .random,
+      htmlUrl: .random,
+      mergedAt: .random,
+      patchUrl: .random,
+      url: .random
+    )
     }
     public var id: String? { url }
     public let diffUrl: String?
@@ -520,8 +515,7 @@ public extension Octokit {
     public let patchUrl: String?
     public let url: String?
   }
-  
-  
+
   /// A repository on GitHub.
   // MARK: - Repository
   struct Repository: ModelProtocol {
@@ -776,23 +770,22 @@ public extension Octokit {
     /// Whether to require contributors to sign off on web-based commits
     public let webCommitSignoffRequired: Bool?
   }
-  
+
   /// License Simple
   // MARK: - LicenseSimple
   struct LicenseSimple: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        htmlUrl: .random,
-        key: .random,
-        name: .random,
-        nodeId: .random,
-        spdxId: .random,
-        url: .random
-      )
+    public static var random: Self {Self(
+      htmlUrl: .random,
+      key: .random,
+      name: .random,
+      nodeId: .random,
+      spdxId: .random,
+      url: .random
+    )
     }
-    
+
     public var id: String { name }
-    
+
     public let htmlUrl: String?
     public let key: String
     public let name: String
@@ -800,7 +793,7 @@ public extension Octokit {
     public let spdxId: String?
     public let url: String?
   }
-  
+
   /// The default value for a merge commit message.
   ///
   /// - `PR_TITLE` - default to the pull request's title.
@@ -810,14 +803,14 @@ public extension Octokit {
     public static var random: Self {
       Self.allCases.random
     }
-    
+
     public var id: RawValue { rawValue }
-    
+
     case blank
     case prBody
     case prTitle
   }
-  
+
   /// The default value for a merge commit title.
   ///
   /// - `PR_TITLE` - default to the pull request's title.
@@ -827,34 +820,33 @@ public extension Octokit {
     public static var random: Self {
       Self.allCases.random
     }
-    
+
     public var id: RawValue { rawValue }
-    
+
     case mergeMessage
     case prTitle
   }
-  
+
   // MARK: - RepositoryPermissions
   struct RepositoryPermissions: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        admin: .random,
-        maintain: .random,
-        pull: .random,
-        push: .random,
-        triage: .random
-      )
+    public static var random: Self {Self(
+      admin: .random,
+      maintain: .random,
+      pull: .random,
+      push: .random,
+      triage: .random
+    )
     }
-    
+
     public var id: Int { -1 }
-    
+
     public let admin: Bool
     public let maintain: Bool?
     public let pull: Bool
     public let push: Bool
     public let triage: Bool?
   }
-  
+
   /// The default value for a squash merge commit message:
   ///
   /// - `PR_BODY` - default to the pull request's body.
@@ -864,14 +856,14 @@ public extension Octokit {
     public static var random: Self {
       Self.allCases.random
     }
-    
+
     public var id: RawValue { rawValue }
-    
+
     case blank
     case commitMessages
     case prBody
   }
-  
+
   /// The default value for a squash merge commit title:
   ///
   /// - `PR_TITLE` - default to the pull request's title.
@@ -881,104 +873,103 @@ public extension Octokit {
     public static var random: Self {
       Self.allCases.random
     }
-    
+
     public var id: RawValue { rawValue }
     case commitOrPrTitle
     case prTitle
   }
-  
+
   // MARK: - TemplateRepository
   struct TemplateRepository: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        allowAutoMerge: .random,
-        allowMergeCommit: .random,
-        allowRebaseMerge: .random,
-        allowSquashMerge: .random,
-        allowUpdateBranch: .random,
-        archiveUrl: .random,
-        archived: .random,
-        assigneesUrl: .random,
-        blobsUrl: .random,
-        branchesUrl: .random,
-        cloneUrl: .random,
-        collaboratorsUrl: .random,
-        commentsUrl: .random,
-        commitsUrl: .random,
-        compareUrl: .random,
-        contentsUrl: .random,
-        contributorsUrl: .random,
-        createdAt: .random,
-        defaultBranch: .random,
-        deleteBranchOnMerge: .random,
-        deploymentsUrl: .random,
-        description: .random,
-        disabled: .random,
-        downloadsUrl: .random,
-        eventsUrl: .random,
-        fork: .random,
-        forksCount: .random,
-        forksUrl: .random,
-        fullName: .random,
-        gitCommitsUrl: .random,
-        gitRefsUrl: .random,
-        gitTagsUrl: .random,
-        gitUrl: .random,
-        hasDownloads: .random,
-        hasIssues: .random,
-        hasPages: .random,
-        hasProjects: .random,
-        hasWiki: .random,
-        homepage: .random,
-        hooksUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        isTemplate: .random,
-        issueCommentUrl: .random,
-        issueEventsUrl: .random,
-        issuesUrl: .random,
-        keysUrl: .random,
-        labelsUrl: .random,
-        language: .random,
-        languagesUrl: .random,
-        mergeCommitMessage: .random,
-        mergeCommitTitle: .random,
-        mergesUrl: .random,
-        milestonesUrl: .random,
-        mirrorUrl: .random,
-        name: .random,
-        networkCount: .random,
-        nodeId: .random,
-        notificationsUrl: .random,
-        openIssuesCount: .random,
-        owner: .random,
-        permissions: .random,
-        templateRepositoryPrivate: .random,
-        pullsUrl: .random,
-        pushedAt: .random,
-        releasesUrl: .random,
-        size: .random,
-        squashMergeCommitMessage: .random,
-        squashMergeCommitTitle: .random,
-        sshUrl: .random,
-        stargazersCount: .random,
-        stargazersUrl: .random,
-        statusesUrl: .random,
-        subscribersCount: .random,
-        subscribersUrl: .random,
-        subscriptionUrl: .random,
-        svnUrl: .random,
-        tagsUrl: .random,
-        teamsUrl: .random,
-        tempCloneToken: .random,
-        topics: .random,
-        treesUrl: .random,
-        updatedAt: .random,
-        url: .random,
-        useSquashPrTitleAsDefault: .random,
-        visibility: .random,
-        watchersCount: .random
-      )
+    public static var random: Self {Self(
+      allowAutoMerge: .random,
+      allowMergeCommit: .random,
+      allowRebaseMerge: .random,
+      allowSquashMerge: .random,
+      allowUpdateBranch: .random,
+      archiveUrl: .random,
+      archived: .random,
+      assigneesUrl: .random,
+      blobsUrl: .random,
+      branchesUrl: .random,
+      cloneUrl: .random,
+      collaboratorsUrl: .random,
+      commentsUrl: .random,
+      commitsUrl: .random,
+      compareUrl: .random,
+      contentsUrl: .random,
+      contributorsUrl: .random,
+      createdAt: .random,
+      defaultBranch: .random,
+      deleteBranchOnMerge: .random,
+      deploymentsUrl: .random,
+      description: .random,
+      disabled: .random,
+      downloadsUrl: .random,
+      eventsUrl: .random,
+      fork: .random,
+      forksCount: .random,
+      forksUrl: .random,
+      fullName: .random,
+      gitCommitsUrl: .random,
+      gitRefsUrl: .random,
+      gitTagsUrl: .random,
+      gitUrl: .random,
+      hasDownloads: .random,
+      hasIssues: .random,
+      hasPages: .random,
+      hasProjects: .random,
+      hasWiki: .random,
+      homepage: .random,
+      hooksUrl: .random,
+      htmlUrl: .random,
+      id: .random,
+      isTemplate: .random,
+      issueCommentUrl: .random,
+      issueEventsUrl: .random,
+      issuesUrl: .random,
+      keysUrl: .random,
+      labelsUrl: .random,
+      language: .random,
+      languagesUrl: .random,
+      mergeCommitMessage: .random,
+      mergeCommitTitle: .random,
+      mergesUrl: .random,
+      milestonesUrl: .random,
+      mirrorUrl: .random,
+      name: .random,
+      networkCount: .random,
+      nodeId: .random,
+      notificationsUrl: .random,
+      openIssuesCount: .random,
+      owner: .random,
+      permissions: .random,
+      templateRepositoryPrivate: .random,
+      pullsUrl: .random,
+      pushedAt: .random,
+      releasesUrl: .random,
+      size: .random,
+      squashMergeCommitMessage: .random,
+      squashMergeCommitTitle: .random,
+      sshUrl: .random,
+      stargazersCount: .random,
+      stargazersUrl: .random,
+      statusesUrl: .random,
+      subscribersCount: .random,
+      subscribersUrl: .random,
+      subscriptionUrl: .random,
+      svnUrl: .random,
+      tagsUrl: .random,
+      teamsUrl: .random,
+      tempCloneToken: .random,
+      topics: .random,
+      treesUrl: .random,
+      updatedAt: .random,
+      url: .random,
+      useSquashPrTitleAsDefault: .random,
+      visibility: .random,
+      watchersCount: .random
+    )
     }
     public let allowAutoMerge: Bool?
     public let allowMergeCommit: Bool?
@@ -1088,32 +1079,31 @@ public extension Octokit {
     public let visibility: String?
     public let watchersCount: Int?
   }
-  
+
   // MARK: - Owner
   struct Owner: ModelProtocol {
-    public static var random: Owner {
-      Self.init(
-        avatarUrl: .random,
-        eventsUrl: .random,
-        followersUrl: .random,
-        followingUrl: .random,
-        gistsUrl: .random,
-        gravatarId: .random,
-        htmlUrl: .random,
-        id: .random,
-        login: .random,
-        nodeId: .random,
-        organizationsUrl: .random,
-        receivedEventsUrl: .random,
-        reposUrl: .random,
-        siteAdmin: .random,
-        starredUrl: .random,
-        subscriptionsUrl: .random,
-        type: .random,
-        url: .random
-      )
+    public static var random: Owner {Self(
+      avatarUrl: .random,
+      eventsUrl: .random,
+      followersUrl: .random,
+      followingUrl: .random,
+      gistsUrl: .random,
+      gravatarId: .random,
+      htmlUrl: .random,
+      id: .random,
+      login: .random,
+      nodeId: .random,
+      organizationsUrl: .random,
+      receivedEventsUrl: .random,
+      reposUrl: .random,
+      siteAdmin: .random,
+      starredUrl: .random,
+      subscriptionsUrl: .random,
+      type: .random,
+      url: .random
+    )
     }
-    
+
     public let avatarUrl: String?
     public let eventsUrl: String?
     public let followersUrl: String?
@@ -1133,40 +1123,39 @@ public extension Octokit {
     public let type: String?
     public let url: String?
   }
-  
+
   // MARK: - TemplateRepositoryPermissions
   struct TemplateRepositoryPermissions: ModelProtocol {
-    public static var random: Self {
-      Self.init(
-        admin: .random,
-        maintain: .random,
-        pull: .random,
-        push: .random,
-        triage: .random
-      )
+    public static var random: Self {Self(
+      admin: .random,
+      maintain: .random,
+      pull: .random,
+      push: .random,
+      triage: .random
+    )
     }
-    
+
     public var id: Int?
-    
+
     public let admin: Bool?
     public let maintain: Bool?
     public let pull: Bool?
     public let push: Bool?
     public let triage: Bool?
   }
-  
+
   enum StateReason: String, CaseIterable, ModelProtocol {
     public static var random: StateReason {
       StateReason.allCases.randomElement() ?? .notPlanned
     }
-    
+
     public var id: RawValue { rawValue }
-    
+
     case completed
     case notPlanned
     case reopened
   }
-  
+
   // MARK: - Page
   struct Page: ModelProtocol {
     public static var random: Page {
@@ -1179,7 +1168,7 @@ public extension Octokit {
         title: .random
       )
     }
-    
+
     public var id: String? { sha }
     public let action: String?
     public let htmlUrl: String?
@@ -1188,13 +1177,13 @@ public extension Octokit {
     public let summary: String?
     public let title: String?
   }
-  
+
   // MARK: - Repo
   struct Repo: ModelProtocol {
     public static var random: Repo {
       Repo(id: .random, name: .random, url: .random)
     }
-    
+
     public let id: Int
     public let name: String
     public let url: String
