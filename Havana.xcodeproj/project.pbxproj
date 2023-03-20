@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1F0AB5FA298F38E8008D146E /* HavanaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AB5F9298F38E8008D146E /* HavanaApp.swift */; };
-		1F0AB5FC298F38E8008D146E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FB298F38E8008D146E /* ContentView.swift */; };
 		1F0AB5FE298F38E9008D146E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F0AB5FD298F38E9008D146E /* Assets.xcassets */; };
 		1F1E8641299000470091362C /* Packages in Frameworks */ = {isa = PBXBuildFile; productRef = 1F1E8640299000470091362C /* Packages */; };
 		1F1EA755299802DA0022D51C /* ComposableAnalyticsRecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EA754299802DA0022D51C /* ComposableAnalyticsRecoder.swift */; };
 		1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */; };
 		1FF7DBC529931A7D001245CF /* EventsRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBC429931A7D001245CF /* EventsRecorder.swift */; };
+		1FFA526529C76F19005FE727 /* Havana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526429C76F19005FE727 /* Havana.swift */; };
+		1FFA526729C77140005FE727 /* HavanaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526629C77140005FE727 /* HavanaRootView.swift */; };
+		1FFA527029C9037C005FE727 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526A29C90377005FE727 /* .gitmodules */; };
+		1FFA527129C9037C005FE727 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526B29C90378005FE727 /* LICENSE */; };
+		1FFA527229C9037C005FE727 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526C29C90379005FE727 /* .gitignore */; };
+		1FFA527329C9037C005FE727 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526D29C90379005FE727 /* README.md */; };
+		1FFA527429C9037C005FE727 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526E29C9037A005FE727 /* .gitattributes */; };
+		1FFA527529C9037C005FE727 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526F29C9037B005FE727 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F0AB5F6298F38E8008D146E /* Havana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Havana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F0AB5F9298F38E8008D146E /* HavanaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaApp.swift; sourceTree = "<group>"; };
-		1F0AB5FB298F38E8008D146E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1F0AB5FD298F38E9008D146E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F0AB5FF298F38E9008D146E /* Havana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Havana.entitlements; sourceTree = "<group>"; };
 		1F0AB60C298F42CD008D146E /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
@@ -28,6 +34,14 @@
 		1F3D6DC829BF6EA60002BE51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaiOSAppDelegate.swift; sourceTree = "<group>"; };
 		1FF7DBC429931A7D001245CF /* EventsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRecorder.swift; sourceTree = "<group>"; };
+		1FFA526429C76F19005FE727 /* Havana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Havana.swift; sourceTree = "<group>"; };
+		1FFA526629C77140005FE727 /* HavanaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaRootView.swift; sourceTree = "<group>"; };
+		1FFA526A29C90377005FE727 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
+		1FFA526B29C90378005FE727 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1FFA526C29C90379005FE727 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1FFA526D29C90379005FE727 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1FFA526E29C9037A005FE727 /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		1FFA526F29C9037B005FE727 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +59,12 @@
 		1F0AB5ED298F38E8008D146E = {
 			isa = PBXGroup;
 			children = (
+				1FFA526E29C9037A005FE727 /* .gitattributes */,
+				1FFA526C29C90379005FE727 /* .gitignore */,
+				1FFA526A29C90377005FE727 /* .gitmodules */,
+				1FFA526F29C9037B005FE727 /* .swiftlint.yml */,
+				1FFA526B29C90378005FE727 /* LICENSE */,
+				1FFA526D29C90379005FE727 /* README.md */,
 				1F1E864229900B9E0091362C /* Casimir */,
 				1F0AB60C298F42CD008D146E /* Packages */,
 				1F0AB5F8298F38E8008D146E /* Havana */,
@@ -64,13 +84,13 @@
 		1F0AB5F8298F38E8008D146E /* Havana */ = {
 			isa = PBXGroup;
 			children = (
-				1F3D6DC829BF6EA60002BE51 /* Info.plist */,
 				1F0AB5FF298F38E9008D146E /* Havana.entitlements */,
-				1F0AB5FB298F38E8008D146E /* ContentView.swift */,
+				1F3D6DC829BF6EA60002BE51 /* Info.plist */,
 				1F0AB5FD298F38E9008D146E /* Assets.xcassets */,
 				1FF7DBBF29931752001245CF /* Common */,
 				1FF7DBBE2993172C001245CF /* iOS */,
 				1FF7DBC029931759001245CF /* macOS */,
+				1FFA526329C769F6005FE727 /* Root */,
 			);
 			path = Havana;
 			sourceTree = "<group>";
@@ -115,6 +135,15 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		1FFA526329C769F6005FE727 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				1FFA526429C76F19005FE727 /* Havana.swift */,
+				1FFA526629C77140005FE727 /* HavanaRootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,6 +151,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F0AB605298F38E9008D146E /* Build configuration list for PBXNativeTarget "Havana" */;
 			buildPhases = (
+				1FFA526929C902DF005FE727 /* SwiftLint linting */,
+				1FFA527629C90D43005FE727 /* SwiftLint analyzing */,
 				1F0AB5F2298F38E8008D146E /* Sources */,
 				1F0AB5F3298F38E8008D146E /* Frameworks */,
 				1F0AB5F4298F38E8008D146E /* Resources */,
@@ -176,11 +207,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FFA527229C9037C005FE727 /* .gitignore in Resources */,
+				1FFA527429C9037C005FE727 /* .gitattributes in Resources */,
+				1FFA527129C9037C005FE727 /* LICENSE in Resources */,
+				1FFA527529C9037C005FE727 /* .swiftlint.yml in Resources */,
+				1FFA527329C9037C005FE727 /* README.md in Resources */,
+				1FFA527029C9037C005FE727 /* .gitmodules in Resources */,
 				1F0AB5FE298F38E9008D146E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1FFA526929C902DF005FE727 /* SwiftLint linting */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint linting";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nswiftlint lint --autocorrect --format && swiftlint\n";
+		};
+		1FFA527629C90D43005FE727 /* SwiftLint analyzing */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint analyzing";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#export PATH=\"$PATH:/opt/homebrew/bin\"\n\n#swiftlint analyze --compiler-log-path xcodebuild.log\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F0AB5F2298F38E8008D146E /* Sources */ = {
@@ -188,10 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F1EA755299802DA0022D51C /* ComposableAnalyticsRecoder.swift in Sources */,
-				1F0AB5FC298F38E8008D146E /* ContentView.swift in Sources */,
 				1F0AB5FA298F38E8008D146E /* HavanaApp.swift in Sources */,
+				1FFA526729C77140005FE727 /* HavanaRootView.swift in Sources */,
 				1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */,
 				1FF7DBC529931A7D001245CF /* EventsRecorder.swift in Sources */,
+				1FFA526529C76F19005FE727 /* Havana.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
