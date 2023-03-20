@@ -1,18 +1,20 @@
+import Casimir
 import Combine
 import ComposableArchitecture
-import Casimir
+import LoginFeature
 import Octokit
 import SwiftUI
-import LoginFeature
 
 struct ContentView: View {
   var body: some View {
-    PrivateAccessTokenLoginView(
-      store: Store(
-        initialState: PrivateAccessTokenLogin.State.tokenInput,
-        reducer: PrivateAccessTokenLogin(loginService: .Mock.loginSuccessful)._printChanges()
+    NavigationView {
+      LoginView(
+        store: Store(
+          initialState: Login.State.loginFlowSelection,
+          reducer: Login(loginService: Octokit.LoginServiceMock.happyPath())._printChanges()
+        )
       )
-    )
+    }
   }
 }
 
