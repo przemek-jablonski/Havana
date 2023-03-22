@@ -19,6 +19,7 @@ extension Octokit.LoginService_API_2022_11_28: Octokit.LoginService {
   internal func login(
     using privateAccessToken: String
   ) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
+    // TODO: it would be actually KINDA cool to verify this against github api lol?
     await secretsService
       .store(.privateAccessToken, value: privateAccessToken)
       .mapError { .unableToStorePrivateAccessToken($0) }

@@ -13,8 +13,8 @@
 		1F1EA755299802DA0022D51C /* ComposableAnalyticsRecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1EA754299802DA0022D51C /* ComposableAnalyticsRecoder.swift */; };
 		1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */; };
 		1FF7DBC529931A7D001245CF /* EventsRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF7DBC429931A7D001245CF /* EventsRecorder.swift */; };
-		1FFA526529C76F19005FE727 /* Havana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526429C76F19005FE727 /* Havana.swift */; };
-		1FFA526729C77140005FE727 /* HavanaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526629C77140005FE727 /* HavanaRootView.swift */; };
+		1FFA526529C76F19005FE727 /* HavanaAppRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526429C76F19005FE727 /* HavanaAppRoot.swift */; };
+		1FFA526729C77140005FE727 /* HavanaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA526629C77140005FE727 /* HavanaAppView.swift */; };
 		1FFA527029C9037C005FE727 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526A29C90377005FE727 /* .gitmodules */; };
 		1FFA527129C9037C005FE727 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526B29C90378005FE727 /* LICENSE */; };
 		1FFA527229C9037C005FE727 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1FFA526C29C90379005FE727 /* .gitignore */; };
@@ -34,8 +34,8 @@
 		1F3D6DC829BF6EA60002BE51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaiOSAppDelegate.swift; sourceTree = "<group>"; };
 		1FF7DBC429931A7D001245CF /* EventsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRecorder.swift; sourceTree = "<group>"; };
-		1FFA526429C76F19005FE727 /* Havana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Havana.swift; sourceTree = "<group>"; };
-		1FFA526629C77140005FE727 /* HavanaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaRootView.swift; sourceTree = "<group>"; };
+		1FFA526429C76F19005FE727 /* HavanaAppRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaAppRoot.swift; sourceTree = "<group>"; };
+		1FFA526629C77140005FE727 /* HavanaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaAppView.swift; sourceTree = "<group>"; };
 		1FFA526A29C90377005FE727 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		1FFA526B29C90378005FE727 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1FFA526C29C90379005FE727 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		1FFA526329C769F6005FE727 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				1FFA526429C76F19005FE727 /* Havana.swift */,
-				1FFA526629C77140005FE727 /* HavanaRootView.swift */,
+				1FFA526429C76F19005FE727 /* HavanaAppRoot.swift */,
+				1FFA526629C77140005FE727 /* HavanaAppView.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -222,6 +222,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1FFA526929C902DF005FE727 /* SwiftLint linting */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -265,10 +266,10 @@
 			files = (
 				1F1EA755299802DA0022D51C /* ComposableAnalyticsRecoder.swift in Sources */,
 				1F0AB5FA298F38E8008D146E /* HavanaApp.swift in Sources */,
-				1FFA526729C77140005FE727 /* HavanaRootView.swift in Sources */,
+				1FFA526729C77140005FE727 /* HavanaAppView.swift in Sources */,
 				1FF7DBBD2993161E001245CF /* HavanaiOSAppDelegate.swift in Sources */,
 				1FF7DBC529931A7D001245CF /* EventsRecorder.swift in Sources */,
-				1FFA526529C76F19005FE727 /* Havana.swift in Sources */,
+				1FFA526529C76F19005FE727 /* HavanaAppRoot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,6 +62,8 @@ no_magic_numbers:
     - ".*Test\\.swift"
 
 identifier_name:
+  min_length: 3
+  max_length: 50
   excluded:
     - id
     - dB

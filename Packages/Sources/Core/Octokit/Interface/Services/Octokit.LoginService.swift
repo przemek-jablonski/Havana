@@ -10,7 +10,7 @@ public protocol OctokitLoginService {
 }
 
 public extension Octokit {
-  enum PrivateAccessTokenLoginError: ErrorProtocol {
+  enum PrivateAccessTokenLoginError: ErrorProtocol & Equatable {
     case unableToStorePrivateAccessToken(_ error: Error)
 
     public static var random: Octokit.PrivateAccessTokenLoginError {
