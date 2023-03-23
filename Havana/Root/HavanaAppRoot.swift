@@ -5,12 +5,14 @@ import OctokitLive
 
 public struct HavanaAppRoot: ReducerProtocol {
   public enum State: Equatable {
-    case privateAccessTokenLogin(PrivateAccessTokenLogin.State)
+    case login(Login.State)
+    //    case privateAccessTokenLogin(PrivateAccessTokenLogin.State)
     case content
   }
 
   public enum Action: Equatable {
-    case privateAccessTokenLogin(PrivateAccessTokenLogin.Action)
+    case login(Login.Action)
+    //    case privateAccessTokenLogin(PrivateAccessTokenLogin.Action)
     //    case login(Login.Action)
   }
 
@@ -21,17 +23,9 @@ public struct HavanaAppRoot: ReducerProtocol {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    //    Scope(
-    //      state: /State.login,
-    //      action: /Action.login
-    //    ) {
-    //      Login(
-    //        loginService: loginService
-    //      )
-    //    }
     Reduce { state, action in
       switch action {
-      case .privateAccessTokenLogin(.remoteReturnedLoginResponse(response: .success)):
+      case .login(.privateAccessTokenLogin(.remoteReturnedLoginResponse(response: .success))):
         state = .content
         return .none
       default:
@@ -41,10 +35,10 @@ public struct HavanaAppRoot: ReducerProtocol {
 
     Scope(
       //      state: /State.privateAccessTokenLogin(.tokenInputForm), this is valid as well 🤔
-      state: /State.privateAccessTokenLogin,
-      action: /Action.privateAccessTokenLogin
+      state: /State.login,
+      action: /Action.login
     ) {
-      PrivateAccessTokenLogin(
+      Login(
         loginService: loginService
       )
     }
