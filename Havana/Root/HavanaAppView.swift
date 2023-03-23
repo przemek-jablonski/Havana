@@ -4,7 +4,7 @@ import SwiftUI
 
 internal struct HavanaAppView: View {
   private let store: StoreOf<HavanaAppRoot>
-
+  
   internal init(
     store: StoreOf<HavanaAppRoot> = Store(
       initialState: HavanaAppRoot.State.privateAccessTokenLogin(.tokenInputForm),
@@ -13,7 +13,7 @@ internal struct HavanaAppView: View {
   ) {
     self.store = store
   }
-
+  
   internal var body: some View {
     SwitchStore(self.store) {
       CaseLet(
@@ -24,16 +24,6 @@ internal struct HavanaAppView: View {
           store: scopedStore
         )
       }
-      //      CaseLet(
-      //        state: /HavanaAppRoot.State.login,
-      //        action: HavanaAppRoot.Action.login
-      //      ) { store in
-      //        NavigationView {
-      //          LoginView(
-      //            store: store
-      //          )
-      //        }
-      //      }
     }
   }
 }

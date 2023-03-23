@@ -77,7 +77,7 @@ public struct PrivateAccessTokenLoginView: View {
   }
 }
 
-struct PrivateAccessTokenLogin_Previews: PreviewProvider {
+internal struct PrivateAccessTokenLogin_Previews: PreviewProvider {
   static var previews: some View {
     PrivateAccessTokenLoginView(
       store: Store(

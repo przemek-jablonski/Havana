@@ -6,8 +6,7 @@ import OctokitLive
 public struct HavanaAppRoot: ReducerProtocol {
   public enum State: Equatable {
     case privateAccessTokenLogin(PrivateAccessTokenLogin.State)
-    //    case login(Login.State)
-    //  case appContent
+    case content
   }
 
   public enum Action: Equatable {
@@ -30,6 +29,15 @@ public struct HavanaAppRoot: ReducerProtocol {
     //        loginService: loginService
     //      )
     //    }
+    Reduce { state, action in
+      switch action {
+      case .privateAccessTokenLogin(.remoteReturnedLoginResponse(response: .success)):
+        state = .content
+        return .none
+      default:
+        return .none
+      }
+    }
 
     Scope(
       //      state: /State.privateAccessTokenLogin(.tokenInputForm), this is valid as well 🤔
