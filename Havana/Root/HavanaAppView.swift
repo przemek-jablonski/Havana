@@ -15,13 +15,12 @@ internal struct HavanaAppView: View {
   }
 
   internal var body: some View {
-
-    SwitchStore(self.store) {
-      CaseLet(
-        state: /HavanaAppRoot.State.login,
-        action: HavanaAppRoot.Action.login
-      ) { scopedStore in
-        NavigationView {
+    NavigationView {
+      SwitchStore(self.store) {
+        CaseLet(
+          state: /HavanaAppRoot.State.login,
+          action: HavanaAppRoot.Action.login
+        ) { scopedStore in
           LoginView(
             store: scopedStore
           )

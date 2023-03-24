@@ -4,23 +4,24 @@ import Octokit
 
 public struct Login: ReducerProtocol {
   public struct State: Equatable {
-    public init(
-      privateAccessTokenLogin: PrivateAccessTokenLogin.State? = nil,
-      oAuthLogin: OAuthLogin.State? = nil
-    ) {
-      self.privateAccessTokenLogin = privateAccessTokenLogin
-      self.oAuthLogin = oAuthLogin
+
+    public enum LoginFlow: Equatable {
+      case privateAccessTokenLoginFlow(PrivateAccessTokenLogin.State)
+      case oAuthLoginFlow
     }
 
-    public var privateAccessTokenLogin: PrivateAccessTokenLogin.State?
-    public var oAuthLogin: OAuthLogin.State?
+    public var selectedFlow: LoginFlow?
+
+    public init(selectedFlow: LoginFlow? = nil) {
+      self.selectedFlow = selectedFlow
+    }
   }
 
   public enum Action: Equatable {
-    case privateAccessTokenLoginSelected
-    case oAuthLoginSelected
     case privateAccessTokenLogin(PrivateAccessTokenLogin.Action)
     case oAuthLogin(OAuthLogin.Action)
+
+    case userSelectedLoginFlow(State.LoginFlow?)
   }
 
   private let loginService: Octokit.LoginService
@@ -34,31 +35,40 @@ public struct Login: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
-      case .privateAccessTokenLoginSelected:
-        state.privateAccessTokenLogin = .tokenInputForm
-        state.oAuthLogin = nil
+      case .oAuthLogin, .privateAccessTokenLogin:
         return .none
-      case .oAuthLoginSelected:
-        state.privateAccessTokenLogin = nil
-        state.oAuthLogin = .init()
-        return .none
-      default:
+      case .userSelectedLoginFlow(let selectedFlow):
+        state.selectedFlow = selectedFlow
         return .none
       }
     }
-    .ifLet(
-      \.privateAccessTokenLogin,
-      action: /Action.privateAccessTokenLogin
-    ) {
-      PrivateAccessTokenLogin(
-        loginService: loginService
-      )
-    }
-    .ifLet(
-      \.oAuthLogin,
-      action: /Action.oAuthLogin
-    ) {
-      OAuthLogin()
-    }
+    //    Reduce { state, action in
+    //      switch action {
+    //      case .privateAccessTokenLoginSelected:
+    //        state.privateAccessTokenLogin = .tokenInputForm
+    //        state.oAuthLogin = nil
+    //        return .none
+    //      case .oAuthLoginSelected:
+    //        state.privateAccessTokenLogin = nil
+    //        state.oAuthLogin = .init()
+    //        return .none
+    //      default:
+    //        return .none
+    //      }
+    //    }
+    //    .ifLet(
+    //      \.privateAccessTokenLogin,
+    //      action: /Action.privateAccessTokenLogin
+    //    ) {
+    //      PrivateAccessTokenLogin(
+    //        loginService: loginService
+    //      )
+    //    }
+    //    .ifLet(
+    //      \.oAuthLogin,
+    //      action: /Action.oAuthLogin
+    //    ) {
+    //      OAuthLogin()
+    //    }
   }
 }
