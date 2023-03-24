@@ -2,46 +2,6 @@ import ComposableArchitecture
 import Octokit
 import SwiftUI
 
-// private extension PrivateAccessTokenLoginView {
-//  struct ViewState: Equatable {
-//    var isLoginInProgress: Bool
-//    var errorText: String?
-//
-//    static func extractViewState(from reducerState: PrivateAccessTokenLogin.State) -> Self {
-//      switch reducerState {
-//      case .tokenInputForm:
-//        return PrivateAccessTokenLoginView.ViewState(
-//          isLoginInProgress: false,
-//          errorText: nil
-//        )
-//      case .loginInProgress:
-//        return PrivateAccessTokenLoginView.ViewState(
-//          isLoginInProgress: true,
-//          errorText: nil
-//        )
-//      case .tokenInputRetry(_, let failureReason):
-//        return PrivateAccessTokenLoginView.ViewState(
-//          isLoginInProgress: false,
-//          errorText: String(describing: failureReason) // TODO:
-//        )
-//      }
-//    }
-//  }
-// }
-//
-// private extension PrivateAccessTokenLoginView {
-//  enum ViewAction: Equatable {
-//    case userDidRequestLoginUsingToken(token: String)
-//
-//    static func convertToReducerAction(using viewAction: ViewAction) -> PrivateAccessTokenLogin.Action {
-//      switch viewAction {
-//      case .userDidRequestLoginUsingToken(let token):
-//        return .userRequestedLoginUsingToken(token: token)
-//      }
-//    }
-//  }
-// }
-
 public struct PrivateAccessTokenLoginView: View {
   private let store: StoreOf<PrivateAccessTokenLogin>
 

@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
         "state": {
           "branch": null,
-          "revision": "f623901b4bcc97f59c36704f81583f169b228e51",
-          "version": "0.13.0"
+          "revision": "870133b7b2387df136ad301ec67b2e864b51dda1",
+          "version": "0.14.0"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture",
         "state": {
           "branch": null,
-          "revision": "cd22f6a1b3a6210e1e365cbfa8706dbb1736ca27",
-          "version": "0.51.0"
+          "revision": "3e8eee1efe99d06e99426d421733b858b332186b",
+          "version": "0.52.0"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-custom-dump",
         "state": {
           "branch": null,
-          "revision": "dd86159e25c749873f144577e5d18309bf57534f",
-          "version": "0.8.0"
+          "revision": "de8ba65649e7ee317b9daf27dd5eebf34bd4be57",
+          "version": "0.9.1"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-dependencies",
         "state": {
           "branch": null,
-          "revision": "8282b0c59662eb38946afe30eb403663fc2ecf76",
-          "version": "0.1.4"
+          "revision": "6bb1034e8a1bfbf46dfb766b6c09b7b17e1cba10",
+          "version": "0.2.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swiftui-navigation",
         "state": {
           "branch": null,
-          "revision": "270a754308f5440be52fc295242eb7031638bd15",
-          "version": "0.6.1"
+          "revision": "47dd574b900ba5ba679f56ea00d4d282fc7305a6",
+          "version": "0.7.1"
         }
       },
       {

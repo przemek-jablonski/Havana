@@ -23,15 +23,15 @@ public struct HavanaAppRoot: ReducerProtocol {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    Reduce { state, action in
-      switch action {
-      case .login(.privateAccessTokenLogin(.remoteReturnedLoginResponse(response: .success))):
-        state = .content
-        return .none
-      default:
-        return .none
-      }
-    }
+    //    Reduce { state, action in
+    //      switch action {
+    ////      case .login(.privateAccessTokenLogin(.remoteReturnedLoginResponse(response: .success))):
+    ////        state = .content
+    ////        return .none
+    //      default:
+    //        return .none
+    //      }
+    //    }
 
     Scope(
       //      state: /State.privateAccessTokenLogin(.tokenInputForm), this is valid as well 🤔

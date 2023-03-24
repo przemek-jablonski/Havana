@@ -1,27 +1,31 @@
 // import ComposableArchitecture
+// import Foundation
+// import Octokit
 //
 // public struct LoginFlowSelection: ReducerProtocol {
-//  public struct State: Equatable {
-//    public enum Selection: Equatable {
-//      case flowSelection
+//  public enum State: Equatable {
 //      case privateAccessTokenFlowSelected(PrivateAccessTokenLogin.State)
-//    }
-//    var selection: Selection
 //  }
 //
 //  public enum Action: Equatable {
 //    case privateAccessTokenFlow(PrivateAccessTokenLogin.Action)
-//    case userSelectedOAuthFlow
+//    case oauthFlow
 //  }
 //
-//  internal init() {}
+//  private let loginService: Octokit.LoginService
+//
+//  internal init(
+//    loginService: Octokit.LoginService
+//  ) {
+//    self.loginService = loginService
+//  }
 //
 //  public var body: some ReducerProtocolOf<Self> {
-//    Scope(
-//      state: \.selection,
-//      action: /Action.userSelectedOAuthFlow
-//    ) {
-//        <#code#>
+//    Reduce { state, action in
+//      switch action {
+//        default:
+//          return .none
 //      }
+//    }
 //  }
 // }

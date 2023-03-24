@@ -2,6 +2,7 @@ import Casimir
 import ComposableArchitecture
 import Octokit
 import SwiftUI
+import SwiftUINavigation
 
 public struct LoginView: View {
   private let store: StoreOf<Login>
@@ -13,28 +14,75 @@ public struct LoginView: View {
   }
 
   public var body: some View {
-    SwitchStore(self.store) {
-      CaseLet(
-        state: /Login.State.privateAccessTokenLogin,
-        action: Login.Action.privateAccessTokenLogin
-      ) { scopedStore in
-        PrivateAccessTokenLoginView(
-          store: scopedStore
+    WithViewStore(self.store) { viewStore in
+      let asd = Self._printChanges()
+      VStack {
+        NavigationLink(
+          destination: IfLetStore(
+            self.store.scope(
+              state: \.privateAccessTokenLogin,
+              action: { Login.Action.privateAccessTokenLogin($0) }
+            ),
+            then: { scopedStore in
+              PrivateAccessTokenLoginView(
+                store: scopedStore
+              )
+            },
+            else: {
+              Text("nil")
+            }
+          ),
+          label: {
+            Button("PAT") {
+              viewStore.send(.privateAccessTokenLoginSelected)
+            }
+          }
+        )
+
+        NavigationLink(
+          destination: IfLetStore(
+            self.store.scope(
+              state: \.oAuthLogin,
+              action: Login.Action.oAuthLogin
+            ),
+            then: { scopedStore in
+              OAuthLoginView(
+                store: scopedStore
+              )
+            }
+          ),
+          label: {
+            Button("oAuth") {
+              viewStore.send(.oAuthLoginSelected)
+            }
+          }
         )
       }
     }
+    //    NavigationLink(
+    //      destination: PrivateAccessTokenLoginView(
+    //        store: self.store.scope(
+    //          state: \.privateAccessTokenLogin,
+    //          action: Login.Action.privateAccessTokenLogin
+    //        )
+    //      ),
+    //      label: {
+    //        Text("PAT")
+    //      }
+    //    )
+    //    NavigationLink(
+    //      destination:
+    ////        IfLetStore(
+    //
+    //        self.store.scope(
+    //          state: \.privateAccessTokenLogin,
+    //          action: /Login.Action.privateAccessTokenLogin),
+    ////        then: PrivateAccessTokenLoginView.init(store: )
+    ////      )
+    //    ,
+    //      label: {
+    //        Text("PAT")
+    //      }
+    //    )
   }
 }
-
-// internal struct LoginView_Previews: PreviewProvider {
-//  internal static var previews: some View {
-//    LoginView(
-//      store: Store(
-//        initialState: Login.State.loginFlowSelection(.selectionFormPresented),
-//        reducer: Login(
-//          loginService: Octokit.LoginServiceMock.happyPath()
-//        )
-//      )
-//    )
-//  }
-// }

@@ -1,6 +1,7 @@
 // import ComposableArchitecture
 // import Octokit
 // import SwiftUI
+// import SwiftUINavigation
 //
 // internal struct LoginFlowSelectionView: View {
 //  private let store: StoreOf<LoginFlowSelection>
@@ -14,14 +15,16 @@
 //  internal var body: some View {
 //    WithViewStore(self.store) { viewStore in
 //      NavigationLink(
-//        "Private Access Token",
-//        destination: PrivateAccessTokenLoginView(
-//          store: self.store.scope(
-//            state: \.selection,
-//            action: LoginFlowSelection.Action.privateAccessTokenFlow
-//          )
-//        )
-//      )
+//        unwrapping: viewStore.$state, destination: <#T##(Binding<Value>) -> View#>, label: <#T##() -> _#>
+////      NavigationLink(
+////        "Private Access Token",
+////        destination: PrivateAccessTokenLoginView(
+////          store: self.store.scope(
+////            state: \.selection,
+////            action: LoginFlowSelection.Action.privateAccessTokenFlow
+////          )
+////        )
+////      )
 //    }
 //  }
 // }

@@ -7,8 +7,11 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
-let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.51.0")
+let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.52.0")
 let composableArchitecture = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+
+let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.1")
+let swiftUINavigation = Target.Dependency.product(name: "SwiftUINavigation", package: "swiftui-navigation")
 
 let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")
 let keychainAccess = Target.Dependency.product(name: "KeychainAccess", package: "KeychainAccess")
@@ -18,6 +21,7 @@ let casimir = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
 let globalDependencies: [Package.Dependency] = [
   composableArchitectureRemote,
+  swiftUINavigationRemote,
   casimirRemote,
   keychainAccessRemote
 ]
@@ -65,6 +69,7 @@ let loginFeature = Target.target(
   dependencies: [
     motif.dependency,
     composableArchitecture,
+    swiftUINavigation,
     octokit.dependency
   ],
   path: "Sources/Features/Login/Sources"

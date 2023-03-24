@@ -7,7 +7,7 @@ internal struct HavanaAppView: View {
 
   internal init(
     store: StoreOf<HavanaAppRoot> = Store(
-      initialState: HavanaAppRoot.State.login(.privateAccessTokenLogin(.tokenInputForm)),
+      initialState: HavanaAppRoot.State.login(.init()),
       reducer: HavanaAppRoot()._printChanges()
     )
   ) {
@@ -15,14 +15,17 @@ internal struct HavanaAppView: View {
   }
 
   internal var body: some View {
+
     SwitchStore(self.store) {
       CaseLet(
         state: /HavanaAppRoot.State.login,
         action: HavanaAppRoot.Action.login
       ) { scopedStore in
-        LoginView(
-          store: scopedStore
-        )
+        NavigationView {
+          LoginView(
+            store: scopedStore
+          )
+        }
       }
     }
   }
