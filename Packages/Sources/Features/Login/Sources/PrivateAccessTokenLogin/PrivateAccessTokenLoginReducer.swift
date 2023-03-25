@@ -2,7 +2,7 @@ import ComposableArchitecture
 import Foundation
 import Octokit
 
-public extension PrivateAccessTokenLogin {
+public extension PrivateAccessTokenLoginReducer {
   enum State: Equatable {
     /**
      User is presented with form where inputting the Private Access Token is possible
@@ -33,7 +33,7 @@ public extension PrivateAccessTokenLogin {
   }
 }
 
-public struct PrivateAccessTokenLogin: ReducerProtocol {
+public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
 
   private let loginService: Octokit.LoginService
 
@@ -64,10 +64,10 @@ public struct PrivateAccessTokenLogin: ReducerProtocol {
   }
 }
 
-public extension PrivateAccessTokenLogin.Action {
+public extension PrivateAccessTokenLoginReducer.Action {
   static func == (
-    lhs: PrivateAccessTokenLogin.Action,
-    rhs: PrivateAccessTokenLogin.Action
+    lhs: PrivateAccessTokenLoginReducer.Action,
+    rhs: PrivateAccessTokenLoginReducer.Action
   ) -> Bool {
     switch (lhs, rhs) {
     case (

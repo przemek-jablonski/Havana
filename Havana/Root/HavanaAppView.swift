@@ -3,28 +3,21 @@ import LoginFeature
 import SwiftUI
 
 internal struct HavanaAppView: View {
-  private let store: StoreOf<HavanaAppRoot>
+  private let store: StoreOf<HavanaAppReducer> = Store(
+    initialState: .login(LoginReducer.State()),
+    reducer: HavanaAppReducer()._printChanges()
+  )
 
-  internal init(
-    store: StoreOf<HavanaAppRoot> = Store(
-      initialState: HavanaAppRoot.State.login(.init()),
-      reducer: HavanaAppRoot()._printChanges()
-    )
-  ) {
-    self.store = store
-  }
+  internal init() {}
 
   internal var body: some View {
     NavigationView {
       SwitchStore(self.store) {
         CaseLet(
-          state: /HavanaAppRoot.State.login,
-          action: HavanaAppRoot.Action.login
-        ) { scopedStore in
-          LoginView(
-            store: scopedStore
-          )
-        }
+          state: /HavanaAppReducer.State.login,
+          action: HavanaAppReducer.Action.login,
+          then: LoginView.init
+        )
       }
     }
   }

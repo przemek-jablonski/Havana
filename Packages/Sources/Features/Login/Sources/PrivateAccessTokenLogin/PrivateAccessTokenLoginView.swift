@@ -3,12 +3,12 @@ import Octokit
 import SwiftUI
 
 public struct PrivateAccessTokenLoginView: View {
-  private let store: StoreOf<PrivateAccessTokenLogin>
+  private let store: StoreOf<PrivateAccessTokenLoginReducer>
 
   @State private var token: String = ""
 
   public init(
-    store: StoreOf<PrivateAccessTokenLogin>
+    _ store: StoreOf<PrivateAccessTokenLoginReducer>
   ) {
     self.store = store
   }
@@ -37,13 +37,13 @@ public struct PrivateAccessTokenLoginView: View {
   }
 }
 
-internal struct PrivateAccessTokenLogin_Previews: PreviewProvider {
-  static var previews: some View {
-    PrivateAccessTokenLoginView(
-      store: Store(
-        initialState: PrivateAccessTokenLogin.State.tokenInputForm,
-        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginServiceMock.happyPath())
-      )
-    )
-  }
-}
+// internal struct PrivateAccessTokenLogin_Previews: PreviewProvider {
+//  static var previews: some View {
+//    PrivateAccessTokenLoginView(
+//      store: Store(
+//        initialState: PrivateAccessTokenLogin.State.tokenInputForm,
+//        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginServiceMock.happyPath())
+//      )
+//    )
+//  }
+// }

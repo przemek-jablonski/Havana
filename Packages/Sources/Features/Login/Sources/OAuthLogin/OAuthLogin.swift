@@ -1,10 +1,10 @@
 import ComposableArchitecture
 import SwiftUI
 
-public struct OAuthLogin: ReducerProtocol {
+public struct OAuthLoginReducer: ReducerProtocol {
   public struct State: Equatable {}
   public enum Action: Equatable {
-    case initial
+    case onAppear
   }
 
   public var body: some ReducerProtocolOf<Self> {
@@ -18,9 +18,9 @@ public struct OAuthLogin: ReducerProtocol {
 }
 
 public struct OAuthLoginView: View {
-  private let store: StoreOf<OAuthLogin>
+  private let store: StoreOf<OAuthLoginReducer>
 
-  public init(store: StoreOf<OAuthLogin>) {
+  public init(_ store: StoreOf<OAuthLoginReducer>) {
     self.store = store
   }
 
