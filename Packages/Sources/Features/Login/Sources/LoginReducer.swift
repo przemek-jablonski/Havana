@@ -2,6 +2,11 @@ import ComposableArchitecture
 import Foundation
 import Octokit
 
+public enum NavigationCommand: Equatable {
+  case show
+  case hide
+}
+
 public struct LoginReducer: ReducerProtocol {
   public struct State: Equatable {
     public var privateAccessTokenLogin: PrivateAccessTokenLoginReducer.State?
@@ -17,13 +22,24 @@ public struct LoginReducer: ReducerProtocol {
   }
 
   public enum Action: Equatable {
-    case privateAccessTokenLogin(PrivateAccessTokenLoginReducer.Action)
-    case userRequestedPrivateAccessTokenLoginFlow
-    case userDismissedPrivateAccessTokenLoginFlow
+    public enum User: Equatable {
+      case requestedPrivateAccessTokenFlow(NavigationCommand)
+      case requestedOAuthLoginFlow(NavigationCommand)
+    }
 
-    case oAuthLogin(OAuthLoginReducer.Action)
-    case userRequestedOAuthLoginFlow
-    case userDismissedOAuthLoginFlow
+    public enum Local: Equatable {
+      case privateAccessTokenLogin(PrivateAccessTokenLoginReducer.Action)
+      case oAuthLogin(OAuthLoginReducer.Action)
+    }
+
+    public enum Delegate: Equatable {
+      // TODO: implement this
+      case userLoggedInSuccessfully
+    }
+
+    case user(User)
+    case local(Local)
+    case delegate(Delegate)
   }
 
   private let loginService: Octokit.LoginService
@@ -35,27 +51,39 @@ public struct LoginReducer: ReducerProtocol {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    Reduce { state, action in
+    Reduce<State, Action> { state, action in
       switch action {
-      case .userRequestedPrivateAccessTokenLoginFlow:
+      case .user(.requestedPrivateAccessTokenFlow(.show)):
         state.privateAccessTokenLogin = .tokenInputForm
         return .none
-      case .userDismissedPrivateAccessTokenLoginFlow:
+      case .user(.requestedPrivateAccessTokenFlow(.hide)):
         state.privateAccessTokenLogin = nil
         return .none
-      case .privateAccessTokenLogin, .oAuthLogin:
-        return .none
-      case .userRequestedOAuthLoginFlow:
+      case .user(.requestedOAuthLoginFlow(.show)):
         state.oAuthLogin = .init()
         return .none
-      case .userDismissedOAuthLoginFlow:
+      case .user(.requestedOAuthLoginFlow(.hide)):
         state.oAuthLogin = nil
+        return .none
+      case .local, .delegate:
         return .none
       }
     }
     .ifLet(
       \.privateAccessTokenLogin,
-      action: /Action.privateAccessTokenLogin
+      action: CasePath<LoginReducer.Action, PrivateAccessTokenLoginReducer.Action>(
+        embed: { local in
+          LoginReducer.Action.local(.privateAccessTokenLogin(local))
+        },
+        extract: { action in
+          switch action {
+          case .local(.privateAccessTokenLogin(let action)):
+            return action
+          default:
+            return nil
+          }
+        }
+      )
     ) {
       PrivateAccessTokenLoginReducer(
         loginService: loginService
@@ -63,9 +91,39 @@ public struct LoginReducer: ReducerProtocol {
     }
     .ifLet(
       \.oAuthLogin,
-      action: /Action.oAuthLogin
+      action: CasePath<LoginReducer.Action, OAuthLoginReducer.Action>(
+        embed: { local in
+          LoginReducer.Action.local(.oAuthLogin(local))
+        },
+        extract: { action in
+          switch action {
+          case .local(.oAuthLogin(let action)):
+            return action
+          default:
+            return nil
+          }
+        }
+      )
     ) {
       OAuthLoginReducer()
     }
   }
 }
+
+
+// extension Store where Action: TCAFeatureAction {
+//  func scope<ChildState, ChildAction>(
+//    state toChildState: @escaping (State) -> ChildState,
+//    action fromChildAction: CasePath<Action.InternalAction, ChildAction>
+//  ) -> Store<ChildState, ChildAction> {
+//    scope(
+//      state: toChildState,
+//      action: { ._internal(fromChildAction.embed($0)) }
+//    )
+//  }
+// }
+
+// store.scope(
+//  state: \.settings,
+//  action: /AppFeature.Action.InternalAction.userSettings
+// )

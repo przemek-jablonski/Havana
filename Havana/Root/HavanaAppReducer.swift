@@ -21,9 +21,7 @@ public struct HavanaAppReducer: ReducerProtocol {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    Reduce { state, action in
-      let st = state
-      let ac = action
+    Reduce { _, action in
       switch action {
       default:
         return .none

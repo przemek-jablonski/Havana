@@ -19,9 +19,12 @@ public struct LoginView: View {
         link(
           to: PrivateAccessTokenLoginView.init,
           drivenFrom: \.privateAccessTokenLogin,
-          actions: LoginReducer.Action.privateAccessTokenLogin,
-          onRequested: .userRequestedPrivateAccessTokenLoginFlow,
-          onDismiss: .userDismissedPrivateAccessTokenLoginFlow,
+          //          actions: LoginReducer.Action.privateAccessTokenLogin,
+          //          onRequested: .userRequestedPrivateAccessTokenLoginFlow,
+          //          onDismiss: .userDismissedPrivateAccessTokenLoginFlow,
+          actions: { LoginReducer.Action.local(.privateAccessTokenLogin($0)) },
+          onRequested: .user(.requestedPrivateAccessTokenFlow(.show)),
+          onDismiss: .user(.requestedPrivateAccessTokenFlow(.hide)),
           viewStore: viewStore,
           store: store
         ) {
@@ -31,9 +34,9 @@ public struct LoginView: View {
         link(
           to: OAuthLoginView.init,
           drivenFrom: \.oAuthLogin,
-          actions: LoginReducer.Action.oAuthLogin,
-          onRequested: .userRequestedOAuthLoginFlow,
-          onDismiss: .userDismissedOAuthLoginFlow,
+          actions: { LoginReducer.Action.local(.oAuthLogin($0)) },
+          onRequested: .user(.requestedOAuthLoginFlow(.show)),
+          onDismiss: .user(.requestedOAuthLoginFlow(.hide)),
           viewStore: viewStore,
           store: store
         ) {
