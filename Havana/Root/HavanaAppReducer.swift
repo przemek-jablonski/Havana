@@ -21,8 +21,11 @@ public struct HavanaAppReducer: ReducerProtocol {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    Reduce { _, action in
+    Reduce { state, action in
       switch action {
+      case .login(.delegate(.userLoggedInSuccessfully)):
+        state = .content
+        return .none
       default:
         return .none
       }

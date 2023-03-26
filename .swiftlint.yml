@@ -64,6 +64,7 @@ no_magic_numbers:
 identifier_name:
   min_length: 3
   max_length: 50
+  allowed_symbols: "_"
   excluded:
     - id
     - dB

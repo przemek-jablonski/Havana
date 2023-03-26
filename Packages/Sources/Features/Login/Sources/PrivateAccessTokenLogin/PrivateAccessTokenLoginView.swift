@@ -18,32 +18,10 @@ public struct PrivateAccessTokenLoginView: View {
       VStack {
         TextField("Token", text: $token)
         Button("Log in") {
-          viewStore.send(.userRequestedLoginUsingToken(token: token))
+          // TODO: scope this to ViewState
+          viewStore.send(.user(.userRequestedLoginUsingToken(token)))
         }
       }
     }
-    //    WithViewStore(
-    //      store,
-    //      observe: ViewState.extractViewState(from:)
-    //      //      ,
-    //      //      send: ViewAction.convertToReducerAction(using:)
-    //    ) { viewStore in
-    //      VStack {
-    //        TextField("Token", text: $token)
-    //        Button("Log In", action: { viewStore.send(.userRequestedLoginUsingToken(token: token)) })
-    //      }
-    //      .padding()
-    //    }
   }
 }
-
-// internal struct PrivateAccessTokenLogin_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PrivateAccessTokenLoginView(
-//      store: Store(
-//        initialState: PrivateAccessTokenLogin.State.tokenInputForm,
-//        reducer: PrivateAccessTokenLogin(loginService: Octokit.LoginServiceMock.happyPath())
-//      )
-//    )
-//  }
-// }

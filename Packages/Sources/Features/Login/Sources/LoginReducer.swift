@@ -31,7 +31,6 @@ public struct LoginReducer: ReducerProtocol {
     public enum Local: Equatable {}
 
     public enum Delegate: Equatable {
-      // TODO: implement this
       case userLoggedInSuccessfully
     }
 
@@ -66,9 +65,9 @@ public struct LoginReducer: ReducerProtocol {
       case .user(.requestedOAuthLoginFlow(.hide)):
         state.oAuthLogin = nil
         return .none
-      case .local, .delegate:
-        return .none
-      case .privateAccessTokenLogin, .oAuthLogin:
+      case .privateAccessTokenLogin(.delegate(.userLoggedInSuccessfully)):
+        return .send(.delegate(.userLoggedInSuccessfully))
+      case .local, .delegate, .privateAccessTokenLogin, .oAuthLogin:
         return .none
       }
     }
@@ -88,20 +87,3 @@ public struct LoginReducer: ReducerProtocol {
     }
   }
 }
-
-// extension Store where Action: TCAFeatureAction {
-//  func scope<ChildState, ChildAction>(
-//    state toChildState: @escaping (State) -> ChildState,
-//    action fromChildAction: CasePath<Action.InternalAction, ChildAction>
-//  ) -> Store<ChildState, ChildAction> {
-//    scope(
-//      state: toChildState,
-//      action: { ._internal(fromChildAction.embed($0)) }
-//    )
-//  }
-// }
-
-// store.scope(
-//  state: \.settings,
-//  action: /AppFeature.Action.InternalAction.userSettings
-// )

@@ -2,8 +2,8 @@ import ComposableArchitecture
 import Foundation
 import Octokit
 
-public extension PrivateAccessTokenLoginReducer {
-  enum State: Equatable {
+public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
+  public enum State: Equatable {
     /**
      User is presented with form where inputting the Private Access Token is possible
      */
@@ -27,13 +27,23 @@ public extension PrivateAccessTokenLoginReducer {
     case loginSuccessful
   }
 
-  enum Action: Equatable {
-    case userRequestedLoginUsingToken(token: String)
-    case remoteReturnedLoginResponse(response: Result<Void, Octokit.PrivateAccessTokenLoginError>)
-  }
-}
+  public enum Action: Equatable {
+    public enum User: Equatable {
+      case userRequestedLoginUsingToken(String)
+    }
 
-public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
+    public enum Local: Equatable {
+      case _remoteReturnedLoginResponse(Result<Void, Octokit.PrivateAccessTokenLoginError>)
+    }
+
+    public enum Delegate: Equatable {
+      case userLoggedInSuccessfully
+    }
+
+    case user(User)
+    case local(Local)
+    case delegate(Delegate)
+  }
 
   private let loginService: Octokit.LoginService
 
@@ -46,43 +56,42 @@ public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
-      case .userRequestedLoginUsingToken(let token):
+      case .user(.userRequestedLoginUsingToken(let token)):
         state = .loginInProgress
         return .task {
-          .remoteReturnedLoginResponse(
-            response: await loginService.login(using: token)
+          .local(
+            ._remoteReturnedLoginResponse(
+              await loginService.login(using: token)
+            )
           )
         }
-      case .remoteReturnedLoginResponse(response: .success):
+      case .local(._remoteReturnedLoginResponse(.success)):
         state = .loginSuccessful
-        return .none
-      case .remoteReturnedLoginResponse(response: .failure):
+        return .send(.delegate(.userLoggedInSuccessfully))
+      case .local(._remoteReturnedLoginResponse(.failure)):
         state = .tokenInputRetry(failureReason: .genericError)
+        return .none
+      case .delegate(.userLoggedInSuccessfully):
         return .none
       }
     }
   }
 }
 
-public extension PrivateAccessTokenLoginReducer.Action {
+public extension PrivateAccessTokenLoginReducer.Action.Local {
   static func == (
-    lhs: PrivateAccessTokenLoginReducer.Action,
-    rhs: PrivateAccessTokenLoginReducer.Action
+    lhs: PrivateAccessTokenLoginReducer.Action.Local,
+    rhs: PrivateAccessTokenLoginReducer.Action.Local
   ) -> Bool {
     switch (lhs, rhs) {
     case (
-      .userRequestedLoginUsingToken(let lhsToken),
-      .userRequestedLoginUsingToken(let rhsToken)
-    ):
-      return lhsToken == rhsToken
-    case (
-      .remoteReturnedLoginResponse(.success()),
-      .remoteReturnedLoginResponse(.success)
+      ._remoteReturnedLoginResponse(.success),
+      ._remoteReturnedLoginResponse(.success)
     ):
       return true
     case (
-      .remoteReturnedLoginResponse(.failure(let lhsError)),
-      .remoteReturnedLoginResponse(.failure(let rhsError))
+      ._remoteReturnedLoginResponse(.failure(let lhsError)),
+      ._remoteReturnedLoginResponse(.failure(let rhsError))
     ):
       return lhsError == rhsError
     default:
