@@ -19,10 +19,7 @@ public struct LoginView: View {
         link(
           to: PrivateAccessTokenLoginView.init,
           drivenFrom: \.privateAccessTokenLogin,
-          //          actions: LoginReducer.Action.privateAccessTokenLogin,
-          //          onRequested: .userRequestedPrivateAccessTokenLoginFlow,
-          //          onDismiss: .userDismissedPrivateAccessTokenLoginFlow,
-          actions: { LoginReducer.Action.local(.privateAccessTokenLogin($0)) },
+          actions: LoginReducer.Action.privateAccessTokenLogin,
           onRequested: .user(.requestedPrivateAccessTokenFlow(.show)),
           onDismiss: .user(.requestedPrivateAccessTokenFlow(.hide)),
           viewStore: viewStore,
@@ -34,7 +31,7 @@ public struct LoginView: View {
         link(
           to: OAuthLoginView.init,
           drivenFrom: \.oAuthLogin,
-          actions: { LoginReducer.Action.local(.oAuthLogin($0)) },
+          actions: LoginReducer.Action.oAuthLogin,
           onRequested: .user(.requestedOAuthLoginFlow(.show)),
           onDismiss: .user(.requestedOAuthLoginFlow(.hide)),
           viewStore: viewStore,
@@ -48,7 +45,15 @@ public struct LoginView: View {
 }
 
 private extension View {
-  func link<State: Equatable, Action: Equatable, ScopedState: Equatable, ScopedAction: Equatable, Label: View, Destination: View>(
+  // swiftlint:disable_next function_parameter_count
+  func link<
+    State: Equatable,
+    Action: Equatable,
+    ScopedState: Equatable,
+    ScopedAction: Equatable,
+    Label: View,
+    Destination: View
+  >(
     to destination: @escaping (Store<ScopedState, ScopedAction>) -> Destination,
     drivenFrom scope: @escaping (State) -> ScopedState?,
     actions: @escaping (ScopedAction) -> Action,

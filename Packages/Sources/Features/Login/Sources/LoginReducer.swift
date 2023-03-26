@@ -2,6 +2,7 @@ import ComposableArchitecture
 import Foundation
 import Octokit
 
+// TODO: extract this
 public enum NavigationCommand: Equatable {
   case show
   case hide
@@ -27,10 +28,7 @@ public struct LoginReducer: ReducerProtocol {
       case requestedOAuthLoginFlow(NavigationCommand)
     }
 
-    public enum Local: Equatable {
-      case privateAccessTokenLogin(PrivateAccessTokenLoginReducer.Action)
-      case oAuthLogin(OAuthLoginReducer.Action)
-    }
+    public enum Local: Equatable {}
 
     public enum Delegate: Equatable {
       // TODO: implement this
@@ -40,6 +38,9 @@ public struct LoginReducer: ReducerProtocol {
     case user(User)
     case local(Local)
     case delegate(Delegate)
+
+    case privateAccessTokenLogin(PrivateAccessTokenLoginReducer.Action)
+    case oAuthLogin(OAuthLoginReducer.Action)
   }
 
   private let loginService: Octokit.LoginService
@@ -67,23 +68,13 @@ public struct LoginReducer: ReducerProtocol {
         return .none
       case .local, .delegate:
         return .none
+      case .privateAccessTokenLogin, .oAuthLogin:
+        return .none
       }
     }
     .ifLet(
       \.privateAccessTokenLogin,
-      action: CasePath<LoginReducer.Action, PrivateAccessTokenLoginReducer.Action>(
-        embed: { local in
-          LoginReducer.Action.local(.privateAccessTokenLogin(local))
-        },
-        extract: { action in
-          switch action {
-          case .local(.privateAccessTokenLogin(let action)):
-            return action
-          default:
-            return nil
-          }
-        }
-      )
+      action: /Action.privateAccessTokenLogin
     ) {
       PrivateAccessTokenLoginReducer(
         loginService: loginService
@@ -91,25 +82,12 @@ public struct LoginReducer: ReducerProtocol {
     }
     .ifLet(
       \.oAuthLogin,
-      action: CasePath<LoginReducer.Action, OAuthLoginReducer.Action>(
-        embed: { local in
-          LoginReducer.Action.local(.oAuthLogin(local))
-        },
-        extract: { action in
-          switch action {
-          case .local(.oAuthLogin(let action)):
-            return action
-          default:
-            return nil
-          }
-        }
-      )
+      action: /Action.oAuthLogin
     ) {
       OAuthLoginReducer()
     }
   }
 }
-
 
 // extension Store where Action: TCAFeatureAction {
 //  func scope<ChildState, ChildAction>(
