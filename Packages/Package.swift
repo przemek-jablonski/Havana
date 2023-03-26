@@ -2,10 +2,16 @@
 
 import PackageDescription
 
+// swiftlint:disable explicit_acl
+// swiftlint:disable explicit_top_level_acl
+
 // MARK: - Global Constraints
 
-//let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.50.1")
-//let composableArchitectur = Target.Dependency.product(name: "swift-composable-architecture")
+let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.52.0")
+let composableArchitecture = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+
+let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.1")
+let swiftUINavigation = Target.Dependency.product(name: "SwiftUINavigation", package: "swiftui-navigation")
 
 let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")
 let keychainAccess = Target.Dependency.product(name: "KeychainAccess", package: "KeychainAccess")
@@ -14,7 +20,8 @@ let casimirRemote = Package.Dependency.package(path: "../Casimir")
 let casimir = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
 let globalDependencies: [Package.Dependency] = [
-//  composableArchitectureRemote,
+  composableArchitectureRemote,
+  swiftUINavigationRemote,
   casimirRemote,
   keychainAccessRemote
 ]
@@ -29,7 +36,7 @@ let supportedPlatforms: [SupportedPlatform] = [
 let octokit = Target.target(
   name: "Octokit",
   dependencies: [
-    casimir
+    casimir // TODO: this could be removed
   ],
   path: "Sources/Core/Octokit/Interface"
 )
@@ -37,16 +44,22 @@ let octokit = Target.target(
 let octokitLive = Target.target(
   name: "OctokitLive",
   dependencies: [
+    casimir, // TODO: this could be removed
     octokit.dependency,
-    casimir,
     keychainAccess
   ],
   path: "Sources/Core/Octokit/Live"
 )
 
+let motif = Target.target(
+  name: "Motif",
+  path: "Sources/Core/Motif"
+)
+
 let coreTargets: [Target] = [
   octokit,
-  octokitLive
+  octokitLive,
+  motif
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -54,14 +67,25 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    casimir,
+    motif.dependency,
+    composableArchitecture,
+    swiftUINavigation,
     octokit.dependency
   ],
-  path: "Sources/Features/Login"
+  path: "Sources/Features/Login/Sources"
+)
+
+let loginFeaturePreview = Target.executableTarget(
+  name: "LoginPreview",
+  dependencies: [
+    .byName(name: loginFeature.name)
+  ],
+  path: "Sources/Features/Login/Preview"
 )
 
 let featureTargets: [Target] = [
-  loginFeature
+  loginFeature,
+  loginFeaturePreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -69,15 +93,24 @@ let featureTargets: [Target] = [
 let octokitTests = Target.testTarget(
   name: "OctokitTests",
   dependencies: [
-    .byName(name: octokit.name),
-    casimir
+    casimir,
+    .byName(name: octokit.name) // TODO:
   ],
   path: "Tests/Core/Octokit"
 )
 
+let loginFeatureTests = Target.testTarget(
+  name: "LoginFeatureTests",
+  dependencies: [
+    casimir,
+    .byName(name: loginFeature.name) // TODO:
+  ],
+  path: "Sources/Features/Login/Tests"
+)
+
 let testTargets: [Target] = [
-  octokitTests
-//  loginFeatureTests
+  octokitTests,
+  loginFeatureTests
 ]
 
 // MARK: - Umbrella product and all targets assembly
@@ -108,7 +141,7 @@ private extension Target {
   var dependency: Target.Dependency {
     Target.Dependency(stringLiteral: self.name)
   }
-  
+
   /**
    Returns this `Target` as a `Product`, in `Library` format. Can be linked as a product of any `Package`.
    */
@@ -124,20 +157,19 @@ private extension Array where Element == Target {
   var regularTargets: [Target] {
     self.filter { $0.type == .regular }
   }
-  
+
   var testTargets: [Target] {
     self.filter { $0.type == .test }
   }
-  
+
   var libraries: [Product] {
     self.map(\.library)
   }
-  
+
   var names: [String] {
     self.map(\.name)
   }
 }
-
 
 private func +<Element>(left: Element, right: [Element]) -> [Element] {
   [left] + right

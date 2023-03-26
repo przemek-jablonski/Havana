@@ -1,0 +1,12 @@
+*.key filter=git-crypt diff=git-crypt
+GoogleService-Info.plist filter=git-crypt diff=git-crypt
+http-credentials.plist filter=git-crypt diff=git-crypt
+Matchfile filter=git-crypt diff=git-crypt
+Appfile filter=git-crypt diff=git-crypt
+TestCredentials.json filter=git-crypt diff=git-crypt
+GoogleServiceConfigs/** filter=git-crypt diff=git-crypt
+
+.gitattributes !filter !diff
+
+# https://roadfiresoftware.com/2015/09/automatically-resolving-git-merge-conflicts-in-xcodes-project-pbxproj/
+*.pbxproj merge=union

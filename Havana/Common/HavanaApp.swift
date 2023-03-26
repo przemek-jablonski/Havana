@@ -1,12 +1,13 @@
+import ComposableArchitecture
 import SwiftUI
 
 @main
-struct HavanaApp: App {
-  @UIApplicationDelegateAdaptor(HavanaiOSAppDelegate.self) var appDelegate
-  
-  var body: some Scene {
+internal struct HavanaApp: App {
+  @UIApplicationDelegateAdaptor(HavanaiOSAppDelegate.self) private var appDelegate
+
+  internal var body: some Scene {
     WindowGroup {
-      ContentView()
+      HavanaAppView()
     }
   }
 }

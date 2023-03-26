@@ -1,3 +1,3 @@
 # Packages
 
-Umbrella Swift Package hosting modularized Packages as a separate targets. 
+Umbrella Swift Package hosting modularised Packages as a separate targets.
