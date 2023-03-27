@@ -1,5 +1,4 @@
 import Casimir
-import Combine
 import Foundation
 
 public extension Octokit {
@@ -12,7 +11,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return Result<Void, Octokit.PrivateAccessTokenLoginError>.success()
           }.value
         } catch {
@@ -28,7 +27,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return .failure(.random)
           }.value
         } catch {
@@ -39,13 +38,14 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
     return Mock()
   }
 
+  // TODO: this won't work
   public static func noResponses() -> Octokit.LoginService {
     struct Mock: Octokit.LoginService {
       func login(using privateAccessToken: String) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
         do {
           return .success(
             try await Task {
-              try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+              try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
               await Task.yield()
             }.value
           )

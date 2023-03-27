@@ -2,13 +2,12 @@ import Foundation
 import Octokit
 
 extension Octokit {
-  // swiftlint:disable:next type_name
   internal struct Config_API_2022_11_28: Octokit.Config {
-    let baseUrl = "https://api.github.com"
-    let acceptContentTypeHeaderValue = "application/vnd.github+json"
-    let apiVersionHeaderValue = "2022-11-28"
+    internal let baseUrl = "https://api.github.com"
+    internal let acceptContentTypeHeaderValue = "application/vnd.github+json"
+    internal let apiVersionHeaderValue = "2022-11-28"
 
-    func constructCommonRequestData(
+    internal func constructCommonRequestData(
       endpointUrl: String,
       method: URLRequest.HTTPMethod,
       token: String?

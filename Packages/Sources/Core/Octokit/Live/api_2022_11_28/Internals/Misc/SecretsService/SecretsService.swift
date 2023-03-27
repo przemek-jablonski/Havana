@@ -1,4 +1,3 @@
-import Combine
 import Foundation
 
 internal protocol SecretsService {
@@ -16,11 +15,11 @@ internal enum SecretsServiceEntry {
   case privateAccessToken
 }
 
-enum StoreError: Error {
+internal enum StoreError: Error {
   case internalKeychainError(error: Error)
 }
 
-enum RetrieveError: Error {
+internal enum RetrieveError: Error {
   case entryNotFoundInKeychain(entry: SecretsServiceEntry)
   case internalKeychainError(error: Error)
 }

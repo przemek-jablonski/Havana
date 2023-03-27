@@ -4,8 +4,20 @@ import Octokit
 import SwiftUI
 import SwiftUINavigation
 
-public struct LoginView: View {
-  private let store: StoreOf<LoginReducer>
+public protocol ComposableView: View {
+  associatedtype State: ComposableState
+  associatedtype Action: ComposableAction
+
+  // TODO: force ViewState?
+  // TODO: force ViewAction?
+
+  var store: Store<State, Action> { get }
+
+  init(_ store: Store<State, Action>)
+}
+
+public struct LoginView: ComposableView {
+  public let store: StoreOf<LoginReducer>
 
   public init(
     _ store: StoreOf<LoginReducer>

@@ -1,5 +1,4 @@
 import Casimir
-import Combine
 import Foundation
 import Octokit
 
@@ -18,7 +17,7 @@ internal struct URLSessionNetworkClient {
 }
 
 extension URLSessionNetworkClient: NetworkClient {
-  func request<ReturnType: Decodable>(
+  internal func request<ReturnType: Decodable>(
     _ type: ReturnType.Type,
     using data: Octokit.RequestCommonData
   ) async -> Result<ReturnType, NetworkClientError> {

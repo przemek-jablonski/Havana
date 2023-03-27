@@ -1,4 +1,3 @@
-import Combine
 import Foundation
 import KeychainAccess
 
@@ -15,7 +14,7 @@ internal struct KeychainSecretsService {
 }
 
 extension KeychainSecretsService: SecretsService {
-  func store(
+  internal func store(
     _ entry: SecretsServiceEntry,
     value: String
   ) async -> Result<Void, StoreError> {
@@ -25,7 +24,7 @@ extension KeychainSecretsService: SecretsService {
     }.value
   }
 
-  func retrieve(
+  internal func retrieve(
     _ entry: SecretsServiceEntry
   ) async -> Result<String, RetrieveError> {
     await Task {

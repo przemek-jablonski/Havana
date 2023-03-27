@@ -1,5 +1,4 @@
 import Casimir
-import Combine
 import Foundation
 
 public extension Octokit {
@@ -12,7 +11,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return .success(.random)
           }.value
         } catch {
@@ -26,7 +25,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
       ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return .success(.random)
           }.value
         } catch {
@@ -43,7 +42,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
       func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return .failure(.random)
           }.value
         } catch {
@@ -57,7 +56,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
       ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
         do {
           return try await Task {
-            try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
             return .failure(.random)
           }.value
         } catch {
@@ -75,7 +74,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return .success(
             try await Task {
-              try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+              try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
               await Task.yield()
               return .random
             }.value
@@ -92,7 +91,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return .success(
             try await Task {
-              try await Task.sleep(nanoseconds: NSEC_PER_SEC * 3)
+              try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
               await Task.yield()
               return .random
             }.value
