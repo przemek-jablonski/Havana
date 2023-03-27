@@ -1,5 +1,3 @@
-import Combine
-
 public extension Octokit {
   typealias UserService = OctokitUserService
 }

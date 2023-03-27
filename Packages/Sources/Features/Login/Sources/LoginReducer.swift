@@ -8,8 +8,25 @@ public enum NavigationCommand: Equatable {
   case hide
 }
 
-public struct LoginReducer: ReducerProtocol {
-  public struct State: Equatable {
+public protocol ComposableState: Equatable {}
+
+public protocol ComposableAction: Equatable {
+  associatedtype User
+  associatedtype Local
+  associatedtype Delegate
+
+  static func user(_: User) -> Self
+  static func local(_: Local) -> Self
+  static func delegate(_: Delegate) -> Self
+}
+
+public protocol ComposableReducer: ReducerProtocol where State: ComposableState, Action: ComposableAction {
+  associatedtype ComposableBody: ReducerProtocol<State, Action>
+  var body: ComposableBody { get }
+}
+
+public struct LoginReducer: ComposableReducer {
+  public struct State: ComposableState {
     public var privateAccessTokenLogin: PrivateAccessTokenLoginReducer.State?
     public var oAuthLogin: OAuthLoginReducer.State?
 
@@ -22,7 +39,7 @@ public struct LoginReducer: ReducerProtocol {
     }
   }
 
-  public enum Action: Equatable {
+  public enum Action: ComposableAction {
     public enum User: Equatable {
       case requestedPrivateAccessTokenFlow(NavigationCommand)
       case requestedOAuthLoginFlow(NavigationCommand)
@@ -67,7 +84,9 @@ public struct LoginReducer: ReducerProtocol {
         return .none
       case .privateAccessTokenLogin(.delegate(.userLoggedInSuccessfully)):
         return .send(.delegate(.userLoggedInSuccessfully))
-      case .local, .delegate, .privateAccessTokenLogin, .oAuthLogin:
+      case .local, .delegate:
+        return .none
+      case .privateAccessTokenLogin, .oAuthLogin:
         return .none
       }
     }

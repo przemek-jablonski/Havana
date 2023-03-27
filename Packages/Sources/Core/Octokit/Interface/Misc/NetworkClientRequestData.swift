@@ -52,10 +52,10 @@ private func + (
   return updated
 }
 
-// TODO: fill + to Casimir
-private func +<Key: Hashable, Value>(
-  lhs: [Key: Value],
-  rhs: [Key: Value]
-) -> [Key: Value] {
-  lhs
-}
+//// TODO: fill + to Casimir
+// private func +<Key: Hashable, Value>(
+//  lhs: [Key: Value],
+//  rhs: [Key: Value]
+// ) -> [Key: Value] {
+//  lhs
+// }

@@ -1,9 +1,7 @@
-import Combine
 import Foundation
 import Octokit
 
 extension Octokit {
-  // swiftlint:disable:next type_name
   internal struct UserService_API_2022_11_28 {
     private let config: Octokit.Config
     private let secretsService: SecretsService
@@ -23,7 +21,8 @@ extension Octokit {
 
 extension Octokit.UserService_API_2022_11_28: Octokit.UserService {
   internal func user() async -> Result<Octokit.User, Octokit.NetworkServiceError> {
-    await secretsService.retrieve(.privateAccessToken)
+    await secretsService
+      .retrieve(.privateAccessToken)
       .mapError(Octokit.NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         await networkClient.request(
@@ -41,7 +40,8 @@ extension Octokit.UserService_API_2022_11_28: Octokit.UserService {
     username: String,
     page: Int
   ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
-    await secretsService.retrieve(.privateAccessToken)
+    await secretsService
+      .retrieve(.privateAccessToken)
       .mapError(Octokit.NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         await networkClient.request(
