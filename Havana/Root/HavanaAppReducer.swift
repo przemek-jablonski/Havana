@@ -8,7 +8,7 @@ import OctokitLive
 public struct HavanaAppReducer: ComposableReducer {
   public enum State: ComposableState {
     case login(LoginReducer.State)
-    case content
+    case userContext
   }
 
   public enum Action: ComposableAction {
@@ -17,8 +17,7 @@ public struct HavanaAppReducer: ComposableReducer {
     }
 
     public enum Local: Equatable {
-      case _userCredentialsFound
-      case _userCredentialsNotFound
+      case _userCredentialsCheckDone(Result<Bool, Never>)
     }
 
     public enum Delegate: Equatable {}
@@ -40,32 +39,20 @@ public struct HavanaAppReducer: ComposableReducer {
     Reduce<State, Action> { state, action in
       switch action {
       case .user(.lifecycle):
-          
         return .task {
-          await loginService
-            .isLoggedIn()
-            .map { isLoggedIn in
-              isLoggedIn ? Action.Local._userCredentialsFound : Action.Local._userCredentialsNotFound
-            }
+          .local(._userCredentialsCheckDone(await loginService.isLoggedIn()))
         }
-      case .local(._userCredentialsFound):
-        state = .content
+      case .local(._userCredentialsCheckDone(.success(true))), .login(.delegate(.userLoggedInSuccessfully)):
+        state = .userContext
         return .none
-      case .local(._userCredentialsNotFound):
+      case .local(._userCredentialsCheckDone(.success(false))):
         state = .login(.init())
         return .none
       case .delegate:
         return .none
+      case .login:
+        return .none
       }
-      //      switch action {
-      //      case .lifecycle:
-      //        return .task {
-      //          await loginService.isLoggedIn()
-      //        }
-      //      case .login(.delegate(.userLoggedInSuccessfully)):
-      //        state = .content
-      //        return .none
-      //      }
     }
     .ifCaseLet(
       /State.login,

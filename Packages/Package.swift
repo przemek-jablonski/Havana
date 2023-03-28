@@ -85,6 +85,15 @@ let loginFeature = Target.target(
   path: "Sources/Features/Login/Sources"
 )
 
+let loginFeatureTests = Target.testTarget(
+  name: "LoginFeatureTests",
+  dependencies: [
+    casimir,
+    .byName(name: loginFeature.name) // TODO:
+  ],
+  path: "Sources/Features/Login/Tests"
+)
+
 let loginFeaturePreview = Target.executableTarget(
   name: "LoginPreview",
   dependencies: [
@@ -93,9 +102,40 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
+let userContextFeature = Target.target(
+  name: "UserContextFeature",
+  dependencies: [
+    composables.dependency,
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/UserContext/Sources"
+)
+
+let userContextTests = Target.testTarget(
+  name: "UserContextTests",
+  dependencies: [
+    casimir,
+    .byName(name: userContextFeature.name) // TODO:
+  ],
+  path: "Sources/Features/UserContext/Tests"
+)
+
+let userContextPreview = Target.executableTarget(
+  name: "UserContextPreview",
+  dependencies: [
+    .byName(name: userContextFeature.name)
+  ],
+  path: "Sources/Features/UserContext/Preview"
+)
+
 let featureTargets: [Target] = [
   loginFeature,
-  loginFeaturePreview
+  loginFeaturePreview,
+  userContextFeature,
+  userContextPreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -109,17 +149,9 @@ let octokitTests = Target.testTarget(
   path: "Tests/Core/Octokit"
 )
 
-let loginFeatureTests = Target.testTarget(
-  name: "LoginFeatureTests",
-  dependencies: [
-    casimir,
-    .byName(name: loginFeature.name) // TODO:
-  ],
-  path: "Sources/Features/Login/Tests"
-)
-
 let testTargets: [Target] = [
   octokitTests,
+  userContextTests,
   loginFeatureTests
 ]
 

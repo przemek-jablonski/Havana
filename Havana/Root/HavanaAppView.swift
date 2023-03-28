@@ -17,12 +17,20 @@ internal struct HavanaAppView: View {
         SwitchStore(self.store) {
           CaseLet(
             state: /HavanaAppReducer.State.login,
-            action: HavanaAppReducer.Action.login,
-            then: LoginView.init
-          )
+            action: HavanaAppReducer.Action.login
+          ) { store in
+            LoginView(store)
+              .transition(.opacity.animation(.easeInOut(duration: 5)))
+          }
+
+          Default {
+            Text("content")
+              .transition(.opacity.animation(.easeInOut(duration: 5)))
+          }
         }
         .task {
-          viewStore.send(.lifecycle) // TODO: make sure that this is actually cancelled
+          // TODO: make sure that this is actually cancelled
+          viewStore.send(.user(.lifecycle)) 
         }
       }
     }

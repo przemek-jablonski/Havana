@@ -29,7 +29,9 @@ opt_in_rules:
 - identical_operands
 - implicitly_unwrapped_optional
 - legacy_random
+- local_doc_comment
 - lower_acl_than_parent
+- missing_docs
 - multiline_arguments
 - multiline_function_chains
 - multiline_parameters
