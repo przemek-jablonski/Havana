@@ -12,7 +12,17 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return Result<Void, Octokit.PrivateAccessTokenLoginError>.success()
+            return .success()
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+      func isLoggedIn() async -> Result<Bool, Never> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
+            return .success(true)
           }.value
         } catch {
           unimplementedFatalError()
@@ -34,6 +44,17 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
           unimplementedFatalError()
         }
       }
+
+      func isLoggedIn() async -> Result<Bool, Never> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
+            return .success(false)
+          }.value
+        } catch {
+          unimplementedFatalError()
+        }
+      }
     }
     return Mock()
   }
@@ -49,6 +70,17 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
               await Task.yield()
             }.value
           )
+        } catch {
+          unimplementedFatalError()
+        }
+      }
+
+      func isLoggedIn() async -> Result<Bool, Never> {
+        do {
+          return try await Task {
+            try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
+            return .success(false)
+          }.value
         } catch {
           unimplementedFatalError()
         }

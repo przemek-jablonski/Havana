@@ -1,6 +1,9 @@
 import Foundation
 import Octokit
 
+import Casimir
+import Combine
+
 extension Octokit {
   internal struct LoginService_API_2022_11_28 {
     private let secretsService: SecretsService
@@ -20,14 +23,21 @@ extension Octokit.LoginService_API_2022_11_28: Octokit.LoginService {
   internal func login(
     using privateAccessToken: String
   ) async -> Result<Void, Octokit.PrivateAccessTokenLoginError> {
-    await secretsService
-      .store(.privateAccessToken, value: privateAccessToken)
+    await rootService
+      .validate(privateAccessToken: privateAccessToken)
       .map { privateAccessToken }
-      .mapError { .unableToStorePrivateAccessToken($0) }
-      .flatMap { [rootService] privateAccessToken in
-        await rootService
-          .validate(privateAccessToken: privateAccessToken)
-          .mapError(Octokit.PrivateAccessTokenLoginError.remoteDeclaredPrivateAccessTokenInvalid)
+      .mapError(Octokit.PrivateAccessTokenLoginError.remoteDeclaredPrivateAccessTokenInvalid)
+      .flatMap { privateAccessToken in
+        await secretsService
+          .store(.privateAccessToken, value: privateAccessToken)
+          .mapError(Octokit.PrivateAccessTokenLoginError.unableToStorePrivateAccessToken)
       }
+  }
+
+  internal func isLoggedIn() async -> Result<Bool, Never> {
+    await secretsService
+      .retrieve(.privateAccessToken)
+      .map { _ in true }
+      .flatMapError { _ in Result<Bool, Never>.success(false) }
   }
 }

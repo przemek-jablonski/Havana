@@ -12,12 +12,18 @@ internal struct HavanaAppView: View {
 
   internal var body: some View {
     NavigationView {
-      SwitchStore(self.store) {
-        CaseLet(
-          state: /HavanaAppReducer.State.login,
-          action: HavanaAppReducer.Action.login,
-          then: LoginView.init
-        )
+      // TODO: add 'observe' here
+      WithViewStore(self.store) { viewStore in
+        SwitchStore(self.store) {
+          CaseLet(
+            state: /HavanaAppReducer.State.login,
+            action: HavanaAppReducer.Action.login,
+            then: LoginView.init
+          )
+        }
+        .task {
+          viewStore.send(.lifecycle) // TODO: make sure that this is actually cancelled
+        }
       }
     }
   }
