@@ -1,20 +1,9 @@
 import Casimir
 import ComposableArchitecture
+import Composables
 import Octokit
 import SwiftUI
 import SwiftUINavigation
-
-public protocol ComposableView: View {
-  associatedtype State: ComposableState
-  associatedtype Action: ComposableAction
-
-  // TODO: force ViewState?
-  // TODO: force ViewAction?
-
-  var store: Store<State, Action> { get }
-
-  init(_ store: Store<State, Action>)
-}
 
 public struct LoginView: ComposableView {
   public let store: StoreOf<LoginReducer>

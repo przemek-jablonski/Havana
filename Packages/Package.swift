@@ -56,10 +56,19 @@ let motif = Target.target(
   path: "Sources/Core/Motif"
 )
 
+let composables = Target.target(
+  name: "Composables",
+  dependencies: [
+    composableArchitecture
+  ],
+  path: "Sources/Core/Composables"
+)
+
 let coreTargets: [Target] = [
   octokit,
   octokitLive,
-  motif
+  motif,
+  composables
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -67,10 +76,11 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    motif.dependency,
+    composables.dependency,
     composableArchitecture,
-    swiftUINavigation,
-    octokit.dependency
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
   ],
   path: "Sources/Features/Login/Sources"
 )
