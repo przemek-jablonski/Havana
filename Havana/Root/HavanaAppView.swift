@@ -30,7 +30,7 @@ internal struct HavanaAppView: View {
         }
         .task {
           // TODO: make sure that this is actually cancelled
-          viewStore.send(.user(.lifecycle)) 
+          viewStore.send(.user(.lifecycle))
         }
       }
     }

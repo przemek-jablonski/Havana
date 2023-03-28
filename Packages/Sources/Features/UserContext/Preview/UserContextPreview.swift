@@ -1,23 +1,20 @@
 import ComposableArchitecture
-//import User
-import Octokit
 import SwiftUI
+import UserContextFeature
 
-//@main
-//internal struct LoginPreview: App {
-//  internal var body: some Scene {
-//    WindowGroup {
-//      NavigationView {
-//        LoginView(
-//          Store(
-//            initialState: LoginReducer.State(),
-//            reducer: LoginReducer(
-//              loginService: Octokit.LoginServiceMock.happyPath()
-//            )
-//          )
-//        )
-//        .navigationTitle("Login")
-//      }
-//    }
-//  }
-//}
+@main
+internal struct UserContextPreview: App {
+  internal var body: some Scene {
+    WindowGroup {
+      NavigationView {
+        UserContextView(
+          Store(
+            initialState: UserContextReducer.State(),
+            reducer: UserContextReducer()
+          )
+        )
+        .navigationTitle("UserContext Preview")
+      }
+    }
+  }
+}
