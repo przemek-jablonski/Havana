@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SupportsSwiftPackage</key>
+	<true/>
+	<key>Kind</key>
+	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
+	<key>Description</key>
+	<string>Creates a Composable Architecture (TCA) package structure.</string>
+	<key>Summary</key>
+	<string>Creates a Composable Architecture (TCA) package structure.</string>
+	<key>DefaultCompletionName</key>
+	<string>NewPackage</string>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Description</key>
+			<string>Scene Name</string>
+			<key>Identifier</key>
+			<string>scene_name</string>
+			<key>Name</key>
+			<string>Scene Name:</string>
+			<key>NotPersisted</key>
+			<true/>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Default</key>
+			<string>___VARIABLE_scene_name:identifier___Reducer.swift</string>
+			<key>Description</key>
+			<string>Result</string>
+			<key>Identifier</key>
+			<string>result</string>
+			<key>Name</key>
+			<string>Result</string>
+			<key>Required</key>
+			<true/>
+			<key>NotPersisted</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+		</dict>
+	</array>
+	<key>SortOrder</key>
+	<string>6</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.macosx</string>
+		<string>com.apple.platform.iphoneos</string>
+		<string>com.apple.platform.watchos</string>
+		<string>com.apple.platform.appletvos</string>
+	</array>
+</dict>
+</plist>
