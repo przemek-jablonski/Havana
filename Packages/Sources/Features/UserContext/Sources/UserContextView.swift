@@ -16,7 +16,7 @@ public struct UserContextView: ComposableView {
 
   public var body: some View {
     WithViewStore(self.store) { viewStore in
-      user(viewStore.user)
+      user(viewStore.user ?? .loading)
 //      switch viewStore.user {
 //        case .loading:
 //          Text("loading")
@@ -53,7 +53,7 @@ public struct UserContextView: ComposableView {
 private extension View {
    // TODO: name it better
   @ViewBuilder
-  func user(_ user: LoadableDataOf<Octokit.User>) -> some View {
+  func user(_ user: LoadableData<Octokit.User>) -> some View {
     switch user {
       case .loading:
         Text("loading")
@@ -73,7 +73,9 @@ public struct UserContextViewPreviews: PreviewProvider {
         initialState: UserContextReducer.State(
           selectedTab: .activity
         ),
-        reducer: UserContextReducer()
+        reducer: UserContextReducer(
+          userService: Octokit.UserServiceMock.happyPath()
+        )._printChanges()
       )
     )
   }

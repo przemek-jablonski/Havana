@@ -11,12 +11,12 @@ public struct UserContextReducer: ComposableReducer {
       case activity
     }
 
-    internal var user: LoadableDataOf<Octokit.User>
+    internal var user: LoadableData<Octokit.User>?
     internal var activityFeed: ActivityFeedReducer.State?
     internal var selectedTab: Tab
 
     public init(
-      user: LoadableDataOf<Octokit.User> = .loading,
+      user: LoadableData<Octokit.User>? = nil,
       activityFeed: ActivityFeedReducer.State? = nil,
       selectedTab: UserContextReducer.State.Tab = .activity
     ) {
@@ -32,7 +32,9 @@ public struct UserContextReducer: ComposableReducer {
       case switchedTab(State.Tab)
     }
 
-    public enum Local: Equatable {}
+    public enum Local: Equatable {
+      case _remoteReturnedUserDataResponse(Result<Octokit.User, Octokit.NetworkServiceError>)
+    }
 
     public enum Delegate: Equatable {}
 
@@ -43,17 +45,36 @@ public struct UserContextReducer: ComposableReducer {
     case activityFeed(ActivityFeedReducer.Action)
   }
 
-  public init() {}
+  private let userService: Octokit.UserService
+
+  public init(
+    userService: Octokit.UserService
+  ) {
+    self.userService = userService
+  }
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
         case .user(.lifecycle):
-          return .none
+          state.user = .loading
+          return .task {
+            .local(
+              ._remoteReturnedUserDataResponse(
+                await userService.user()
+              )
+            )
+          }
       case .user(.switchedTab(.activity)):
           return .none
-//        state.activityFeed = ActivityFeedReducer.State(publicEvents: .loading)
-      case .local, .delegate:
+        case .local(._remoteReturnedUserDataResponse(.success(let user))):
+          state.user = .loaded(user)
+          return .none
+        case .local(._remoteReturnedUserDataResponse(.failure(let error))):
+          // TODO: error mapping
+          state.user = .failure(error)
+          return .none
+      case .delegate:
         return .none
       case .activityFeed:
         return .none

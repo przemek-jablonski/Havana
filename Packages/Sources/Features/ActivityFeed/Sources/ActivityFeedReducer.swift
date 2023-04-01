@@ -8,11 +8,11 @@ import Octokit
 public struct ActivityFeedReducer: ComposableReducer {
   public struct State: ComposableState {
     internal let user: Octokit.User
-    internal var publicEvents: LoadableDataOf<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
+    internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
 
     public init(
       user: Octokit.User,
-      publicEvents: LoadableDataOf<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
+      publicEvents: LoadableData<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
     ) {
       self.user = user
       self.publicEvents = publicEvents
