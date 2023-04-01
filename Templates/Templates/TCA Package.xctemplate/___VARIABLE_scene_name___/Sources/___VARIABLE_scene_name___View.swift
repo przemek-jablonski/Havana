@@ -26,7 +26,7 @@ public struct ___VARIABLE_scene_name___ViewPreviews: PreviewProvider {
     ___VARIABLE_scene_name___View(
       Store(
         initialState: ___VARIABLE_scene_name___Reducer.State(),
-        reducer: ___VARIABLE_scene_name___Reducer()
+        reducer: ___VARIABLE_scene_name___Reducer()._printChanges()
       )
     )
   }
