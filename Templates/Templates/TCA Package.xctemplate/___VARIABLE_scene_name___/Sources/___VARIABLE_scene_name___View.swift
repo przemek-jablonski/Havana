@@ -19,8 +19,10 @@ public struct ___VARIABLE_scene_name___View: ComposableView {
   }
 }
 
-internal struct ___VARIABLE_scene_name___ViewPreviews: PreviewProvider {
-  internal static var previews: some View {
+#if DEBUG
+public struct ___VARIABLE_scene_name___ViewPreviews: PreviewProvider {
+  /// Primary preview for `___VARIABLE_scene_name___View`, shared with standalone preview app as well.
+  public static var preview: some View {
     ___VARIABLE_scene_name___View(
       Store(
         initialState: ___VARIABLE_scene_name___Reducer.State(),
@@ -28,4 +30,9 @@ internal struct ___VARIABLE_scene_name___ViewPreviews: PreviewProvider {
       )
     )
   }
+
+  public static var previews: some View {
+    preview
+  }
 }
+#endif
