@@ -1,4 +1,5 @@
 import ActivityFeedFeature
+import Casimir
 import ComposableArchitecture
 import Composables
 import Foundation
@@ -10,13 +11,16 @@ public struct UserContextReducer: ComposableReducer {
       case activity
     }
 
+    internal var user: LoadableDataOf<Octokit.User>
     internal var activityFeed: ActivityFeedReducer.State?
     internal var selectedTab: Tab
 
     public init(
+      user: LoadableDataOf<Octokit.User> = .loading,
       activityFeed: ActivityFeedReducer.State? = nil,
       selectedTab: UserContextReducer.State.Tab = .activity
     ) {
+      self.user = user
       self.activityFeed = activityFeed
       self.selectedTab = selectedTab
     }
@@ -44,9 +48,11 @@ public struct UserContextReducer: ComposableReducer {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.switchedTab(.activity)), .user(.lifecycle):
-        state.activityFeed = ActivityFeedReducer.State(publicEvents: .loading)
-        return .none
+        case .user(.lifecycle):
+          return .none
+      case .user(.switchedTab(.activity)):
+          return .none
+//        state.activityFeed = ActivityFeedReducer.State(publicEvents: .loading)
       case .local, .delegate:
         return .none
       case .activityFeed:

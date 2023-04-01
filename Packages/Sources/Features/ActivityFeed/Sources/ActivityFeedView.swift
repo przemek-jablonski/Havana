@@ -14,11 +14,10 @@ public struct ActivityFeedView: ComposableView {
 
   public var body: some View {
     WithViewStore(self.store) { viewStore in
-      Text("ActivityFeed")
-        .font(.title)
-        .task {
-          viewStore.send(.user(.lifecycle))
-        }
+      Text("ActivityFeedView")
+      .task {
+        viewStore.send(.user(.lifecycle))
+      }
     }
   }
 }
@@ -27,7 +26,10 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
       Store(
-        initialState: ActivityFeedReducer.State(publicEvents: .loading),
+        initialState: ActivityFeedReducer.State(
+          user: .random,
+          publicEvents: .loading
+        ),
         reducer: ActivityFeedReducer(
           userService: Octokit.UserServiceMock.happyPath()
         )
