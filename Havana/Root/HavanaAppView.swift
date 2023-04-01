@@ -14,7 +14,7 @@ internal struct HavanaAppView: View {
   internal var body: some View {
     NavigationView {
       // TODO: add 'observe' here
-      WithViewStore(self.store) { viewStore in
+      WithViewStore(store) { viewStore in
         SwitchStore(self.store) {
           CaseLet(
             state: /HavanaAppReducer.State.login,

@@ -12,7 +12,7 @@ public struct ___VARIABLE_scene_name___View: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { _ in
+    WithViewStore(store) { _ in
       Text("___VARIABLE_scene_name___")
         .font(.title)
     }

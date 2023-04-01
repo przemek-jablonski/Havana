@@ -15,34 +15,29 @@ public struct UserContextView: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { viewStore in
-      user(viewStore.user ?? .loading)
-//      switch viewStore.user {
-//        case .loading:
-//          Text("loading")
-//        case .failure(let error):
-//          Text(error.localizedDescription)
-//        case .loaded(let data):
-//          Text("loaded")
-//      }
-//      TabView(
-//        selection: viewStore.selectedTab.binding(
-//          send: { Action.user(.switchedTab($0)) }
-//        )
-//      ) {
-//        IfLetStore(
-//          store.scope(
-//            state: \.activityFeed,
-//            action: Action.activityFeed
-//          )
-//        ) {
-//          ActivityFeedView($0)
-//            .tabItem {
-//              Text("Activity")
-//            }
-//            .tag(State.Tab.activity)
-//        }
-//      }
+    WithViewStore(store) { viewStore in
+      with(viewStore.user) { user in
+        TabView(
+          selection:
+            viewStore.binding(
+              get: \.selectedTab,
+              send: { Action.user(.switchedTab($0)) }
+            )
+        ) {
+          IfLetStore(
+            store.scope(
+              state: \.activityFeed,
+              action: Action.activityFeed
+            )
+          ) {
+            ActivityFeedView($0)
+              .tabItem {
+                Text("Activity")
+              }
+              .tag(State.Tab.activity)
+          }
+        }
+      }
       .onAppear {
         viewStore.send(.user(.lifecycle))
       }
@@ -51,16 +46,18 @@ public struct UserContextView: ComposableView {
 }
 
 private extension View {
-   // TODO: name it better
   @ViewBuilder
-  func user(_ user: LoadableData<Octokit.User>) -> some View {
+  func with<Content: View>(
+    _ user: LoadableData<Octokit.User>?,
+    content: (Octokit.User) -> Content
+  ) -> some View {
     switch user {
-      case .loading:
-        Text("loading")
-      case .failure(let error):
+      case .none, .some(.loading):
+        ProgressView()
+      case .some(.failure(let error)):
         Text(error.localizedDescription)
-      case .loaded(let data):
-        Text("loaded")
+      case .some(.loaded(let user)):
+        content(user)
     }
   }
 }

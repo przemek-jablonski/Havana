@@ -13,11 +13,11 @@ public struct ActivityFeedView: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { viewStore in
-      Text("ActivityFeedView")
-      .task {
-        viewStore.send(.user(.lifecycle))
-      }
+    WithViewStore(store) { viewStore in
+      Text(viewStore.user.login)
+        .task {
+          viewStore.send(.user(.lifecycle))
+        }
     }
   }
 }

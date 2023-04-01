@@ -13,7 +13,7 @@
 //  }
 //
 //  internal var body: some View {
-//    WithViewStore(self.store) { viewStore in
+//    WithViewStore(store) { viewStore in
 //      NavigationLink(
 //        unwrapping: viewStore.$state, destination: <#T##(Binding<Value>) -> View#>, label: <#T##() -> _#>
 ////      NavigationLink(

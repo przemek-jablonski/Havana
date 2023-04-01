@@ -14,7 +14,7 @@ public struct PrivateAccessTokenLoginView: View {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { viewStore in
+    WithViewStore(store) { viewStore in
       VStack {
         TextField("Token", text: $token)
         Button("Log in") {

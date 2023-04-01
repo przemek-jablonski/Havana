@@ -15,7 +15,7 @@ public struct LoginView: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { viewStore in
+    WithViewStore(store) { viewStore in
       Text("").font(.title)
       VStack {
         link(

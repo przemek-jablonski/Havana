@@ -65,24 +65,28 @@ public struct UserContextReducer: ComposableReducer {
               )
             )
           }
-      case .user(.switchedTab(.activity)):
+        case .user(.switchedTab(.activity)):
           return .none
         case .local(._remoteReturnedUserDataResponse(.success(let user))):
           state.user = .loaded(user)
+          state.activityFeed = ActivityFeedReducer.State(
+            user: user,
+            publicEvents: .loading
+          )
           return .none
         case .local(._remoteReturnedUserDataResponse(.failure(let error))):
           // TODO: error mapping
           state.user = .failure(error)
           return .none
-      case .delegate:
-        return .none
-      case .activityFeed:
-        return .none
+        case .delegate:
+          return .none
+        case .activityFeed:
+          return .none
       }
     }
     .ifLet(
       \.activityFeed,
-      action: /Action.activityFeed
+       action: /Action.activityFeed
     ) {
       ActivityFeedReducer(
         userService: Octokit.UserServiceMock.happyPath()
