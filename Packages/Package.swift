@@ -59,6 +59,7 @@ let motif = Target.target(
 let composables = Target.target(
   name: "Composables",
   dependencies: [
+    casimir,
     composableArchitecture
   ],
   path: "Sources/Core/Composables"
@@ -102,11 +103,41 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
+let activityFeedFeature = Target.target(
+  name: "ActivityFeedFeature",
+  dependencies: [
+    composables.dependency,
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/ActivityFeed/Sources"
+)
+
+let activityFeedTests = Target.testTarget(
+  name: "ActivityFeedTests",
+  dependencies: [
+    casimir,
+    .byName(name: activityFeedFeature.name) // TODO:
+  ],
+  path: "Sources/Features/ActivityFeed/Tests"
+)
+
+let activityFeedPreview = Target.executableTarget(
+  name: "ActivityFeedPreview",
+  dependencies: [
+    .byName(name: activityFeedFeature.name)
+  ],
+  path: "Sources/Features/ActivityFeed/Preview"
+)
+
 let userContextFeature = Target.target(
   name: "UserContextFeature",
   dependencies: [
     composables.dependency,
     composableArchitecture,
+    activityFeedFeature.dependency,
     octokit.dependency,
     motif.dependency,
     swiftUINavigation
@@ -135,7 +166,9 @@ let featureTargets: [Target] = [
   loginFeature,
   loginFeaturePreview,
   userContextFeature,
-  userContextPreview
+  userContextPreview,
+  activityFeedFeature,
+  activityFeedPreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -152,7 +185,8 @@ let octokitTests = Target.testTarget(
 let testTargets: [Target] = [
   octokitTests,
   userContextTests,
-  loginFeatureTests
+  loginFeatureTests,
+  activityFeedTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import LoginFeature
 import SwiftUI
+import UserContextFeature
 
 internal struct HavanaAppView: View {
   private let store: StoreOf<HavanaAppReducer> = Store(
@@ -23,8 +24,11 @@ internal struct HavanaAppView: View {
               .transition(.opacity.animation(.easeInOut(duration: 5)))
           }
 
-          Default {
-            Text("content")
+          CaseLet(
+            state: /HavanaAppReducer.State.userContext,
+            action: HavanaAppReducer.Action.userContext
+          ) { store in
+            UserContextView(store)
               .transition(.opacity.animation(.easeInOut(duration: 5)))
           }
         }

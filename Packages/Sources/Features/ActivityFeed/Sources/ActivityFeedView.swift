@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import Composables
+import Octokit
 import SwiftUI
 
 public struct ActivityFeedView: ComposableView {
@@ -12,9 +13,12 @@ public struct ActivityFeedView: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { _ in
+    WithViewStore(self.store) { viewStore in
       Text("ActivityFeed")
         .font(.title)
+        .task {
+          viewStore.send(.user(.lifecycle))
+        }
     }
   }
 }
@@ -23,8 +27,10 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
       Store(
-        initialState: ActivityFeedReducer.State(),
-        reducer: ActivityFeedReducer()
+        initialState: ActivityFeedReducer.State(publicEvents: .loading),
+        reducer: ActivityFeedReducer(
+          userService: Octokit.UserServiceMock.happyPath()
+        )
       )
     )
   }

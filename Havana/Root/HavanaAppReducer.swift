@@ -4,11 +4,12 @@ import Foundation
 import LoginFeature
 import Octokit
 import OctokitLive
+import UserContextFeature
 
 public struct HavanaAppReducer: ComposableReducer {
   public enum State: ComposableState {
     case login(LoginReducer.State)
-    case userContext
+    case userContext(UserContextReducer.State)
   }
 
   public enum Action: ComposableAction {
@@ -27,6 +28,7 @@ public struct HavanaAppReducer: ComposableReducer {
     case delegate(Delegate)
 
     case login(LoginReducer.Action)
+    case userContext(UserContextReducer.Action)
   }
 
   private var loginService: Octokit.LoginService
@@ -43,14 +45,16 @@ public struct HavanaAppReducer: ComposableReducer {
           .local(._userCredentialsCheckDone(await loginService.isLoggedIn()))
         }
       case .local(._userCredentialsCheckDone(.success(true))), .login(.delegate(.userLoggedInSuccessfully)):
-        state = .userContext
+        state = .userContext(UserContextReducer.State())
         return .none
       case .local(._userCredentialsCheckDone(.success(false))):
-        state = .login(.init())
+        state = .login(LoginReducer.State())
         return .none
       case .delegate:
         return .none
       case .login:
+        return .none
+      case .userContext:
         return .none
       }
     }
@@ -61,6 +65,12 @@ public struct HavanaAppReducer: ComposableReducer {
       LoginReducer(
         loginService: loginService
       )
+    }
+    .ifCaseLet(
+      /State.userContext,
+      action: /Action.userContext
+    ) {
+      UserContextReducer()
     }
   }
 }
