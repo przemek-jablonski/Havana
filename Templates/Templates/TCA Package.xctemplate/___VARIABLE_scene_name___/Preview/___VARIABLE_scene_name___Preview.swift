@@ -5,15 +5,14 @@ import SwiftUI
 @main
 internal struct ___VARIABLE_scene_name___Preview: App {
   internal var body: some Scene {
-    WindowGroup {
-      NavigationView {
+    WindowGroup("___VARIABLE_scene_name___Preview") {
+      NavigationStack {
         ___VARIABLE_scene_name___View(
           Store(
             initialState: ___VARIABLE_scene_name___Reducer.State(),
-            reducer: ___VARIABLE_scene_name___Reducer()
+            reducer: ___VARIABLE_scene_name___Reducer()._printChanges()
           )
         )
-        .navigationTitle("___VARIABLE_scene_name___ Preview")
       }
     }
   }
