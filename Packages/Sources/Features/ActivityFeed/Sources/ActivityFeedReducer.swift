@@ -42,14 +42,14 @@ public struct ActivityFeedReducer: ComposableReducer {
   }
 
   public var body: some ReducerProtocolOf<Self> {
-    Reduce<State, Action> { state, action in
+    Reduce<State, Action> { _, action in
       switch action {
       case .user(.lifecycle):
-          return .none
-//          return .task {
-////            state.user.name
-////            await userService.receivedPublicEvents(username: <#T##String#>, page: <#T##Int#>)
-//          }
+        return .none
+      //          return .task {
+      ////            state.user.name
+      ////            await userService.receivedPublicEvents(username: <#T##String#>, page: <#T##Int#>)
+      //          }
       case .user, .local, .delegate:
         return .none
       }

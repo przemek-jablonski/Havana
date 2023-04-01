@@ -2,8 +2,8 @@ import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
 import Composables
-import SwiftUI
 import Octokit
+import SwiftUI
 
 public struct UserContextView: ComposableView {
   public let store: StoreOf<UserContextReducer>
@@ -16,7 +16,7 @@ public struct UserContextView: ComposableView {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      with(viewStore.user) { user in
+      with(loaded: viewStore.user) {
         TabView(
           selection:
             viewStore.binding(
@@ -48,16 +48,16 @@ public struct UserContextView: ComposableView {
 private extension View {
   @ViewBuilder
   func with<Content: View>(
-    _ user: LoadableData<Octokit.User>?,
-    content: (Octokit.User) -> Content
+    loaded user: LoadableData<Octokit.User>?,
+    content: () -> Content
   ) -> some View {
     switch user {
-      case .none, .some(.loading):
-        ProgressView()
-      case .some(.failure(let error)):
-        Text(error.localizedDescription)
-      case .some(.loaded(let user)):
-        content(user)
+    case .none, .some(.loading):
+      ProgressView()
+    case .some(.failure(let error)):
+      Text(error.localizedDescription)
+    case .some(.loaded):
+      content()
     }
   }
 }

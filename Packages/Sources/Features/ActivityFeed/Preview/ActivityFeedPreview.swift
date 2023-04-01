@@ -1,7 +1,7 @@
 import ActivityFeedFeature
 import ComposableArchitecture
-import SwiftUI
 import Octokit
+import SwiftUI
 
 @main
 internal struct ActivityFeedPreview: App {

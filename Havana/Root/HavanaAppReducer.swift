@@ -32,9 +32,11 @@ public struct HavanaAppReducer: ComposableReducer {
   }
 
   private var loginService: Octokit.LoginService
+  private var userService: Octokit.UserService
 
   public init() {
     self.loginService = Octokit.instance.loginService
+    self.userService = Octokit.instance.userService // TODO: wrap it all up in some DI container
   }
 
   public var body: some ReducerProtocolOf<Self> {
@@ -70,7 +72,9 @@ public struct HavanaAppReducer: ComposableReducer {
       /State.userContext,
       action: /Action.userContext
     ) {
-      UserContextReducer()
+      UserContextReducer(
+        userService: userService
+      )
     }
   }
 }

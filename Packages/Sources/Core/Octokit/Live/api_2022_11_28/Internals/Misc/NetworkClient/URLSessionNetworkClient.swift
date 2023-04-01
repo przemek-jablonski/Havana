@@ -12,7 +12,10 @@ internal struct URLSessionNetworkClient {
   ) {
     self.urlSessionInstance = urlSessionInstance
     self.jsonEncoder = JSONEncoder()
-    self.jsonDecoder = JSONDecoder(dateDecodingStrategy: .iso8601)
+    self.jsonDecoder = JSONDecoder(
+      dateDecodingStrategy: .iso8601,
+      keyDecodingStrategy: .convertFromSnakeCase
+    )
   }
 }
 
