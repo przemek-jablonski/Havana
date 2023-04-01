@@ -1,3 +1,4 @@
+#if DEBUG // TODO: check if this debug even works
 import ComposableArchitecture
 import SwiftUI
 import UserContextFeature
@@ -5,16 +6,11 @@ import UserContextFeature
 @main
 internal struct UserContextPreview: App {
   internal var body: some Scene {
-    WindowGroup {
-      NavigationView {
-        UserContextView(
-          Store(
-            initialState: UserContextReducer.State(),
-            reducer: UserContextReducer()
-          )
-        )
-        .navigationTitle("UserContext Preview")
+    WindowGroup("UserContextPreview") {
+      NavigationStack {
+        UserContextViewPreviews.preview
       }
     }
   }
 }
+#endif
