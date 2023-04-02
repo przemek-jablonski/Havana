@@ -33,9 +33,10 @@ extension URLSessionNetworkClient: NetworkClient {
       using: jsonEncoder
     )
     .mapError(NetworkClientError.networkRequestFailure)
-    .flatMap { [jsonDecoder] response in
+    .flatMap { [jsonDecoder] response -> Result<ReturnType, NetworkClientError> in
       jsonDecoder
         .decode(type, from: response.response)
+        .logIfDecodingFails(of: response.response)
         .mapError(NetworkClientError.responseDecodingFailure)
     }
   }
