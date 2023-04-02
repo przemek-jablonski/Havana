@@ -104,7 +104,7 @@ public extension Octokit {
     public let htmlUrl: String
     /// Unique identifier of the issue comment
     public let id: Int
-    public let issueUrl: String
+    public let issueUrl: String?
     public let nodeId: String
     public let performedViaGithubApp: CommentGitHubApp?
     public let reactions: Reactions?
@@ -341,7 +341,7 @@ public extension Octokit {
     /// Labels to associate with this issue; pass one or more label names to replace the set of
     /// labels on this issue; send an empty array to clear all labels from the issue; note that
     /// the labels are silently dropped for users without push access to the repository
-    public let labels: [LabelElement]
+    public let labels: [LabelClass]
     public let labelsUrl: String
     public let locked: Bool
     public let milestone: Milestone?
@@ -454,11 +454,11 @@ public extension Octokit {
   /// The state of the milestone.
   enum State: String, ModelProtocol {
     public static var random: Self {
-      Bool.random() ? .closed : .stateOpen
+      Bool.random() ? .closed : .open
     }
     public var id: RawValue { rawValue }
     case closed
-    case stateOpen
+    case open
   }
 
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
@@ -1163,11 +1163,16 @@ public extension Octokit {
       StateReason.allCases.randomElement() ?? .notPlanned
     }
 
-    public var id: RawValue { rawValue }
+    public static var allCases: [Octokit.StateReason] {
+      [.completed, .notPlanned, .reopened]
+    }
 
-    case completed
-    case notPlanned
-    case reopened
+    public var id: Int { .invalid }
+
+    case completed = "completed"
+    case notPlanned = "not_planned"
+    case reopened = "reopened"
+    //    case unknown(String)
   }
 
   // MARK: - Page
