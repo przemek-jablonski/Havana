@@ -6,6 +6,11 @@ import Octokit
 import SwiftUI
 
 public struct UserContextView: ComposableView {
+
+  //  public struct ViewState {
+  //    let selectedTab: UserContextReducer.State.Tab
+  //  }
+
   public let store: StoreOf<UserContextReducer>
 
   public init(
