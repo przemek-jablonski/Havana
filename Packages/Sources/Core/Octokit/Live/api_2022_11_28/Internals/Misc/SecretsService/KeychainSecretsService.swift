@@ -10,6 +10,12 @@ internal struct KeychainSecretsService {
     keychain: Keychain = Keychain(service: octokitKeychainEntry)
   ) {
     self.keychain = keychain
+
+    //    let currentIdentifierForVendor = UIDevice.current.identifierForVendor?.uuidString
+    //    if currentIdentifierForVendor != userDefaults.identifierForVendor() {
+    //    if let currentIdentifierForVendor = currentIdentifierForVendor {
+    //      storage.set(identifierForVendor: currentIdentifierForVendor)
+    //    }
   }
 }
 

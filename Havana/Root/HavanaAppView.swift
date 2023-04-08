@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import LoginFeature
 import SwiftUI
+import UserContextFeature
 
 internal struct HavanaAppView: View {
   private let store: StoreOf<HavanaAppReducer> = Store(
@@ -12,12 +13,29 @@ internal struct HavanaAppView: View {
 
   internal var body: some View {
     NavigationView {
-      SwitchStore(self.store) {
-        CaseLet(
-          state: /HavanaAppReducer.State.login,
-          action: HavanaAppReducer.Action.login,
-          then: LoginView.init
-        )
+      // TODO: add 'observe' here
+      WithViewStore(store) { viewStore in
+        SwitchStore(self.store) {
+          CaseLet(
+            state: /HavanaAppReducer.State.login,
+            action: HavanaAppReducer.Action.login
+          ) { store in
+            LoginView(store)
+              .transition(.opacity.animation(.easeInOut(duration: 5)))
+          }
+
+          CaseLet(
+            state: /HavanaAppReducer.State.userContext,
+            action: HavanaAppReducer.Action.userContext
+          ) { store in
+            UserContextView(store)
+              .transition(.opacity.animation(.easeInOut(duration: 5)))
+          }
+        }
+        .task {
+          // TODO: make sure that this is actually cancelled
+          viewStore.send(.user(.lifecycle))
+        }
       }
     }
   }

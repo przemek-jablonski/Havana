@@ -12,7 +12,10 @@ internal struct URLSessionNetworkClient {
   ) {
     self.urlSessionInstance = urlSessionInstance
     self.jsonEncoder = JSONEncoder()
-    self.jsonDecoder = JSONDecoder(dateDecodingStrategy: .iso8601)
+    self.jsonDecoder = JSONDecoder(
+      dateDecodingStrategy: .iso8601,
+      keyDecodingStrategy: .convertFromSnakeCase
+    )
   }
 }
 
@@ -30,9 +33,10 @@ extension URLSessionNetworkClient: NetworkClient {
       using: jsonEncoder
     )
     .mapError(NetworkClientError.networkRequestFailure)
-    .flatMap { [jsonDecoder] response in
+    .flatMap { [jsonDecoder] response -> Result<ReturnType, NetworkClientError> in
       jsonDecoder
         .decode(type, from: response.response)
+        .logIfDecodingFails(of: response.response)
         .mapError(NetworkClientError.responseDecodingFailure)
     }
   }

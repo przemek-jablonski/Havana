@@ -4,8 +4,8 @@ import Octokit
 import SwiftUI
 
 @main
-struct LoginPreview: App {
-  var body: some Scene {
+internal struct LoginPreview: App {
+  internal var body: some Scene {
     WindowGroup {
       NavigationView {
         LoginView(

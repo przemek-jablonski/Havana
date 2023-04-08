@@ -14,7 +14,7 @@ public extension Octokit {
         id: .random,
         org: .random,
         payload: .random,
-        eventPublic: .random,
+        public: .random,
         repo: .random,
         type: .random
       )
@@ -27,7 +27,7 @@ public extension Octokit {
     /// Actor
     public let org: Actor?
     public let payload: Payload
-    public let eventPublic: Bool
+    public let `public`: Bool
     public let repo: Repo
     public let type: String?
   }
@@ -104,7 +104,7 @@ public extension Octokit {
     public let htmlUrl: String
     /// Unique identifier of the issue comment
     public let id: Int
-    public let issueUrl: String
+    public let issueUrl: String?
     public let nodeId: String
     public let performedViaGithubApp: CommentGitHubApp?
     public let reactions: Reactions?
@@ -122,14 +122,14 @@ public extension Octokit {
 
     public var id: RawValue { rawValue }
 
-    case collaborator
-    case contributor
-    case firstTimeContributor
-    case firstTimer
-    case mannequin
-    case member
-    case none
-    case owner
+    case collaborator = "COLLABORATOR"
+    case contributor = "CONTRIBUTOR"
+    case firstTimeContributor = "FIRST_TIME_CONTRIBUTOR"
+    case firstTimer = "FIRST_TIMER"
+    case mannequin = "MANNEQUIN"
+    case member = "MEMBER"
+    case none = "NONE"
+    case owner = "OWNER"
   }
 
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
@@ -237,31 +237,45 @@ public extension Octokit {
 
   // MARK: - Reactions
   struct Reactions: ModelProtocol {
-    public static var random: Self {Self(
-      the1: .random,
-      reactionRollup1: .random,
-      confused: .random,
-      eyes: .random,
-      heart: .random,
-      hooray: .random,
-      laugh: .random,
-      rocket: .random,
-      totalCount: .random,
-      url: .random
-    )
+    public static var random: Self {
+      Self(
+        plus1: .random,
+        minus1: .random,
+        confused: .random,
+        eyes: .random,
+        heart: .random,
+        hooray: .random,
+        laugh: .random,
+        rocket: .random,
+        totalCount: .random,
+        url: .random
+      )
+    }
+
+    enum CodingKeys: String, CodingKey {
+      case plus1 = "+1"
+      case minus1 = "-1"
+      case confused = "confused"
+      case eyes = "eyes"
+      case heart = "heart"
+      case hooray = "hooray"
+      case laugh = "laugh"
+      case rocket = "rocket"
+      case totalCount = "total_count"
+      case url = "url"
     }
 
     public var id: String { url }
 
-    public let the1: Int
-    public let reactionRollup1: Int
+    public let plus1: Int
+    public let minus1: Int
     public let confused: Int
     public let eyes: Int
     public let heart: Int
     public let hooray: Int
     public let laugh: Int
     public let rocket: Int
-    public let totalCount: Int
+    public let totalCount: Int? // TODO: should not be optional?
     public let url: String
   }
 
@@ -327,7 +341,7 @@ public extension Octokit {
     /// Labels to associate with this issue; pass one or more label names to replace the set of
     /// labels on this issue; send an empty array to clear all labels from the issue; note that
     /// the labels are silently dropped for users without push access to the repository
-    public let labels: [LabelElement]
+    public let labels: [LabelClass]
     public let labelsUrl: String
     public let locked: Bool
     public let milestone: Milestone?
@@ -440,11 +454,11 @@ public extension Octokit {
   /// The state of the milestone.
   enum State: String, ModelProtocol {
     public static var random: Self {
-      Bool.random() ? .closed : .stateOpen
+      Bool.random() ? .closed : .open
     }
     public var id: RawValue { rawValue }
     case closed
-    case stateOpen
+    case open
   }
 
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
@@ -1149,11 +1163,16 @@ public extension Octokit {
       StateReason.allCases.randomElement() ?? .notPlanned
     }
 
-    public var id: RawValue { rawValue }
+    public static var allCases: [Octokit.StateReason] {
+      [.completed, .notPlanned, .reopened]
+    }
 
-    case completed
-    case notPlanned
-    case reopened
+    public var id: Int { .invalid }
+
+    case completed = "completed"
+    case notPlanned = "not_planned"
+    case reopened = "reopened"
+    //    case unknown(String)
   }
 
   // MARK: - Page

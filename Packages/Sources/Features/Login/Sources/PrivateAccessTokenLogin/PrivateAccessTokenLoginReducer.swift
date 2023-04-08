@@ -2,6 +2,7 @@ import ComposableArchitecture
 import Foundation
 import Octokit
 
+// TODO: shouldn't this be internal?
 public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
   public enum State: Equatable {
     /**
@@ -56,6 +57,12 @@ public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
+      //        case .user():
+      //          return .none
+      //        case .local():
+      //          return .none
+      //        case .delegate():
+      //          return .none
       case .user(.userRequestedLoginUsingToken(let token)):
         state = .loginInProgress
         return .task {

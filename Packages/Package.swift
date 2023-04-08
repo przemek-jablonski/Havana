@@ -56,10 +56,20 @@ let motif = Target.target(
   path: "Sources/Core/Motif"
 )
 
+let composables = Target.target(
+  name: "Composables",
+  dependencies: [
+    casimir,
+    composableArchitecture
+  ],
+  path: "Sources/Core/Composables"
+)
+
 let coreTargets: [Target] = [
   octokit,
   octokitLive,
-  motif
+  motif,
+  composables
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -67,12 +77,22 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    motif.dependency,
+    composables.dependency,
     composableArchitecture,
-    swiftUINavigation,
-    octokit.dependency
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
   ],
   path: "Sources/Features/Login/Sources"
+)
+
+let loginFeatureTests = Target.testTarget(
+  name: "LoginFeatureTests",
+  dependencies: [
+    casimir,
+    .byName(name: loginFeature.name) // TODO:
+  ],
+  path: "Sources/Features/Login/Tests"
 )
 
 let loginFeaturePreview = Target.executableTarget(
@@ -83,9 +103,72 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
+let activityFeedFeature = Target.target(
+  name: "ActivityFeedFeature",
+  dependencies: [
+    composables.dependency,
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/ActivityFeed/Sources"
+)
+
+let activityFeedTests = Target.testTarget(
+  name: "ActivityFeedTests",
+  dependencies: [
+    casimir,
+    .byName(name: activityFeedFeature.name) // TODO:
+  ],
+  path: "Sources/Features/ActivityFeed/Tests"
+)
+
+let activityFeedPreview = Target.executableTarget(
+  name: "ActivityFeedPreview",
+  dependencies: [
+    .byName(name: activityFeedFeature.name)
+  ],
+  path: "Sources/Features/ActivityFeed/Preview"
+)
+
+let userContextFeature = Target.target(
+  name: "UserContextFeature",
+  dependencies: [
+    composables.dependency,
+    composableArchitecture,
+    activityFeedFeature.dependency,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/UserContext/Sources"
+)
+
+let userContextTests = Target.testTarget(
+  name: "UserContextTests",
+  dependencies: [
+    casimir,
+    .byName(name: userContextFeature.name) // TODO:
+  ],
+  path: "Sources/Features/UserContext/Tests"
+)
+
+let userContextPreview = Target.executableTarget(
+  name: "UserContextPreview",
+  dependencies: [
+    .byName(name: userContextFeature.name)
+  ],
+  path: "Sources/Features/UserContext/Preview"
+)
+
 let featureTargets: [Target] = [
   loginFeature,
-  loginFeaturePreview
+  loginFeaturePreview,
+  userContextFeature,
+  userContextPreview,
+  activityFeedFeature,
+  activityFeedPreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -99,18 +182,11 @@ let octokitTests = Target.testTarget(
   path: "Tests/Core/Octokit"
 )
 
-let loginFeatureTests = Target.testTarget(
-  name: "LoginFeatureTests",
-  dependencies: [
-    casimir,
-    .byName(name: loginFeature.name) // TODO:
-  ],
-  path: "Sources/Features/Login/Tests"
-)
-
 let testTargets: [Target] = [
   octokitTests,
-  loginFeatureTests
+  userContextTests,
+  loginFeatureTests,
+  activityFeedTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

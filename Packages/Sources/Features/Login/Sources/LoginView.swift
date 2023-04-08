@@ -1,20 +1,9 @@
 import Casimir
 import ComposableArchitecture
+import Composables
 import Octokit
 import SwiftUI
 import SwiftUINavigation
-
-public protocol ComposableView: View {
-  associatedtype State: ComposableState
-  associatedtype Action: ComposableAction
-
-  // TODO: force ViewState?
-  // TODO: force ViewAction?
-
-  var store: Store<State, Action> { get }
-
-  init(_ store: Store<State, Action>)
-}
 
 public struct LoginView: ComposableView {
   public let store: StoreOf<LoginReducer>
@@ -26,7 +15,8 @@ public struct LoginView: ComposableView {
   }
 
   public var body: some View {
-    WithViewStore(self.store) { viewStore in
+    WithViewStore(store) { viewStore in
+      Text("").font(.title)
       VStack {
         link(
           to: PrivateAccessTokenLoginView.init,
@@ -93,6 +83,57 @@ private extension View {
         }
       },
       label: label
+    )
+  }
+}
+
+private extension NavigationLink {
+  // swiftlint:disable_next function_parameter_count
+  init<
+    State: Equatable,
+    Action: Equatable,
+    ScopedState: Equatable,
+    ScopedAction: Equatable,
+    WrappedView: View
+  >(
+    to destination: @escaping (Store<ScopedState, ScopedAction>) -> WrappedView,
+    drivenFrom scope: @escaping (State) -> ScopedState?,
+    actions: @escaping (ScopedAction) -> Action,
+    onRequested: Action,
+    onDismiss: Action,
+    viewStore: ViewStore<State, Action>,
+    store: Store<State, Action>,
+    label: @escaping () -> Label
+  ) where Destination == IfLetStore<ScopedState, ScopedAction, WrappedView?>? {
+    self.init(
+      unwrapping: viewStore.binding(
+        get: scope,
+        send: { _ in onDismiss }
+      )
+      .removeDuplicates(),
+      onNavigate: { if $0 { viewStore.send(onRequested) }},
+      destination: { _ in
+        IfLetStore(
+          store.scope(
+            state: scope,
+            action: actions
+          )
+        ) {
+          destination($0)
+        }
+      },
+      label: label
+    )
+  }
+}
+
+internal struct LoginViewPreviews: PreviewProvider {
+  internal static var previews: some View {
+    LoginView(
+      Store(
+        initialState: LoginReducer.State(),
+        reducer: LoginReducer(loginService: Octokit.LoginServiceMock.happyPath())
+      )
     )
   }
 }

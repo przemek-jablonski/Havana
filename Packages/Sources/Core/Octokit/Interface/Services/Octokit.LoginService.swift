@@ -8,6 +8,8 @@ public protocol OctokitLoginService {
   func login(
     using privateAccessToken: String
   ) async -> Result<Void, Octokit.PrivateAccessTokenLoginError>
+
+  func isLoggedIn() async -> Result<Bool, Never>
 }
 
 public extension Octokit {
