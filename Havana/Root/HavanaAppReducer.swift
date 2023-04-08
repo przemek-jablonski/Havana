@@ -8,6 +8,7 @@ import UserContextFeature
 
 public struct HavanaAppReducer: ComposableReducer {
   public enum State: ComposableState {
+    case loading
     case login(LoginReducer.State)
     case userContext(UserContextReducer.State)
   }
@@ -44,7 +45,11 @@ public struct HavanaAppReducer: ComposableReducer {
       switch action {
       case .user(.lifecycle):
         return .task {
-          .local(._userCredentialsCheckDone(await loginService.isLoggedIn()))
+          .local(
+            ._userCredentialsCheckDone(
+              await loginService.isLoggedIn()
+            )
+          )
         }
       case .local(._userCredentialsCheckDone(.success(true))), .login(.delegate(.userLoggedInSuccessfully)):
         state = .userContext(UserContextReducer.State())
