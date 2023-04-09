@@ -1,5 +1,7 @@
 import Casimir
 
+// https://medium.com/swlh/enums-with-decodable-in-swift-2bbc2ddddd6f
+
 public extension Octokit {
   enum EventType: CaseIterable {
     /// A commit comment is created. The type of activity is specified in the action property of the payload object.

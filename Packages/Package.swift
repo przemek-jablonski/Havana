@@ -177,9 +177,10 @@ let octokitTests = Target.testTarget(
   name: "OctokitTests",
   dependencies: [
     casimir,
-    .byName(name: octokit.name) // TODO:
+    .byName(name: octokit.name), // TODO:
+    .byName(name: octokitLive.name) // TODO:
   ],
-  path: "Tests/Core/Octokit"
+  path: "Sources/Core/Octokit/Tests"
 )
 
 let testTargets: [Target] = [
