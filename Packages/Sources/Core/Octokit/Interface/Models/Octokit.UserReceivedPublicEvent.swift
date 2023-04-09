@@ -29,7 +29,7 @@ public extension Octokit {
     public let payload: Payload
     public let `public`: Bool
     public let repo: Repo
-    public let type: String?
+    public let type: EventType?
   }
 
   /// Actor

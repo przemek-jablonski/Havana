@@ -37,9 +37,9 @@ public extension Octokit {
     public let userOrganizationsUrl: String?
     public let userRepositoriesUrl: String?
     public let userSearchUrl: String?
-    public let userUrl: String?
+    public let userUrl: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case authorizationsUrl = "authorizations_url"
       case codeSearchUrl = "code_search_url"
       case commitSearchUrl = "commit_search_url"

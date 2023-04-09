@@ -29,7 +29,7 @@ public struct ActivityFeedView: ComposableView {
 
               Text(publicEvent.actor.login)
 
-              Text(publicEvent.type ?? "NO TYPE")
+              Text(String(describing: publicEvent.type))
 
               Text(publicEvent.repo.name)
 
@@ -47,10 +47,10 @@ public struct ActivityFeedView: ComposableView {
 import Casimir
 
 public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View, LoadedView: View>: View {
-  let loadableData: LoadableData<Model>
-  let loadingView: () -> LoadingView
-  let failureView: (Error) -> FailureView
-  let loadedView: (Model) -> LoadedView
+  internal let loadableData: LoadableData<Model>
+  internal let loadingView: () -> LoadingView
+  internal let failureView: (Error) -> FailureView
+  internal let loadedView: (Model) -> LoadedView
 
   public init(
     for loadableData: LoadableData<Model>,
