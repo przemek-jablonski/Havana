@@ -1,8 +1,6 @@
 import Casimir
 import Foundation
 
-// TODO: nest the objects so that don't pollute global namespace
-// TODO: eg. Octokit.User, but Octokit.User.Plan
 public extension Octokit {
   // MARK: - User
   struct User: ModelProtocol {
@@ -12,7 +10,7 @@ public extension Octokit {
     public let businessPlus: Bool?
     public let collaborators: Int?
     public let company: String?
-    public let createdAt: Date
+    public let createdAt: Date?
     public let diskUsage: Int?
     public let email: String?
     public let eventsUrl: String

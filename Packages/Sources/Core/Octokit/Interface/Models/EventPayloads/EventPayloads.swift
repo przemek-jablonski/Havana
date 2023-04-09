@@ -20,7 +20,6 @@ public extension Octokit {
   }
 }
 
-
 public extension Octokit {
   struct CreateEventPayload: ModelProtocol {
     public var id: String { ref }
@@ -106,7 +105,7 @@ public extension Octokit {
 
     /// The previous version of the body if the action was edited.
     let changes: String?
-    //let changes[body][from]:  string  /// The previous version of the body if the action was edited.
+    // let changes[body][from]:  string  /// The previous version of the body if the action was edited.
 
     /// The issue the comment belongs to.
     let issue: Issue
@@ -176,3 +175,55 @@ public extension Octokit.IssuesEventPayload {
     }
   }
 }
+
+public extension Octokit {
+  struct MemberEventPayload: ModelProtocol {
+    public var id: UUID { UUID() }
+
+    /// The action that was performed. Can be added to indicate a user accepted an invitation to a repository.
+    let action: String
+
+    /// The user that was added.
+    let member: User
+
+    /// The changes to the collaborator permissions if the action was edited.
+    let changes: String?
+
+    public static var random: Self {
+      Self(
+        action: .random,
+        member: .random,
+        changes: .random
+      )
+    }
+  }
+}
+
+public extension Octokit {
+  struct PublicEventPayload: ModelProtocol {
+    public var id: UUID { UUID() }
+
+    public static var random: Self {
+      Self()
+    }
+  }
+}
+
+// public extension Octokit {
+//  /// Activity related to pull requests. The type of activity is specified in the action property of the payload object.
+//  struct PublicEventPayload: ModelProtocol {
+//    public var id: UUID { UUID() }
+//
+//    public static var random: Self {
+//      Self()
+//    }
+//  }
+// }
+
+// action  string  The action that was performed. Can be one of opened, edited, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled, and synchronize.
+// number  integer  The pull request number.
+// changes  object  The changes to the comment if the action was edited.
+// changes[title][from]  string  The previous version of the title if the action was edited.
+// changes[body][from]  string  The previous version of the body if the action was edited.
+// pull_request  object  The pull request itself.
+// reason  string  The reason the pull request was removed from a merge queue if the action was dequeued.

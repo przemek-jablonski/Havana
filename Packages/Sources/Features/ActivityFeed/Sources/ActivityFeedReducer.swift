@@ -8,11 +8,11 @@ import Octokit
 public struct ActivityFeedReducer: ComposableReducer {
   public struct State: ComposableState {
     internal let user: Octokit.User
-    internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
+    internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
 
     public init(
       user: Octokit.User,
-      publicEvents: LoadableData<IdentifiedArrayOf<Octokit.UserReceivedPublicEvent>>
+      publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
     ) {
       self.user = user
       self.publicEvents = publicEvents
@@ -25,7 +25,7 @@ public struct ActivityFeedReducer: ComposableReducer {
     }
 
     public enum Local: Equatable {
-      case _remoteReturnedUserPublicEvents(Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError>)
+      case _remoteReturnedUserPublicEvents(Result<[Octokit.Event], Octokit.NetworkServiceError>)
     }
 
     public enum Delegate: Equatable {}
@@ -50,7 +50,7 @@ public struct ActivityFeedReducer: ComposableReducer {
         return .task { [login = state.user.login] in
           .local(
             ._remoteReturnedUserPublicEvents(
-              await userService.receivedPublicEvents(
+              await userService.events(
                 username: login,
                 page: 0
               )

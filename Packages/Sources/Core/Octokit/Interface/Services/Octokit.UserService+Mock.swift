@@ -19,10 +19,10 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
 
-      func receivedPublicEvents(
+      func events(
         username: String,
         page: Int
-      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
@@ -31,6 +31,16 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         } catch {
           unimplementedFatalError()
         }
+      }
+
+      func receivedEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
+        await events(
+          username: username,
+          page: page
+        )
       }
     }
 
@@ -50,10 +60,10 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
 
-      func receivedPublicEvents(
+      func events(
         username: String,
         page: Int
-      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
@@ -62,6 +72,16 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         } catch {
           unimplementedFatalError()
         }
+      }
+
+      func receivedEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
+        await events(
+          username: username,
+          page: page
+        )
       }
     }
 
@@ -84,10 +104,10 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         }
       }
 
-      func receivedPublicEvents(
+      func events(
         username: String,
         page: Int
-      ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
         do {
           return .success(
             try await Task {
@@ -99,6 +119,16 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         } catch {
           unimplementedFatalError()
         }
+      }
+
+      func receivedEvents(
+        username: String,
+        page: Int
+      ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
+        await events(
+          username: username,
+          page: page
+        )
       }
     }
 

@@ -5,31 +5,29 @@ import Foundation
 
 public extension Octokit {
   /// Event
-  // MARK: - Event
-  struct UserReceivedPublicEvent: ModelProtocol {
+  struct Event: ModelProtocol {
+    public let actor: Actor
+    public let createdAt: Date?
+    public let id: String
+    public let org: Actor?
+    //    public let payload: Payload?
+    public let `public`: Bool
+    public let repo: Repo
+    public let type: EventType?
+
     public static var random: Self {
       Self(
         actor: .random,
         createdAt: .random,
         id: .random,
         org: .random,
-        payload: .random,
+        //        payload: .random,
         public: .random,
         repo: .random,
         type: .random
       )
     }
 
-    /// Actor
-    public let actor: Actor
-    public let createdAt: Date?
-    public let id: String
-    /// Actor
-    public let org: Actor?
-    public let payload: Payload
-    public let `public`: Bool
-    public let repo: Repo
-    public let type: EventType?
   }
 
   /// Actor
@@ -53,31 +51,10 @@ public extension Octokit {
     public let url: String
   }
 
-  // MARK: - Payload
-  struct Payload: ModelProtocol {
-    public static var random: Self {Self(
-      action: .random,
-      comment: .random,
-      issue: .random,
-      pages: .random
-    )
-    }
-
-    public var id: String { "\(action ?? "")\(issue?.id)" }
-
-    public let action: String?
-    /// Comments provide a way for people to collaborate on an issue.
-    public let comment: IssueComment?
-    /// Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
-    public let issue: Issue?
-    public let pages: [Page]?
-  }
-
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
   /// organizations and user accounts and granted access to specific repositories. They come
   /// with granular permissions and built-in webhooks. GitHub apps are first class actors
   /// within GitHub.
-  // MARK: - CommentGitHubApp
   struct CommentGitHubApp: ModelProtocol {
     public static var random: Self {Self(
       clientId: .random,
