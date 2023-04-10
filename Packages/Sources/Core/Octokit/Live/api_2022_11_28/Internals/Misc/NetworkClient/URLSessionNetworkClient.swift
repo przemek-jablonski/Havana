@@ -8,14 +8,13 @@ internal struct URLSessionNetworkClient {
   private let jsonDecoder: JSONDecoder
 
   internal init(
-    urlSessionInstance: URLSession = .shared
+    urlSessionInstance: URLSession = .shared,
+    jsonEncoder: JSONEncoder = .forAPI_2022_11_28,
+    jsonDecoder: JSONDecoder = .forAPI_2022_11_28
   ) {
     self.urlSessionInstance = urlSessionInstance
-    self.jsonEncoder = JSONEncoder()
-    self.jsonDecoder = JSONDecoder(
-      dateDecodingStrategy: .iso8601,
-      keyDecodingStrategy: .convertFromSnakeCase
-    )
+    self.jsonEncoder = jsonEncoder
+    self.jsonDecoder = jsonDecoder
   }
 }
 

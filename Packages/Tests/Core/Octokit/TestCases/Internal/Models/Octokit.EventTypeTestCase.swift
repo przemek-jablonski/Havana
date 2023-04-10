@@ -2,8 +2,8 @@ import Octokit
 import OctokitLive
 import XCTest
 
-final class OctokitEventTypeDecodingTestCase: XCTestCase {
-  func test_decodingEventTypeUsingGollumString_producesGollumEvent() throws {
+internal final class OctokitEventTypeDecodingTestCase: XCTestCase {
+  internal func test_decodingEventTypeUsingGollumString_producesGollumEvent() throws {
     try performDecoding(
       of: """
           "GollumEvent"
@@ -14,7 +14,7 @@ final class OctokitEventTypeDecodingTestCase: XCTestCase {
     )
   }
 
-  func test_decodingEventTypeUsingPublicString_producesPublicEvent() throws {
+  internal func test_decodingEventTypeUsingPublicString_producesPublicEvent() throws {
     try performDecoding(
       of: """
           "PublicEvent"
@@ -25,7 +25,7 @@ final class OctokitEventTypeDecodingTestCase: XCTestCase {
     )
   }
 
-  func test_decodingEventTypeUsingUnknownString_producesUnknownEventWithUnknownStringAsPayload() throws {
+  internal func test_decodingEventTypeUsingUnknownString_producesUnknownEventWithUnknownStringAsPayload() throws {
     try performDecoding(
       of: """
           "Unknown"
@@ -36,7 +36,7 @@ final class OctokitEventTypeDecodingTestCase: XCTestCase {
     )
   }
 
-  func test_decodingEventTypeUsingEmptyString_producesUnknownEventWithEmptyStringAsPayload() throws {
+  internal func test_decodingEventTypeUsingEmptyString_producesUnknownEventWithEmptyStringAsPayload() throws {
     try performDecoding(
       of: """
           ""
@@ -47,7 +47,7 @@ final class OctokitEventTypeDecodingTestCase: XCTestCase {
     )
   }
 
-  func test_decodingEventTypeUsingRandomString_producesUnknownEventWithRandomStringAsPayload() throws {
+  internal func test_decodingEventTypeUsingRandomString_producesUnknownEventWithRandomStringAsPayload() throws {
     let string = String.random
     try performDecoding(
       of: """
@@ -59,7 +59,7 @@ final class OctokitEventTypeDecodingTestCase: XCTestCase {
     )
   }
 
-  func test_decodingEventTypeUsingRandomInt_producesUnknownEventWithEmptyStringAsPayload() throws {
+  internal func test_decodingEventTypeUsingRandomInt_producesUnknownEventWithEmptyStringAsPayload() throws {
     let int = Int.random
     try performDecoding(
       of: """

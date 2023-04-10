@@ -180,7 +180,24 @@ let octokitTests = Target.testTarget(
     .byName(name: octokit.name), // TODO:
     .byName(name: octokitLive.name) // TODO:
   ],
-  path: "Sources/Core/Octokit/Tests"
+  path: "Tests/Core/Octokit",
+  resources: [
+    .copy("Resources/events_1.json"),
+    .copy("Resources/events_2.json"),
+    .copy("Resources/events_3.json"),
+    .copy("Resources/events_4.json"),
+    .copy("Resources/events_5.json"),
+    .copy("Resources/events_6.json"),
+    .copy("Resources/events_7.json"),
+    .copy("Resources/events_8.json"),
+    .copy("Resources/events_9.json"),
+    .copy("Resources/events_10.json"),
+    .copy("Resources/events_11.json"),
+    .copy("Resources/events_12.json"),
+    .copy("Resources/events_13.json"),
+    .copy("Resources/events_14.json"),
+    .copy("Resources/events_15.json")
+  ]
 )
 
 let testTargets: [Target] = [
