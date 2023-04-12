@@ -9,9 +9,9 @@ extension Octokit {
     public let id: String
     public let isPublic: Bool
     public let org: Actor?
-    public let payload: Payload?
+    public let payload: Payload
     public let repo: Repo
-    public let type: EventType?
+    public let type: EventType
 
     enum CodingKeys: String, CodingKey {
       case actor = "actor"

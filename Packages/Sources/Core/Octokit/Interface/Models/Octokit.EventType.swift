@@ -56,7 +56,7 @@ public extension Octokit {
   }
 }
 
-private extension Octokit.EventType {
+internal extension Octokit.EventType {
   var string: String? {
     switch self {
     case .commitComment: return "CommitCommentEvent"

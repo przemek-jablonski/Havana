@@ -19,6 +19,21 @@ internal struct URLSessionNetworkClient {
 }
 
 extension URLSessionNetworkClient: NetworkClient {
+  func request(
+    using data: Octokit.RequestCommonData
+  ) async -> Result<Data, NetworkClientError>{
+    await urlSessionInstance.perform(
+      requestTo: data.url,
+      using: data.method,
+      headers: data.headers ?? [:],
+      queryItems: data.queryItems ?? [:],
+      encoding: data.body,
+      using: jsonEncoder
+    )
+    .mapError(NetworkClientError.networkRequestFailure)
+    .map { response in response.response }
+  }
+
   internal func request<ReturnType: Decodable>(
     _ type: ReturnType.Type,
     using data: Octokit.RequestCommonData
