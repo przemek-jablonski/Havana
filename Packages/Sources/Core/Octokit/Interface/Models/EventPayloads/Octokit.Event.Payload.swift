@@ -1,28 +1,28 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+extension Octokit.Event {
   public struct Payload: ModelProtocol {
     public let id: String?
     public let action: String?
-    public let assignee: User?
-    public let comment: IssueComment?
+    public let assignee: Octokit.User?
+    public let comment: Octokit.IssueComment?
     public let description: String?
-    public let issue: Issue?
-    public let forkee: Repository?
-    public let label: Label?
+    public let issue: Octokit.Issue?
+    public let forkee: Octokit.Repository?
+    public let label: Octokit.Label?
     public let pages: [Page]?
     public let ref: String?
     public let refType: String?
     public let number: Int?
     public let masterBranch: String?
-    public let member: UserBrief?
-    public let pullRequest: PullRequest?
+    public let member: Octokit.UserBrief?
+    public let pullRequest: Octokit.PullRequest?
     public let reason: String?
-    public let release: Release?
+    public let release: Octokit.Release?
     //    review
     //    changes
-//    thread
+    //    thread
 
     enum CodingKeys: String, CodingKey {
       case id = "id"
@@ -68,7 +68,7 @@ extension Octokit {
   }
 }
 
-extension Octokit.Payload {
+extension Octokit.Event.Payload {
   // MARK: - Page
   public struct Page: ModelProtocol {
     public var id: String? { sha }

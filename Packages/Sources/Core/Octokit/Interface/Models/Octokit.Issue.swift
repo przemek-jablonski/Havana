@@ -261,7 +261,7 @@ extension Octokit.Issue {
   }
 }
 
-//extension Octokit.Label {
+// extension Octokit.Label {
 //  public struct UserBrief: ModelProtocol {
 //    public let avatarUrl: String?
 //    public let email: String?
@@ -314,9 +314,9 @@ extension Octokit.Issue {
 //      )
 //    }
 //  }
-//}
+// }
 //
-//extension Octokit.Label.UserBrief {
+// extension Octokit.Label.UserBrief {
 //  internal enum CodingKeys: String, CodingKey {
 //    case avatarUrl = "avatar_url"
 //    case email = "email"
@@ -340,4 +340,4 @@ extension Octokit.Issue {
 //    case type = "type"
 //    case url = "url"
 //  }
-//}
+// }

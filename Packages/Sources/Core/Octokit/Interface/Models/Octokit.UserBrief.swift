@@ -30,9 +30,9 @@ extension Octokit {
 
     public let avatarUrl: String
     public let email: String?
-//    public let eventsUrl: String
+    //    public let eventsUrl: String
     public let eventsUrl: String?
-//    public let followersUrl: String
+    //    public let followersUrl: String
     public let followersUrl: String?
 
     public let followingUrl: String
@@ -76,7 +76,6 @@ extension Octokit {
       case type = "type"
       case url = "url"
     }
-
 
     public init(from decoder: Decoder) throws {
       let container: KeyedDecodingContainer<Octokit.UserBrief.CodingKeys> = try decoder.container(keyedBy: Octokit.UserBrief.CodingKeys.self)
