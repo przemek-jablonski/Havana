@@ -11,6 +11,16 @@ public extension Octokit {
     public let nodeId: String?
     public let url: String?
 
+    enum CodingKeys: String, CodingKey {
+      case color = "color"
+      case labelDefault = "label_default"
+      case description = "description"
+      case id = "id"
+      case name = "name"
+      case nodeId = "node_id"
+      case url = "url"
+    }
+
     public static var random: Self {
       Self(
         color: .random,

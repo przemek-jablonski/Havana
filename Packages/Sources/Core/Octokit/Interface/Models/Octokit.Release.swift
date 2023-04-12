@@ -1,18 +1,13 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let release = try? JSONDecoder().decode(Release.self, from: jsonData)
-
+import Casimir
 import Foundation
 
-public extension Octokit {
+extension Octokit {
   /// A release.
-  // MARK: - Release
-  struct Release: Codable {
-    public let assets: [ReleaseAsset]
+  public struct Release: ModelProtocol {
+    public let assets: [Asset]
     public let assetsUrl: String
     /// A GitHub user.
-    public let author: User
+    public let author: UserBrief
     public let body: String?
     public let bodyHtml: String?
     public let bodyText: String?
@@ -25,7 +20,7 @@ public extension Octokit {
     public let id: Int
     public let mentionsCount: Int?
     public let name: String?
-    public let nodeId: String
+    public let nodeId: String?
     /// Whether to identify the release as a prerelease or a full release.
     public let prerelease: Bool
     public let publishedAt: Date?
@@ -64,13 +59,40 @@ public extension Octokit {
       case url = "url"
       case zipballUrl = "zipball_url"
     }
+
+    public static var random: Self {
+      Self(
+        assets: .random,
+        assetsUrl: .random,
+        author: .random,
+        body: .random,
+        bodyHtml: .random,
+        bodyText: .random,
+        createdAt: .random,
+        discussionUrl: .random,
+        draft: .random,
+        htmlUrl: .random,
+        id: .random,
+        mentionsCount: .random,
+        name: .random,
+        nodeId: .random,
+        prerelease: .random,
+        publishedAt: .random,
+        reactions: .random,
+        tagName: .random,
+        tarballUrl: .random,
+        targetCommitish: .random,
+        uploadUrl: .random,
+        url: .random,
+        zipballUrl: .random
+      )
+    }
   }
 }
 
-public extension Octokit.Release {
+extension Octokit.Release {
   /// Data related to a release.
-  // MARK: - ReleaseAsset
-  struct ReleaseAsset: Codable {
+  public struct Asset: ModelProtocol {
     public let browserDownloadUrl: String
     public let contentType: String
     public let createdAt: Date
@@ -79,12 +101,12 @@ public extension Octokit.Release {
     public let label: String?
     /// The file name of the asset.
     public let name: String
-    public let nodeId: String
+    public let nodeId: String?
     public let size: Int
     /// State of the release asset.
     public let state: State?
     public let updatedAt: Date
-    public let uploader: Octokit.User?
+    public let uploader: Octokit.UserBrief?
     public let url: String
 
     enum CodingKeys: String, CodingKey {
@@ -102,13 +124,36 @@ public extension Octokit.Release {
       case uploader = "uploader"
       case url = "url"
     }
+
+    public static var random: Self {
+      Self(
+        browserDownloadUrl: .random,
+        contentType: .random,
+        createdAt: .random,
+        downloadCount: .random,
+        id: .random,
+        label: .random,
+        name: .random,
+        nodeId: .random,
+        size: .random,
+        state: .random,
+        updatedAt: .random,
+        uploader: .random,
+        url: .random
+      )
+    }
   }
 }
 
-public extension Octokit.Release.ReleaseAsset {
+extension Octokit.Release.Asset {
   /// State of the release asset.
-  enum State: String, Codable {
+  public enum State: String, ModelProtocol {
     case stateOpen = "open"
     case uploaded = "uploaded"
+
+    public var id: UUID { UUID() }
+    public static var random: Self {
+      [.stateOpen, .uploaded].random
+    }
   }
 }

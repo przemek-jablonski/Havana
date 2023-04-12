@@ -15,13 +15,30 @@ public extension Octokit {
     /// Unique identifier of the issue comment
     public let id: Int
     public let issueUrl: String?
-    public let nodeId: String
-    public let performedViaGithubApp: CommentGitHubApp?
+    public let nodeId: String?
+    public let performedViaGithubApp: GithubApp?
     public let reactions: Reactions?
     public let updatedAt: Date
     /// URL for the issue comment
     public let url: String
-    public let user: User?
+    public let user: UserBrief?
+
+    enum CodingKeys: String, CodingKey {
+      case authorAssociation = "author_association"
+      case body = "body"
+      case bodyHtml = "body_html"
+      case bodyText = "body_text"
+      case createdAt = "created_at"
+      case htmlUrl = "html_url"
+      case id = "id"
+      case issueUrl = "issue_url"
+      case nodeId = "node_id"
+      case performedViaGithubApp = "performed_via_github_app"
+      case reactions = "reactions"
+      case updatedAt = "updated_at"
+      case url = "url"
+      case user = "user"
+    }
 
     public static var random: Self {
       Self(

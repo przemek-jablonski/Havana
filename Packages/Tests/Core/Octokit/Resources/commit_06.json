@@ -1,0 +1,2372 @@
+[
+    {
+        "sha": "fd3f974d7e0decabbfa8a1abc36a55dc271f2aaa",
+        "node_id": "C_kwDOD5BvzdoAKGZkM2Y5NzRkN2UwZGVjYWJiZmE4YTFhYmMzNmE1NWRjMjcxZjJhYWE",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-06T14:58:07Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-06T15:06:46Z"
+            },
+            "message": "Don't use old syntax in docs",
+            "tree": {
+                "sha": "f64e66f72af1edbffda4363debcadbca51fc3817",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/f64e66f72af1edbffda4363debcadbca51fc3817"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/fd3f974d7e0decabbfa8a1abc36a55dc271f2aaa",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/fd3f974d7e0decabbfa8a1abc36a55dc271f2aaa",
+        "html_url": "https://github.com/slint-ui/slint/commit/fd3f974d7e0decabbfa8a1abc36a55dc271f2aaa",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/fd3f974d7e0decabbfa8a1abc36a55dc271f2aaa/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "4bc741a04c0dc29ad789c94a71b0407cb172e604",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/4bc741a04c0dc29ad789c94a71b0407cb172e604",
+                "html_url": "https://github.com/slint-ui/slint/commit/4bc741a04c0dc29ad789c94a71b0407cb172e604"
+            }
+        ]
+    },
+    {
+        "sha": "4bc741a04c0dc29ad789c94a71b0407cb172e604",
+        "node_id": "C_kwDOD5BvzdoAKDRiYzc0MWEwNGMwZGMyOWFkNzg5Yzk0YTcxYjA0MDdjYjE3MmU2MDQ",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-06T13:46:22Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-06T14:23:58Z"
+            },
+            "message": "LSP: don't throw a protocol error when a symbol can't be renamed\n\nI misread the spec that we should return an error if there is nothing\nto rename. We should just return None instead.\n\nThis means that the editor will no longer show an error message when\nthis happens (and also that we can rename stuff in rust code without\ngetting annoying error)\n\nTechnicly, we could still return an error if the user tries to rename a\nproperty or so, but i don't think its worth it",
+            "tree": {
+                "sha": "4f6d7770bc953f967eae2159cd870e97aa2d9333",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/4f6d7770bc953f967eae2159cd870e97aa2d9333"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/4bc741a04c0dc29ad789c94a71b0407cb172e604",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/4bc741a04c0dc29ad789c94a71b0407cb172e604",
+        "html_url": "https://github.com/slint-ui/slint/commit/4bc741a04c0dc29ad789c94a71b0407cb172e604",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/4bc741a04c0dc29ad789c94a71b0407cb172e604/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "63926382e3e3d332ceeb86504215c3f9a8bcb818",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/63926382e3e3d332ceeb86504215c3f9a8bcb818",
+                "html_url": "https://github.com/slint-ui/slint/commit/63926382e3e3d332ceeb86504215c3f9a8bcb818"
+            }
+        ]
+    },
+    {
+        "sha": "63926382e3e3d332ceeb86504215c3f9a8bcb818",
+        "node_id": "C_kwDOD5BvzdoAKDYzOTI2MzgyZTNlM2QzMzJjZWViODY1MDQyMTVjM2Y5YThiY2I4MTg",
+        "commit": {
+            "author": {
+                "name": "ShootingStarDragons",
+                "email": "ShootingStarDragons@protonmail.com",
+                "date": "2023-04-04T14:40:21Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-06T11:12:17Z"
+            },
+            "message": "feat: make fmt be a crate\n\nmake it can be a crate, then it can be used in lsp",
+            "tree": {
+                "sha": "3e4237c46eed0e63e4c61cee0e99842826912868",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/3e4237c46eed0e63e4c61cee0e99842826912868"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/63926382e3e3d332ceeb86504215c3f9a8bcb818",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/63926382e3e3d332ceeb86504215c3f9a8bcb818",
+        "html_url": "https://github.com/slint-ui/slint/commit/63926382e3e3d332ceeb86504215c3f9a8bcb818",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/63926382e3e3d332ceeb86504215c3f9a8bcb818/comments",
+        "author": {
+            "login": "Decodetalkers",
+            "id": 60290287,
+            "node_id": "MDQ6VXNlcjYwMjkwMjg3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/60290287?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/Decodetalkers",
+            "html_url": "https://github.com/Decodetalkers",
+            "followers_url": "https://api.github.com/users/Decodetalkers/followers",
+            "following_url": "https://api.github.com/users/Decodetalkers/following{/other_user}",
+            "gists_url": "https://api.github.com/users/Decodetalkers/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/Decodetalkers/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/Decodetalkers/subscriptions",
+            "organizations_url": "https://api.github.com/users/Decodetalkers/orgs",
+            "repos_url": "https://api.github.com/users/Decodetalkers/repos",
+            "events_url": "https://api.github.com/users/Decodetalkers/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/Decodetalkers/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+                "html_url": "https://github.com/slint-ui/slint/commit/23d1662281b8e57bde0e7d1a17dd6486bd792d63"
+            }
+        ]
+    },
+    {
+        "sha": "23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+        "node_id": "C_kwDOD5BvzdoAKDIzZDE2NjIyODFiOGU1N2JkZTBlN2QxYTE3ZGQ2NDg2YmQ3OTJkNjM",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-06T07:25:36Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-06T08:56:12Z"
+            },
+            "message": "memory tutorial: fix build errors when accessing the memory tiles from native code\n\nThe memory_tiles property cannot be private.",
+            "tree": {
+                "sha": "953ce37ac4bddef63f5a334e767c6e8f10e3595b",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/953ce37ac4bddef63f5a334e767c6e8f10e3595b"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+        "html_url": "https://github.com/slint-ui/slint/commit/23d1662281b8e57bde0e7d1a17dd6486bd792d63",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/23d1662281b8e57bde0e7d1a17dd6486bd792d63/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "86db590a37c126a5c7784c54315be9c815c7d09e",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/86db590a37c126a5c7784c54315be9c815c7d09e",
+                "html_url": "https://github.com/slint-ui/slint/commit/86db590a37c126a5c7784c54315be9c815c7d09e"
+            }
+        ]
+    },
+    {
+        "sha": "86db590a37c126a5c7784c54315be9c815c7d09e",
+        "node_id": "C_kwDOD5BvzdoAKDg2ZGI1OTBhMzdjMTI2YTVjNzc4NGM1NDMxNWJlOWM4MTVjN2QwOWU",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-06T07:23:59Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-06T08:56:12Z"
+            },
+            "message": "memory tutorial: Fix tile misrendering\n\nDue to auto-centering, the left curtain would be rendered at the wrong place. Explicitly place it at 0px;",
+            "tree": {
+                "sha": "297f30172d86363fa584be6549f1e728ce57d904",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/297f30172d86363fa584be6549f1e728ce57d904"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/86db590a37c126a5c7784c54315be9c815c7d09e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/86db590a37c126a5c7784c54315be9c815c7d09e",
+        "html_url": "https://github.com/slint-ui/slint/commit/86db590a37c126a5c7784c54315be9c815c7d09e",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/86db590a37c126a5c7784c54315be9c815c7d09e/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "8b1683bf0a867410305098b71d043c9801fddb24",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/8b1683bf0a867410305098b71d043c9801fddb24",
+                "html_url": "https://github.com/slint-ui/slint/commit/8b1683bf0a867410305098b71d043c9801fddb24"
+            }
+        ]
+    },
+    {
+        "sha": "8b1683bf0a867410305098b71d043c9801fddb24",
+        "node_id": "C_kwDOD5BvzdoAKDhiMTY4M2JmMGE4Njc0MTAzMDUwOThiNzFkMDQzYzk4MDFmZGRiMjQ",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T17:37:45Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-05T19:00:51Z"
+            },
+            "message": "Fix code snippet in README",
+            "tree": {
+                "sha": "b3713b811596473f84dfb9f0d1d237c8458fad32",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/b3713b811596473f84dfb9f0d1d237c8458fad32"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/8b1683bf0a867410305098b71d043c9801fddb24",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/8b1683bf0a867410305098b71d043c9801fddb24",
+        "html_url": "https://github.com/slint-ui/slint/commit/8b1683bf0a867410305098b71d043c9801fddb24",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/8b1683bf0a867410305098b71d043c9801fddb24/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+                "html_url": "https://github.com/slint-ui/slint/commit/b6ba268f4140756f20ecd3f8f20bf9d996dc9996"
+            }
+        ]
+    },
+    {
+        "sha": "b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+        "node_id": "C_kwDOD5BvzdoAKGI2YmEyNjhmNDE0MDc1NmYyMGVjZDNmOGYyMGJmOWQ5OTZkYzk5OTY",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T16:56:22Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-05T18:05:09Z"
+            },
+            "message": "ChangeLog for recent LSP changes",
+            "tree": {
+                "sha": "1bb51fa7d2c7fdaea765cdbd7116676d4d810f0d",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/1bb51fa7d2c7fdaea765cdbd7116676d4d810f0d"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+        "html_url": "https://github.com/slint-ui/slint/commit/b6ba268f4140756f20ecd3f8f20bf9d996dc9996",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/b6ba268f4140756f20ecd3f8f20bf9d996dc9996/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "208d89c1dea21988607f2ded919d9c49d76398d5",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/208d89c1dea21988607f2ded919d9c49d76398d5",
+                "html_url": "https://github.com/slint-ui/slint/commit/208d89c1dea21988607f2ded919d9c49d76398d5"
+            }
+        ]
+    },
+    {
+        "sha": "208d89c1dea21988607f2ded919d9c49d76398d5",
+        "node_id": "C_kwDOD5BvzdoAKDIwOGQ4OWMxZGVhMjE5ODg2MDdmMmRlZDkxOWQ5YzQ5ZDc2Mzk4ZDU",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T16:55:04Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-05T18:05:09Z"
+            },
+            "message": "LSP: Don't auto-complete reserved properties or sub-elements for globals",
+            "tree": {
+                "sha": "03eb179be0c3ea06ecc9397221176d8fa7177ac0",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/03eb179be0c3ea06ecc9397221176d8fa7177ac0"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/208d89c1dea21988607f2ded919d9c49d76398d5",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/208d89c1dea21988607f2ded919d9c49d76398d5",
+        "html_url": "https://github.com/slint-ui/slint/commit/208d89c1dea21988607f2ded919d9c49d76398d5",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/208d89c1dea21988607f2ded919d9c49d76398d5/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+                "html_url": "https://github.com/slint-ui/slint/commit/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc"
+            }
+        ]
+    },
+    {
+        "sha": "7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+        "node_id": "C_kwDOD5BvzdoAKDdlZTU2M2EwMmViOTQwZTBkYzk4MzlmNzExZjY1MmUxZGJjOGQxZmM",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T15:37:25Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-05T18:05:09Z"
+            },
+            "message": "LSP: aulways load std-widgets.slint so we can auto-complete widgets",
+            "tree": {
+                "sha": "8c63e74ae83eeeb2ccf79203e1f9ab01fc94724b",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/8c63e74ae83eeeb2ccf79203e1f9ab01fc94724b"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+        "html_url": "https://github.com/slint-ui/slint/commit/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/7ee563a02eb940e0dc9839f711f652e1dbc8d1fc/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+                "html_url": "https://github.com/slint-ui/slint/commit/95ecd7dfdf360e3177c9b64ba7831e68abac4466"
+            }
+        ]
+    },
+    {
+        "sha": "95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+        "node_id": "C_kwDOD5BvzdoAKDk1ZWNkN2RmZGYzNjBlMzE3N2M5YjY0YmE3ODMxZTY4YWJhYzQ0NjY",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T15:25:42Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-05T18:05:09Z"
+            },
+            "message": "LSP: Also auto-complete type for import in location where there is already a component name",
+            "tree": {
+                "sha": "ed342c7a5d9332aa3d4cbecc361b467c6f1c4ce3",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/ed342c7a5d9332aa3d4cbecc361b467c6f1c4ce3"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+        "html_url": "https://github.com/slint-ui/slint/commit/95ecd7dfdf360e3177c9b64ba7831e68abac4466",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/95ecd7dfdf360e3177c9b64ba7831e68abac4466/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "ab051680e54f059829162b443964d92a1ca7c360",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/ab051680e54f059829162b443964d92a1ca7c360",
+                "html_url": "https://github.com/slint-ui/slint/commit/ab051680e54f059829162b443964d92a1ca7c360"
+            }
+        ]
+    },
+    {
+        "sha": "ab051680e54f059829162b443964d92a1ca7c360",
+        "node_id": "C_kwDOD5BvzdoAKGFiMDUxNjgwZTU0ZjA1OTgyOTE2MmI0NDM5NjRkOTJhMWNhN2MzNjA",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-05T08:08:05Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-05T09:04:19Z"
+            },
+            "message": "janitor: Rename GLWindow to WinitWindowAdapter\n\nIt's no more an \"OpenGL Window\", it's the type that adapts winit to our windowing\nsystem abstraction.",
+            "tree": {
+                "sha": "14abb3c17ccf589e3b81f91130119b62aa9653cf",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/14abb3c17ccf589e3b81f91130119b62aa9653cf"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/ab051680e54f059829162b443964d92a1ca7c360",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/ab051680e54f059829162b443964d92a1ca7c360",
+        "html_url": "https://github.com/slint-ui/slint/commit/ab051680e54f059829162b443964d92a1ca7c360",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/ab051680e54f059829162b443964d92a1ca7c360/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+                "html_url": "https://github.com/slint-ui/slint/commit/09fc4010ff108400ba3b5ed97366b2495cf4c86e"
+            }
+        ]
+    },
+    {
+        "sha": "09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+        "node_id": "C_kwDOD5BvzdoAKDA5ZmM0MDEwZmYxMDg0MDBiYTNiNWVkOTczNjZiMjQ5NWNmNGM4NmU",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T04:52:25Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-05T04:52:25Z"
+            },
+            "message": "Add a easy to find link to Slint homepage from the docs intro.\n\nSince the theme don't have obvious link to the homepage, at least add a\nlink early in the first documentation page",
+            "tree": {
+                "sha": "40a1f0a28fc694e5b1e1c7f425ae4cd46159cb91",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/40a1f0a28fc694e5b1e1c7f425ae4cd46159cb91"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+        "html_url": "https://github.com/slint-ui/slint/commit/09fc4010ff108400ba3b5ed97366b2495cf4c86e",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/09fc4010ff108400ba3b5ed97366b2495cf4c86e/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "5f239124dee9dd0962c2832e1590449265f5cfb7",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/5f239124dee9dd0962c2832e1590449265f5cfb7",
+                "html_url": "https://github.com/slint-ui/slint/commit/5f239124dee9dd0962c2832e1590449265f5cfb7"
+            }
+        ]
+    },
+    {
+        "sha": "5f239124dee9dd0962c2832e1590449265f5cfb7",
+        "node_id": "C_kwDOD5BvzdoAKDVmMjM5MTI0ZGVlOWRkMDk2MmMyODMyZTE1OTA0NDkyNjVmNWNmYjc",
+        "commit": {
+            "author": {
+                "name": "Kavindra Palaraja",
+                "email": "kavindra.d@gmail.com",
+                "date": "2023-04-04T16:12:02Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-04T16:57:35Z"
+            },
+            "message": "Remove intro.md from the list of files",
+            "tree": {
+                "sha": "c4631862e47012f10f0562eb9f804e3bcc64a155",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/c4631862e47012f10f0562eb9f804e3bcc64a155"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/5f239124dee9dd0962c2832e1590449265f5cfb7",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/5f239124dee9dd0962c2832e1590449265f5cfb7",
+        "html_url": "https://github.com/slint-ui/slint/commit/5f239124dee9dd0962c2832e1590449265f5cfb7",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/5f239124dee9dd0962c2832e1590449265f5cfb7/comments",
+        "author": {
+            "login": "fieran100",
+            "id": 129879729,
+            "node_id": "U_kgDOB73OsQ",
+            "avatar_url": "https://avatars.githubusercontent.com/u/129879729?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fieran100",
+            "html_url": "https://github.com/fieran100",
+            "followers_url": "https://api.github.com/users/fieran100/followers",
+            "following_url": "https://api.github.com/users/fieran100/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fieran100/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fieran100/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fieran100/subscriptions",
+            "organizations_url": "https://api.github.com/users/fieran100/orgs",
+            "repos_url": "https://api.github.com/users/fieran100/repos",
+            "events_url": "https://api.github.com/users/fieran100/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fieran100/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+                "html_url": "https://github.com/slint-ui/slint/commit/803c02bc4176ad086adff0bc08ed51aaf287f3ea"
+            }
+        ]
+    },
+    {
+        "sha": "803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+        "node_id": "C_kwDOD5BvzdoAKDgwM2MwMmJjNDE3NmFkMDg2YWRmZjBiYzA4ZWQ1MWFhZjI4N2YzZWE",
+        "commit": {
+            "author": {
+                "name": "Kavindra Palaraja",
+                "email": "kavindra.d@gmail.com",
+                "date": "2023-04-04T16:09:51Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-04T16:57:35Z"
+            },
+            "message": "Remote trailing sentence fragment",
+            "tree": {
+                "sha": "a09ccfee506c6c73f4db6a2c45f20b80344d1e9b",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/a09ccfee506c6c73f4db6a2c45f20b80344d1e9b"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+        "html_url": "https://github.com/slint-ui/slint/commit/803c02bc4176ad086adff0bc08ed51aaf287f3ea",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/803c02bc4176ad086adff0bc08ed51aaf287f3ea/comments",
+        "author": {
+            "login": "fieran100",
+            "id": 129879729,
+            "node_id": "U_kgDOB73OsQ",
+            "avatar_url": "https://avatars.githubusercontent.com/u/129879729?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fieran100",
+            "html_url": "https://github.com/fieran100",
+            "followers_url": "https://api.github.com/users/fieran100/followers",
+            "following_url": "https://api.github.com/users/fieran100/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fieran100/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fieran100/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fieran100/subscriptions",
+            "organizations_url": "https://api.github.com/users/fieran100/orgs",
+            "repos_url": "https://api.github.com/users/fieran100/repos",
+            "events_url": "https://api.github.com/users/fieran100/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fieran100/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "9f51fd61b718defcbc9628db9bdc6d095496336e",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/9f51fd61b718defcbc9628db9bdc6d095496336e",
+                "html_url": "https://github.com/slint-ui/slint/commit/9f51fd61b718defcbc9628db9bdc6d095496336e"
+            }
+        ]
+    },
+    {
+        "sha": "9f51fd61b718defcbc9628db9bdc6d095496336e",
+        "node_id": "C_kwDOD5BvzdoAKDlmNTFmZDYxYjcxOGRlZmNiYzk2MjhkYjliZGM2ZDA5NTQ5NjMzNmU",
+        "commit": {
+            "author": {
+                "name": "Kavindra Palaraja",
+                "email": "kavindra.d@gmail.com",
+                "date": "2023-04-04T16:06:59Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-04T16:57:35Z"
+            },
+            "message": "Improve the landing page for the Slint Language documentation\n\nRemove the Intro page and move that content to the landing page instead.",
+            "tree": {
+                "sha": "a8fd1ad92c3054366df48ea754fb161001930589",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/a8fd1ad92c3054366df48ea754fb161001930589"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/9f51fd61b718defcbc9628db9bdc6d095496336e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/9f51fd61b718defcbc9628db9bdc6d095496336e",
+        "html_url": "https://github.com/slint-ui/slint/commit/9f51fd61b718defcbc9628db9bdc6d095496336e",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/9f51fd61b718defcbc9628db9bdc6d095496336e/comments",
+        "author": {
+            "login": "fieran100",
+            "id": 129879729,
+            "node_id": "U_kgDOB73OsQ",
+            "avatar_url": "https://avatars.githubusercontent.com/u/129879729?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fieran100",
+            "html_url": "https://github.com/fieran100",
+            "followers_url": "https://api.github.com/users/fieran100/followers",
+            "following_url": "https://api.github.com/users/fieran100/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fieran100/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fieran100/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fieran100/subscriptions",
+            "organizations_url": "https://api.github.com/users/fieran100/orgs",
+            "repos_url": "https://api.github.com/users/fieran100/repos",
+            "events_url": "https://api.github.com/users/fieran100/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fieran100/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "08c0f1b34e948668c67601c305ac261d0cd188bb",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/08c0f1b34e948668c67601c305ac261d0cd188bb",
+                "html_url": "https://github.com/slint-ui/slint/commit/08c0f1b34e948668c67601c305ac261d0cd188bb"
+            }
+        ]
+    },
+    {
+        "sha": "08c0f1b34e948668c67601c305ac261d0cd188bb",
+        "node_id": "C_kwDOD5BvzdoAKDA4YzBmMWIzNGU5NDg2NjhjNjc2MDFjMzA1YWMyNjFkMGNkMTg4YmI",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-04T07:06:06Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-04T07:06:38Z"
+            },
+            "message": "Clean up hack to detect if we're doing a top-level build\n\n... by introducing an explicit variable.\n\ncc #2075",
+            "tree": {
+                "sha": "58a58d538cffc6c27c40b824e8b550b53f9bcf02",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/58a58d538cffc6c27c40b824e8b550b53f9bcf02"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/08c0f1b34e948668c67601c305ac261d0cd188bb",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/08c0f1b34e948668c67601c305ac261d0cd188bb",
+        "html_url": "https://github.com/slint-ui/slint/commit/08c0f1b34e948668c67601c305ac261d0cd188bb",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/08c0f1b34e948668c67601c305ac261d0cd188bb/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "b796fb1ada1a60fe170b512eb916acc16ba2d605",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/b796fb1ada1a60fe170b512eb916acc16ba2d605",
+                "html_url": "https://github.com/slint-ui/slint/commit/b796fb1ada1a60fe170b512eb916acc16ba2d605"
+            }
+        ]
+    },
+    {
+        "sha": "b796fb1ada1a60fe170b512eb916acc16ba2d605",
+        "node_id": "C_kwDOD5BvzdoAKGI3OTZmYjFhZGExYTYwZmUxNzBiNTEyZWI5MTZhY2MxNmJhMmQ2MDU",
+        "commit": {
+            "author": {
+                "name": "Florian Blasius",
+                "email": "florian.blasius@slint-ui.com",
+                "date": "2023-04-04T05:33:52Z"
+            },
+            "committer": {
+                "name": "Florian Blasius",
+                "email": "florian.blasius@slint-ui.com",
+                "date": "2023-04-04T05:33:52Z"
+            },
+            "message": "fix npm package link",
+            "tree": {
+                "sha": "b1bca7e9ecc5a551705210c0d18134a501f018e5",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/b1bca7e9ecc5a551705210c0d18134a501f018e5"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/b796fb1ada1a60fe170b512eb916acc16ba2d605",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/b796fb1ada1a60fe170b512eb916acc16ba2d605",
+        "html_url": "https://github.com/slint-ui/slint/commit/b796fb1ada1a60fe170b512eb916acc16ba2d605",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/b796fb1ada1a60fe170b512eb916acc16ba2d605/comments",
+        "author": {
+            "login": "FloVanGH",
+            "id": 6715107,
+            "node_id": "MDQ6VXNlcjY3MTUxMDc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6715107?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/FloVanGH",
+            "html_url": "https://github.com/FloVanGH",
+            "followers_url": "https://api.github.com/users/FloVanGH/followers",
+            "following_url": "https://api.github.com/users/FloVanGH/following{/other_user}",
+            "gists_url": "https://api.github.com/users/FloVanGH/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/FloVanGH/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/FloVanGH/subscriptions",
+            "organizations_url": "https://api.github.com/users/FloVanGH/orgs",
+            "repos_url": "https://api.github.com/users/FloVanGH/repos",
+            "events_url": "https://api.github.com/users/FloVanGH/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/FloVanGH/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "FloVanGH",
+            "id": 6715107,
+            "node_id": "MDQ6VXNlcjY3MTUxMDc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6715107?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/FloVanGH",
+            "html_url": "https://github.com/FloVanGH",
+            "followers_url": "https://api.github.com/users/FloVanGH/followers",
+            "following_url": "https://api.github.com/users/FloVanGH/following{/other_user}",
+            "gists_url": "https://api.github.com/users/FloVanGH/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/FloVanGH/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/FloVanGH/subscriptions",
+            "organizations_url": "https://api.github.com/users/FloVanGH/orgs",
+            "repos_url": "https://api.github.com/users/FloVanGH/repos",
+            "events_url": "https://api.github.com/users/FloVanGH/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/FloVanGH/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+                "html_url": "https://github.com/slint-ui/slint/commit/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6"
+            }
+        ]
+    },
+    {
+        "sha": "13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+        "node_id": "C_kwDOD5BvzdoAKDEzYTVkM2M1Y2Q3MjgyZTI3MjM5ZTA0YzQ1YTg2YWVkM2UzZDJhYjY",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T15:36:34Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T15:36:34Z"
+            },
+            "message": "Fix builds of applications using Slint via FetchContent (part 2)\n\nAmend 8406e1050d6dcd2f9f94c5394eecb4f3237f55f8 by fixing the condition\nto apply the install_name when the cache variable used to detect package\nbuilds is defined, not _not_ defined.\n\ncc #2075",
+            "tree": {
+                "sha": "a59367c0b99b0a35a7b2b2eab759040bf04b7f59",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/a59367c0b99b0a35a7b2b2eab759040bf04b7f59"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+        "html_url": "https://github.com/slint-ui/slint/commit/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/13a5d3c5cd7282e27239e04c45a86aed3e3d2ab6/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "ba793a8447644be0379c44abb9127742f7f683b8",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/ba793a8447644be0379c44abb9127742f7f683b8",
+                "html_url": "https://github.com/slint-ui/slint/commit/ba793a8447644be0379c44abb9127742f7f683b8"
+            }
+        ]
+    },
+    {
+        "sha": "ba793a8447644be0379c44abb9127742f7f683b8",
+        "node_id": "C_kwDOD5BvzdoAKGJhNzkzYTg0NDc2NDRiZTAzNzljNDRhYmI5MTI3NzQyZjdmNjgzYjg",
+        "commit": {
+            "author": {
+                "name": "Alex Kladov",
+                "email": "aleksey.kladov@gmail.com",
+                "date": "2023-04-03T14:56:51Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-03T15:04:14Z"
+            },
+            "message": "Update intro.md",
+            "tree": {
+                "sha": "6d46f9745ae20af6b5335d989fb49a43d5579701",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/6d46f9745ae20af6b5335d989fb49a43d5579701"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/ba793a8447644be0379c44abb9127742f7f683b8",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/ba793a8447644be0379c44abb9127742f7f683b8",
+        "html_url": "https://github.com/slint-ui/slint/commit/ba793a8447644be0379c44abb9127742f7f683b8",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/ba793a8447644be0379c44abb9127742f7f683b8/comments",
+        "author": {
+            "login": "matklad",
+            "id": 1711539,
+            "node_id": "MDQ6VXNlcjE3MTE1Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1711539?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/matklad",
+            "html_url": "https://github.com/matklad",
+            "followers_url": "https://api.github.com/users/matklad/followers",
+            "following_url": "https://api.github.com/users/matklad/following{/other_user}",
+            "gists_url": "https://api.github.com/users/matklad/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/matklad/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/matklad/subscriptions",
+            "organizations_url": "https://api.github.com/users/matklad/orgs",
+            "repos_url": "https://api.github.com/users/matklad/repos",
+            "events_url": "https://api.github.com/users/matklad/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/matklad/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+                "html_url": "https://github.com/slint-ui/slint/commit/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8"
+            }
+        ]
+    },
+    {
+        "sha": "8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+        "node_id": "C_kwDOD5BvzdoAKDg0MDZlMTA1MGQ2ZGNkMmY5Zjk0YzUzOTRlZWNiNGYzMjM3ZjU1Zjg",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T15:01:47Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T15:01:47Z"
+            },
+            "message": "Fix builds of applications using Slint via FetchContent\n\nSet install_name to include rpath as per commit\n916b927f4f198c4f1575b0ce59425d434e4e1d24 only when doing top-level\nbuilds that are meant to be installed via \"make install\".\n\ncc #2075",
+            "tree": {
+                "sha": "14fd14a20ea368656c72528c869f1ee352218b96",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/14fd14a20ea368656c72528c869f1ee352218b96"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+        "html_url": "https://github.com/slint-ui/slint/commit/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/8406e1050d6dcd2f9f94c5394eecb4f3237f55f8/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "916b927f4f198c4f1575b0ce59425d434e4e1d24",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/916b927f4f198c4f1575b0ce59425d434e4e1d24",
+                "html_url": "https://github.com/slint-ui/slint/commit/916b927f4f198c4f1575b0ce59425d434e4e1d24"
+            }
+        ]
+    },
+    {
+        "sha": "916b927f4f198c4f1575b0ce59425d434e4e1d24",
+        "node_id": "C_kwDOD5BvzdoAKDkxNmI5MjdmNGYxOThjNGYxNTc1YjBjZTU5NDI1ZDQzNGU0ZTFkMjQ",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-03-31T06:34:11Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-03T13:59:01Z"
+            },
+            "message": "macOS: Fix installed libslint_cpp.dylib containing references to the build directory\n\nThanks to @jschwe, there's a way to instruct corrosion to supply link\nflags that set the install name and work around cargo/rustc behavior.\n\nIn exchange, now that we're using rpath, to be able to continue to run\nthe tests and examples against a build tree, we need to set\nCMAKE_BUILD_RPATH.\n\nFixes #2075",
+            "tree": {
+                "sha": "30fb3806343d6336dd5011357d811b3232c1eb16",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/30fb3806343d6336dd5011357d811b3232c1eb16"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/916b927f4f198c4f1575b0ce59425d434e4e1d24",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/916b927f4f198c4f1575b0ce59425d434e4e1d24",
+        "html_url": "https://github.com/slint-ui/slint/commit/916b927f4f198c4f1575b0ce59425d434e4e1d24",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/916b927f4f198c4f1575b0ce59425d434e4e1d24/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "d87af7e91722695ace4ce93cfef2766f94912cb9",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/d87af7e91722695ace4ce93cfef2766f94912cb9",
+                "html_url": "https://github.com/slint-ui/slint/commit/d87af7e91722695ace4ce93cfef2766f94912cb9"
+            }
+        ]
+    },
+    {
+        "sha": "d87af7e91722695ace4ce93cfef2766f94912cb9",
+        "node_id": "C_kwDOD5BvzdoAKGQ4N2FmN2U5MTcyMjY5NWFjZTRjZTkzY2ZlZjI3NjZmOTQ5MTJjYjk",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T12:51:24Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "hausmann@gmail.com",
+                "date": "2023-04-03T13:25:13Z"
+            },
+            "message": "Fix panic when binding Path's commands property to a model entry's field\n\nFixes #2466",
+            "tree": {
+                "sha": "9665443c667a50aaf422cb2820c5dc200d911181",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/9665443c667a50aaf422cb2820c5dc200d911181"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/d87af7e91722695ace4ce93cfef2766f94912cb9",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/d87af7e91722695ace4ce93cfef2766f94912cb9",
+        "html_url": "https://github.com/slint-ui/slint/commit/d87af7e91722695ace4ce93cfef2766f94912cb9",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/d87af7e91722695ace4ce93cfef2766f94912cb9/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "ef2120bd0ad63b740cc0086c6789612ceb25292f",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/ef2120bd0ad63b740cc0086c6789612ceb25292f",
+                "html_url": "https://github.com/slint-ui/slint/commit/ef2120bd0ad63b740cc0086c6789612ceb25292f"
+            }
+        ]
+    },
+    {
+        "sha": "ef2120bd0ad63b740cc0086c6789612ceb25292f",
+        "node_id": "C_kwDOD5BvzdoAKGVmMjEyMGJkMGFkNjNiNzQwY2MwMDg2YzY3ODk2MTJjZWIyNTI5MmY",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T12:33:08Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T12:33:08Z"
+            },
+            "message": "Revert \"Prepare for release: add Cargo.lock and set the version number in the docs\"\n\nThis reverts commit 0cc9a870487c26b96497f4b771a376798cc6f95f.",
+            "tree": {
+                "sha": "88a5501626582e52b0872ca4119b5e9296fa5222",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/88a5501626582e52b0872ca4119b5e9296fa5222"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/ef2120bd0ad63b740cc0086c6789612ceb25292f",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/ef2120bd0ad63b740cc0086c6789612ceb25292f",
+        "html_url": "https://github.com/slint-ui/slint/commit/ef2120bd0ad63b740cc0086c6789612ceb25292f",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/ef2120bd0ad63b740cc0086c6789612ceb25292f/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "86684e9f8cbecbc4ed9381911fbc75394311bde2",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/86684e9f8cbecbc4ed9381911fbc75394311bde2",
+                "html_url": "https://github.com/slint-ui/slint/commit/86684e9f8cbecbc4ed9381911fbc75394311bde2"
+            }
+        ]
+    },
+    {
+        "sha": "86684e9f8cbecbc4ed9381911fbc75394311bde2",
+        "node_id": "C_kwDOD5BvzdoAKDg2Njg0ZTlmOGNiZWNiYzRlZDkzODE5MTFmYmM3NTM5NDMxMWJkZTI",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T08:56:32Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-03T09:29:50Z"
+            },
+            "message": "energy-monitory: Correct time on wasm demo",
+            "tree": {
+                "sha": "1186f31b386bdc3c4206aa16cf601580c2d2e5e1",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/1186f31b386bdc3c4206aa16cf601580c2d2e5e1"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/86684e9f8cbecbc4ed9381911fbc75394311bde2",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/86684e9f8cbecbc4ed9381911fbc75394311bde2",
+        "html_url": "https://github.com/slint-ui/slint/commit/86684e9f8cbecbc4ed9381911fbc75394311bde2",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/86684e9f8cbecbc4ed9381911fbc75394311bde2/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "ce59045d097a63c13fd976213b331f4868879f7a",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/ce59045d097a63c13fd976213b331f4868879f7a",
+                "html_url": "https://github.com/slint-ui/slint/commit/ce59045d097a63c13fd976213b331f4868879f7a"
+            }
+        ]
+    },
+    {
+        "sha": "ce59045d097a63c13fd976213b331f4868879f7a",
+        "node_id": "C_kwDOD5BvzdoAKGNlNTkwNDVkMDk3YTYzYzEzZmQ5NzYyMTNiMzMxZjQ4Njg4NzlmN2E",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T07:32:44Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T08:46:41Z"
+            },
+            "message": "energy-monitor: Don't pull default features of chrono\n\nOne of the default feature is \"oldtime\" which bring a crate that has a\nsecurity advisory and shows a warning in dependabot",
+            "tree": {
+                "sha": "0d2a1931f331a4bb40313639c8d2e6e3bf6d0b8a",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/0d2a1931f331a4bb40313639c8d2e6e3bf6d0b8a"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/ce59045d097a63c13fd976213b331f4868879f7a",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/ce59045d097a63c13fd976213b331f4868879f7a",
+        "html_url": "https://github.com/slint-ui/slint/commit/ce59045d097a63c13fd976213b331f4868879f7a",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/ce59045d097a63c13fd976213b331f4868879f7a/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+                "html_url": "https://github.com/slint-ui/slint/commit/ddb87c603c72aeae3ec989b96b9a8a398927bb34"
+            }
+        ]
+    },
+    {
+        "sha": "ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+        "node_id": "C_kwDOD5BvzdoAKGRkYjg3YzYwM2M3MmFlYWUzZWM5ODliOTZiOWE4YTM5ODkyN2JiMzQ",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T07:19:57Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T07:20:10Z"
+            },
+            "message": "Date in the changelog",
+            "tree": {
+                "sha": "f83f0d913dad76714f47cd8e9eaa0b16de016df1",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/f83f0d913dad76714f47cd8e9eaa0b16de016df1"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+        "html_url": "https://github.com/slint-ui/slint/commit/ddb87c603c72aeae3ec989b96b9a8a398927bb34",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/ddb87c603c72aeae3ec989b96b9a8a398927bb34/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "62347ca741890e61064bf5fd2a2530a6d9465f4a",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/62347ca741890e61064bf5fd2a2530a6d9465f4a",
+                "html_url": "https://github.com/slint-ui/slint/commit/62347ca741890e61064bf5fd2a2530a6d9465f4a"
+            }
+        ]
+    },
+    {
+        "sha": "62347ca741890e61064bf5fd2a2530a6d9465f4a",
+        "node_id": "C_kwDOD5BvzdoAKDYyMzQ3Y2E3NDE4OTBlNjEwNjRiZjVmZDJhMjUzMGE2ZDk0NjVmNGE",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T07:17:04Z"
+            },
+            "committer": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-04-03T07:17:04Z"
+            },
+            "message": "README: Tweak desktop wording",
+            "tree": {
+                "sha": "3952d60521ec9c0326a5a278ff635272893dd5db",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/3952d60521ec9c0326a5a278ff635272893dd5db"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/62347ca741890e61064bf5fd2a2530a6d9465f4a",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/62347ca741890e61064bf5fd2a2530a6d9465f4a",
+        "html_url": "https://github.com/slint-ui/slint/commit/62347ca741890e61064bf5fd2a2530a6d9465f4a",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/62347ca741890e61064bf5fd2a2530a6d9465f4a/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "8df41a37cba4241c284b626ab8f81aca439d6cf9",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/8df41a37cba4241c284b626ab8f81aca439d6cf9",
+                "html_url": "https://github.com/slint-ui/slint/commit/8df41a37cba4241c284b626ab8f81aca439d6cf9"
+            }
+        ]
+    },
+    {
+        "sha": "8df41a37cba4241c284b626ab8f81aca439d6cf9",
+        "node_id": "C_kwDOD5BvzdoAKDhkZjQxYTM3Y2JhNDI0MWMyODRiNjI2YWI4ZjgxYWNhNDM5ZDZjZjk",
+        "commit": {
+            "author": {
+                "name": "Simon Hausmann",
+                "email": "simon.hausmann@slint-ui.com",
+                "date": "2023-03-30T11:48:33Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier@woboq.com",
+                "date": "2023-04-03T06:05:55Z"
+            },
+            "message": "Replace the todo entry in the demos with the energy monitor demo",
+            "tree": {
+                "sha": "eb2da17f1a937f53d8c170b30200def0d0e62f38",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/eb2da17f1a937f53d8c170b30200def0d0e62f38"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/8df41a37cba4241c284b626ab8f81aca439d6cf9",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/8df41a37cba4241c284b626ab8f81aca439d6cf9",
+        "html_url": "https://github.com/slint-ui/slint/commit/8df41a37cba4241c284b626ab8f81aca439d6cf9",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/8df41a37cba4241c284b626ab8f81aca439d6cf9/comments",
+        "author": {
+            "login": "tronical",
+            "id": 1486,
+            "node_id": "MDQ6VXNlcjE0ODY=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1486?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/tronical",
+            "html_url": "https://github.com/tronical",
+            "followers_url": "https://api.github.com/users/tronical/followers",
+            "following_url": "https://api.github.com/users/tronical/following{/other_user}",
+            "gists_url": "https://api.github.com/users/tronical/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/tronical/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/tronical/subscriptions",
+            "organizations_url": "https://api.github.com/users/tronical/orgs",
+            "repos_url": "https://api.github.com/users/tronical/repos",
+            "events_url": "https://api.github.com/users/tronical/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/tronical/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "0cc9a870487c26b96497f4b771a376798cc6f95f",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/0cc9a870487c26b96497f4b771a376798cc6f95f",
+                "html_url": "https://github.com/slint-ui/slint/commit/0cc9a870487c26b96497f4b771a376798cc6f95f"
+            }
+        ]
+    },
+    {
+        "sha": "0cc9a870487c26b96497f4b771a376798cc6f95f",
+        "node_id": "C_kwDOD5BvzdoAKDBjYzlhODcwNDg3YzI2Yjk2NDk3ZjRiNzcxYTM3Njc5OGNjNmY5NWY",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T05:42:44Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T05:42:44Z"
+            },
+            "message": "Prepare for release: add Cargo.lock and set the version number in the docs\n\nWe add the Cargo.lock for the release so that the tagged commit has it,\nthis will be usefull for the C++ users who build from source with a\ntagged version of slint. Because we want to reduce the likelyhod that\nthey get compilation error in a dependent crate\n\nThis will be reverted after the release.",
+            "tree": {
+                "sha": "a71a52d85a2037795a221f53124ab931ef1c2997",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/a71a52d85a2037795a221f53124ab931ef1c2997"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/0cc9a870487c26b96497f4b771a376798cc6f95f",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/0cc9a870487c26b96497f4b771a376798cc6f95f",
+        "html_url": "https://github.com/slint-ui/slint/commit/0cc9a870487c26b96497f4b771a376798cc6f95f",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/0cc9a870487c26b96497f4b771a376798cc6f95f/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "645824ae7adb177ef7bc3296343e2043ba01c51e",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/645824ae7adb177ef7bc3296343e2043ba01c51e",
+                "html_url": "https://github.com/slint-ui/slint/commit/645824ae7adb177ef7bc3296343e2043ba01c51e"
+            }
+        ]
+    },
+    {
+        "sha": "645824ae7adb177ef7bc3296343e2043ba01c51e",
+        "node_id": "C_kwDOD5BvzdoAKDY0NTgyNGFlN2FkYjE3N2VmN2JjMzI5NjM0M2UyMDQzYmEwMWM1MWU",
+        "commit": {
+            "author": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T05:40:07Z"
+            },
+            "committer": {
+                "name": "Olivier Goffart",
+                "email": "olivier.goffart@slint-ui.com",
+                "date": "2023-04-03T05:40:07Z"
+            },
+            "message": "tutorial, remove hardcoded release from url\n\nThat's how the other tutorial do it",
+            "tree": {
+                "sha": "a3a2bdc13c560db4a2748cd297c3754b0e623d9f",
+                "url": "https://api.github.com/repos/slint-ui/slint/git/trees/a3a2bdc13c560db4a2748cd297c3754b0e623d9f"
+            },
+            "url": "https://api.github.com/repos/slint-ui/slint/git/commits/645824ae7adb177ef7bc3296343e2043ba01c51e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/slint-ui/slint/commits/645824ae7adb177ef7bc3296343e2043ba01c51e",
+        "html_url": "https://github.com/slint-ui/slint/commit/645824ae7adb177ef7bc3296343e2043ba01c51e",
+        "comments_url": "https://api.github.com/repos/slint-ui/slint/commits/645824ae7adb177ef7bc3296343e2043ba01c51e/comments",
+        "author": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "ogoffart",
+            "id": 959326,
+            "node_id": "MDQ6VXNlcjk1OTMyNg==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/959326?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ogoffart",
+            "html_url": "https://github.com/ogoffart",
+            "followers_url": "https://api.github.com/users/ogoffart/followers",
+            "following_url": "https://api.github.com/users/ogoffart/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ogoffart/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ogoffart/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ogoffart/subscriptions",
+            "organizations_url": "https://api.github.com/users/ogoffart/orgs",
+            "repos_url": "https://api.github.com/users/ogoffart/repos",
+            "events_url": "https://api.github.com/users/ogoffart/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ogoffart/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "34f41f35f160947068cf2a8542e0c2fc44681a5e",
+                "url": "https://api.github.com/repos/slint-ui/slint/commits/34f41f35f160947068cf2a8542e0c2fc44681a5e",
+                "html_url": "https://github.com/slint-ui/slint/commit/34f41f35f160947068cf2a8542e0c2fc44681a5e"
+            }
+        ]
+    }
+]

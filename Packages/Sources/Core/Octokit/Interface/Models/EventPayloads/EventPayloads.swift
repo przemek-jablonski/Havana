@@ -1,7 +1,7 @@
-import Casimir
-import Foundation
+ import Casimir
+ import Foundation
 
-public extension Octokit {
+ public extension Octokit {
   struct CommitCommentEventPayload: ModelProtocol {
     public var id: String { comment.id.string + action }
 
@@ -18,9 +18,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct CreateEventPayload: ModelProtocol {
     public var id: String { ref }
 
@@ -45,9 +45,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct DeleteEventPayload: ModelProtocol {
     public var id: String { ref }
 
@@ -64,9 +64,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct ForkEventPayload: ModelProtocol {
     public var id: UUID { UUID() }
 
@@ -79,9 +79,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct GollumEventPayload: ModelProtocol {
     public var id: UUID { UUID() }
 
@@ -94,9 +94,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct IssueCommentEventPayload: ModelProtocol {
     public var id: String { issue.id.string + comment.id.string }
 
@@ -122,9 +122,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct IssuesEventPayload: ModelProtocol {
     public var id: UUID { UUID() }
 
@@ -155,9 +155,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit.IssuesEventPayload {
+ public extension Octokit.IssuesEventPayload {
   /// The action that was performed. Can be one of opened, edited, closed, reopened, assigned, unassigned, labeled, or unlabeled.
   enum Action: CaseIterable, ModelProtocol {
     case opened
@@ -174,9 +174,9 @@ public extension Octokit.IssuesEventPayload {
       self.allCases.random
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct MemberEventPayload: ModelProtocol {
     public var id: UUID { UUID() }
 
@@ -197,9 +197,9 @@ public extension Octokit {
       )
     }
   }
-}
+ }
 
-public extension Octokit {
+ public extension Octokit {
   struct PublicEventPayload: ModelProtocol {
     public var id: UUID { UUID() }
 
@@ -207,7 +207,7 @@ public extension Octokit {
       Self()
     }
   }
-}
+ }
 
 // public extension Octokit {
 //  /// Activity related to pull requests. The type of activity is specified in the action property of the payload object.

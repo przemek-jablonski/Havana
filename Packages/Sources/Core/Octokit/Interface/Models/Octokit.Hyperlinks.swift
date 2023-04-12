@@ -4,7 +4,7 @@ import Foundation
 public extension Octokit {
   // MARK: - Hyperlinks
   struct Hyperlinks: ModelProtocol {
-    public var id: Int = .invalid
+    public let id = UUID()
     public let authorizationsUrl: String?
     public let codeSearchUrl: String?
     public let commitSearchUrl: String?

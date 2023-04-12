@@ -1,0 +1,18 @@
+configurations:
+    - sources:
+        - Packages/Sources/Core/Octokit
+      templates:
+        - <templates path>
+      output: <output path>
+      args:
+        <name>: <value>
+        <name>: <value>
+    - sources:
+        - <sources path>
+        - <sources path>
+      templates:
+        - <templates path>
+      output: <output path>
+      args:
+        <name>: <value>
+        <name>: <value>

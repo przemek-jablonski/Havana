@@ -27,7 +27,7 @@ public extension Octokit {
     public let location: String?
     public let login: String
     public let name: String?
-    public let nodeId: String
+    public let nodeId: String?
     public let organizationsUrl: String
     public let ownedPrivateRepos: Int?
     public let plan: Plan?
@@ -46,6 +46,51 @@ public extension Octokit {
     public let type: String
     public let updatedAt: Date
     public let url: String
+
+    enum CodingKeys: String, CodingKey {
+      case avatarUrl = "avatar_url"
+      case bio = "bio"
+      case blog = "blog"
+      case businessPlus = "business_plus"
+      case collaborators = "collaborators"
+      case company = "company"
+      case createdAt = "created_at"
+      case diskUsage = "disk_usage"
+      case email = "email"
+      case eventsUrl = "events_url"
+      case followers = "followers"
+      case followersUrl = "followers_url"
+      case following = "following"
+      case followingUrl = "following_url"
+      case gistsUrl = "gists_url"
+      case gravatarId = "gravatar_d"
+      case hireable = "hireable"
+      case htmlUrl = "html_url"
+      case id = "id"
+      case ldapDn = "ldap_dn"
+      case location = "location"
+      case login = "login"
+      case name = "name"
+      case nodeId = "node_id"
+      case organizationsUrl = "organizations_url"
+      case ownedPrivateRepos = "owned_private_repos"
+      case plan = "plan"
+      case privateGists = "private_gists"
+      case publicGists = "public_gists"
+      case publicRepos = "public_repos"
+      case receivedEventsUrl = "received_events_url"
+      case reposUrl = "repos_url"
+      case siteAdmin = "site_admin"
+      case starredUrl = "starred_url"
+      case subscriptionsUrl = "subscriptions_url"
+      case suspendedAt = "suspended_at"
+      case totalPrivateRepos = "total_private_repos"
+      case twitterUsername = "twitter_username"
+      case twoFactorAuthentication = "two_factor_authentication"
+      case type = "type"
+      case updatedAt = "updated_at"
+      case url = "url"
+    }
 
     public static var random: User {
       User(
@@ -102,6 +147,13 @@ public extension Octokit {
     public let name: String
     public let privateRepos: Int
     public let space: Int
+
+    enum CodingKeys: String, CodingKey {
+      case collaborators = "collaborators"
+      case name = "name"
+      case privateRepos = "private_repos"
+      case space = "space"
+    }
 
     public static var random: Plan {
       Plan(

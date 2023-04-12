@@ -1,4 +1,5 @@
 import Casimir
+import Foundation
 
 public extension Octokit {
   /// How the author is associated with the repository.
@@ -12,10 +13,9 @@ public extension Octokit {
     case none = "NONE"
     case owner = "OWNER"
 
+    public var id: UUID { UUID() }
     public static var random: Self {
       Self.allCases.random
     }
-
-    public var id: RawValue { rawValue }
   }
 }

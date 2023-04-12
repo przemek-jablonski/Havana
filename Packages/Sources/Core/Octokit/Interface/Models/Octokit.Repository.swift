@@ -1,41 +1,33 @@
 import Casimir
 import Foundation
 
-public extension Octokit {
-  /// A repository on GitHub.
-  struct Repository: ModelProtocol {
-    /// Whether to allow Auto-merge to be used on pull requests.
+extension Octokit {
+  /// Full Repository
+  public struct Repository: ModelProtocol {
     public let allowAutoMerge: Bool?
-    /// Whether to allow forking this repo
     public let allowForking: Bool?
-    /// Whether to allow merge commits for pull requests.
     public let allowMergeCommit: Bool?
-    /// Whether to allow rebase merges for pull requests.
     public let allowRebaseMerge: Bool?
-    /// Whether to allow squash merges for pull requests.
     public let allowSquashMerge: Bool?
-    /// Whether or not a pull request head branch that is behind its base branch can always be
-    /// updated even if it is not required to be up to date before merging.
     public let allowUpdateBranch: Bool?
-    /// Whether anonymous git access is enabled for this repository
+    /// Whether anonymous git access is allowed.
     public let anonymousAccessEnabled: Bool?
     public let archiveUrl: String
-    /// Whether the repository is archived.
     public let archived: Bool
     public let assigneesUrl: String
     public let blobsUrl: String
     public let branchesUrl: String
     public let cloneUrl: String
+    /// Code of Conduct Simple
+    public let codeOfConduct: CodeOfConduct?
     public let collaboratorsUrl: String
     public let commentsUrl: String
     public let commitsUrl: String
     public let compareUrl: String
     public let contentsUrl: String
     public let contributorsUrl: String
-    public let createdAt: Date?
-    /// The default branch of the repository.
+    public let createdAt: Date
     public let defaultBranch: String
-    /// Whether to delete head branches when pull requests are merged
     public let deleteBranchOnMerge: Bool?
     public let deploymentsUrl: String
     public let description: String?
@@ -52,23 +44,16 @@ public extension Octokit {
     public let gitRefsUrl: String
     public let gitTagsUrl: String
     public let gitUrl: String
-    /// Whether discussions are enabled.
-    public let hasDiscussions: Bool?
-    /// Whether downloads are enabled.
+    public let hasDiscussions: Bool
     public let hasDownloads: Bool
-    /// Whether issues are enabled.
     public let hasIssues: Bool
     public let hasPages: Bool
-    /// Whether projects are enabled.
     public let hasProjects: Bool
-    /// Whether the wiki is enabled.
     public let hasWiki: Bool
     public let homepage: String?
     public let hooksUrl: String
     public let htmlUrl: String
-    /// Unique identifier of the repository
     public let id: Int
-    /// Whether this repository acts as a template that can be used to generate new repositories.
     public let isTemplate: Bool?
     public let issueCommentUrl: String
     public let issueEventsUrl: String
@@ -77,7 +62,7 @@ public extension Octokit {
     public let labelsUrl: String
     public let language: String?
     public let languagesUrl: String
-    public let license: LicenseSimple?
+    public let license: License?
     public let masterBranch: String?
     /// The default value for a merge commit message.
     ///
@@ -94,22 +79,21 @@ public extension Octokit {
     public let mergesUrl: String
     public let milestonesUrl: String
     public let mirrorUrl: String?
-    /// The name of the repository.
     public let name: String
     public let networkCount: Int?
-    public let nodeId: String
+    public let nodeId: String?
     public let notificationsUrl: String
     public let openIssues: Int
     public let openIssuesCount: Int
-    public let organization: User?
+    public let organization: UserBrief?
     /// A GitHub user.
-    public let owner: User
-    public let permissions: RepositoryPermissions?
-    /// Whether the repository is private or public.
+    public let owner: UserBrief
+    public let permissions: Permissions?
     public let repositoryPrivate: Bool
     public let pullsUrl: String
-    public let pushedAt: Date?
+    public let pushedAt: Date
     public let releasesUrl: String
+    public let securityAndAnalysis: SecurityAndAnalysis?
     /// The size of the repository. Size is calculated hourly. When a repository is initially
     /// created, the size is 0.
     public let size: Int
@@ -128,7 +112,6 @@ public extension Octokit {
     public let sshUrl: String
     public let stargazersCount: Int
     public let stargazersUrl: String
-    public let starredAt: String?
     public let statusesUrl: String
     public let subscribersCount: Int?
     public let subscribersUrl: String
@@ -137,20 +120,118 @@ public extension Octokit {
     public let tagsUrl: String
     public let teamsUrl: String
     public let tempCloneToken: String?
-    public let templateRepository: TemplateRepository?
     public let topics: [String]?
     public let treesUrl: String
-    public let updatedAt: Date?
+    public let updatedAt: Date
     public let url: String
-    /// Whether a squash merge commit can use the pull request title as default. **This property
-    /// has been deprecated. Please use `squash_merge_commit_title` instead.
     public let useSquashPrTitleAsDefault: Bool?
     /// The repository visibility: public, private, or internal.
     public let visibility: String?
     public let watchers: Int
     public let watchersCount: Int
-    /// Whether to require contributors to sign off on web-based commits
     public let webCommitSignoffRequired: Bool?
+
+    internal enum CodingKeys: String, CodingKey {
+      case allowAutoMerge = "allow_auto_merge"
+      case allowForking = "allow_forking"
+      case allowMergeCommit = "allow_merge_commit"
+      case allowRebaseMerge = "allow_rebase_merge"
+      case allowSquashMerge = "allow_squash_merge"
+      case allowUpdateBranch = "allow_update_branch"
+      case anonymousAccessEnabled = "anonymous_access_enabled"
+      case archiveUrl = "archive_url"
+      case archived = "archived"
+      case assigneesUrl = "assignees_url"
+      case blobsUrl = "blobs_url"
+      case branchesUrl = "branches_url"
+      case cloneUrl = "clone_url"
+      case codeOfConduct = "code_of_conduct"
+      case collaboratorsUrl = "collaborators_url"
+      case commentsUrl = "comments_url"
+      case commitsUrl = "commits_url"
+      case compareUrl = "compare_url"
+      case contentsUrl = "contents_url"
+      case contributorsUrl = "contributors_url"
+      case createdAt = "created_at"
+      case defaultBranch = "default_branch"
+      case deleteBranchOnMerge = "delete_branch_on_merge"
+      case deploymentsUrl = "deployments_url"
+      case description = "description"
+      case disabled = "disabled"
+      case downloadsUrl = "downloads_url"
+      case eventsUrl = "events_url"
+      case fork = "fork"
+      case forks = "forks"
+      case forksCount = "forks_count"
+      case forksUrl = "forks_url"
+      case fullName = "full_name"
+      case gitCommitsUrl = "git_commits_url"
+      case gitRefsUrl = "git_refs_url"
+      case gitTagsUrl = "git_tags_url"
+      case gitUrl = "git_url"
+      case hasDiscussions = "has_discussions"
+      case hasDownloads = "has_downloads"
+      case hasIssues = "has_issues"
+      case hasPages = "has_pages"
+      case hasProjects = "has_projects"
+      case hasWiki = "has_wiki"
+      case homepage = "homepage"
+      case hooksUrl = "hooks_url"
+      case htmlUrl = "html_url"
+      case id = "id"
+      case isTemplate = "is_template"
+      case issueCommentUrl = "issue_comment_url"
+      case issueEventsUrl = "issue_events_url"
+      case issuesUrl = "issues_url"
+      case keysUrl = "keys_url"
+      case labelsUrl = "labels_url"
+      case language = "language"
+      case languagesUrl = "languages_url"
+      case license = "license"
+      case masterBranch = "master_branch"
+      case mergeCommitMessage = "merge_commit_message"
+      case mergeCommitTitle = "merge_commit_title"
+      case mergesUrl = "merges_url"
+      case milestonesUrl = "milestones_url"
+      case mirrorUrl = "mirror_url"
+      case name = "name"
+      case networkCount = "network_count"
+      case nodeId = "node_id"
+      case notificationsUrl = "notifications_url"
+      case openIssues = "open_issues"
+      case openIssuesCount = "open_issues_count"
+      case organization = "organization"
+      case owner = "owner"
+      case permissions = "permissions"
+      case repositoryPrivate = "private"
+      case pullsUrl = "pulls_url"
+      case pushedAt = "pushed_at"
+      case releasesUrl = "releases_url"
+      case securityAndAnalysis = "security_and_analysis"
+      case size = "size"
+      case squashMergeCommitMessage = "squash_merge_commit_message"
+      case squashMergeCommitTitle = "squash_merge_commit_title"
+      case sshUrl = "ssh_url"
+      case stargazersCount = "stargazers_count"
+      case stargazersUrl = "stargazers_url"
+      case statusesUrl = "statuses_url"
+      case subscribersCount = "subscribers_count"
+      case subscribersUrl = "subscribers_url"
+      case subscriptionUrl = "subscription_url"
+      case svnUrl = "svn_url"
+      case tagsUrl = "tags_url"
+      case teamsUrl = "teams_url"
+      case tempCloneToken = "temp_clone_token"
+      case topics = "topics"
+      case treesUrl = "trees_url"
+      case updatedAt = "updated_at"
+      case url = "url"
+      case useSquashPrTitleAsDefault = "use_squash_pr_title_as_default"
+      case visibility = "visibility"
+      case watchers = "watchers"
+      case watchersCount = "watchers_count"
+      case webCommitSignoffRequired = "web_commit_signoff_required"
+    }
 
     public static var random: Self {
       Self(
@@ -167,6 +248,7 @@ public extension Octokit {
         blobsUrl: .random,
         branchesUrl: .random,
         cloneUrl: .random,
+        codeOfConduct: .random,
         collaboratorsUrl: .random,
         commentsUrl: .random,
         commitsUrl: .random,
@@ -228,13 +310,13 @@ public extension Octokit {
         pullsUrl: .random,
         pushedAt: .random,
         releasesUrl: .random,
+        securityAndAnalysis: .random,
         size: .random,
         squashMergeCommitMessage: .random,
         squashMergeCommitTitle: .random,
         sshUrl: .random,
         stargazersCount: .random,
         stargazersUrl: .random,
-        starredAt: .random,
         statusesUrl: .random,
         subscribersCount: .random,
         subscribersUrl: .random,
@@ -243,7 +325,6 @@ public extension Octokit {
         tagsUrl: .random,
         teamsUrl: .random,
         tempCloneToken: .random,
-        templateRepository: .random,
         topics: .random,
         treesUrl: .random,
         updatedAt: .random,
@@ -254,6 +335,142 @@ public extension Octokit {
         watchersCount: .random,
         webCommitSignoffRequired: .random
       )
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public struct Permissions: ModelProtocol {
+    public let admin: Bool
+    public let maintain: Bool?
+    public let pull: Bool
+    public let push: Bool
+    public let triage: Bool?
+
+    internal enum CodingKeys: String, CodingKey {
+      case admin = "admin"
+      case maintain = "maintain"
+      case pull = "pull"
+      case push = "push"
+      case triage = "triage"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(
+        admin: .random,
+        maintain: .random,
+        pull: .random,
+        push: .random,
+        triage: .random
+      )
+    }
+  }
+}
+
+extension Octokit.Repository {
+  /// Code of Conduct Simple
+  public struct CodeOfConduct: ModelProtocol {
+    public let htmlUrl: String?
+    public let key: String
+    public let name: String
+    public let url: String
+
+    enum CodingKeys: String, CodingKey {
+      case htmlUrl = "html_url"
+      case key = "key"
+      case name = "name"
+      case url = "url"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(
+        htmlUrl: .random,
+        key: .random,
+        name: .random,
+        url: .random
+      )
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public struct SecurityAndAnalysis: ModelProtocol {
+    public let advancedSecurity: AdvancedSecurity?
+    public let secretScanning: SecretScanning?
+    public let secretScanningPushProtection: SecretScanningPushProtection?
+
+    enum CodingKeys: String, CodingKey {
+      case advancedSecurity = "advanced_security"
+      case secretScanning = "secret_scanning"
+      case secretScanningPushProtection = "secret_scanning_push_protection"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(
+        advancedSecurity: .random,
+        secretScanning: .random,
+        secretScanningPushProtection: .random
+      )
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public struct AdvancedSecurity: ModelProtocol {
+    public let status: Status?
+
+    enum CodingKeys: String, CodingKey {
+      case status = "status"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(status: .random)
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public enum Status: String, ModelProtocol {
+    case disabled = "disabled"
+    case enabled = "enabled"
+
+    public var id: UUID { UUID() }
+    public static var random: Self {
+      [.disabled, .enabled].random
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public struct SecretScanning: ModelProtocol {
+    public let status: Status?
+
+    enum CodingKeys: String, CodingKey {
+      case status = "status"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(status: .random)
+    }
+  }
+}
+
+extension Octokit.Repository {
+  public struct SecretScanningPushProtection: ModelProtocol {
+    public let status: Status?
+
+    enum CodingKeys: String, CodingKey {
+      case status = "status"
+    }
+
+    public let id = UUID()
+    public static var random: Self {
+      Self(status: .random)
     }
   }
 }

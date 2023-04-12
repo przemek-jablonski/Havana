@@ -1,0 +1,2049 @@
+[
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005201610",
+        "pull_request_review_id": 1155837229,
+        "id": 1005201610,
+        "node_id": "PRRC_kwDOIPDwls476ijK",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],\n+                task=\"text-generation\",\n+            )\n+        except ImportError:\n+            raise ValueError(\n+                \"Could not import huggingface_hub python package. \"\n+                \"Please it install it with `pip install huggingface_hub`.\"\n+            )\n+        return values\n+\n+    @property\n+    def _default_params(self) -> Mapping[str, Any]:\n+        \"\"\"Get the default parameters for calling OpenAI API.\"\"\"",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "ubernit",
+        "created_at": "2022-10-26T04:13:36Z",
+        "updated_at": "2022-10-26T04:27:44Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005201610",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005201610"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005201610"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005201610/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 71,
+        "side": "RIGHT",
+        "original_position": 71,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005203487",
+        "pull_request_review_id": 1155837229,
+        "id": 1005203487,
+        "node_id": "PRRC_kwDOIPDwls476jAf",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "These parameters seem like nice ones to include as init args with optional env args as backups.\r\n\r\nAlso the relationship feels a bit convoluted at first glance",
+        "created_at": "2022-10-26T04:18:29Z",
+        "updated_at": "2022-10-26T04:27:44Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005203487",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005203487"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005203487"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005203487/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 59,
+        "original_line": 59,
+        "side": "RIGHT",
+        "original_position": 59,
+        "position": 59,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005205376",
+        "pull_request_review_id": 1155837229,
+        "id": 1005205376,
+        "node_id": "PRRC_kwDOIPDwls476jeA",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],\n+                task=\"text-generation\",\n+            )\n+        except ImportError:\n+            raise ValueError(\n+                \"Could not import huggingface_hub python package. \"\n+                \"Please it install it with `pip install huggingface_hub`.\"\n+            )\n+        return values\n+\n+    @property\n+    def _default_params(self) -> Mapping[str, Any]:\n+        \"\"\"Get the default parameters for calling OpenAI API.\"\"\"\n+        return {\n+            \"temperature\": self.temperature,\n+            \"max_new_tokens\": self.max_new_tokens,\n+            \"top_p\": self.top_p,\n+            \"num_return_sequences\": self.num_return_sequences,\n+        }\n+\n+    def __call__(self, prompt: str, stop: Optional[List[str]] = None) -> str:\n+        \"\"\"Call out to HuggingFace Hub's inference endpoint.\n+\n+        Args:\n+            prompt: The prompt to pass into the model.\n+            stop: Optional list of stop words to use when generating.\n+\n+        Returns:\n+            The string generated by the model.\n+\n+        Example:\n+            .. code-block:: python\n+\n+                response = hf(\"Tell me a joke.\")\n+        \"\"\"\n+        response = self.client(inputs=prompt, params=self._default_params)\n+        if \"error\" in response:\n+            raise ValueError(f\"Error raised by inference API: {response['error']}\")\n+        text = response[0][\"generated_text\"][len(prompt) :]\n+        if stop is not None:",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Could we share this across models?\r\n\r\nYeah it's a bit hacky but I don't see better support via InferenceAPI and ultimately it just ends with a bit of wasted computation ",
+        "created_at": "2022-10-26T04:23:01Z",
+        "updated_at": "2022-10-26T04:27:44Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005205376",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005205376"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005205376"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005205376/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 98,
+        "original_line": 98,
+        "side": "RIGHT",
+        "original_position": 98,
+        "position": 98,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005207507",
+        "pull_request_review_id": 1155837229,
+        "id": 1005207507,
+        "node_id": "PRRC_kwDOIPDwls476j_T",
+        "diff_hunk": "@@ -0,0 +1,8 @@\n+\"\"\"Common utility functions for working with LLM APIs.\"\"\"\n+import re\n+from typing import List\n+\n+\n+def enforce_stop_tokens(text: str, stop: List[str]) -> str:",
+        "path": "langchain/llms/utils.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Double checking - the prompt isn't returned as part of the generated text, right? ",
+        "created_at": "2022-10-26T04:26:52Z",
+        "updated_at": "2022-10-26T04:27:44Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005207507",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005207507"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005207507"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005207507/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 6,
+        "original_line": 6,
+        "side": "RIGHT",
+        "original_position": 6,
+        "position": 6,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005215592",
+        "pull_request_review_id": 1155854406,
+        "id": 1005215592,
+        "node_id": "PRRC_kwDOIPDwls476l9o",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "what in particular seems convoluted?",
+        "created_at": "2022-10-26T04:39:41Z",
+        "updated_at": "2022-10-26T04:39:41Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005215592",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005215592"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005215592"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005215592/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 59,
+        "original_line": 59,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005203487,
+        "original_position": 59,
+        "position": 59,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005218795",
+        "pull_request_review_id": 1155858213,
+        "id": 1005218795,
+        "node_id": "PRRC_kwDOIPDwls476mvr",
+        "diff_hunk": "@@ -0,0 +1,8 @@\n+\"\"\"Common utility functions for working with LLM APIs.\"\"\"\n+import re\n+from typing import List\n+\n+\n+def enforce_stop_tokens(text: str, stop: List[str]) -> str:",
+        "path": "langchain/llms/utils.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "no it shouldnt be",
+        "created_at": "2022-10-26T04:42:31Z",
+        "updated_at": "2022-10-26T04:42:32Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005218795",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005218795"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005218795"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005218795/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 6,
+        "original_line": 6,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005207507,
+        "original_position": 6,
+        "position": 6,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219284",
+        "pull_request_review_id": 1155858791,
+        "id": 1005219284,
+        "node_id": "PRRC_kwDOIPDwls476m3U",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],\n+                task=\"text-generation\",\n+            )\n+        except ImportError:\n+            raise ValueError(\n+                \"Could not import huggingface_hub python package. \"\n+                \"Please it install it with `pip install huggingface_hub`.\"\n+            )\n+        return values\n+\n+    @property\n+    def _default_params(self) -> Mapping[str, Any]:\n+        \"\"\"Get the default parameters for calling OpenAI API.\"\"\"\n+        return {\n+            \"temperature\": self.temperature,\n+            \"max_new_tokens\": self.max_new_tokens,\n+            \"top_p\": self.top_p,\n+            \"num_return_sequences\": self.num_return_sequences,\n+        }\n+\n+    def __call__(self, prompt: str, stop: Optional[List[str]] = None) -> str:\n+        \"\"\"Call out to HuggingFace Hub's inference endpoint.\n+\n+        Args:\n+            prompt: The prompt to pass into the model.\n+            stop: Optional list of stop words to use when generating.\n+\n+        Returns:\n+            The string generated by the model.\n+\n+        Example:\n+            .. code-block:: python\n+\n+                response = hf(\"Tell me a joke.\")\n+        \"\"\"\n+        response = self.client(inputs=prompt, params=self._default_params)\n+        if \"error\" in response:\n+            raise ValueError(f\"Error raised by inference API: {response['error']}\")\n+        text = response[0][\"generated_text\"][len(prompt) :]\n+        if stop is not None:",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "what do you mean by share across models? its already factored out and used in cohere as well (cohere is a bit different - you can pass stop words but they are included at the end of the prompt)",
+        "created_at": "2022-10-26T04:43:33Z",
+        "updated_at": "2022-10-26T04:43:33Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005219284",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219284"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005219284"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219284/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 98,
+        "original_line": 98,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005205376,
+        "original_position": 98,
+        "position": 98,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219525",
+        "pull_request_review_id": 1155859163,
+        "id": 1005219525,
+        "node_id": "PRRC_kwDOIPDwls476m7F",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "I think the main thing is that the client is created in a validation function - but that seems out of scope of this PR given the existing structure",
+        "created_at": "2022-10-26T04:44:16Z",
+        "updated_at": "2022-10-26T04:44:16Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005219525",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219525"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005219525"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005219525/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 59,
+        "original_line": 59,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005203487,
+        "original_position": 59,
+        "position": 59,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005220415",
+        "pull_request_review_id": 1155860373,
+        "id": 1005220415,
+        "node_id": "PRRC_kwDOIPDwls476nI_",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "ah yeah i agree. is a bit weird. may look into __post_init__ ",
+        "created_at": "2022-10-26T04:46:46Z",
+        "updated_at": "2022-10-26T04:46:46Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005220415",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005220415"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005220415"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005220415/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 59,
+        "original_line": 59,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005203487,
+        "original_position": 59,
+        "position": 59,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005221090",
+        "pull_request_review_id": 1155861184,
+        "id": 1005221090,
+        "node_id": "PRRC_kwDOIPDwls476nTi",
+        "diff_hunk": "@@ -0,0 +1,102 @@\n+\"\"\"Wrapper around HuggingFace APIs.\"\"\"\n+import os\n+from typing import Any, Dict, List, Mapping, Optional\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.llms.base import LLM\n+from langchain.llms.utils import enforce_stop_tokens\n+\n+DEFAULT_REPO_ID = \"gpt2\"\n+\n+\n+class HuggingFaceHub(BaseModel, LLM):\n+    \"\"\"Wrapper around HuggingFaceHub  models.\n+\n+    To use, you should have the ``huggingface_hub`` python package installed, and the\n+    environment variable ``HUGGINGFACEHUB_API_TOKEN`` set with your API token.\n+\n+    Only supports task `text-generation` for now.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import HuggingFace\n+            hf = HuggingFace(model=\"text-davinci-002\")\n+    \"\"\"\n+\n+    client: Any  #: :meta private:\n+    repo_id: str = DEFAULT_REPO_ID\n+    \"\"\"Model name to use.\"\"\"\n+    temperature: float = 0.7\n+    \"\"\"What sampling temperature to use.\"\"\"\n+    max_new_tokens: int = 200\n+    \"\"\"The maximum number of tokens to generate in the completion.\"\"\"\n+    top_p: int = 1\n+    \"\"\"Total probability mass of tokens to consider at each step.\"\"\"\n+    num_return_sequences: int = 1\n+    \"\"\"How many completions to generate for each prompt.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"HUGGINGFACEHUB_API_TOKEN\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find HuggingFace API token, please add an environment variable\"\n+                \" `HUGGINGFACEHUB_API_TOKEN` which contains it.\"\n+            )\n+        try:\n+            from huggingface_hub.inference_api import InferenceApi\n+\n+            repo_id = values.get(\"repo_id\", DEFAULT_REPO_ID)\n+            values[\"client\"] = InferenceApi(\n+                repo_id=repo_id,\n+                token=os.environ[\"HUGGINGFACEHUB_API_TOKEN\"],\n+                task=\"text-generation\",\n+            )\n+        except ImportError:\n+            raise ValueError(\n+                \"Could not import huggingface_hub python package. \"\n+                \"Please it install it with `pip install huggingface_hub`.\"\n+            )\n+        return values\n+\n+    @property\n+    def _default_params(self) -> Mapping[str, Any]:\n+        \"\"\"Get the default parameters for calling OpenAI API.\"\"\"\n+        return {\n+            \"temperature\": self.temperature,\n+            \"max_new_tokens\": self.max_new_tokens,\n+            \"top_p\": self.top_p,\n+            \"num_return_sequences\": self.num_return_sequences,\n+        }\n+\n+    def __call__(self, prompt: str, stop: Optional[List[str]] = None) -> str:\n+        \"\"\"Call out to HuggingFace Hub's inference endpoint.\n+\n+        Args:\n+            prompt: The prompt to pass into the model.\n+            stop: Optional list of stop words to use when generating.\n+\n+        Returns:\n+            The string generated by the model.\n+\n+        Example:\n+            .. code-block:: python\n+\n+                response = hf(\"Tell me a joke.\")\n+        \"\"\"\n+        response = self.client(inputs=prompt, params=self._default_params)\n+        if \"error\" in response:\n+            raise ValueError(f\"Error raised by inference API: {response['error']}\")\n+        text = response[0][\"generated_text\"][len(prompt) :]\n+        if stop is not None:",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "69e4062a2030cc2721cb74627eb64d258a0266a8",
+        "original_commit_id": "d834742d66b55ee5383354587e80dc4d6e51cc2b",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Yeah this is sufficient - not enough examples to merit more",
+        "created_at": "2022-10-26T04:48:23Z",
+        "updated_at": "2022-10-26T04:48:23Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005221090",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/23",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005221090"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/23#discussion_r1005221090"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/23"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1005221090/reactions",
+            "total_count": 1,
+            "+1": 1,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 98,
+        "original_line": 98,
+        "side": "RIGHT",
+        "in_reply_to_id": 1005205376,
+        "original_position": 98,
+        "position": 98,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006880636",
+        "pull_request_review_id": 1158285225,
+        "id": 1006880636,
+        "node_id": "PRRC_kwDOIPDwls48A8d8",
+        "diff_hunk": "@@ -0,0 +1,116 @@\n+\"\"\"Implement an LLM driven browser.\"\"\"\n+from typing import Dict, List, Optional\n+\n+from pydantic import BaseModel, Extra\n+\n+from langchain.chains.base import Chain\n+from langchain.chains.llm import SelfConsistencyLLMChain\n+from langchain.chains.self_consistency.prompts.anli_prompt import ANLI_PROMPT\n+from langchain.chains.self_consistency.prompts.aqua_rat_prompt import AQUA_RAT_PROMPT\n+from langchain.chains.self_consistency.prompts.arc_prompt import ARC_PROMPT\n+from langchain.chains.self_consistency.prompts.arithmetic_reasoning_prompt import (\n+    ARITHMETIC_REASONING_PROMPT,\n+)\n+from langchain.chains.self_consistency.prompts.boolq_prompt import BOOLQ_PROMPT\n+from langchain.chains.self_consistency.prompts.hotpotqa_prompt import HOTPOTQA_PROMPT\n+from langchain.chains.self_consistency.prompts.esnli_prompt import ESNLI_PROMPT\n+from langchain.llms.base import LLM\n+from langchain.llms.openai import OpenAI\n+from langchain.prompt import Prompt\n+\n+_CLASS_TO_PROMPT: Dict[str, Prompt] = {",
+        "path": "langchain/chains/self_consistency/base.py",
+        "commit_id": "9814161edb29654e09bc44cd2a541f3ee774f3e9",
+        "original_commit_id": "ad53a2ef81447ccf062906edab93bde0e7e1eb89",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "ugly + unnecessary  IMO to have all these overloads for a single chain rn",
+        "created_at": "2022-10-27T13:33:36Z",
+        "updated_at": "2022-10-27T13:33:36Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006880636",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/31",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006880636"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006880636"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/31"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006880636/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 21,
+        "original_line": 21,
+        "side": "RIGHT",
+        "original_position": 21,
+        "position": 21,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006881341",
+        "pull_request_review_id": 1158286190,
+        "id": 1006881341,
+        "node_id": "PRRC_kwDOIPDwls48A8o9",
+        "diff_hunk": "@@ -18,11 +18,11 @@ class Cohere(BaseModel, LLM):\n         .. code-block:: python\n \n             from langchain import Cohere\n-            cohere = Cohere(model=\"gptd-instruct-tft\")\n+            cohere = Cohere(model=\"small\")",
+        "path": "langchain/llms/cohere.py",
+        "commit_id": "9814161edb29654e09bc44cd2a541f3ee774f3e9",
+        "original_commit_id": "ad53a2ef81447ccf062906edab93bde0e7e1eb89",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Cohere has \"small\", \"medium\", \"large\", \"x-large\" for public model names",
+        "created_at": "2022-10-27T13:34:06Z",
+        "updated_at": "2022-10-27T13:34:07Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006881341",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/31",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006881341"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006881341"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/31"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006881341/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 21,
+        "original_line": 21,
+        "side": "RIGHT",
+        "original_position": 14,
+        "position": 14,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006882027",
+        "pull_request_review_id": 1158287214,
+        "id": 1006882027,
+        "node_id": "PRRC_kwDOIPDwls48A8zr",
+        "diff_hunk": "@@ -69,14 +69,22 @@ def validate_environment(cls, values: Dict) -> Dict:\n     @property\n     def _default_params(self) -> Mapping[str, Any]:\n         \"\"\"Get the default parameters for calling HuggingFace Hub API.\"\"\"\n+        # Convert temperature from [0, 1] to [1, 100] so 0 maps to 1 and 1 maps to 100.",
+        "path": "langchain/llms/huggingface_hub.py",
+        "commit_id": "9814161edb29654e09bc44cd2a541f3ee774f3e9",
+        "original_commit_id": "ad53a2ef81447ccf062906edab93bde0e7e1eb89",
+        "user": {
+            "login": "hinthornw",
+            "id": 13333726,
+            "node_id": "MDQ6VXNlcjEzMzMzNzI2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13333726?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hinthornw",
+            "html_url": "https://github.com/hinthornw",
+            "followers_url": "https://api.github.com/users/hinthornw/followers",
+            "following_url": "https://api.github.com/users/hinthornw/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hinthornw/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hinthornw/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hinthornw/subscriptions",
+            "organizations_url": "https://api.github.com/users/hinthornw/orgs",
+            "repos_url": "https://api.github.com/users/hinthornw/repos",
+            "events_url": "https://api.github.com/users/hinthornw/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hinthornw/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Huggingface seems to have weird expectation that temperature is on a [1, 100] scale rather than [0, 1]",
+        "created_at": "2022-10-27T13:34:42Z",
+        "updated_at": "2022-10-27T13:34:42Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006882027",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/31",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006882027"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/31#discussion_r1006882027"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/31"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1006882027/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 72,
+        "original_line": 72,
+        "side": "RIGHT",
+        "original_position": 13,
+        "position": 13,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008237858",
+        "pull_request_review_id": 1160319547,
+        "id": 1008237858,
+        "node_id": "PRRC_kwDOIPDwls48GH0i",
+        "diff_hunk": "@@ -70,3 +70,19 @@ def template_is_valid(cls, values: Dict) -> Dict:\n         except KeyError:\n             raise ValueError(\"Invalid prompt schema.\")\n         return values\n+\n+    @classmethod\n+    def from_examples(\n+        cls,\n+        examples: List[Dict],\n+        suffix: str,\n+        input_variables: List[str],\n+        example_prompt: \"Prompt\",\n+        example_separator: str = \"\\n\",\n+        prefix=\"\",\n+    ):\n+        example_str = example_separator.join(",
+        "path": "langchain/prompt.py",
+        "commit_id": "7c57740031db9dff50db223fa3c2f1ffda550db8",
+        "original_commit_id": "d08a42f9e6dae18cc455c80d7f8a5b2ac988ed96",
+        "user": {
+            "login": "sjwhitmore",
+            "id": 6690839,
+            "node_id": "MDQ6VXNlcjY2OTA4Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6690839?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sjwhitmore",
+            "html_url": "https://github.com/sjwhitmore",
+            "followers_url": "https://api.github.com/users/sjwhitmore/followers",
+            "following_url": "https://api.github.com/users/sjwhitmore/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sjwhitmore/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sjwhitmore/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sjwhitmore/subscriptions",
+            "organizations_url": "https://api.github.com/users/sjwhitmore/orgs",
+            "repos_url": "https://api.github.com/users/sjwhitmore/repos",
+            "events_url": "https://api.github.com/users/sjwhitmore/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sjwhitmore/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "could add something along the lines of\r\n```for e in examples, assert(input_variables in e.keys())... ```\r\nand something along the lines of checking the suffix is also aligned with one of the keys in the examples.\r\njust to make sure the formatting of the examples match the formatting of the input variables and output type for the prompt.\r\n",
+        "created_at": "2022-10-28T16:16:10Z",
+        "updated_at": "2022-10-28T16:16:10Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008237858",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/41",
+        "author_association": "COLLABORATOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008237858"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008237858"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/41"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008237858/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 84,
+        "side": "RIGHT",
+        "original_position": 15,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719678",
+        "pull_request_review_id": 1161006181,
+        "id": 1008719678,
+        "node_id": "PRRC_kwDOIPDwls48H9c-",
+        "diff_hunk": "@@ -109,9 +104,12 @@\n scientist.\n Thought 3: Leonid Levin is a mathematician and computer scientist. So Pavel Urysohn\n and Leonid Levin have the same type of work.\n-Action 3: Finish[yes]\n+Action 3: Finish[yes]\"\"\"]\n+PREFIX=\"\"\n+EXAMPLE_SEPARATOR = \"\"\"\\n\\n\"\"\"\n+SUFFIX = \"\"\"\\n\\nQuestion: {input}\"\"\"\n+_DEFAULT_TEMPLATE = PREFIX + EXAMPLE_SEPARATOR.join(EXAMPLES) + SUFFIX",
+        "path": "langchain/chains/react/prompt.py",
+        "commit_id": "7c57740031db9dff50db223fa3c2f1ffda550db8",
+        "original_commit_id": "a33ae43b4650e1c47a0cbe5e26345ec7f6edda1f",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "can we use the `from_examples` classmethod here?",
+        "created_at": "2022-10-29T15:39:44Z",
+        "updated_at": "2022-10-29T15:40:50Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008719678",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/41",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719678"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008719678"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/41"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719678/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 111,
+        "side": "RIGHT",
+        "original_position": 78,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719856",
+        "pull_request_review_id": 1161006181,
+        "id": 1008719856,
+        "node_id": "PRRC_kwDOIPDwls48H9fw",
+        "diff_hunk": "@@ -70,3 +73,17 @@ def template_is_valid(cls, values: Dict) -> Dict:\n         except KeyError:\n             raise ValueError(\"Invalid prompt schema.\")\n         return values\n+\n+    @classmethod\n+    def from_examples(\n+        cls: Type[TPrompt],\n+        examples: List[str],\n+        suffix: str,\n+        input_variables: List[str],\n+        example_separator: str = \"\\n\",\n+        prefix: str = \"\",\n+    ) -> TPrompt:",
+        "path": "langchain/prompt.py",
+        "commit_id": "7c57740031db9dff50db223fa3c2f1ffda550db8",
+        "original_commit_id": "a33ae43b4650e1c47a0cbe5e26345ec7f6edda1f",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "i think you can just (1) not type hint `cls` and have the return type as `\"Prompt\"` (like in quotes) and you should be good",
+        "created_at": "2022-10-29T15:40:36Z",
+        "updated_at": "2022-10-29T15:40:50Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008719856",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/41",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719856"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/41#discussion_r1008719856"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/41"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008719856/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 85,
+        "side": "RIGHT",
+        "original_position": 30,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008979936",
+        "pull_request_review_id": 1161257295,
+        "id": 1008979936,
+        "node_id": "PRRC_kwDOIPDwls48I8_g",
+        "diff_hunk": "@@ -103,3 +103,26 @@ llm_chain.predict(question=question)\n \n The above examples are probably the most user friendly documentation that exists,\n but full API docs can be found [here](https://langchain.readthedocs.io/en/latest/?).\n+\n+## 🤖 Developer Guide\n+\n+To begin developing on this project, first clone to the repo locally.\n+To install requirements, run `pip install -r requirments.txt`.\n+This will install all requirements for running the package, examples, linting, formatting, and tests.\n+\n+Formatting for this project is a combination of [Black](https://black.readthedocs.io/en/stable/) and [isort](https://pycqa.github.io/isort/).\n+To run formatting for this project, run `make format`.\n+\n+Linting for this project is a combination of [Black](https://black.readthedocs.io/en/stable/), [isort](https://pycqa.github.io/isort/), [flake8](https://flake8.pycqa.org/en/latest/), and [mypy](http://mypy-lang.org/).\n+To run linting for this project, run `make lint`.\n+We recognize linting can be annoying - if you do not want to do it, please contact a project maintainer and they can help you with it. We do not want this to be a blocker for good code getting contributed.\n+\n+Unit tests cover modular logic that does not require calls to outside apis.",
+        "path": "README.md",
+        "commit_id": "8edb7d76bb7402614ac877fe3e5a1bfe48e0e92d",
+        "original_commit_id": "9a809a22b174b139ea6757c5f2f5e345e4916c4a",
+        "user": {
+            "login": "sjwhitmore",
+            "id": 6690839,
+            "node_id": "MDQ6VXNlcjY2OTA4Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6690839?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sjwhitmore",
+            "html_url": "https://github.com/sjwhitmore",
+            "followers_url": "https://api.github.com/users/sjwhitmore/followers",
+            "following_url": "https://api.github.com/users/sjwhitmore/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sjwhitmore/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sjwhitmore/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sjwhitmore/subscriptions",
+            "organizations_url": "https://api.github.com/users/sjwhitmore/orgs",
+            "repos_url": "https://api.github.com/users/sjwhitmore/repos",
+            "events_url": "https://api.github.com/users/sjwhitmore/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sjwhitmore/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "should you ask that someone adds a test if they make a change?",
+        "created_at": "2022-10-31T02:15:28Z",
+        "updated_at": "2022-10-31T02:15:47Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/44#discussion_r1008979936",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/44",
+        "author_association": "COLLABORATOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008979936"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/44#discussion_r1008979936"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1008979936/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 120,
+        "original_line": 120,
+        "side": "RIGHT",
+        "original_position": 18,
+        "position": 18,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073454",
+        "pull_request_review_id": 1162831596,
+        "id": 1010073454,
+        "node_id": "PRRC_kwDOIPDwls48NH9u",
+        "diff_hunk": "@@ -84,3 +84,102 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel):",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "e15fc3822f3f98856d269aa97b3d65db69c513e7",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "probably want to a BasePrompt class that just exposes the interface (`format`) so we can just use that for type hints everywhere",
+        "created_at": "2022-11-01T05:02:17Z",
+        "updated_at": "2022-11-01T05:04:19Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010073454",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073454"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010073454"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073454/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 89,
+        "side": "RIGHT",
+        "original_position": 6,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073592",
+        "pull_request_review_id": 1162831596,
+        "id": 1010073592,
+        "node_id": "PRRC_kwDOIPDwls48NH_4",
+        "diff_hunk": "@@ -84,3 +84,102 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"]\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str\n+    \"\"\"Example separator, e.g. \\n\\n, for the dynamic prompt creation.\"\"\"\n+\n+    input_variables: List[str]\n+    \"\"\"A list of the names of the variables the prompt template expects.\"\"\"\n+\n+    prefix: str\n+    \"\"\"Prefix for the prompt.\"\"\"\n+\n+    suffix: str\n+    \"\"\"Suffix for the prompt.\"\"\"\n+\n+    template_format: str = \"f-string\"\n+    \"\"\"The format of the prompt template. Options are: 'f-string'.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    def format(self, **kwargs: Any) -> str:\n+        \"\"\"Dynamically format the prompt with the inputs.\n+\n+        Args:\n+            kwargs: Any arguments to be passed to the prompt template.\n+\n+        Returns:\n+            A formatted string.\n+\n+        Example:\n+\n+        .. code-block:: python\n+\n+            prompt.format(variable1=\"foo\")\n+        \"\"\"\n+        # TODO segment self.examples based on example length &\n+        # input_variables length here\n+        example_str = self.example_separator.join(self.examples)\n+        template = self.prefix + example_str + self.suffix\n+        return _FORMATTER_MAPPING[self.template_format](template, **kwargs)\n+\n+    @root_validator()\n+    def template_is_valid(cls, values: Dict) -> Dict:\n+        \"\"\"Check that suffix and input variables are consistent.\"\"\"\n+        input_variables = values[\"input_variables\"]\n+        suffix = values[\"suffix\"]\n+        template_format = values[\"template_format\"]\n+        if template_format not in _FORMATTER_MAPPING:\n+            valid_formats = list(_FORMATTER_MAPPING)\n+            raise ValueError(\n+                f\"Invalid template format. Got `{template_format}`;\"\n+                f\" should be one of {valid_formats}\"\n+            )\n+        dummy_inputs = {input_variable: \"foo\" for input_variable in input_variables}\n+        try:\n+            formatter_func = _FORMATTER_MAPPING[template_format]\n+            formatter_func(suffix, **dummy_inputs)\n+        except KeyError:\n+            raise ValueError(\"Invalid prompt schema.\")\n+        return values\n+\n+    @classmethod\n+    def from_examples(",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "e15fc3822f3f98856d269aa97b3d65db69c513e7",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "probably don't need this (no new logic here vs init)",
+        "created_at": "2022-11-01T05:02:39Z",
+        "updated_at": "2022-11-01T05:04:19Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010073592",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073592"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010073592"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010073592/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 170,
+        "side": "RIGHT",
+        "original_position": 87,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010074240",
+        "pull_request_review_id": 1162831596,
+        "id": 1010074240,
+        "node_id": "PRRC_kwDOIPDwls48NIKA",
+        "diff_hunk": "@@ -84,3 +84,102 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"]\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str\n+    \"\"\"Example separator, e.g. \\n\\n, for the dynamic prompt creation.\"\"\"\n+\n+    input_variables: List[str]\n+    \"\"\"A list of the names of the variables the prompt template expects.\"\"\"\n+\n+    prefix: str\n+    \"\"\"Prefix for the prompt.\"\"\"\n+\n+    suffix: str\n+    \"\"\"Suffix for the prompt.\"\"\"\n+\n+    template_format: str = \"f-string\"\n+    \"\"\"The format of the prompt template. Options are: 'f-string'.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    def format(self, **kwargs: Any) -> str:\n+        \"\"\"Dynamically format the prompt with the inputs.\n+\n+        Args:\n+            kwargs: Any arguments to be passed to the prompt template.\n+\n+        Returns:\n+            A formatted string.\n+\n+        Example:\n+\n+        .. code-block:: python\n+\n+            prompt.format(variable1=\"foo\")\n+        \"\"\"\n+        # TODO segment self.examples based on example length &\n+        # input_variables length here\n+        example_str = self.example_separator.join(self.examples)\n+        template = self.prefix + example_str + self.suffix\n+        return _FORMATTER_MAPPING[self.template_format](template, **kwargs)\n+\n+    @root_validator()\n+    def template_is_valid(cls, values: Dict) -> Dict:\n+        \"\"\"Check that suffix and input variables are consistent.\"\"\"\n+        input_variables = values[\"input_variables\"]\n+        suffix = values[\"suffix\"]\n+        template_format = values[\"template_format\"]\n+        if template_format not in _FORMATTER_MAPPING:\n+            valid_formats = list(_FORMATTER_MAPPING)\n+            raise ValueError(\n+                f\"Invalid template format. Got `{template_format}`;\"\n+                f\" should be one of {valid_formats}\"\n+            )\n+        dummy_inputs = {input_variable: \"foo\" for input_variable in input_variables}\n+        try:\n+            formatter_func = _FORMATTER_MAPPING[template_format]\n+            formatter_func(suffix, **dummy_inputs)",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "e15fc3822f3f98856d269aa97b3d65db69c513e7",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "i think this is fine? although its mildly possible there could be a variable in the prefix?",
+        "created_at": "2022-11-01T05:04:00Z",
+        "updated_at": "2022-11-01T05:04:19Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010074240",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010074240"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1010074240"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010074240/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 231,
+        "original_line": 226,
+        "side": "RIGHT",
+        "original_position": 81,
+        "position": 114,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010987698",
+        "pull_request_review_id": 1164173425,
+        "id": 1010987698,
+        "node_id": "PRRC_kwDOIPDwls48QnKy",
+        "diff_hunk": "@@ -12,5 +12,6 @@ google-search-results\n playwright\n wikipedia\n huggingface_hub\n+faiss",
+        "path": "requirements.txt",
+        "commit_id": "2707d856a9d9603aff744c80fd55fe71fe54c5b6",
+        "original_commit_id": "ac1d63e083b1b6fba572a8fd2523bc23bb3fdc27",
+        "user": {
+            "login": "sjwhitmore",
+            "id": 6690839,
+            "node_id": "MDQ6VXNlcjY2OTA4Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6690839?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sjwhitmore",
+            "html_url": "https://github.com/sjwhitmore",
+            "followers_url": "https://api.github.com/users/sjwhitmore/followers",
+            "following_url": "https://api.github.com/users/sjwhitmore/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sjwhitmore/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sjwhitmore/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sjwhitmore/subscriptions",
+            "organizations_url": "https://api.github.com/users/sjwhitmore/orgs",
+            "repos_url": "https://api.github.com/users/sjwhitmore/repos",
+            "events_url": "https://api.github.com/users/sjwhitmore/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sjwhitmore/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "did you mean for this to be faiss-cpu? faiss itself doesnt show up as a package for me, looks like you can pip install faiss-cpu or faiss-gpu (From README here --https://github.com/facebookresearch/faiss)",
+        "created_at": "2022-11-01T23:17:38Z",
+        "updated_at": "2022-11-01T23:33:42Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010987698",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/48",
+        "author_association": "COLLABORATOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010987698"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010987698"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/48"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010987698/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 15,
+        "original_line": 15,
+        "side": "RIGHT",
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010994283",
+        "pull_request_review_id": 1164173425,
+        "id": 1010994283,
+        "node_id": "PRRC_kwDOIPDwls48Qoxr",
+        "diff_hunk": "@@ -0,0 +1,54 @@\n+\"\"\"Wrapper around OpenAI embedding models.\"\"\"\n+import os\n+from typing import Any, Dict, List\n+\n+from pydantic import BaseModel, Extra, root_validator\n+\n+from langchain.embeddings.base import Embeddings\n+\n+\n+class OpenAIEmbeddings(BaseModel, Embeddings):\n+    \"\"\"Wrapper around OpenAI embedding models.\"\"\"\n+\n+    embedding_func: Any  #: :meta private:\n+    model_name: str = \"babbage\"\n+    \"\"\"Model name to use.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    @root_validator()\n+    def validate_environment(cls, values: Dict) -> Dict:\n+        \"\"\"Validate that api key and python package exists in environment.\"\"\"\n+        if \"OPENAI_API_KEY\" not in os.environ:\n+            raise ValueError(\n+                \"Did not find OpenAI API key, please add an environment variable\"\n+                \" `OPENAI_API_KEY` which contains it.\"\n+            )\n+        try:\n+            from openai.embeddings_utils import get_embedding\n+\n+            values[\"embedding_func\"] = get_embedding\n+        except ImportError:\n+            raise ValueError(\n+                \"Could not import openai python package. \"\n+                \"Please it install it with `pip install openai`.\"",
+        "path": "langchain/embeddings/openai.py",
+        "commit_id": "2707d856a9d9603aff744c80fd55fe71fe54c5b6",
+        "original_commit_id": "ac1d63e083b1b6fba572a8fd2523bc23bb3fdc27",
+        "user": {
+            "login": "sjwhitmore",
+            "id": 6690839,
+            "node_id": "MDQ6VXNlcjY2OTA4Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6690839?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sjwhitmore",
+            "html_url": "https://github.com/sjwhitmore",
+            "followers_url": "https://api.github.com/users/sjwhitmore/followers",
+            "following_url": "https://api.github.com/users/sjwhitmore/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sjwhitmore/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sjwhitmore/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sjwhitmore/subscriptions",
+            "organizations_url": "https://api.github.com/users/sjwhitmore/orgs",
+            "repos_url": "https://api.github.com/users/sjwhitmore/repos",
+            "events_url": "https://api.github.com/users/sjwhitmore/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sjwhitmore/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "This error message was a bit misleading in the end cause I had openai installed & was missing the dependencies specifically for the embedding_utils import... wonder if changing the text here to be more specific about the import to test will help if others run into this problem?",
+        "created_at": "2022-11-01T23:31:51Z",
+        "updated_at": "2022-11-01T23:33:42Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010994283",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/48",
+        "author_association": "COLLABORATOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010994283"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010994283"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/48"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010994283/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 47,
+        "original_line": 37,
+        "side": "RIGHT",
+        "original_position": 37,
+        "position": 47,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010995684",
+        "pull_request_review_id": 1164183818,
+        "id": 1010995684,
+        "node_id": "PRRC_kwDOIPDwls48QpHk",
+        "diff_hunk": "@@ -12,5 +12,6 @@ google-search-results\n playwright\n wikipedia\n huggingface_hub\n+faiss",
+        "path": "requirements.txt",
+        "commit_id": "2707d856a9d9603aff744c80fd55fe71fe54c5b6",
+        "original_commit_id": "ac1d63e083b1b6fba572a8fd2523bc23bb3fdc27",
+        "user": {
+            "login": "sjwhitmore",
+            "id": 6690839,
+            "node_id": "MDQ6VXNlcjY2OTA4Mzk=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/6690839?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/sjwhitmore",
+            "html_url": "https://github.com/sjwhitmore",
+            "followers_url": "https://api.github.com/users/sjwhitmore/followers",
+            "following_url": "https://api.github.com/users/sjwhitmore/following{/other_user}",
+            "gists_url": "https://api.github.com/users/sjwhitmore/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/sjwhitmore/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/sjwhitmore/subscriptions",
+            "organizations_url": "https://api.github.com/users/sjwhitmore/orgs",
+            "repos_url": "https://api.github.com/users/sjwhitmore/repos",
+            "events_url": "https://api.github.com/users/sjwhitmore/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/sjwhitmore/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "also you will need to add the following to the requirements (consolidating from chain above):\r\nmatplotlib\r\nplotly\r\nscipy\r\nsklearn",
+        "created_at": "2022-11-01T23:34:39Z",
+        "updated_at": "2022-11-01T23:34:39Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010995684",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/48",
+        "author_association": "COLLABORATOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010995684"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/48#discussion_r1010995684"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/48"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1010995684/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 15,
+        "original_line": 15,
+        "side": "RIGHT",
+        "in_reply_to_id": 1010987698,
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506100",
+        "pull_request_review_id": 1169246339,
+        "id": 1014506100,
+        "node_id": "PRRC_kwDOIPDwls48eCJ0",
+        "diff_hunk": "@@ -11,6 +11,16 @@\n }\n \n \n+def count_words(template: str) -> int:\n+    \"\"\"Count words in a template.\"\"\"",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "i think can just do \r\n```\r\nimport re\r\nres = re.split('\\n| ', s)\r\n```",
+        "created_at": "2022-11-04T22:35:55Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506100",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506100"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506100"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506100/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 15,
+        "side": "RIGHT",
+        "original_position": 13,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506133",
+        "pull_request_review_id": 1169246339,
+        "id": 1014506133,
+        "node_id": "PRRC_kwDOIPDwls48eCKV",
+        "diff_hunk": "@@ -126,3 +136,110 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel, BasePrompt):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "what is the r for?",
+        "created_at": "2022-11-04T22:36:03Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506133",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506133"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506133"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506133/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 133,
+        "original_line": 142,
+        "side": "RIGHT",
+        "original_position": 32,
+        "position": 16,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506280",
+        "pull_request_review_id": 1169246339,
+        "id": 1014506280,
+        "node_id": "PRRC_kwDOIPDwls48eCMo",
+        "diff_hunk": "@@ -126,3 +136,110 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel, BasePrompt):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"],\n+                max_length=200,\n+                get_text_length=word_count\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "could this have a reasonable default?",
+        "created_at": "2022-11-04T22:36:32Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506280",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506280"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506280"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506280/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 162,
+        "side": "RIGHT",
+        "original_position": 52,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506490",
+        "pull_request_review_id": 1169246339,
+        "id": 1014506490,
+        "node_id": "PRRC_kwDOIPDwls48eCP6",
+        "diff_hunk": "@@ -126,3 +136,110 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel, BasePrompt):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"],\n+                max_length=200,\n+                get_text_length=word_count\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str\n+    \"\"\"Example separator, e.g. \\n\\n, for the dynamic prompt creation.\"\"\"\n+\n+    input_variables: List[str]\n+    \"\"\"A list of the names of the variables the prompt template expects.\"\"\"\n+\n+    prefix: str\n+    \"\"\"Prefix for the prompt.\"\"\"\n+\n+    suffix: str\n+    \"\"\"Suffix for the prompt.\"\"\"\n+\n+    template_format: str = \"f-string\"\n+    \"\"\"The format of the prompt template. Options are: 'f-string'.\"\"\"\n+\n+    get_text_length: Callable = count_words\n+    \"\"\"Function to measure prompt length. Defaults to word count.\"\"\"\n+\n+    max_length: int = 2048\n+    \"\"\"Max length for the prompt, beyond which examples are cut.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    def format(self, **kwargs: Any) -> str:\n+        \"\"\"Dynamically format the prompt with the inputs.\n+\n+        Args:\n+            kwargs: Any arguments to be passed to the prompt template.\n+\n+        Returns:\n+            A formatted string.\n+\n+        Example:\n+\n+        .. code-block:: python\n+\n+            prompt.format(variable1=\"foo\")\n+        \"\"\"\n+\n+        def return_template(example_list: List[str]) -> str:\n+            \"\"\"Return template given example list.\"\"\"\n+            template = self.example_separator.join(\n+                [self.prefix, *example_list, self.suffix]\n+            )\n+            return _FORMATTER_MAPPING[self.template_format](template, **kwargs)\n+\n+        curr_examples = self.examples\n+        template = return_template(curr_examples)\n+        while self.get_text_length(template) > self.max_length and curr_examples:\n+            curr_examples = curr_examples[:-1]\n+            template = return_template(curr_examples)\n+        print(template)",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "stray print",
+        "created_at": "2022-11-04T22:37:05Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506490",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506490"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506490"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506490/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 216,
+        "side": "RIGHT",
+        "original_position": 106,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506760",
+        "pull_request_review_id": 1169246339,
+        "id": 1014506760,
+        "node_id": "PRRC_kwDOIPDwls48eCUI",
+        "diff_hunk": "@@ -126,3 +136,110 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel, BasePrompt):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"],\n+                max_length=200,\n+                get_text_length=word_count\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str\n+    \"\"\"Example separator, e.g. \\n\\n, for the dynamic prompt creation.\"\"\"\n+\n+    input_variables: List[str]\n+    \"\"\"A list of the names of the variables the prompt template expects.\"\"\"\n+\n+    prefix: str\n+    \"\"\"Prefix for the prompt.\"\"\"\n+\n+    suffix: str\n+    \"\"\"Suffix for the prompt.\"\"\"\n+\n+    template_format: str = \"f-string\"\n+    \"\"\"The format of the prompt template. Options are: 'f-string'.\"\"\"\n+\n+    get_text_length: Callable = count_words\n+    \"\"\"Function to measure prompt length. Defaults to word count.\"\"\"\n+\n+    max_length: int = 2048\n+    \"\"\"Max length for the prompt, beyond which examples are cut.\"\"\"\n+\n+    class Config:\n+        \"\"\"Configuration for this pydantic object.\"\"\"\n+\n+        extra = Extra.forbid\n+\n+    def format(self, **kwargs: Any) -> str:\n+        \"\"\"Dynamically format the prompt with the inputs.\n+\n+        Args:\n+            kwargs: Any arguments to be passed to the prompt template.\n+\n+        Returns:\n+            A formatted string.\n+\n+        Example:\n+\n+        .. code-block:: python\n+\n+            prompt.format(variable1=\"foo\")\n+        \"\"\"\n+\n+        def return_template(example_list: List[str]) -> str:",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "im not a huge fan of nested functions, can we make this a separate class method or is that hard for some reason?",
+        "created_at": "2022-11-04T22:38:05Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506760",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506760"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014506760"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014506760/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 204,
+        "side": "RIGHT",
+        "original_position": 94,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507066",
+        "pull_request_review_id": 1169246339,
+        "id": 1014507066,
+        "node_id": "PRRC_kwDOIPDwls48eCY6",
+        "diff_hunk": "@@ -126,3 +136,110 @@ def from_examples(\n         example_str = example_separator.join(examples)\n         template = prefix + example_str + suffix\n         return cls(input_variables=input_variables, template=template)\n+\n+\n+class DynamicPrompt(BaseModel, BasePrompt):\n+    r\"\"\"Schema to represent a dynamic prompt for an LLM.\n+\n+    Example:\n+        .. code-block:: python\n+\n+            from langchain import DynamicPrompt\n+            dynamic_prompt = DynamicPrompt(\n+                examples=[\"Say hi. Hi\", \"Say ho. Ho\"],\n+                example_separator=\"\\n\\n\",\n+                prefix=\"\",\n+                suffix=\"\\n\\nSay {foo}\"\n+                input_variables=[\"foo\"],\n+                max_length=200,\n+                get_text_length=word_count\n+            )\n+    \"\"\"\n+\n+    examples: List[str]\n+    \"\"\"A list of the examples that the prompt template expects.\"\"\"\n+\n+    example_separator: str\n+    \"\"\"Example separator, e.g. \\n\\n, for the dynamic prompt creation.\"\"\"\n+\n+    input_variables: List[str]\n+    \"\"\"A list of the names of the variables the prompt template expects.\"\"\"\n+\n+    prefix: str\n+    \"\"\"Prefix for the prompt.\"\"\"\n+\n+    suffix: str\n+    \"\"\"Suffix for the prompt.\"\"\"\n+\n+    template_format: str = \"f-string\"\n+    \"\"\"The format of the prompt template. Options are: 'f-string'.\"\"\"\n+\n+    get_text_length: Callable = count_words",
+        "path": "langchain/prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "can we type this with input string, output int?",
+        "created_at": "2022-11-04T22:38:53Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014507066",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507066"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014507066"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507066/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 177,
+        "side": "RIGHT",
+        "original_position": 67,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507587",
+        "pull_request_review_id": 1169246339,
+        "id": 1014507587,
+        "node_id": "PRRC_kwDOIPDwls48eChD",
+        "diff_hunk": "@@ -0,0 +1,93 @@\n+\"\"\"Test functionality related to dynamic prompts.\"\"\"\n+from langchain.prompt import DynamicPrompt, Prompt\n+\n+\n+def test_dynamic_prompt_valid() -> None:\n+    \"\"\"Test dynamic prompt can be successfully constructed from examples.\"\"\"\n+    template = \"\"\"Test Prompt:\n+\n+Question: who are you?\n+Answer: foo\n+\n+Question: what are you?\n+Answer: bar\n+\n+Question: {question}\n+Answer:\"\"\"\n+    input_variables = [\"question\"]\n+    example_separator = \"\\n\\n\"\n+    prefix = \"\"\"Test Prompt:\"\"\"\n+    suffix = \"\"\"Question: {question}\\nAnswer:\"\"\"\n+    examples = [\n+        \"\"\"Question: who are you?\\nAnswer: foo\"\"\",\n+        \"\"\"Question: what are you?\\nAnswer: bar\"\"\",\n+    ]\n+    dynamic_prompt = DynamicPrompt(\n+        examples=examples,\n+        suffix=suffix,\n+        input_variables=input_variables,\n+        example_separator=example_separator,\n+        prefix=prefix,\n+    )\n+    prompt_from_template = Prompt(input_variables=input_variables, template=template)\n+    assert dynamic_prompt.format(question=\"foo?\") == prompt_from_template.format(",
+        "path": "tests/unit_tests/test_dynamic_prompt.py",
+        "commit_id": "b852a6dbefb71c7c6678c0edd38d91e3c2a9aaa5",
+        "original_commit_id": "c86eab53fbe8ad2004303f0cd6a456f7bbb09192",
+        "user": {
+            "login": "hwchase17",
+            "id": 11986836,
+            "node_id": "MDQ6VXNlcjExOTg2ODM2",
+            "avatar_url": "https://avatars.githubusercontent.com/u/11986836?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/hwchase17",
+            "html_url": "https://github.com/hwchase17",
+            "followers_url": "https://api.github.com/users/hwchase17/followers",
+            "following_url": "https://api.github.com/users/hwchase17/following{/other_user}",
+            "gists_url": "https://api.github.com/users/hwchase17/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/hwchase17/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/hwchase17/subscriptions",
+            "organizations_url": "https://api.github.com/users/hwchase17/orgs",
+            "repos_url": "https://api.github.com/users/hwchase17/repos",
+            "events_url": "https://api.github.com/users/hwchase17/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/hwchase17/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "uber nit: can we do the evaluation of dynamic_prompt and prompt_from_template on their own lines to avoid this uglier/less readable hanging indent? and to make the assert line not contain any logic besides the assert",
+        "created_at": "2022-11-04T22:40:28Z",
+        "updated_at": "2022-11-04T22:43:04Z",
+        "html_url": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014507587",
+        "pull_request_url": "https://api.github.com/repos/hwchase17/langchain/pulls/49",
+        "author_association": "OWNER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507587"
+            },
+            "html": {
+                "href": "https://github.com/hwchase17/langchain/pull/49#discussion_r1014507587"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/hwchase17/langchain/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/hwchase17/langchain/pulls/comments/1014507587/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 33,
+        "side": "RIGHT",
+        "original_position": 33,
+        "position": null,
+        "subject_type": "line"
+    }
+]

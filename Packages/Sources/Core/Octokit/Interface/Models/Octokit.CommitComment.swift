@@ -13,7 +13,7 @@ public extension Octokit {
     public let htmlUrl: String
     public let id: Int
     public let line: Int?
-    public let nodeId: String
+    public let nodeId: String?
     public let path: String?
     public let position: Int?
     public let reactions: Reactions?
@@ -38,22 +38,23 @@ public extension Octokit {
       case user = "user"
     }
 
-    public static var random: Self {Self(
-      authorAssociation: .random,
-      body: .random,
-      commitId: .random,
-      createdAt: .random,
-      htmlUrl: .random,
-      id: .random,
-      line: .random,
-      nodeId: .random,
-      path: .random,
-      position: .random,
-      reactions: .random,
-      updatedAt: .random,
-      url: .random,
-      user: .random
-    )
+    public static var random: Self {
+      Self(
+        authorAssociation: .random,
+        body: .random,
+        commitId: .random,
+        createdAt: .random,
+        htmlUrl: .random,
+        id: .random,
+        line: .random,
+        nodeId: .random,
+        path: .random,
+        position: .random,
+        reactions: .random,
+        updatedAt: .random,
+        url: .random,
+        user: .random
+      )
     }
   }
 }

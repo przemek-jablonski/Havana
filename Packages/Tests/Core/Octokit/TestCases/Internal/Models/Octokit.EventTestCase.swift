@@ -166,6 +166,9 @@ private extension XCTestCase {
 
     let result: [Octokit.Event] = try jsonDecoder.decode([Octokit.Event].self, from: jsonData)
 
-    assertions(fileNameWithExtension, result)
+    assertions(
+      fileNameWithExtension,
+      result
+    )
   }
 }
