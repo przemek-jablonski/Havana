@@ -1,7 +1,7 @@
-//import Casimir
-//import Foundation
+// import Casimir
+// import Foundation
 //
-//extension Octokit.Event {
+// extension Octokit.Event {
 //  public struct GenericPayload: ModelProtocol {
 //    public let id: String?
 //    public let action: String?
@@ -44,31 +44,31 @@
 //      case release = "release"
 //    }
 //
-//    public static var random: Self {
+//    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
 //      Self(
-//        id: .random,
-//        action: .random,
-//        assignee: .random,
-//        comment: .random,
-//        description: .random,
-//        issue: .random,
-//        forkee: .random,
-//        label: .random,
-//        pages: .random,
-//        ref: .random,
-//        refType: .random,
-//        number: .random,
-//        masterBranch: .random,
-//        member: .random,
-//        pullRequest: .random,
-//        reason: .random,
+//        id: .random(),
+//        action: .random(),
+//        assignee: .random(),
+//        comment: .random(),
+//        description: .random(),
+//        issue: .random(),
+//        forkee: .random(),
+//        label: .random(),
+//        pages: .random(),
+//        ref: .random(),
+//        refType: .random(),
+//        number: .random(),
+//        masterBranch: .random(),
+//        member: .random(),
+//        pullRequest: .random(),
+//        reason: .random(),
 //        release: .random
 //      )
 //    }
 //  }
-//}
+// }
 //
-//extension Octokit.Event.Payload {
+// extension Octokit.Event.Payload {
 //  // MARK: - Page
 //  public struct Page: ModelProtocol {
 //    public var id: String? { sha }
@@ -88,15 +88,15 @@
 //      case title = "title"
 //    }
 //
-//    public static var random: Self {
+//    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
 //      Self(
-//        action: .random,
-//        htmlUrl: .random,
-//        pageName: .random,
-//        sha: .random,
-//        summary: .random,
+//        action: .random(),
+//        htmlUrl: .random(),
+//        pageName: .random(),
+//        sha: .random(),
+//        summary: .random(),
 //        title: .random
 //      )
 //    }
 //  }
-//}
+// }

@@ -29,18 +29,18 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        plus1: .random,
-        minus1: .random,
-        confused: .random,
-        eyes: .random,
-        heart: .random,
-        hooray: .random,
-        laugh: .random,
-        rocket: .random,
-        totalCount: .random,
-        url: .random
+        plus1: .random(),
+        minus1: .random(),
+        confused: .random(),
+        eyes: .random(),
+        heart: .random(),
+        hooray: .random(),
+        laugh: .random(),
+        rocket: .random(),
+        totalCount: .random(),
+        url: .random()
       )
     }
   }

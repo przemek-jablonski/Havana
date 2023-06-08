@@ -23,49 +23,46 @@ public extension Octokit.Event {
   }
 }
 
-extension Octokit.Event.Payload: CaseIterable {
-  public static var allCases: [Octokit.Event.Payload] {
-    [
-      .commitCommentEventPayload(.random),
-      .createEventPayload(.random),
-      .deleteEventPayload(.random),
-      .forkEventPayload(.random),
-      .gollumEventPayload(.random),
-      .issueCommentEventPayload(.random),
-      .issuesEventPayload(.random),
-      .memberEventPayload(.random),
-      .publicEventPayload(.random),
-      .pullRequestEventPayload(.random),
-      .pushEventPayload(.random),
-      .releaseEventPayload(.random),
-      .sponsorshipEventPayload(.random),
-      .watchEventPayload(.random)
-    ]
-  }
+extension Octokit.Event.Payload {
 }
 
 extension Octokit.Event.Payload {
   public var id: UUID {
     switch self {
-      case .commitCommentEventPayload(let payload): return payload.id
-      case .createEventPayload(let payload): return payload.id
-      case .deleteEventPayload(let payload): return payload.id
-      case .forkEventPayload(let payload): return payload.id
-      case .gollumEventPayload(let payload): return payload.id
-      case .issueCommentEventPayload(let payload): return payload.id
-      case .issuesEventPayload(let payload): return payload.id
-      case .memberEventPayload(let payload): return payload.id
-      case .publicEventPayload(let payload): return payload.id
-      case .pullRequestEventPayload(let payload): return payload.id
-      case .pushEventPayload(let payload): return payload.id
-      case .releaseEventPayload(let payload): return payload.id
-      case .sponsorshipEventPayload(let payload): return payload.id
-      case .watchEventPayload(let payload): return payload.id
+    case .commitCommentEventPayload(let payload): return payload.id
+    case .createEventPayload(let payload): return payload.id
+    case .deleteEventPayload(let payload): return payload.id
+    case .forkEventPayload(let payload): return payload.id
+    case .gollumEventPayload(let payload): return payload.id
+    case .issueCommentEventPayload(let payload): return payload.id
+    case .issuesEventPayload(let payload): return payload.id
+    case .memberEventPayload(let payload): return payload.id
+    case .publicEventPayload(let payload): return payload.id
+    case .pullRequestEventPayload(let payload): return payload.id
+    case .pushEventPayload(let payload): return payload.id
+    case .releaseEventPayload(let payload): return payload.id
+    case .sponsorshipEventPayload(let payload): return payload.id
+    case .watchEventPayload(let payload): return payload.id
     }
   }
 
-  public static var random: Octokit.Event.Payload {
-    Self.allCases.random
+  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    [
+      .commitCommentEventPayload(.random()),
+      .createEventPayload(.random()),
+      .deleteEventPayload(.random()),
+      .forkEventPayload(.random()),
+      .gollumEventPayload(.random()),
+      .issueCommentEventPayload(.random()),
+      .issuesEventPayload(.random()),
+      .memberEventPayload(.random()),
+      .publicEventPayload(.random()),
+      .pullRequestEventPayload(.random()),
+      .pushEventPayload(.random()),
+      .releaseEventPayload(.random()),
+      .sponsorshipEventPayload(.random()),
+      .watchEventPayload(.random())
+    ].random()
   }
 }
 
@@ -84,10 +81,10 @@ public extension Octokit.Event.Payload {
       case comment = "comment"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        comment: .random
+        action: .random(),
+        comment: .random()
       )
     }
   }
@@ -116,12 +113,12 @@ public extension Octokit.Event.Payload {
       case description = "description"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        ref: .random,
-        refType: .random,
-        masterBranch: .random,
-        description: .random
+        ref: .random(),
+        refType: .random(),
+        masterBranch: .random(),
+        description: .random()
       )
     }
   }
@@ -142,10 +139,10 @@ public extension Octokit.Event.Payload {
       case refType = "ref_type"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        ref: .random,
-        refType: .random
+        ref: .random(),
+        refType: .random()
       )
     }
   }
@@ -162,9 +159,9 @@ public extension Octokit.Event.Payload {
       case forkee = "forkee"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        forkee: .random
+        forkee: .random()
       )
     }
   }
@@ -181,9 +178,9 @@ public extension Octokit.Event.Payload {
       case pages = "pages"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        pages: .random
+        pages: .random()
       )
     }
   }
@@ -213,12 +210,12 @@ public extension Octokit.Event.Payload {
       case comment = "comment"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        changes: .random,
-        issue: .random,
-        comment: .random
+        action: .random(),
+        changes: .random(),
+        issue: .random(),
+        comment: .random()
       )
     }
   }
@@ -253,13 +250,13 @@ public extension Octokit.Event.Payload {
       case label = "label"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        issue: .random,
-        changes: .random,
-        assignee: .random,
-        label: .random
+        action: .random(),
+        issue: .random(),
+        changes: .random(),
+        assignee: .random(),
+        label: .random()
       )
     }
   }
@@ -277,8 +274,8 @@ public extension Octokit.Event.Payload.IssuesEventPayload {
     case labeled
     case unlabeled
 
-    public static var random: Self {
-      self.allCases.random
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      self.allCases.random()
     }
   }
 }
@@ -302,11 +299,11 @@ public extension Octokit.Event.Payload {
       case changes = "changes"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        member: .random,
-        changes: .random
+        action: .random(),
+        member: .random(),
+        changes: .random()
       )
     }
   }
@@ -314,9 +311,9 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct PublicEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id = UUID()
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
     }
   }
@@ -348,12 +345,12 @@ public extension Octokit.Event.Payload {
       case reason = "reason"
     }
 
-    public static var random: Octokit.Event.Payload.PullRequestEventPayload {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        number: .random,
-        pullRequest: .random,
-        reason: .random
+        action: .random(),
+        number: .random(),
+        pullRequest: .random(),
+        reason: .random()
       )
     }
   }
@@ -366,7 +363,7 @@ public extension Octokit.Event.Payload {
 public extension Octokit.Event.Payload {
   struct PushEventPayload: ModelProtocol {
 
-    public let id = UUID()
+    public var id = UUID()
 
     /// Unique identifier for the push.
     public let pushId: Int
@@ -397,14 +394,14 @@ public extension Octokit.Event.Payload {
       case before = "before"
     }
 
-    public static var random: Octokit.Event.Payload.PushEventPayload {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        pushId: .random,
-        size: .random,
-        distinctSize: .random,
-        ref: .random,
-        head: .random,
-        before: .random
+        pushId: .random(),
+        size: .random(),
+        distinctSize: .random(),
+        ref: .random(),
+        head: .random(),
+        before: .random()
       )
     }
   }
@@ -429,10 +426,10 @@ public extension Octokit.Event.Payload {
       case release = "release"
     }
 
-    public static var random: Octokit.Event.Payload.ReleaseEventPayload {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        action: .random,
-        release: .random
+        action: .random(),
+        release: .random()
       )
     }
   }
@@ -441,9 +438,9 @@ public extension Octokit.Event.Payload {
 public extension Octokit.Event.Payload {
   struct SponsorshipEventPayload: ModelProtocol {
 
-    public let id = UUID()
+    public var id = UUID()
 
-    public static var random: Octokit.Event.Payload.SponsorshipEventPayload {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
     }
   }
@@ -452,9 +449,9 @@ public extension Octokit.Event.Payload {
 public extension Octokit.Event.Payload {
   struct WatchEventPayload: ModelProtocol {
 
-    public let id = UUID()
+    public var id = UUID()
 
-    public static var random: Octokit.Event.Payload.WatchEventPayload {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
     }
   }

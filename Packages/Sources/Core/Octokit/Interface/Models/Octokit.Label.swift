@@ -21,15 +21,17 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static var random: Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
-        color: .random,
-        labelDefault: .random,
-        description: .random,
-        id: .random,
-        name: .random,
-        nodeId: .random,
-        url: .random
+        color: .random(),
+        labelDefault: .random(),
+        description: .random(),
+        id: .random(),
+        name: .random(),
+        nodeId: .random(),
+        url: .random()
       )
     }
   }

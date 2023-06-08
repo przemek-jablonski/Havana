@@ -92,50 +92,50 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static var random: User {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       User(
-        avatarUrl: .random,
-        bio: .random,
-        blog: .random,
-        businessPlus: .random,
-        collaborators: .random,
-        company: .random,
-        createdAt: .random,
-        diskUsage: .random,
-        email: .random,
-        eventsUrl: .random,
-        followers: .random,
-        followersUrl: .random,
-        following: .random,
-        followingUrl: .random,
-        gistsUrl: .random,
-        gravatarId: .random,
-        hireable: .random,
-        htmlUrl: .random,
-        id: .random,
-        ldapDn: .random,
-        location: .random,
-        login: .random,
-        name: .random,
-        nodeId: .random,
-        organizationsUrl: .random,
-        ownedPrivateRepos: .random,
-        plan: .random,
-        privateGists: .random,
-        publicGists: .random,
-        publicRepos: .random,
-        receivedEventsUrl: .random,
-        reposUrl: .random,
-        siteAdmin: .random,
-        starredUrl: .random,
-        subscriptionsUrl: .random,
-        suspendedAt: .random,
-        totalPrivateRepos: .random,
-        twitterUsername: .random,
-        twoFactorAuthentication: .random,
-        type: .random,
-        updatedAt: .random,
-        url: .random
+        avatarUrl: .random(),
+        bio: .random(),
+        blog: .random(),
+        businessPlus: .random(),
+        collaborators: .random(),
+        company: .random(),
+        createdAt: .random(),
+        diskUsage: .random(),
+        email: .random(),
+        eventsUrl: .random(),
+        followers: .random(),
+        followersUrl: .random(),
+        following: .random(),
+        followingUrl: .random(),
+        gistsUrl: .random(),
+        gravatarId: .random(),
+        hireable: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        ldapDn: .random(),
+        location: .random(),
+        login: .random(),
+        name: .random(),
+        nodeId: .random(),
+        organizationsUrl: .random(),
+        ownedPrivateRepos: .random(),
+        plan: .random(),
+        privateGists: .random(),
+        publicGists: .random(),
+        publicRepos: .random(),
+        receivedEventsUrl: .random(),
+        reposUrl: .random(),
+        siteAdmin: .random(),
+        starredUrl: .random(),
+        subscriptionsUrl: .random(),
+        suspendedAt: .random(),
+        totalPrivateRepos: .random(),
+        twitterUsername: .random(),
+        twoFactorAuthentication: .random(),
+        type: .random(),
+        updatedAt: .random(),
+        url: .random()
       )
     }
   }
@@ -155,12 +155,12 @@ public extension Octokit {
       case space = "space"
     }
 
-    public static var random: Plan {
-      Plan(
-        collaborators: .random,
-        name: .random,
-        privateRepos: .random,
-        space: .random
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        collaborators: .random(),
+        name: .random(),
+        privateRepos: .random(),
+        space: .random()
       )
     }
   }

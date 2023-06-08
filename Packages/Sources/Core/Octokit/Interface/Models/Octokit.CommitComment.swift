@@ -38,22 +38,22 @@ public extension Octokit {
       case user = "user"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        authorAssociation: .random,
-        body: .random,
-        commitId: .random,
-        createdAt: .random,
-        htmlUrl: .random,
-        id: .random,
-        line: .random,
-        nodeId: .random,
-        path: .random,
-        position: .random,
-        reactions: .random,
-        updatedAt: .random,
-        url: .random,
-        user: .random
+        authorAssociation: .random(),
+        body: .random(),
+        commitId: .random(),
+        createdAt: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        line: .random(),
+        nodeId: .random(),
+        path: .random(),
+        position: .random(),
+        reactions: .random(),
+        updatedAt: .random(),
+        url: .random(),
+        user: .random()
       )
     }
   }

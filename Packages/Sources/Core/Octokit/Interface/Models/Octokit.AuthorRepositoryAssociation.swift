@@ -14,8 +14,9 @@ public extension Octokit {
     case owner = "OWNER"
 
     public var id: UUID { UUID() }
-    public static var random: Self {
-      Self.allCases.random
+
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self.allCases.random()
     }
   }
 }

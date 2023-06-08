@@ -87,42 +87,42 @@ extension Octokit {
       case user = "user"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        activeLockReason: .random,
-        assignee: .random,
-        assignees: .random,
-        authorAssociation: .random,
-        body: .random,
-        bodyHtml: .random,
-        bodyText: .random,
-        closedAt: .random,
-        closedBy: .random,
-        comments: .random,
-        commentsUrl: .random,
-        createdAt: .random,
-        draft: .random,
-        eventsUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        labels: .random,
-        labelsUrl: .random,
-        locked: .random,
-        milestone: .random,
-        nodeId: .random,
-        number: .random,
-        performedViaGithubApp: .random,
-        pullRequest: .random,
-        reactions: .random,
-        repository: .random,
-        repositoryUrl: .random,
-        state: .random,
-        stateReason: .random,
-        timelineUrl: .random,
-        title: .random,
-        updatedAt: .random,
-        url: .random,
-        user: .random
+        activeLockReason: .random(),
+        assignee: .random(),
+        assignees: .random(),
+        authorAssociation: .random(),
+        body: .random(),
+        bodyHtml: .random(),
+        bodyText: .random(),
+        closedAt: .random(),
+        closedBy: .random(),
+        comments: .random(),
+        commentsUrl: .random(),
+        createdAt: .random(),
+        draft: .random(),
+        eventsUrl: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        labels: .random(),
+        labelsUrl: .random(),
+        locked: .random(),
+        milestone: .random(),
+        nodeId: .random(),
+        number: .random(),
+        performedViaGithubApp: .random(),
+        pullRequest: .random(),
+        reactions: .random(),
+        repository: .random(),
+        repositoryUrl: .random(),
+        state: .random(),
+        stateReason: .random(),
+        timelineUrl: .random(),
+        title: .random(),
+        updatedAt: .random(),
+        url: .random(),
+        user: .random()
       )
     }
   }
@@ -156,8 +156,13 @@ public enum LabelElement: ModelProtocol {
   }
 
   public var id: UUID { UUID() }
-  public static var random: Self {
-    [.labelClass(.random), .string(.random)].random
+
+  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    [
+      .labelClass(.random()),
+      .string(.random())
+    ]
+    .random()
   }
 }
 
@@ -181,15 +186,15 @@ public struct LabelClass: ModelProtocol {
     case url = "url"
   }
 
-  public static var random: Self {
+  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
     Self(
-      color: .random,
-      labelDefault: .random,
-      description: .random,
-      id: .random,
-      name: .random,
-      nodeId: .random,
-      url: .random
+      color: .random(),
+      labelDefault: .random(),
+      description: .random(),
+      id: .random(),
+      name: .random(),
+      nodeId: .random(),
+      url: .random()
     )
   }
 }
@@ -236,26 +241,26 @@ extension Octokit.Issue {
       case url = "url"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        avatarUrl: .random,
-        eventsUrl: .random,
-        followersUrl: .random,
-        followingUrl: .random,
-        gistsUrl: .random,
-        gravatarId: .random,
-        htmlUrl: .random,
-        id: .random,
-        login: .random,
-        nodeId: .random,
-        organizationsUrl: .random,
-        receivedEventsUrl: .random,
-        reposUrl: .random,
-        siteAdmin: .random,
-        starredUrl: .random,
-        subscriptionsUrl: .random,
-        type: .random,
-        url: .random
+        avatarUrl: .random(),
+        eventsUrl: .random(),
+        followersUrl: .random(),
+        followingUrl: .random(),
+        gistsUrl: .random(),
+        gravatarId: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        login: .random(),
+        nodeId: .random(),
+        organizationsUrl: .random(),
+        receivedEventsUrl: .random(),
+        reposUrl: .random(),
+        siteAdmin: .random(),
+        starredUrl: .random(),
+        subscriptionsUrl: .random(),
+        type: .random(),
+        url: .random()
       )
     }
   }
@@ -288,28 +293,28 @@ extension Octokit.Issue {
 //    public let type: String
 //    public let url: String
 //
-//    public static var random: Self {
+//    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
 //      Self(
-//        avatarUrl: .random,
-//        email: .random,
-//        eventsUrl: .random,
-//        followersUrl: .random,
-//        followingUrl: .random,
-//        gistsUrl: .random,
-//        gravatarId: .random,
-//        htmlUrl: .random,
-//        id: .random,
-//        login: .random,
-//        name: .random,
-//        nodeId: .random,
-//        organizationsUrl: .random,
-//        receivedEventsUrl: .random,
-//        reposUrl: .random,
-//        siteAdmin: .random,
-//        starredAt: .random,
-//        starredUrl: .random,
-//        subscriptionsUrl: .random,
-//        type: .random,
+//        avatarUrl: .random(),
+//        email: .random(),
+//        eventsUrl: .random(),
+//        followersUrl: .random(),
+//        followingUrl: .random(),
+//        gistsUrl: .random(),
+//        gravatarId: .random(),
+//        htmlUrl: .random(),
+//        id: .random(),
+//        login: .random(),
+//        name: .random(),
+//        nodeId: .random(),
+//        organizationsUrl: .random(),
+//        receivedEventsUrl: .random(),
+//        reposUrl: .random(),
+//        siteAdmin: .random(),
+//        starredAt: .random(),
+//        starredUrl: .random(),
+//        subscriptionsUrl: .random(),
+//        type: .random(),
 //        url: .random
 //      )
 //    }

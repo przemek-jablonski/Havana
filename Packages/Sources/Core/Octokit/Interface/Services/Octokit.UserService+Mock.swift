@@ -12,7 +12,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return .success(.random)
+            return .success(.random())
           }.value
         } catch {
           unimplementedFatalError()
@@ -26,7 +26,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return .success(.random)
+            return .success(.random())
           }.value
         } catch {
           unimplementedFatalError()
@@ -53,7 +53,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return .failure(.random)
+            return .failure(.random())
           }.value
         } catch {
           unimplementedFatalError()
@@ -67,7 +67,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return .failure(.random)
+            return .failure(.random())
           }.value
         } catch {
           unimplementedFatalError()
@@ -96,7 +96,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
             try await Task {
               try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
               await Task.yield()
-              return .random
+              return .random()
             }.value
           )
         } catch {
@@ -113,7 +113,7 @@ extension Octokit.UserServiceMock: Octokit.ServiceMock {
             try await Task {
               try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
               await Task.yield()
-              return .random
+              return .random()
             }.value
           )
         } catch {

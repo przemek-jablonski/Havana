@@ -51,25 +51,25 @@ extension Octokit {
       case webhookSecret = "webhook_secret"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        clientId: .random,
-        clientSecret: .random,
-        createdAt: .random,
-        description: .random,
-        events: .random,
-        externalUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        installationsCount: .random,
-        name: .random,
-        nodeId: .random,
-        owner: .random,
-        pem: .random,
-        permissions: .random,
-        slug: .random,
-        updatedAt: .random,
-        webhookSecret: .random
+        clientId: .random(),
+        clientSecret: .random(),
+        createdAt: .random(),
+        description: .random(),
+        events: .random(),
+        externalUrl: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        installationsCount: .random(),
+        name: .random(),
+        nodeId: .random(),
+        owner: .random(),
+        pem: .random(),
+        permissions: .random(),
+        slug: .random(),
+        updatedAt: .random(),
+        webhookSecret: .random()
       )
     }
   }

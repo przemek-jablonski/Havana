@@ -8,8 +8,14 @@ extension Octokit {
     case reopened = "reopened"
 
     public var id: UUID { UUID() }
-    public static var random: Octokit.StateReason {
-      [.completed, .notPlanned, .reopened].random
+
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      [
+        .completed,
+        .notPlanned,
+        .reopened
+      ]
+      .random()
     }
   }
 }

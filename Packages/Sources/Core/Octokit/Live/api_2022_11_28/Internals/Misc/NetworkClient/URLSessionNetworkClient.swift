@@ -21,7 +21,7 @@ internal struct URLSessionNetworkClient {
 extension URLSessionNetworkClient: NetworkClient {
   func request(
     using data: Octokit.RequestCommonData
-  ) async -> Result<Data, NetworkClientError>{
+  ) async -> Result<Data, NetworkClientError> {
     await urlSessionInstance.perform(
       requestTo: data.url,
       using: data.method,

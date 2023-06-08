@@ -3,7 +3,7 @@ import Casimir
 // https://medium.com/swlh/enums-with-decodable-in-swift-2bbc2ddddd6f
 
 public extension Octokit {
-  enum EventType: CaseIterable {
+  enum EventType {
     /// A commit comment is created. The type of activity is specified in the action property of the payload object.
     case commitComment
 
@@ -82,7 +82,7 @@ internal extension Octokit.EventType {
 }
 
 extension Octokit.EventType: ModelProtocol {
-  public static var allCases: [Octokit.EventType] {
+  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
     [
       .commitComment,
       .create,
@@ -101,12 +101,8 @@ extension Octokit.EventType: ModelProtocol {
       .release,
       .sponsorship,
       .watch,
-      .unknown("")
-    ]
-  }
-
-  public static var random: Octokit.EventType {
-    self.allCases.random
+      .unknown(.random())
+    ].random()
   }
 
   public var id: String {

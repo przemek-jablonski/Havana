@@ -1,8 +1,8 @@
 import Casimir
 import Foundation
 
-public extension Octokit {
-  struct Milestone: ModelProtocol {
+extension Octokit {
+  public struct Milestone: ModelProtocol {
     public let closedAt: Date?
     public let closedIssues: Int
     public let createdAt: Date
@@ -23,7 +23,7 @@ public extension Octokit {
     public let updatedAt: Date
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
       case closedAt = "closed_at"
       case closedIssues = "closed_issues"
       case createdAt = "created_at"
@@ -42,36 +42,41 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        closedAt: .random,
-        closedIssues: .random,
-        createdAt: .random,
-        creator: .random,
-        description: .random,
-        dueOn: .random,
-        htmlUrl: .random,
-        id: .random,
-        labelsUrl: .random,
-        nodeId: .random,
-        number: .random,
-        openIssues: .random,
-        state: .random,
-        title: .random,
-        updatedAt: .random,
-        url: .random
+        closedAt: .random(),
+        closedIssues: .random(),
+        createdAt: .random(),
+        creator: .random(),
+        description: .random(),
+        dueOn: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        labelsUrl: .random(),
+        nodeId: .random(),
+        number: .random(),
+        openIssues: .random(),
+        state: .random(),
+        title: .random(),
+        updatedAt: .random(),
+        url: .random()
       )
     }
   }
 }
 
-public extension Octokit.Milestone {
+extension Octokit.Milestone {
   /// The state of the milestone.
-  enum State: String, ModelProtocol {
+  public enum State: String, ModelProtocol {
     case closed = "closed"
     case open = "open"
 
     public var id: UUID { UUID() }
-    public static var random: Self { [.closed, .open].random }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
+      [.closed, .open].random()
+    }
   }
 }

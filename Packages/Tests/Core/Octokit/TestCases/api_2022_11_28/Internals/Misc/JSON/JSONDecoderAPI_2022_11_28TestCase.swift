@@ -68,25 +68,25 @@ internal final class JSONDecoderAPI_2022_11_28DecodingTestCase: XCTestCase {
 
   // MARK: - Octokit.Event.self
 
-//  internal func test_decodingExampleEventsFile_doesntThrow_01() throws {
-//    XCTAssertNoThrow(try performDecoding(of: "users_01.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
-//  }
-//
-//  internal func test_decodingExampleEventsFile_doesntThrow_02() throws {
-//    XCTAssertNoThrow(try performDecoding(of: "users_02.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
-//  }
-//
-//  internal func test_decodingExampleEventsFile_doesntThrow_03() throws {
-//    XCTAssertNoThrow(try performDecoding(of: "users_03.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
-//  }
-//
-//  internal func test_decodingExampleEventsFile_doesntThrow_04() throws {
-//    XCTAssertNoThrow(try performDecoding(of: "users_04.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
-//  }
-//
-//  internal func test_decodingExampleEventsFile_doesntThrow_05() throws {
-//    XCTAssertNoThrow(try performDecoding(of: "users_05.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
-//  }
+  //  internal func test_decodingExampleEventsFile_doesntThrow_01() throws {
+  //    XCTAssertNoThrow(try performDecoding(of: "users_01.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
+  //  }
+  //
+  //  internal func test_decodingExampleEventsFile_doesntThrow_02() throws {
+  //    XCTAssertNoThrow(try performDecoding(of: "users_02.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
+  //  }
+  //
+  //  internal func test_decodingExampleEventsFile_doesntThrow_03() throws {
+  //    XCTAssertNoThrow(try performDecoding(of: "users_03.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
+  //  }
+  //
+  //  internal func test_decodingExampleEventsFile_doesntThrow_04() throws {
+  //    XCTAssertNoThrow(try performDecoding(of: "users_04.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
+  //  }
+  //
+  //  internal func test_decodingExampleEventsFile_doesntThrow_05() throws {
+  //    XCTAssertNoThrow(try performDecoding(of: "users_05.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28))
+  //  }
 }
 
 private extension XCTestCase {
@@ -99,6 +99,6 @@ private extension XCTestCase {
     let jsonUrl = try XCTUnwrap(URL(fileURLWithPath: jsonPath))
     let jsonData = try Data(contentsOf: jsonUrl)
 
-    let _ = try jsonDecoder.decode([TargetType].self, from: jsonData).get()
+    _ = try jsonDecoder.decode([TargetType].self, from: jsonData).get()
   }
 }

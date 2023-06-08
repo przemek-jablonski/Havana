@@ -21,14 +21,15 @@ extension Octokit {
     }
 
     public let id = UUID()
-    public static var random: Self {
+
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        htmlUrl: .random,
-        key: .random,
-        name: .random,
-        nodeId: .random,
-        spdxId: .random,
-        url: .random
+        htmlUrl: .random(),
+        key: .random(),
+        name: .random(),
+        nodeId: .random(),
+        spdxId: .random(),
+        url: .random()
       )
     }
   }

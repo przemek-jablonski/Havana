@@ -233,107 +233,108 @@ extension Octokit {
       case webCommitSignoffRequired = "web_commit_signoff_required"
     }
 
-    public static var random: Self {
+    // swiftlint:disable function_body_length
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        allowAutoMerge: .random,
-        allowForking: .random,
-        allowMergeCommit: .random,
-        allowRebaseMerge: .random,
-        allowSquashMerge: .random,
-        allowUpdateBranch: .random,
-        anonymousAccessEnabled: .random,
-        archiveUrl: .random,
-        archived: .random,
-        assigneesUrl: .random,
-        blobsUrl: .random,
-        branchesUrl: .random,
-        cloneUrl: .random,
-        codeOfConduct: .random,
-        collaboratorsUrl: .random,
-        commentsUrl: .random,
-        commitsUrl: .random,
-        compareUrl: .random,
-        contentsUrl: .random,
-        contributorsUrl: .random,
-        createdAt: .random,
-        defaultBranch: .random,
-        deleteBranchOnMerge: .random,
-        deploymentsUrl: .random,
-        description: .random,
-        disabled: .random,
-        downloadsUrl: .random,
-        eventsUrl: .random,
-        fork: .random,
-        forks: .random,
-        forksCount: .random,
-        forksUrl: .random,
-        fullName: .random,
-        gitCommitsUrl: .random,
-        gitRefsUrl: .random,
-        gitTagsUrl: .random,
-        gitUrl: .random,
-        hasDiscussions: .random,
-        hasDownloads: .random,
-        hasIssues: .random,
-        hasPages: .random,
-        hasProjects: .random,
-        hasWiki: .random,
-        homepage: .random,
-        hooksUrl: .random,
-        htmlUrl: .random,
-        id: .random,
-        isTemplate: .random,
-        issueCommentUrl: .random,
-        issueEventsUrl: .random,
-        issuesUrl: .random,
-        keysUrl: .random,
-        labelsUrl: .random,
-        language: .random,
-        languagesUrl: .random,
-        license: .random,
-        masterBranch: .random,
-        mergeCommitMessage: .random,
-        mergeCommitTitle: .random,
-        mergesUrl: .random,
-        milestonesUrl: .random,
-        mirrorUrl: .random,
-        name: .random,
-        networkCount: .random,
-        nodeId: .random,
-        notificationsUrl: .random,
-        openIssues: .random,
-        openIssuesCount: .random,
-        organization: .random,
-        owner: .random,
-        permissions: .random,
-        repositoryPrivate: .random,
-        pullsUrl: .random,
-        pushedAt: .random,
-        releasesUrl: .random,
-        securityAndAnalysis: .random,
-        size: .random,
-        squashMergeCommitMessage: .random,
-        squashMergeCommitTitle: .random,
-        sshUrl: .random,
-        stargazersCount: .random,
-        stargazersUrl: .random,
-        statusesUrl: .random,
-        subscribersCount: .random,
-        subscribersUrl: .random,
-        subscriptionUrl: .random,
-        svnUrl: .random,
-        tagsUrl: .random,
-        teamsUrl: .random,
-        tempCloneToken: .random,
-        topics: .random,
-        treesUrl: .random,
-        updatedAt: .random,
-        url: .random,
-        useSquashPrTitleAsDefault: .random,
-        visibility: .random,
-        watchers: .random,
-        watchersCount: .random,
-        webCommitSignoffRequired: .random
+        allowAutoMerge: .random(),
+        allowForking: .random(),
+        allowMergeCommit: .random(),
+        allowRebaseMerge: .random(),
+        allowSquashMerge: .random(),
+        allowUpdateBranch: .random(),
+        anonymousAccessEnabled: .random(),
+        archiveUrl: .random(),
+        archived: .random(),
+        assigneesUrl: .random(),
+        blobsUrl: .random(),
+        branchesUrl: .random(),
+        cloneUrl: .random(),
+        codeOfConduct: .random(),
+        collaboratorsUrl: .random(),
+        commentsUrl: .random(),
+        commitsUrl: .random(),
+        compareUrl: .random(),
+        contentsUrl: .random(),
+        contributorsUrl: .random(),
+        createdAt: .random(),
+        defaultBranch: .random(),
+        deleteBranchOnMerge: .random(),
+        deploymentsUrl: .random(),
+        description: .random(),
+        disabled: .random(),
+        downloadsUrl: .random(),
+        eventsUrl: .random(),
+        fork: .random(),
+        forks: .random(),
+        forksCount: .random(),
+        forksUrl: .random(),
+        fullName: .random(),
+        gitCommitsUrl: .random(),
+        gitRefsUrl: .random(),
+        gitTagsUrl: .random(),
+        gitUrl: .random(),
+        hasDiscussions: .random(),
+        hasDownloads: .random(),
+        hasIssues: .random(),
+        hasPages: .random(),
+        hasProjects: .random(),
+        hasWiki: .random(),
+        homepage: .random(),
+        hooksUrl: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        isTemplate: .random(),
+        issueCommentUrl: .random(),
+        issueEventsUrl: .random(),
+        issuesUrl: .random(),
+        keysUrl: .random(),
+        labelsUrl: .random(),
+        language: .random(),
+        languagesUrl: .random(),
+        license: .random(),
+        masterBranch: .random(),
+        mergeCommitMessage: .random(),
+        mergeCommitTitle: .random(),
+        mergesUrl: .random(),
+        milestonesUrl: .random(),
+        mirrorUrl: .random(),
+        name: .random(),
+        networkCount: .random(),
+        nodeId: .random(),
+        notificationsUrl: .random(),
+        openIssues: .random(),
+        openIssuesCount: .random(),
+        organization: .random(),
+        owner: .random(),
+        permissions: .random(),
+        repositoryPrivate: .random(),
+        pullsUrl: .random(),
+        pushedAt: .random(),
+        releasesUrl: .random(),
+        securityAndAnalysis: .random(),
+        size: .random(),
+        squashMergeCommitMessage: .random(),
+        squashMergeCommitTitle: .random(),
+        sshUrl: .random(),
+        stargazersCount: .random(),
+        stargazersUrl: .random(),
+        statusesUrl: .random(),
+        subscribersCount: .random(),
+        subscribersUrl: .random(),
+        subscriptionUrl: .random(),
+        svnUrl: .random(),
+        tagsUrl: .random(),
+        teamsUrl: .random(),
+        tempCloneToken: .random(),
+        topics: .random(),
+        treesUrl: .random(),
+        updatedAt: .random(),
+        url: .random(),
+        useSquashPrTitleAsDefault: .random(),
+        visibility: .random(),
+        watchers: .random(),
+        watchersCount: .random(),
+        webCommitSignoffRequired: .random()
       )
     }
   }
@@ -356,13 +357,13 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        admin: .random,
-        maintain: .random,
-        pull: .random,
-        push: .random,
-        triage: .random
+        admin: .random(),
+        maintain: .random(),
+        pull: .random(),
+        push: .random(),
+        triage: .random()
       )
     }
   }
@@ -384,12 +385,12 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        htmlUrl: .random,
-        key: .random,
-        name: .random,
-        url: .random
+        htmlUrl: .random(),
+        key: .random(),
+        name: .random(),
+        url: .random()
       )
     }
   }
@@ -408,11 +409,11 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        advancedSecurity: .random,
-        secretScanning: .random,
-        secretScanningPushProtection: .random
+        advancedSecurity: .random(),
+        secretScanning: .random(),
+        secretScanningPushProtection: .random()
       )
     }
   }
@@ -427,8 +428,10 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
-      Self(status: .random)
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        status: .random()
+      )
     }
   }
 }
@@ -439,8 +442,12 @@ extension Octokit.Repository {
     case enabled = "enabled"
 
     public var id: UUID { UUID() }
-    public static var random: Self {
-      [.disabled, .enabled].random
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      [
+        .disabled,
+        .enabled
+      ]
+      .random()
     }
   }
 }
@@ -454,8 +461,10 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
-      Self(status: .random)
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        status: .random()
+      )
     }
   }
 }
@@ -469,8 +478,10 @@ extension Octokit.Repository {
     }
 
     public let id = UUID()
-    public static var random: Self {
-      Self(status: .random)
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        status: .random()
+      )
     }
   }
 }

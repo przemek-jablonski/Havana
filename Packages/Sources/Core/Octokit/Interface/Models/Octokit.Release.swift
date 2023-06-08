@@ -60,31 +60,31 @@ extension Octokit {
       case zipballUrl = "zipball_url"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        assets: .random,
-        assetsUrl: .random,
-        author: .random,
-        body: .random,
-        bodyHtml: .random,
-        bodyText: .random,
-        createdAt: .random,
-        discussionUrl: .random,
-        draft: .random,
-        htmlUrl: .random,
-        id: .random,
-        mentionsCount: .random,
-        name: .random,
-        nodeId: .random,
-        prerelease: .random,
-        publishedAt: .random,
-        reactions: .random,
-        tagName: .random,
-        tarballUrl: .random,
-        targetCommitish: .random,
-        uploadUrl: .random,
-        url: .random,
-        zipballUrl: .random
+        assets: .random(),
+        assetsUrl: .random(),
+        author: .random(),
+        body: .random(),
+        bodyHtml: .random(),
+        bodyText: .random(),
+        createdAt: .random(),
+        discussionUrl: .random(),
+        draft: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        mentionsCount: .random(),
+        name: .random(),
+        nodeId: .random(),
+        prerelease: .random(),
+        publishedAt: .random(),
+        reactions: .random(),
+        tagName: .random(),
+        tarballUrl: .random(),
+        targetCommitish: .random(),
+        uploadUrl: .random(),
+        url: .random(),
+        zipballUrl: .random()
       )
     }
   }
@@ -125,21 +125,21 @@ extension Octokit.Release {
       case url = "url"
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        browserDownloadUrl: .random,
-        contentType: .random,
-        createdAt: .random,
-        downloadCount: .random,
-        id: .random,
-        label: .random,
-        name: .random,
-        nodeId: .random,
-        size: .random,
-        state: .random,
-        updatedAt: .random,
-        uploader: .random,
-        url: .random
+        browserDownloadUrl: .random(),
+        contentType: .random(),
+        createdAt: .random(),
+        downloadCount: .random(),
+        id: .random(),
+        label: .random(),
+        name: .random(),
+        nodeId: .random(),
+        size: .random(),
+        state: .random(),
+        updatedAt: .random(),
+        uploader: .random(),
+        url: .random()
       )
     }
   }
@@ -152,8 +152,9 @@ extension Octokit.Release.Asset {
     case uploaded = "uploaded"
 
     public var id: UUID { UUID() }
-    public static var random: Self {
-      [.stateOpen, .uploaded].random
+
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      [.stateOpen, .uploaded].random()
     }
   }
 }

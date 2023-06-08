@@ -7,10 +7,10 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
-let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.52.0")
+let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.54.0")
 let composableArchitecture = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
 
-let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.1")
+let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.2")
 let swiftUINavigation = Target.Dependency.product(name: "SwiftUINavigation", package: "swiftui-navigation")
 
 let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")

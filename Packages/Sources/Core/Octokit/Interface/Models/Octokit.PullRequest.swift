@@ -18,13 +18,16 @@ extension Octokit {
     }
 
     public let id = UUID()
-    public static var random: Self {
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Octokit.PullRequest {
       Self(
-        diffUrl: .random,
-        htmlUrl: .random,
-        mergedAt: .random,
-        patchUrl: .random,
-        url: .random
+        diffUrl: .random(),
+        htmlUrl: .random(),
+        mergedAt: .random(),
+        patchUrl: .random(),
+        url: .random()
       )
     }
   }

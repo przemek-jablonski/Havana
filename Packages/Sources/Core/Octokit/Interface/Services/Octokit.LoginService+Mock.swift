@@ -38,7 +38,7 @@ extension Octokit.LoginServiceMock: Octokit.ServiceMock {
         do {
           return try await Task {
             try await Task.sleep(nanoseconds: mockedResponseDelayNanoseconds)
-            return .failure(.random)
+            return .failure(.random())
           }.value
         } catch {
           unimplementedFatalError()

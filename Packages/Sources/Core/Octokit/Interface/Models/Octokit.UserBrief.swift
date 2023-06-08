@@ -102,29 +102,29 @@ extension Octokit {
       self.url = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.url)
     }
 
-    public static var random: Self {
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self(
-        avatarUrl: .random,
-        email: .random,
-        eventsUrl: .random,
-        followersUrl: .random,
-        followingUrl: .random,
-        gistsUrl: .random,
-        gravatarId: .random,
-        htmlUrl: .random,
-        id: .random,
-        login: .random,
-        name: .random,
-        nodeId: .random,
-        organizationsUrl: .random,
-        receivedEventsUrl: .random,
-        reposUrl: .random,
-        siteAdmin: .random,
-        starredAt: .random,
-        starredUrl: .random,
-        subscriptionsUrl: .random,
-        type: .random,
-        url: .random
+        avatarUrl: .random(),
+        email: .random(),
+        eventsUrl: .random(),
+        followersUrl: .random(),
+        followingUrl: .random(),
+        gistsUrl: .random(),
+        gravatarId: .random(),
+        htmlUrl: .random(),
+        id: .random(),
+        login: .random(),
+        name: .random(),
+        nodeId: .random(),
+        organizationsUrl: .random(),
+        receivedEventsUrl: .random(),
+        reposUrl: .random(),
+        siteAdmin: .random(),
+        starredAt: .random(),
+        starredUrl: .random(),
+        subscriptionsUrl: .random(),
+        type: .random(),
+        url: .random()
       )
     }
   }

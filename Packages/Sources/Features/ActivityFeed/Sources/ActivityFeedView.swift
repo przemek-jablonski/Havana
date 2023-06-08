@@ -20,18 +20,19 @@ public struct ActivityFeedView: ComposableView {
         failureView: { _ in Text("Error") }
       ) { publicEvents in
         List {
-          ForEach(publicEvents.elements) { publicEvent in
+          ForEach(publicEvents.elements) { _ in
             VStack {
-              publicEvent.createdAt.map { createdAt in
-                Text(createdAt.formatted())
-                  .font(.caption)
-              }
+              // TODO: TODO
+              //              publicEvent.createdAt.map { createdAt in
+              //                Text(createdAt.formatted())
+              //                  .font(.caption)
+              //              }
 
-              Text(publicEvent.actor.login)
-
-              Text(String(describing: publicEvent.type))
-
-              Text(publicEvent.repo.name)
+              //              Text(publicEvent.actor.login)
+              //
+              //              Text(String(describing: publicEvent.type))
+              //
+              //              Text(publicEvent.repo.name)
 
             }
           }
@@ -83,7 +84,7 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
     ActivityFeedView(
       Store(
         initialState: ActivityFeedReducer.State(
-          user: .random,
+          user: .random(),
           publicEvents: .loading
         ),
         reducer: ActivityFeedReducer(
