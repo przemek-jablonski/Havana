@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import Foundation
 import UIKit
 
@@ -21,3 +22,4 @@ public class HavanaiOSAppDelegate: NSObject, UIApplicationDelegate {
 
   }
 }
+#endif

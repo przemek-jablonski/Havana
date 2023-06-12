@@ -11,7 +11,7 @@ internal struct ActivityFeedPreview: App {
         ActivityFeedView(
           Store(
             initialState: ActivityFeedReducer.State(
-              user: .random,
+              user: .random(),
               publicEvents: .loading
             ),
             reducer: ActivityFeedReducer(

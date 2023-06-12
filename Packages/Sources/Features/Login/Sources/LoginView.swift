@@ -16,7 +16,6 @@ public struct LoginView: ComposableView {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      Text("").font(.title)
       VStack {
         link(
           to: PrivateAccessTokenLoginView.init,

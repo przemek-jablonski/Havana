@@ -1,0 +1,2004 @@
+[
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1258640",
+        "pull_request_review_id": null,
+        "id": 1258640,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyNTg2NDA=",
+        "diff_hunk": "@@ -1,4 +1,57 @@\n okhttp\n ======\n \n-An HTTP+SPDY client for Android and Java applications\n\\ No newline at end of file\n+An HTTP+SPDY client for Android and Java applications.\n+\n+\n+Download\n+--------\n+\n+Downloadable .jars can be found on the [GitHub download page][1].\n+\n+You can also depend on the .jar through Maven:\n+\n+```xml\n+<dependency>\n+    <groupId>com.squareup</groupId>\n+    <artifactId>okhttp</artifactId>\n+    <version>(insert latest version)</version>\n+</dependency>\n+```\n+\n+\n+Contributing\n+------------\n+\n+If you would like to contribute code to OKHTTP you can do so through GitHub by\n+forking the repository and sending a pull request.\n+\n+When submitting code, please make every effort to follow existing conventions\n+and style in order to keep the code as readable as possible. Please also make\n+sure your code compiles by running `mvn clean verify`. Checkstyle failures\n+during compilation indicate errors in your style and can be viewed in the\n+`checkstyle-result.xml` file.\n+\n+Before your code can be accepted into the project you must also sign the",
+        "path": "README.md",
+        "commit_id": "08b1d7f3206981c69e72680e94a220353a8db7c3",
+        "original_commit_id": "08b1d7f3206981c69e72680e94a220353a8db7c3",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Nice. \n\nWe should get our contributors to sign both Square's ICLA and Android's CLA just to be safe.\n",
+        "created_at": "2012-07-28T17:48:19Z",
+        "updated_at": "2012-07-28T17:48:19Z",
+        "html_url": "https://github.com/square/okhttp/pull/9#discussion_r1258640",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/9",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1258640"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/9#discussion_r1258640"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/9"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1258640/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 35,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 37,
+        "position": 37,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1258642",
+        "pull_request_review_id": null,
+        "id": 1258642,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyNTg2NDI=",
+        "diff_hunk": "@@ -67,15 +67,15 @@ public RequestHeaders(URI uri, RawHeaders headers) {\n \n         HeaderParser.CacheControlHandler handler = new HeaderParser.CacheControlHandler() {\n             @Override public void handle(String directive, String parameter) {\n-                if (directive.equalsIgnoreCase(\"no-cache\")) {",
+        "path": "src/main/java/libcore/net/http/RequestHeaders.java",
+        "commit_id": "08b1d7f3206981c69e72680e94a220353a8db7c3",
+        "original_commit_id": "08b1d7f3206981c69e72680e94a220353a8db7c3",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "I'm not sure about this behavior change. The previous code made it clear that directive was not null.\n",
+        "created_at": "2012-07-28T17:50:13Z",
+        "updated_at": "2012-07-28T17:51:18Z",
+        "html_url": "https://github.com/square/okhttp/pull/9#discussion_r1258642",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/9",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1258642"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/9#discussion_r1258642"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/9"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1258642/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 70,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1284972",
+        "pull_request_review_id": null,
+        "id": 1284972,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODQ5NzI=",
+        "diff_hunk": "@@ -380,22 +385,24 @@ public void testGetResponseCodeNoResponseBody() throws Exception {\n         }\n     }\n \n-//    public void testConnectViaHttps() throws IOException, InterruptedException {\n-//        TestSSLContext testSSLContext = TestSSLContext.create();\n-//\n-//        server.useHttps(testSSLContext.serverContext.getSocketFactory(), false);\n-//        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n-//        server.play();\n-//\n-//        HttpsURLConnection connection = (HttpsURLConnection) server.getUrl(\"/foo\").openConnection();\n-//        connection.setSSLSocketFactory(testSSLContext.clientContext.getSocketFactory());\n-//\n-//        assertContent(\"this response comes via HTTPS\", connection);\n-//\n-//        RecordedRequest request = server.takeRequest();\n-//        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n-//    }\n-//\n+    public void testConnectViaHttps() throws Exception {\n+        SSLContext sslContext = new SslContextBuilder(InetAddress.getLocalHost().getHostName())\n+                .build();\n+\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.play();\n+\n+        OkHttpsConnection connection = OkHttpsConnection.open(server.getUrl(\"/foo\"));\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n+        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+\n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        RecordedRequest request = server.takeRequest();\n+        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n+    }\n+\n //    public void testConnectViaHttpsReusingConnections() throws IOException, InterruptedException {",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "33a0c620e1c1997ece0ee3382ad3e2145ee061a8",
+        "original_commit_id": "33a0c620e1c1997ece0ee3382ad3e2145ee061a8",
+        "user": {
+            "login": "edenman",
+            "id": 1063557,
+            "node_id": "MDQ6VXNlcjEwNjM1NTc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1063557?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/edenman",
+            "html_url": "https://github.com/edenman",
+            "followers_url": "https://api.github.com/users/edenman/followers",
+            "following_url": "https://api.github.com/users/edenman/following{/other_user}",
+            "gists_url": "https://api.github.com/users/edenman/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/edenman/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/edenman/subscriptions",
+            "organizations_url": "https://api.github.com/users/edenman/orgs",
+            "repos_url": "https://api.github.com/users/edenman/repos",
+            "events_url": "https://api.github.com/users/edenman/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/edenman/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "this test coming in another pull?\n",
+        "created_at": "2012-08-01T17:34:12Z",
+        "updated_at": "2012-08-01T17:34:12Z",
+        "html_url": "https://github.com/square/okhttp/pull/10#discussion_r1284972",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/10",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1284972"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/10#discussion_r1284972"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/10"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1284972/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 406,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 67,
+        "position": 67,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285088",
+        "pull_request_review_id": null,
+        "id": 1285088,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODUwODg=",
+        "diff_hunk": "@@ -380,22 +385,24 @@ public void testGetResponseCodeNoResponseBody() throws Exception {\n         }\n     }\n \n-//    public void testConnectViaHttps() throws IOException, InterruptedException {\n-//        TestSSLContext testSSLContext = TestSSLContext.create();\n-//\n-//        server.useHttps(testSSLContext.serverContext.getSocketFactory(), false);\n-//        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n-//        server.play();\n-//\n-//        HttpsURLConnection connection = (HttpsURLConnection) server.getUrl(\"/foo\").openConnection();\n-//        connection.setSSLSocketFactory(testSSLContext.clientContext.getSocketFactory());\n-//\n-//        assertContent(\"this response comes via HTTPS\", connection);\n-//\n-//        RecordedRequest request = server.takeRequest();\n-//        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n-//    }\n-//\n+    public void testConnectViaHttps() throws Exception {\n+        SSLContext sslContext = new SslContextBuilder(InetAddress.getLocalHost().getHostName())\n+                .build();\n+\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.play();\n+\n+        OkHttpsConnection connection = OkHttpsConnection.open(server.getUrl(\"/foo\"));\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n+        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+\n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        RecordedRequest request = server.takeRequest();\n+        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n+    }\n+\n //    public void testConnectViaHttpsReusingConnections() throws IOException, InterruptedException {",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "33a0c620e1c1997ece0ee3382ad3e2145ee061a8",
+        "original_commit_id": "33a0c620e1c1997ece0ee3382ad3e2145ee061a8",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Yeah, there's a bunch of 'em still to uncomment:\nhttps://github.com/square/okhttp/blob/33a0c620e1c1997ece0ee3382ad3e2145ee061a8/src/test/java/libcore/net/http/URLConnectionTest.java\n\nI commented out these tests when I split okhttp off from HttpURLConnection. Now that I have TLS, I can put them back.\n",
+        "created_at": "2012-08-01T17:42:23Z",
+        "updated_at": "2012-08-01T17:42:23Z",
+        "html_url": "https://github.com/square/okhttp/pull/10#discussion_r1285088",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/10",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1285088"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/10#discussion_r1285088"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/10"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285088/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 406,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 67,
+        "position": 67,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285681",
+        "pull_request_review_id": null,
+        "id": 1285681,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODU2ODE=",
+        "diff_hunk": "@@ -386,87 +409,85 @@ public void testGetResponseCodeNoResponseBody() throws Exception {\n     }\n \n     public void testConnectViaHttps() throws Exception {\n-        SSLContext sslContext = new SslContextBuilder(InetAddress.getLocalHost().getHostName())\n-                .build();\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.play();\n+\n+        OkHttpsConnection connection = (OkHttpsConnection) openConnection(server.getUrl(\"/foo\"));\n+        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n \n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        RecordedRequest request = server.takeRequest();\n+        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n+    }\n+\n+    public void testConnectViaHttpsReusingConnections() throws IOException, InterruptedException {\n         server.useHttps(sslContext.getSocketFactory(), false);\n         server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.enqueue(new MockResponse().setBody(\"another response via HTTPS\"));\n         server.play();\n \n-        OkHttpsConnection connection = OkHttpsConnection.open(server.getUrl(\"/foo\"));\n+        // The pool will only reuse sockets if the SSL socket factories are the same.\n+        SSLSocketFactory clientSocketFactory = sslContext.getSocketFactory();\n+\n+        OkHttpsConnection connection = (OkHttpsConnection) openConnection(server.getUrl(\"/\"));\n+        connection.setSSLSocketFactory(clientSocketFactory);\n         connection.setHostnameVerifier(new RecordingHostnameVerifier());\n-        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        connection = (OkHttpsConnection) openConnection(server.getUrl(\"/\"));\n+        connection.setSSLSocketFactory(clientSocketFactory);\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n+        assertContent(\"another response via HTTPS\", connection);\n+\n+        assertEquals(0, server.takeRequest().getSequenceNumber());\n+        assertEquals(1, server.takeRequest().getSequenceNumber());\n+    }\n+\n+    public void testConnectViaHttpsReusingConnectionsDifferentFactories()\n+            throws IOException, InterruptedException {\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.enqueue(new MockResponse().setBody(\"another response via HTTPS\"));\n+        server.play();\n \n+        // install a custom SSL socket factory so the server can be authorized",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "3ff6ca140db7d7a06cc2a97902d1546c1bdb80e1",
+        "original_commit_id": "3ff6ca140db7d7a06cc2a97902d1546c1bdb80e1",
+        "user": {
+            "login": "edenman",
+            "id": 1063557,
+            "node_id": "MDQ6VXNlcjEwNjM1NTc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1063557?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/edenman",
+            "html_url": "https://github.com/edenman",
+            "followers_url": "https://api.github.com/users/edenman/followers",
+            "following_url": "https://api.github.com/users/edenman/following{/other_user}",
+            "gists_url": "https://api.github.com/users/edenman/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/edenman/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/edenman/subscriptions",
+            "organizations_url": "https://api.github.com/users/edenman/orgs",
+            "repos_url": "https://api.github.com/users/edenman/repos",
+            "events_url": "https://api.github.com/users/edenman/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/edenman/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "caps + punctuation\n",
+        "created_at": "2012-08-01T18:44:28Z",
+        "updated_at": "2012-08-01T18:44:28Z",
+        "html_url": "https://github.com/square/okhttp/pull/11#discussion_r1285681",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/11",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1285681"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/11#discussion_r1285681"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/11"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285681/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 456,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 115,
+        "position": 115,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285685",
+        "pull_request_review_id": null,
+        "id": 1285685,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODU2ODU=",
+        "diff_hunk": "@@ -386,87 +409,85 @@ public void testGetResponseCodeNoResponseBody() throws Exception {\n     }\n \n     public void testConnectViaHttps() throws Exception {\n-        SSLContext sslContext = new SslContextBuilder(InetAddress.getLocalHost().getHostName())\n-                .build();\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.play();\n+\n+        OkHttpsConnection connection = (OkHttpsConnection) openConnection(server.getUrl(\"/foo\"));\n+        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n \n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        RecordedRequest request = server.takeRequest();\n+        assertEquals(\"GET /foo HTTP/1.1\", request.getRequestLine());\n+    }\n+\n+    public void testConnectViaHttpsReusingConnections() throws IOException, InterruptedException {\n         server.useHttps(sslContext.getSocketFactory(), false);\n         server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.enqueue(new MockResponse().setBody(\"another response via HTTPS\"));\n         server.play();\n \n-        OkHttpsConnection connection = OkHttpsConnection.open(server.getUrl(\"/foo\"));\n+        // The pool will only reuse sockets if the SSL socket factories are the same.\n+        SSLSocketFactory clientSocketFactory = sslContext.getSocketFactory();\n+\n+        OkHttpsConnection connection = (OkHttpsConnection) openConnection(server.getUrl(\"/\"));\n+        connection.setSSLSocketFactory(clientSocketFactory);\n         connection.setHostnameVerifier(new RecordingHostnameVerifier());\n-        connection.setSSLSocketFactory(sslContext.getSocketFactory());\n+        assertContent(\"this response comes via HTTPS\", connection);\n+\n+        connection = (OkHttpsConnection) openConnection(server.getUrl(\"/\"));\n+        connection.setSSLSocketFactory(clientSocketFactory);\n+        connection.setHostnameVerifier(new RecordingHostnameVerifier());\n+        assertContent(\"another response via HTTPS\", connection);\n+\n+        assertEquals(0, server.takeRequest().getSequenceNumber());\n+        assertEquals(1, server.takeRequest().getSequenceNumber());\n+    }\n+\n+    public void testConnectViaHttpsReusingConnectionsDifferentFactories()\n+            throws IOException, InterruptedException {\n+        server.useHttps(sslContext.getSocketFactory(), false);\n+        server.enqueue(new MockResponse().setBody(\"this response comes via HTTPS\"));\n+        server.enqueue(new MockResponse().setBody(\"another response via HTTPS\"));\n+        server.play();\n \n+        // install a custom SSL socket factory so the server can be authorized",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "3ff6ca140db7d7a06cc2a97902d1546c1bdb80e1",
+        "original_commit_id": "3ff6ca140db7d7a06cc2a97902d1546c1bdb80e1",
+        "user": {
+            "login": "edenman",
+            "id": 1063557,
+            "node_id": "MDQ6VXNlcjEwNjM1NTc=",
+            "avatar_url": "https://avatars.githubusercontent.com/u/1063557?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/edenman",
+            "html_url": "https://github.com/edenman",
+            "followers_url": "https://api.github.com/users/edenman/followers",
+            "following_url": "https://api.github.com/users/edenman/following{/other_user}",
+            "gists_url": "https://api.github.com/users/edenman/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/edenman/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/edenman/subscriptions",
+            "organizations_url": "https://api.github.com/users/edenman/orgs",
+            "repos_url": "https://api.github.com/users/edenman/repos",
+            "events_url": "https://api.github.com/users/edenman/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/edenman/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "nm, this is just uncommenting.\n",
+        "created_at": "2012-08-01T18:44:54Z",
+        "updated_at": "2012-08-01T18:44:54Z",
+        "html_url": "https://github.com/square/okhttp/pull/11#discussion_r1285685",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/11",
+        "author_association": "CONTRIBUTOR",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1285685"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/11#discussion_r1285685"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/11"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1285685/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 456,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 115,
+        "position": 115,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289055",
+        "pull_request_review_id": null,
+        "id": 1289055,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODkwNTU=",
+        "diff_hunk": "@@ -156,6 +156,10 @@ public static String encode(byte[] in) {\n                 out[index++] = '=';\n                 break;\n         }\n-        return new String(out, 0, index, Charsets.US_ASCII);\n+        try {\n+            return new String(out, 0, index, \"US-ASCII\");\n+        } catch (UnsupportedEncodingException e) {\n+            throw new AssertionError();",
+        "path": "src/main/java/libcore/io/Base64.java",
+        "commit_id": "66220f81e3c4b5dfc0b87e45ebefb4636bef2a22",
+        "original_commit_id": "7fd7250bd438ad82e8bd544c13d9289c11639efe",
+        "user": null,
+        "body": "Why AssertionError, and why not wrap e?\n",
+        "created_at": "2012-08-02T00:03:11Z",
+        "updated_at": "2012-08-02T00:09:22Z",
+        "html_url": "https://github.com/square/okhttp/pull/12#discussion_r1289055",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/12",
+        "author_association": "NONE",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1289055"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/12#discussion_r1289055"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/12"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289055/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 17,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289060",
+        "pull_request_review_id": null,
+        "id": 1289060,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODkwNjA=",
+        "diff_hunk": "@@ -444,7 +443,7 @@ private String getAuthorizationCredentials(RawHeaders responseHeaders, String ch\n \n             // base64 encode the username and password\n             String usernameAndPassword = auth.getUserName() + \":\" + new String(auth.getPassword());\n-            byte[] bytes = usernameAndPassword.getBytes(Charsets.ISO_8859_1);\n+            byte[] bytes = usernameAndPassword.getBytes(\"ISO-8859-1\");",
+        "path": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
+        "commit_id": "66220f81e3c4b5dfc0b87e45ebefb4636bef2a22",
+        "original_commit_id": "7fd7250bd438ad82e8bd544c13d9289c11639efe",
+        "user": null,
+        "body": "How about making your own Charsets class?\n",
+        "created_at": "2012-08-02T00:03:51Z",
+        "updated_at": "2012-08-02T00:09:22Z",
+        "html_url": "https://github.com/square/okhttp/pull/12#discussion_r1289060",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/12",
+        "author_association": "NONE",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1289060"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/12#discussion_r1289060"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/12"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289060/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 446,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 13,
+        "position": 13,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289069",
+        "pull_request_review_id": null,
+        "id": 1289069,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODkwNjk=",
+        "diff_hunk": "@@ -156,6 +156,10 @@ public static String encode(byte[] in) {\n                 out[index++] = '=';\n                 break;\n         }\n-        return new String(out, 0, index, Charsets.US_ASCII);\n+        try {\n+            return new String(out, 0, index, \"US-ASCII\");\n+        } catch (UnsupportedEncodingException e) {\n+            throw new AssertionError();",
+        "path": "src/main/java/libcore/io/Base64.java",
+        "commit_id": "66220f81e3c4b5dfc0b87e45ebefb4636bef2a22",
+        "original_commit_id": "7fd7250bd438ad82e8bd544c13d9289c11639efe",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "AssertionError means 'this code is unreachable'. I could wrap 'e' but it's mostly academic; because the code is unreachable. This would only trigger on a hypothetical runtime that doesn't include the \"US-ASCII\" charset, a charset that's required by the spec. (similarly for ISO-8859-1 and UTF-8).\n\nThat said, I do like including the 'e' so I'll fix that.\n",
+        "created_at": "2012-08-02T00:06:22Z",
+        "updated_at": "2012-08-02T00:09:22Z",
+        "html_url": "https://github.com/square/okhttp/pull/12#discussion_r1289069",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/12",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1289069"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/12#discussion_r1289069"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/12"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289069/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 17,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289076",
+        "pull_request_review_id": null,
+        "id": 1289076,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDEyODkwNzY=",
+        "diff_hunk": "@@ -444,7 +443,7 @@ private String getAuthorizationCredentials(RawHeaders responseHeaders, String ch\n \n             // base64 encode the username and password\n             String usernameAndPassword = auth.getUserName() + \":\" + new String(auth.getPassword());\n-            byte[] bytes = usernameAndPassword.getBytes(Charsets.ISO_8859_1);\n+            byte[] bytes = usernameAndPassword.getBytes(\"ISO-8859-1\");",
+        "path": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
+        "commit_id": "66220f81e3c4b5dfc0b87e45ebefb4636bef2a22",
+        "original_commit_id": "7fd7250bd438ad82e8bd544c13d9289c11639efe",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "It would have to be CharsetNames, since there is no method String.getBytes(Charset) until Gingerbread. I don't think it's worth the extra code, but I can be convinced.\n",
+        "created_at": "2012-08-02T00:07:26Z",
+        "updated_at": "2012-08-02T00:09:22Z",
+        "html_url": "https://github.com/square/okhttp/pull/12#discussion_r1289076",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/12",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1289076"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/12#discussion_r1289076"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/12"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1289076/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 446,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 13,
+        "position": 13,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1643935",
+        "pull_request_review_id": null,
+        "id": 1643935,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2NDM5MzU=",
+        "diff_hunk": "@@ -632,6 +636,49 @@ private void testConnectViaHttpProxyToHttps(ProxyConfig proxyConfig) throws Exce\n         assertEquals(Arrays.asList(\"verify android.com\"), hostnameVerifier.calls);\n     }\n \n+//    /**",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "85e568e52d841c20ee5ecc68e8a589c9eabadbe6",
+        "original_commit_id": "85e568e52d841c20ee5ecc68e8a589c9eabadbe6",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "FYI: all HTTPS tests are commented out until I set up a TestSSLContext to work outside of libcore.\n",
+        "created_at": "2012-09-19T19:37:06Z",
+        "updated_at": "2012-09-19T19:37:06Z",
+        "html_url": "https://github.com/square/okhttp/pull/20#discussion_r1643935",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/20",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1643935"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/20#discussion_r1643935"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/20"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1643935/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 639,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 22,
+        "position": 22,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644087",
+        "pull_request_review_id": null,
+        "id": 1644087,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2NDQwODc=",
+        "diff_hunk": "@@ -201,7 +201,7 @@ public SSLSocket setupSecureSocket(SSLSocketFactory sslSocketFactory,\n         // Create the wrapper over connected socket.\n         sslSocket = (SSLSocket) sslSocketFactory.createSocket(socket,\n                 address.uriHost, address.uriPort, true /* autoClose */);\n-        Libcore.makeTlsTolerant(sslSocket, address.socketHost, tlsTolerant);\n+        Libcore.makeTlsTolerant(sslSocket, address.uriHost, tlsTolerant);",
+        "path": "src/main/java/libcore/net/http/HttpConnection.java",
+        "commit_id": "faeff7f10548151cb2310351b3975f719037f217",
+        "original_commit_id": "faeff7f10548151cb2310351b3975f719037f217",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Note that this is structurally different from AOSP (which doesn't have SPDY).\nhttp://omapzoom.org/?p=platform/libcore.git;a=commitdiff;h=b7705a4629bb74a5bb19d97bf0b4dd4c74cecd9e\n",
+        "created_at": "2012-09-19T19:51:00Z",
+        "updated_at": "2012-09-19T19:51:00Z",
+        "html_url": "https://github.com/square/okhttp/pull/22#discussion_r1644087",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/22",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1644087"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/22#discussion_r1644087"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/22"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644087/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 204,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 5,
+        "position": 5,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644537",
+        "pull_request_review_id": null,
+        "id": 1644537,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2NDQ1Mzc=",
+        "diff_hunk": "@@ -773,6 +773,50 @@ public void testDisconnectBeforeConnect() throws IOException {\n         assertEquals(200, connection.getResponseCode());\n     }\n \n+//    public void testDisconnectAfterOnlyResponseCodeCausesNoCloseGuardWarning() throws IOException {",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "15940665526348d815b26d509ce44c79926c612b",
+        "original_commit_id": "15940665526348d815b26d509ce44c79926c612b",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Like TLS and MockOS, CloseGuard is another important testing feature that's completely missing on HotSpot\n",
+        "created_at": "2012-09-19T20:26:00Z",
+        "updated_at": "2012-09-19T20:26:00Z",
+        "html_url": "https://github.com/square/okhttp/pull/24#discussion_r1644537",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/24",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1644537"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/24#discussion_r1644537"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/24"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644537/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 776,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644551",
+        "pull_request_review_id": null,
+        "id": 1644551,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2NDQ1NTE=",
+        "diff_hunk": "@@ -773,6 +773,50 @@ public void testDisconnectBeforeConnect() throws IOException {\n         assertEquals(200, connection.getResponseCode());\n     }\n \n+//    public void testDisconnectAfterOnlyResponseCodeCausesNoCloseGuardWarning() throws IOException {",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "15940665526348d815b26d509ce44c79926c612b",
+        "original_commit_id": "15940665526348d815b26d509ce44c79926c612b",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "+1 for MockOS :(\n",
+        "created_at": "2012-09-19T20:26:49Z",
+        "updated_at": "2012-09-19T20:26:49Z",
+        "html_url": "https://github.com/square/okhttp/pull/24#discussion_r1644551",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/24",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1644551"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/24#discussion_r1644551"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/24"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1644551/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 776,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1667992",
+        "pull_request_review_id": null,
+        "id": 1667992,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2Njc5OTI=",
+        "diff_hunk": "@@ -43,6 +43,27 @@\n     static final int FLAG_FIN = 0x01;\n     static final int FLAG_UNIDIRECTIONAL = 0x02;\n \n+    /** Peer request to clear durable settings. */\n+    static final int FLAG_SETTINGS_CLEAR_PREVIOUSLY_PERSISTED_SETTINGS = 0x01;\n+    /** Sent by servers only. The peer requests this setting persisted for future connections. */\n+    static final int FLAG_SETTINGS_PERSIST_VALUE = 0x1;",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "7a7ad1cdb22ed381c468ee38d757da03b4b1877a",
+        "original_commit_id": "7a7ad1cdb22ed381c468ee38d757da03b4b1877a",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Inconsistency in hexadecimal convention with the other flags on purpose?\n",
+        "created_at": "2012-09-22T18:31:43Z",
+        "updated_at": "2012-09-22T18:31:43Z",
+        "html_url": "https://github.com/square/okhttp/pull/33#discussion_r1667992",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/33",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1667992"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/33#discussion_r1667992"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/33"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1667992/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 49,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 7,
+        "position": 7,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1668197",
+        "pull_request_review_id": null,
+        "id": 1668197,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2NjgxOTc=",
+        "diff_hunk": "@@ -43,6 +43,27 @@\n     static final int FLAG_FIN = 0x01;\n     static final int FLAG_UNIDIRECTIONAL = 0x02;\n \n+    /** Peer request to clear durable settings. */\n+    static final int FLAG_SETTINGS_CLEAR_PREVIOUSLY_PERSISTED_SETTINGS = 0x01;\n+    /** Sent by servers only. The peer requests this setting persisted for future connections. */\n+    static final int FLAG_SETTINGS_PERSIST_VALUE = 0x1;",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "7a7ad1cdb22ed381c468ee38d757da03b4b1877a",
+        "original_commit_id": "7a7ad1cdb22ed381c468ee38d757da03b4b1877a",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Unintentional. I should use 0x1 since I don't intend to imply that these flags have a 0-255 range.\n",
+        "created_at": "2012-09-22T21:03:49Z",
+        "updated_at": "2012-09-22T21:03:49Z",
+        "html_url": "https://github.com/square/okhttp/pull/33#discussion_r1668197",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/33",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1668197"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/33#discussion_r1668197"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/33"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1668197/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 49,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 7,
+        "position": 7,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680636",
+        "pull_request_review_id": null,
+        "id": 1680636,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2ODA2MzY=",
+        "diff_hunk": "@@ -203,11 +213,47 @@ void writeSynResetLater(final int streamId, final int statusCode) {\n     synchronized void writeSynReset(int streamId, int statusCode) throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "original_commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Rename arg to `id` to match here and above?\n",
+        "created_at": "2012-09-25T05:15:29Z",
+        "updated_at": "2012-09-25T05:15:29Z",
+        "html_url": "https://github.com/square/okhttp/pull/35#discussion_r1680636",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/35",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1680636"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/35#discussion_r1680636"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/35"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680636/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 213,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 113,
+        "position": 113,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680637",
+        "pull_request_review_id": null,
+        "id": 1680637,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2ODA2Mzc=",
+        "diff_hunk": "@@ -167,8 +177,8 @@ public synchronized SpdyStream newStream(List<String> requestHeaders, boolean ou\n         streams.put(streamId, result);\n \n         spdyWriter.flags = flags;\n-        spdyWriter.streamId = streamId;\n-        spdyWriter.associatedStreamId = associatedStreamId;\n+        spdyWriter.id = streamId;",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "original_commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "And here.\n",
+        "created_at": "2012-09-25T05:16:11Z",
+        "updated_at": "2012-09-25T05:16:11Z",
+        "html_url": "https://github.com/square/okhttp/pull/35#discussion_r1680637",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/35",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1680637"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/35#discussion_r1680637"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/35"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680637/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 180,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 98,
+        "position": 98,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680645",
+        "pull_request_review_id": null,
+        "id": 1680645,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2ODA2NDU=",
+        "diff_hunk": "@@ -203,11 +213,47 @@ void writeSynResetLater(final int streamId, final int statusCode) {\n     synchronized void writeSynReset(int streamId, int statusCode) throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "original_commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "This one's tricky. I'm using SpdyReader and SpdyWriter each as structs that contain a bag of fields; each frame type uses a different subset of the fields. It's a bit gross but it makes the code structurally simple and I don't need a bunch of different classes and I can avoid a lot of object allocation.\n\nPing calls its ID the 'id' but the streams call their ID's streamId. I didn't want to define multiple 'id' fields where some would be valid sometimes and others would be valid other times, so I just folded them together into one field 'id'.\n\nBut I'd prefer to continue to call it 'streamId' whenever it unambiguously refers to a _stream_ ID.\n",
+        "created_at": "2012-09-25T05:19:07Z",
+        "updated_at": "2012-09-25T05:19:07Z",
+        "html_url": "https://github.com/square/okhttp/pull/35#discussion_r1680645",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/35",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1680645"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/35#discussion_r1680645"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/35"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680645/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 213,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 113,
+        "position": 113,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680654",
+        "pull_request_review_id": null,
+        "id": 1680654,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2ODA2NTQ=",
+        "diff_hunk": "@@ -203,11 +213,47 @@ void writeSynResetLater(final int streamId, final int statusCode) {\n     synchronized void writeSynReset(int streamId, int statusCode) throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+        "commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "original_commit_id": "2bd54fa72fe72f92212428a024050838c2b62d57",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Makes sense. I'm not extremely familiar with the code yet so just questioning on my thoughts of pure API.\n",
+        "created_at": "2012-09-25T05:20:57Z",
+        "updated_at": "2012-09-25T05:20:57Z",
+        "html_url": "https://github.com/square/okhttp/pull/35#discussion_r1680654",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/35",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1680654"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/35#discussion_r1680654"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/35"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1680654/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 213,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 113,
+        "position": 113,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1697138",
+        "pull_request_review_id": null,
+        "id": 1697138,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE2OTcxMzg=",
+        "diff_hunk": "@@ -74,12 +69,7 @@ public void testClientCreatesStreamAndServerReplies() throws Exception {\n \n     public void testServerCreatesStreamAndClientReplies() throws Exception {\n         // write the mocking script\n-        SpdyWriter newStream = peer.sendFrame();\n-        newStream.flags = 0;\n-        newStream.id = 2;\n-        newStream.associatedId = 0;\n-        newStream.nameValueBlock = Arrays.asList(\"a\", \"android\");\n-        newStream.synStream();\n+        peer.sendFrame().synStream(0, 2, 0, 0, Arrays.asList(\"a\", \"android\"));",
+        "path": "src/test/java/libcore/net/spdy/SpdyConnectionTest.java",
+        "commit_id": "853c4012b79711f123c0b9780e565062b32bf1c7",
+        "original_commit_id": "853c4012b79711f123c0b9780e565062b32bf1c7",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "FYI: these 5 lines are the satisfying part of this change.\n",
+        "created_at": "2012-09-26T16:01:15Z",
+        "updated_at": "2012-09-26T16:01:21Z",
+        "html_url": "https://github.com/square/okhttp/pull/39#discussion_r1697138",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/39",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1697138"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/39#discussion_r1697138"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/39"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1697138/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 72,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 35,
+        "position": 35,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723713",
+        "pull_request_review_id": null,
+        "id": 1723713,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE3MjM3MTM=",
+        "diff_hunk": "@@ -129,7 +133,7 @@ public int nextFrame() throws IOException {\n         }\n     }\n \n-    private void readSynStream() throws IOException {\n+  private void readSynStream() throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyReader.java",
+        "commit_id": "d2fc60ad18bc16378bca018e38f706d2d4972e42",
+        "original_commit_id": "3473c0236eb824e58d06092e11d5258cbd4605f4",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Bad spacing.\n",
+        "created_at": "2012-09-29T18:05:52Z",
+        "updated_at": "2012-09-29T18:25:14Z",
+        "html_url": "https://github.com/square/okhttp/pull/44#discussion_r1723713",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/44",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1723713"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/44#discussion_r1723713"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723713/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 16,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723714",
+        "pull_request_review_id": null,
+        "id": 1723714,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE3MjM3MTQ=",
+        "diff_hunk": "@@ -247,4 +251,8 @@ private void readSettings() throws IOException {\n             settings.set(id, idFlags, value);\n         }\n     }\n+\n+    private IOException ioException(String message, Object... args) throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyReader.java",
+        "commit_id": "d2fc60ad18bc16378bca018e38f706d2d4972e42",
+        "original_commit_id": "3473c0236eb824e58d06092e11d5258cbd4605f4",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Can be static.\n",
+        "created_at": "2012-09-29T18:06:22Z",
+        "updated_at": "2012-09-29T18:25:14Z",
+        "html_url": "https://github.com/square/okhttp/pull/44#discussion_r1723714",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/44",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1723714"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/44#discussion_r1723714"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723714/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 42,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723734",
+        "pull_request_review_id": null,
+        "id": 1723734,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE3MjM3MzQ=",
+        "diff_hunk": "@@ -129,7 +133,7 @@ public int nextFrame() throws IOException {\n         }\n     }\n \n-    private void readSynStream() throws IOException {\n+  private void readSynStream() throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyReader.java",
+        "commit_id": "d2fc60ad18bc16378bca018e38f706d2d4972e42",
+        "original_commit_id": "3473c0236eb824e58d06092e11d5258cbd4605f4",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Yuck, Fixed. I'm having a rough time with IntelliJ and swapping between OkHttp (which is 4-space like libcore) and the rest of my world which is 2-space.\n",
+        "created_at": "2012-09-29T18:24:05Z",
+        "updated_at": "2012-09-29T18:25:14Z",
+        "html_url": "https://github.com/square/okhttp/pull/44#discussion_r1723734",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/44",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1723734"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/44#discussion_r1723734"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723734/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 16,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723736",
+        "pull_request_review_id": null,
+        "id": 1723736,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE3MjM3MzY=",
+        "diff_hunk": "@@ -247,4 +251,8 @@ private void readSettings() throws IOException {\n             settings.set(id, idFlags, value);\n         }\n     }\n+\n+    private IOException ioException(String message, Object... args) throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyReader.java",
+        "commit_id": "d2fc60ad18bc16378bca018e38f706d2d4972e42",
+        "original_commit_id": "3473c0236eb824e58d06092e11d5258cbd4605f4",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Fixed.\n",
+        "created_at": "2012-09-29T18:25:20Z",
+        "updated_at": "2012-09-29T18:25:20Z",
+        "html_url": "https://github.com/square/okhttp/pull/44#discussion_r1723736",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/44",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1723736"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/44#discussion_r1723736"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723736/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 42,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723831",
+        "pull_request_review_id": null,
+        "id": 1723831,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDE3MjM4MzE=",
+        "diff_hunk": "@@ -129,7 +133,7 @@ public int nextFrame() throws IOException {\n         }\n     }\n \n-    private void readSynStream() throws IOException {\n+  private void readSynStream() throws IOException {",
+        "path": "src/main/java/libcore/net/spdy/SpdyReader.java",
+        "commit_id": "d2fc60ad18bc16378bca018e38f706d2d4972e42",
+        "original_commit_id": "3473c0236eb824e58d06092e11d5258cbd4605f4",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Yeah I have two profiles, 'Square' and 'AOSP', that I switch between. You just have to remember to set the right one if you don't already have a project set up. Occasionally there are quirks but it works well enough.\n",
+        "created_at": "2012-09-29T20:00:03Z",
+        "updated_at": "2012-09-29T20:00:03Z",
+        "html_url": "https://github.com/square/okhttp/pull/44#discussion_r1723831",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/44",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/1723831"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/44#discussion_r1723831"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/44"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/1723831/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 16,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039074",
+        "pull_request_review_id": null,
+        "id": 2039074,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDIwMzkwNzQ=",
+        "diff_hunk": "@@ -20,6 +20,10 @@\n import com.google.mockwebserver.MockWebServer;\n import com.google.mockwebserver.RecordedRequest;\n import com.google.mockwebserver.SocketPolicy;\n+import static com.google.mockwebserver.SocketPolicy.DISCONNECT_AT_END;\n+import static com.google.mockwebserver.SocketPolicy.DISCONNECT_AT_START;\n+import static com.google.mockwebserver.SocketPolicy.SHUTDOWN_INPUT_AT_END;\n+import static com.google.mockwebserver.SocketPolicy.SHUTDOWN_OUTPUT_AT_END;",
+        "path": "src/test/java/libcore/net/http/URLConnectionTest.java",
+        "commit_id": "0ce37b70f8c19c4d9a509a8561776f0186e9751c",
+        "original_commit_id": "21e1bd3854b4580c9a4d4c943843c2abe60e3111",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "This seems an odd change. Going to switch back to being separated below.\n",
+        "created_at": "2012-11-06T05:35:25Z",
+        "updated_at": "2012-11-06T05:35:37Z",
+        "html_url": "https://github.com/square/okhttp/pull/49#discussion_r2039074",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/49",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/2039074"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/49#discussion_r2039074"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039074/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 7,
+        "position": null,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039082",
+        "pull_request_review_id": null,
+        "id": 2039082,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDIwMzkwODI=",
+        "diff_hunk": "@@ -458,8 +449,7 @@ public final boolean hasResponseBody() {\n             return false;\n         }\n \n-        if (method != CONNECT\n-                && (responseCode < HTTP_CONTINUE || responseCode >= 200)\n+        if ((responseCode < HTTP_CONTINUE || responseCode >= 200)",
+        "path": "src/main/java/libcore/net/http/HttpEngine.java",
+        "commit_id": "0ce37b70f8c19c4d9a509a8561776f0186e9751c",
+        "original_commit_id": "0ce37b70f8c19c4d9a509a8561776f0186e9751c",
+        "user": {
+            "login": "JakeWharton",
+            "id": 66577,
+            "node_id": "MDQ6VXNlcjY2NTc3",
+            "avatar_url": "https://avatars.githubusercontent.com/u/66577?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/JakeWharton",
+            "html_url": "https://github.com/JakeWharton",
+            "followers_url": "https://api.github.com/users/JakeWharton/followers",
+            "following_url": "https://api.github.com/users/JakeWharton/following{/other_user}",
+            "gists_url": "https://api.github.com/users/JakeWharton/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/JakeWharton/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/JakeWharton/subscriptions",
+            "organizations_url": "https://api.github.com/users/JakeWharton/orgs",
+            "repos_url": "https://api.github.com/users/JakeWharton/repos",
+            "events_url": "https://api.github.com/users/JakeWharton/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/JakeWharton/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Any reason not to use `HTTP_OK` rather than 200 to match convention?\n",
+        "created_at": "2012-11-06T05:38:02Z",
+        "updated_at": "2012-11-06T05:38:02Z",
+        "html_url": "https://github.com/square/okhttp/pull/49#discussion_r2039082",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/49",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/2039082"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/49#discussion_r2039082"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039082/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 452,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 63,
+        "position": 63,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039218",
+        "pull_request_review_id": null,
+        "id": 2039218,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDIwMzkyMTg=",
+        "diff_hunk": "@@ -458,8 +449,7 @@ public final boolean hasResponseBody() {\n             return false;\n         }\n \n-        if (method != CONNECT\n-                && (responseCode < HTTP_CONTINUE || responseCode >= 200)\n+        if ((responseCode < HTTP_CONTINUE || responseCode >= 200)",
+        "path": "src/main/java/libcore/net/http/HttpEngine.java",
+        "commit_id": "0ce37b70f8c19c4d9a509a8561776f0186e9751c",
+        "original_commit_id": "0ce37b70f8c19c4d9a509a8561776f0186e9751c",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "Nope, no strong reason.\n",
+        "created_at": "2012-11-06T06:11:59Z",
+        "updated_at": "2012-11-06T06:11:59Z",
+        "html_url": "https://github.com/square/okhttp/pull/49#discussion_r2039218",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/49",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/2039218"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/49#discussion_r2039218"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/49"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2039218/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 452,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 63,
+        "position": 63,
+        "subject_type": "line"
+    },
+    {
+        "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2062190",
+        "pull_request_review_id": null,
+        "id": 2062190,
+        "node_id": "MDI0OlB1bGxSZXF1ZXN0UmV2aWV3Q29tbWVudDIwNjIxOTA=",
+        "diff_hunk": "@@ -153,8 +153,6 @@ private static HttpConnection getConnectionToAddress(Address address, int connec\n             // extensions enabled, if it fails (and its not unheard of that it\n             // will) fallback to a barebones connection.\n             try {\n-                result = new HttpConnection(",
+        "path": "src/main/java/libcore/net/http/HttpConnection.java",
+        "commit_id": "e5b78cabad22ffdfbbe2755fece9c6c535438cdc",
+        "original_commit_id": "e5b78cabad22ffdfbbe2755fece9c6c535438cdc",
+        "user": {
+            "login": "swankjesse",
+            "id": 133019,
+            "node_id": "MDQ6VXNlcjEzMzAxOQ==",
+            "avatar_url": "https://avatars.githubusercontent.com/u/133019?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/swankjesse",
+            "html_url": "https://github.com/swankjesse",
+            "followers_url": "https://api.github.com/users/swankjesse/followers",
+            "following_url": "https://api.github.com/users/swankjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/swankjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/swankjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/swankjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/swankjesse/orgs",
+            "repos_url": "https://api.github.com/users/swankjesse/repos",
+            "events_url": "https://api.github.com/users/swankjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/swankjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "body": "This was unnecessary! we do the same thing a few lines up.\n",
+        "created_at": "2012-11-07T22:20:04Z",
+        "updated_at": "2012-11-07T22:20:04Z",
+        "html_url": "https://github.com/square/okhttp/pull/52#discussion_r2062190",
+        "pull_request_url": "https://api.github.com/repos/square/okhttp/pulls/52",
+        "author_association": "MEMBER",
+        "_links": {
+            "self": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/comments/2062190"
+            },
+            "html": {
+                "href": "https://github.com/square/okhttp/pull/52#discussion_r2062190"
+            },
+            "pull_request": {
+                "href": "https://api.github.com/repos/square/okhttp/pulls/52"
+            }
+        },
+        "reactions": {
+            "url": "https://api.github.com/repos/square/okhttp/pulls/comments/2062190/reactions",
+            "total_count": 0,
+            "+1": 0,
+            "-1": 0,
+            "laugh": 0,
+            "hooray": 0,
+            "confused": 0,
+            "heart": 0,
+            "rocket": 0,
+            "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": 156,
+        "original_line": null,
+        "side": "RIGHT",
+        "original_position": 4,
+        "position": 4,
+        "subject_type": "line"
+    }
+]

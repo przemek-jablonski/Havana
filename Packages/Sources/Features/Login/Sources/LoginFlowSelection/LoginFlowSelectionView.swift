@@ -30,7 +30,7 @@
 // }
 //
 // internal struct LoginFlowSelectionView_Previews: PreviewProvider {
-//  static var previews: some View {
+// internal static var previews: some View {
 //    LoginFlowSelectionView(
 //      store: Store(
 //        initialState: LoginFlowSelection.State.init(selection: .flowSelection),

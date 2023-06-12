@@ -36,16 +36,37 @@ extension Octokit.UserService_API_2022_11_28: Octokit.UserService {
       }
   }
 
-  internal func receivedPublicEvents(
+  internal func events(
     username: String,
     page: Int
-  ) async -> Result<[Octokit.UserReceivedPublicEvent], Octokit.NetworkServiceError> {
+  ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
     await secretsService
       .retrieve(.privateAccessToken)
       .mapError(Octokit.NetworkServiceError.privateAccessTokenFetchingFailed)
       .flatMap { [networkClient] token in
         await networkClient.request(
-          [Octokit.UserReceivedPublicEvent].self,
+          [Octokit.Event].self,
+          using: .events(
+            config: config,
+            username: username,
+            privateAccessToken: token,
+            page: page
+          )
+        )
+        .mapError(Octokit.NetworkServiceError.networkRequestFailed)
+      }
+  }
+
+  internal func receivedEvents(
+    username: String,
+    page: Int
+  ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError> {
+    await secretsService
+      .retrieve(.privateAccessToken)
+      .mapError(Octokit.NetworkServiceError.privateAccessTokenFetchingFailed)
+      .flatMap { [networkClient] token in
+        await networkClient.request(
+          [Octokit.Event].self,
           using: .receivedEvents(
             config: config,
             username: username,
@@ -70,6 +91,26 @@ private extension Octokit.RequestCommonData {
     )
   }
 
+  static func events(
+    config: Octokit.Config,
+    username: String,
+    privateAccessToken: String,
+    amount: Int = 100,
+    page: Int
+  ) -> Octokit.RequestCommonData {
+    config.constructCommonRequestData(
+      endpointUrl: "/users/\(username)/events",
+      method: .get,
+      token: privateAccessToken
+    )
+    .appending(
+      queryItems: [
+        "per_page": amount.string,
+        "page": page.string
+      ]
+    )
+  }
+
   static func receivedEvents(
     config: Octokit.Config,
     username: String,
@@ -78,7 +119,7 @@ private extension Octokit.RequestCommonData {
     page: Int
   ) -> Octokit.RequestCommonData {
     config.constructCommonRequestData(
-      endpointUrl: "/users/\(username)/received_events/public",
+      endpointUrl: "/users/\(username)/received_events",
       method: .get,
       token: privateAccessToken
     )

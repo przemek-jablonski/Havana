@@ -5,7 +5,7 @@ import UserContextFeature
 
 internal struct HavanaAppView: View {
   private let store: StoreOf<HavanaAppReducer> = Store(
-    initialState: .login(LoginReducer.State()),
+    initialState: .loading,
     reducer: HavanaAppReducer()._printChanges()
   )
 
@@ -13,7 +13,6 @@ internal struct HavanaAppView: View {
 
   internal var body: some View {
     NavigationView {
-      // TODO: add 'observe' here
       WithViewStore(store) { viewStore in
         SwitchStore(self.store) {
           CaseLet(
@@ -21,7 +20,7 @@ internal struct HavanaAppView: View {
             action: HavanaAppReducer.Action.login
           ) { store in
             LoginView(store)
-              .transition(.opacity.animation(.easeInOut(duration: 5)))
+              .transition(.opacity)
           }
 
           CaseLet(
@@ -29,12 +28,16 @@ internal struct HavanaAppView: View {
             action: HavanaAppReducer.Action.userContext
           ) { store in
             UserContextView(store)
-              .transition(.opacity.animation(.easeInOut(duration: 5)))
+              .transition(.opacity)
+          }
+
+          Default {
+            ProgressView()
+              .transition(.opacity)
           }
         }
         .task {
-          // TODO: make sure that this is actually cancelled
-          viewStore.send(.user(.lifecycle))
+          viewStore.send(.user(.lifecycle)) // TODO: make sure that this is actually cancelled
         }
       }
     }

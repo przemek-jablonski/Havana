@@ -20,18 +20,19 @@ public struct ActivityFeedView: ComposableView {
         failureView: { _ in Text("Error") }
       ) { publicEvents in
         List {
-          ForEach(publicEvents.elements) { publicEvent in
+          ForEach(publicEvents.elements) { _ in
             VStack {
-              publicEvent.createdAt.map { createdAt in
-                Text(createdAt.formatted())
-                  .font(.caption)
-              }
+              // TODO: TODO
+              //              publicEvent.createdAt.map { createdAt in
+              //                Text(createdAt.formatted())
+              //                  .font(.caption)
+              //              }
 
-              Text(publicEvent.actor.login)
-
-              Text(publicEvent.type ?? "NO TYPE")
-
-              Text(publicEvent.repo.name)
+              //              Text(publicEvent.actor.login)
+              //
+              //              Text(String(describing: publicEvent.type))
+              //
+              //              Text(publicEvent.repo.name)
 
             }
           }
@@ -47,10 +48,10 @@ public struct ActivityFeedView: ComposableView {
 import Casimir
 
 public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View, LoadedView: View>: View {
-  let loadableData: LoadableData<Model>
-  let loadingView: () -> LoadingView
-  let failureView: (Error) -> FailureView
-  let loadedView: (Model) -> LoadedView
+  internal let loadableData: LoadableData<Model>
+  internal let loadingView: () -> LoadingView
+  internal let failureView: (Error) -> FailureView
+  internal let loadedView: (Model) -> LoadedView
 
   public init(
     for loadableData: LoadableData<Model>,
@@ -83,7 +84,7 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
     ActivityFeedView(
       Store(
         initialState: ActivityFeedReducer.State(
-          user: .random,
+          user: .random(),
           publicEvents: .loading
         ),
         reducer: ActivityFeedReducer(

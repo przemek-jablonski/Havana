@@ -1,0 +1,1117 @@
+[
+  {
+      "sha": "46f72a378347ec22acc469a48512067d3b97c2c2",
+      "node_id": "C_kwDOIkZy5NoAKDQ2ZjcyYTM3ODM0N2VjMjJhY2M0NjlhNDg1MTIwNjdkM2I5N2MyYzI",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-25T22:05:14Z"
+          },
+          "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "date": "2023-03-25T22:05:14Z"
+          },
+          "message": "Merge pull request #248 from finders-pe/main\n\nEnable Conversations in gpt3 models",
+          "tree": {
+              "sha": "4d9a481d1613197de4ecff856c4ddc37312823f4",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/4d9a481d1613197de4ecff856c4ddc37312823f4"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/46f72a378347ec22acc469a48512067d3b97c2c2",
+          "comment_count": 0,
+          "verification": {
+              "verified": true,
+              "reason": "valid",
+              "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkH3AaCRBK7hj4Ov3rIwAAWKoIACWvefOZQkuL9fw6S0bf0EfJ\nTi8H+PgsQjAPLKMvwlzK/hN1yL78IM4LorbilHEXvQ45op558EoaJKD9QfNBHMbc\nV6/QPP0RnILx+nCUDFfkN6HdNkracydEhIC09dF1+bUWlqT1zxRek/klU2IWwE4F\nQsZXFrfif5rT/Eo5RnpEGf3AfSMsnEGaVoQ66xuvhPFdH+vBSwG8MloafuZHjEf4\npzvSeRfh/HqIaCdW+7BRfaSJW9mgjLuHSnUCSB4bok+qxZXpsyPuz1POSga8UnqJ\nQ4TsJMsXids4P8qrFxGJFTL1/8kRoTt5QanczAaB23e5rbjLpEbOzhhuNwNnw5E=\n=PgIv\n-----END PGP SIGNATURE-----\n",
+              "payload": "tree 4d9a481d1613197de4ecff856c4ddc37312823f4\nparent 445cd6eaf1a6f103e99499811277846bf291a092\nparent 7d8980baacfc00bed2dd8a708079ad4c8a925b4e\nauthor Ali Gençay <gencay.ali@hotmail.com> 1679781914 -0700\ncommitter GitHub <noreply@github.com> 1679781914 -0700\n\nMerge pull request #248 from finders-pe/main\n\nEnable Conversations in gpt3 models"
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/46f72a378347ec22acc469a48512067d3b97c2c2",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/46f72a378347ec22acc469a48512067d3b97c2c2",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/46f72a378347ec22acc469a48512067d3b97c2c2/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "web-flow",
+          "id": 19864447,
+          "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+          "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/web-flow",
+          "html_url": "https://github.com/web-flow",
+          "followers_url": "https://api.github.com/users/web-flow/followers",
+          "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+          "organizations_url": "https://api.github.com/users/web-flow/orgs",
+          "repos_url": "https://api.github.com/users/web-flow/repos",
+          "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/web-flow/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "445cd6eaf1a6f103e99499811277846bf291a092",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/445cd6eaf1a6f103e99499811277846bf291a092",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/445cd6eaf1a6f103e99499811277846bf291a092"
+          },
+          {
+              "sha": "7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/7d8980baacfc00bed2dd8a708079ad4c8a925b4e"
+          }
+      ]
+  },
+  {
+      "sha": "7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+      "node_id": "C_kwDOIkZy5NoAKDdkODk4MGJhYWNmYzAwYmVkMmRkOGE3MDgwNzlhZDRjOGE5MjViNGU",
+      "commit": {
+          "author": {
+              "name": "finders-pe",
+              "email": "128937561+finders-pe@users.noreply.github.com",
+              "date": "2023-03-25T22:04:05Z"
+          },
+          "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "date": "2023-03-25T22:04:05Z"
+          },
+          "message": "Merge pull request #1 from finders-pe/finders-pe-patch-1\n\nFix for action buttons and PHP variable rendering",
+          "tree": {
+              "sha": "4d9a481d1613197de4ecff856c4ddc37312823f4",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/4d9a481d1613197de4ecff856c4ddc37312823f4"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+          "comment_count": 0,
+          "verification": {
+              "verified": true,
+              "reason": "valid",
+              "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkH2/VCRBK7hj4Ov3rIwAAUhEIAJx12apkLIGctSnuP2jv/wGQ\niHZ3gwyzIckDoMPToIN42IjusSeI7GtJePUitzEQpT1boG5VcOTdWczcoxpG3yRd\neWo/xIhVx0H4aagUXUmArExEQE2cRrmcIY0WzCngwl5+HfNH58+oRwOTSFt1zPMk\nQv00YK+P5tv5d6eHPYMVJ83AjpYlOuzOvH8FSznExIFzx5LNSaK+Micm8zOIBywt\nv+rRTVhrju1PMILhQb99IZfjRsb7kpCkeN7x6HiqbKEaP07MqwTX4dayEwp8pjbi\nn6nXjkpOlcUkXB0bOQcIqZma/0DeijDN4G6iQtrIi0o6lkcVorxQzkJdXNCgL6A=\n=N5MX\n-----END PGP SIGNATURE-----\n",
+              "payload": "tree 4d9a481d1613197de4ecff856c4ddc37312823f4\nparent f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841\nparent 316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2\nauthor finders-pe <128937561+finders-pe@users.noreply.github.com> 1679781845 -0700\ncommitter GitHub <noreply@github.com> 1679781845 -0700\n\nMerge pull request #1 from finders-pe/finders-pe-patch-1\n\nFix for action buttons and PHP variable rendering"
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/7d8980baacfc00bed2dd8a708079ad4c8a925b4e",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/7d8980baacfc00bed2dd8a708079ad4c8a925b4e/comments",
+      "author": {
+          "login": "finders-pe",
+          "id": 128937561,
+          "node_id": "U_kgDOB69uWQ",
+          "avatar_url": "https://avatars.githubusercontent.com/u/128937561?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/finders-pe",
+          "html_url": "https://github.com/finders-pe",
+          "followers_url": "https://api.github.com/users/finders-pe/followers",
+          "following_url": "https://api.github.com/users/finders-pe/following{/other_user}",
+          "gists_url": "https://api.github.com/users/finders-pe/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/finders-pe/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/finders-pe/subscriptions",
+          "organizations_url": "https://api.github.com/users/finders-pe/orgs",
+          "repos_url": "https://api.github.com/users/finders-pe/repos",
+          "events_url": "https://api.github.com/users/finders-pe/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/finders-pe/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "web-flow",
+          "id": 19864447,
+          "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+          "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/web-flow",
+          "html_url": "https://github.com/web-flow",
+          "followers_url": "https://api.github.com/users/web-flow/followers",
+          "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+          "organizations_url": "https://api.github.com/users/web-flow/orgs",
+          "repos_url": "https://api.github.com/users/web-flow/repos",
+          "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/web-flow/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841"
+          },
+          {
+              "sha": "316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2"
+          }
+      ]
+  },
+  {
+      "sha": "f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+      "node_id": "C_kwDOIkZy5NoAKGYzOWQyYWIyNzljZDdkYmUyYzliMGFmNjc1ZThhMWQwNGRjMzA4NDE",
+      "commit": {
+          "author": {
+              "name": "finders-pe",
+              "email": "128937561+finders-pe@users.noreply.github.com",
+              "date": "2023-03-25T22:02:56Z"
+          },
+          "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "date": "2023-03-25T22:02:56Z"
+          },
+          "message": "Enable Conversations in gpt3 models\n\nHi - I want to add conversations for davinci models back in. Please check out. I also saw another bug in reporting of the gpt3 models.",
+          "tree": {
+              "sha": "69bcc92f55f6701458fe14fce0012d3373526a1c",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/69bcc92f55f6701458fe14fce0012d3373526a1c"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+          "comment_count": 0,
+          "verification": {
+              "verified": true,
+              "reason": "valid",
+              "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkH2+QCRBK7hj4Ov3rIwAAYqgIAFrI1EsHxbmwfOA91j1jyTD0\ny2HrcVSomCaibDKUDyvHsXBVG37YEfgwLO4BrpCeVUWvekoUwMYa9fY79XtWatj3\nL92gzReQ7UdsJvVuBWD22fUYgmYujXtEUWzGlXYwXX/pJT5cNBm56ZQKlPN7X6dB\ntgpjdp67dapHBCyzKcvFe0jDc1ClPnR1aD8/PpXNIrnY4GjYFKdwrpUMgEddu+jM\nREMGnBodVf9hILvoN7pZmYKkD9mGLP5wO7UDA1fLXdLSu0OfITb23yesE6dy/IEb\nAG79cPOBB+RM8lfV9Zux/Jk+mS7HiKqFyVO9g5Z6qebxwgMnzDGYTff/+LtJNqk=\n=9Q9w\n-----END PGP SIGNATURE-----\n",
+              "payload": "tree 69bcc92f55f6701458fe14fce0012d3373526a1c\nparent 445cd6eaf1a6f103e99499811277846bf291a092\nauthor finders-pe <128937561+finders-pe@users.noreply.github.com> 1679781776 -0700\ncommitter GitHub <noreply@github.com> 1679781776 -0700\n\nEnable Conversations in gpt3 models\n\nHi - I want to add conversations for davinci models back in. Please check out. I also saw another bug in reporting of the gpt3 models."
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f39d2ab279cd7dbe2c9b0af675e8a1d04dc30841/comments",
+      "author": {
+          "login": "finders-pe",
+          "id": 128937561,
+          "node_id": "U_kgDOB69uWQ",
+          "avatar_url": "https://avatars.githubusercontent.com/u/128937561?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/finders-pe",
+          "html_url": "https://github.com/finders-pe",
+          "followers_url": "https://api.github.com/users/finders-pe/followers",
+          "following_url": "https://api.github.com/users/finders-pe/following{/other_user}",
+          "gists_url": "https://api.github.com/users/finders-pe/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/finders-pe/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/finders-pe/subscriptions",
+          "organizations_url": "https://api.github.com/users/finders-pe/orgs",
+          "repos_url": "https://api.github.com/users/finders-pe/repos",
+          "events_url": "https://api.github.com/users/finders-pe/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/finders-pe/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "web-flow",
+          "id": 19864447,
+          "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+          "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/web-flow",
+          "html_url": "https://github.com/web-flow",
+          "followers_url": "https://api.github.com/users/web-flow/followers",
+          "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+          "organizations_url": "https://api.github.com/users/web-flow/orgs",
+          "repos_url": "https://api.github.com/users/web-flow/repos",
+          "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/web-flow/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "445cd6eaf1a6f103e99499811277846bf291a092",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/445cd6eaf1a6f103e99499811277846bf291a092",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/445cd6eaf1a6f103e99499811277846bf291a092"
+          }
+      ]
+  },
+  {
+      "sha": "316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+      "node_id": "C_kwDOIkZy5NoAKDMxNmE0YTVlYzk4Mzk2ZDdiMDlkMWNkOTYyMWIzZTdlY2Q5YWVkZDI",
+      "commit": {
+          "author": {
+              "name": "finders-pe",
+              "email": "128937561+finders-pe@users.noreply.github.com",
+              "date": "2023-03-25T21:59:41Z"
+          },
+          "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "date": "2023-03-25T21:59:41Z"
+          },
+          "message": "Fix for action buttons and PHP variable rendering\n\n1. insert added randomly to parent node of the code actions. This fixes at the setting correct element's sibling.\r\n2. Fix where php variables aren't rendering correctly by using the escape",
+          "tree": {
+              "sha": "e39b2f4e5a3794e0039308b2fd9412ce915c3d01",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/e39b2f4e5a3794e0039308b2fd9412ce915c3d01"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+          "comment_count": 0,
+          "verification": {
+              "verified": true,
+              "reason": "valid",
+              "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkH27NCRBK7hj4Ov3rIwAAwkYIAILjoSWmVkygKZyTGJJWFvGz\nrAYDj6z//5lJ/QZabb9/YE32/ofMc1BqJjvsL5ACdw89bQ8zS4epP96qykL7cuDi\n6YUaUG/fGvASqXSsftTZwe10W7MmC42ofrvG4yC2owtw3g0RSRu4ZpWU2ZQMTeb1\n9uMYkrLnFD1JEPtN3Ft94N42qqxhJgiTgnP/GLXIwuC1meiTyNdqcXelv7iRnLM1\ngiLYGa2Vjn6YgDj0abpKOY1pCZJZjEgl4sDeZCXaqt2ChkDgMAIBAUNkebkxn13X\njm1E2ky3BS+ccGs9/zZZ5mxeWnH4fKrwKO6MUiqeZJc3/Osd0KiMUeNxjcNymdk=\n=bU5H\n-----END PGP SIGNATURE-----\n",
+              "payload": "tree e39b2f4e5a3794e0039308b2fd9412ce915c3d01\nparent 445cd6eaf1a6f103e99499811277846bf291a092\nauthor finders-pe <128937561+finders-pe@users.noreply.github.com> 1679781581 -0700\ncommitter GitHub <noreply@github.com> 1679781581 -0700\n\nFix for action buttons and PHP variable rendering\n\n1. insert added randomly to parent node of the code actions. This fixes at the setting correct element's sibling.\r\n2. Fix where php variables aren't rendering correctly by using the escape"
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/316a4a5ec98396d7b09d1cd9621b3e7ecd9aedd2/comments",
+      "author": {
+          "login": "finders-pe",
+          "id": 128937561,
+          "node_id": "U_kgDOB69uWQ",
+          "avatar_url": "https://avatars.githubusercontent.com/u/128937561?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/finders-pe",
+          "html_url": "https://github.com/finders-pe",
+          "followers_url": "https://api.github.com/users/finders-pe/followers",
+          "following_url": "https://api.github.com/users/finders-pe/following{/other_user}",
+          "gists_url": "https://api.github.com/users/finders-pe/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/finders-pe/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/finders-pe/subscriptions",
+          "organizations_url": "https://api.github.com/users/finders-pe/orgs",
+          "repos_url": "https://api.github.com/users/finders-pe/repos",
+          "events_url": "https://api.github.com/users/finders-pe/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/finders-pe/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "web-flow",
+          "id": 19864447,
+          "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+          "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/web-flow",
+          "html_url": "https://github.com/web-flow",
+          "followers_url": "https://api.github.com/users/web-flow/followers",
+          "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+          "organizations_url": "https://api.github.com/users/web-flow/orgs",
+          "repos_url": "https://api.github.com/users/web-flow/repos",
+          "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/web-flow/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "445cd6eaf1a6f103e99499811277846bf291a092",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/445cd6eaf1a6f103e99499811277846bf291a092",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/445cd6eaf1a6f103e99499811277846bf291a092"
+          }
+      ]
+  },
+  {
+      "sha": "445cd6eaf1a6f103e99499811277846bf291a092",
+      "node_id": "C_kwDOIkZy5NoAKDQ0NWNkNmVhZjFhNmYxMDNlOTk0OTk4MTEyNzc4NDZiZjI5MWEwOTI",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T06:34:40Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T06:34:40Z"
+          },
+          "message": "Update .vscodeignore",
+          "tree": {
+              "sha": "ada1248adfc87a60cc31ecb5e3a5e59f0ac43533",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/ada1248adfc87a60cc31ecb5e3a5e59f0ac43533"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/445cd6eaf1a6f103e99499811277846bf291a092",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/445cd6eaf1a6f103e99499811277846bf291a092",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/445cd6eaf1a6f103e99499811277846bf291a092",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/445cd6eaf1a6f103e99499811277846bf291a092/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca"
+          }
+      ]
+  },
+  {
+      "sha": "0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+      "node_id": "C_kwDOIkZy5NoAKDBkMTJiNjIxNTU2OTA5ZTBjMDA3MWFjNGZiYmQzYzUxZmJkZjViY2E",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:28:02Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:28:02Z"
+          },
+          "message": "Update Readme with shields",
+          "tree": {
+              "sha": "b890fc85f4cd3bee89de23447af4c9b378bb6f0c",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/b890fc85f4cd3bee89de23447af4c9b378bb6f0c"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/0d12b621556909e0c0071ac4fbbd3c51fbdf5bca/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "f8252a725bdb96f727afd796654839302cd3f1c0",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f8252a725bdb96f727afd796654839302cd3f1c0",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f8252a725bdb96f727afd796654839302cd3f1c0"
+          }
+      ]
+  },
+  {
+      "sha": "f8252a725bdb96f727afd796654839302cd3f1c0",
+      "node_id": "C_kwDOIkZy5NoAKGY4MjUyYTcyNWJkYjk2ZjcyN2FmZDc5NjY1NDgzOTMwMmNkM2YxYzA",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:26:23Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:26:23Z"
+          },
+          "message": "Merge branch 'main' of https://github.com/gencay/vscode-chatgpt",
+          "tree": {
+              "sha": "c1b4af84b325505b02adba45128114035b991ea5",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/c1b4af84b325505b02adba45128114035b991ea5"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/f8252a725bdb96f727afd796654839302cd3f1c0",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f8252a725bdb96f727afd796654839302cd3f1c0",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f8252a725bdb96f727afd796654839302cd3f1c0",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f8252a725bdb96f727afd796654839302cd3f1c0/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "b69d7f48fecfd43aec7d96e7269812f18a70c712",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/b69d7f48fecfd43aec7d96e7269812f18a70c712",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/b69d7f48fecfd43aec7d96e7269812f18a70c712"
+          },
+          {
+              "sha": "47ca4254cd3840b3895c3a4702e3b441dc11c020",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/47ca4254cd3840b3895c3a4702e3b441dc11c020",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/47ca4254cd3840b3895c3a4702e3b441dc11c020"
+          }
+      ]
+  },
+  {
+      "sha": "b69d7f48fecfd43aec7d96e7269812f18a70c712",
+      "node_id": "C_kwDOIkZy5NoAKGI2OWQ3ZjQ4ZmVjZmQ0M2FlYzdkOTZlNzI2OTgxMmYxOGE3MGM3MTI",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:26:08Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:26:08Z"
+          },
+          "message": "Replace logos with the originals",
+          "tree": {
+              "sha": "fbe5aaaa92532bd00d6d41b9e716d69630a5d1f1",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/fbe5aaaa92532bd00d6d41b9e716d69630a5d1f1"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/b69d7f48fecfd43aec7d96e7269812f18a70c712",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/b69d7f48fecfd43aec7d96e7269812f18a70c712",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/b69d7f48fecfd43aec7d96e7269812f18a70c712",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/b69d7f48fecfd43aec7d96e7269812f18a70c712/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/e3817e55658e9e46ee427cf75b5c3d080fc5dabc"
+          }
+      ]
+  },
+  {
+      "sha": "47ca4254cd3840b3895c3a4702e3b441dc11c020",
+      "node_id": "C_kwDOIkZy5NoAKDQ3Y2E0MjU0Y2QzODQwYjM4OTVjM2E0NzAyZTNiNDQxZGMxMWMwMjA",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-23T00:06:41Z"
+          },
+          "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "date": "2023-03-23T00:06:41Z"
+          },
+          "message": "Create CNAME",
+          "tree": {
+              "sha": "b9cdf1661fe27d5e83a1ca158f2433f0d06c8ec2",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/b9cdf1661fe27d5e83a1ca158f2433f0d06c8ec2"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/47ca4254cd3840b3895c3a4702e3b441dc11c020",
+          "comment_count": 0,
+          "verification": {
+              "verified": true,
+              "reason": "valid",
+              "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkG5gRCRBK7hj4Ov3rIwAAJ4IIAFN16XNWr1JI30l9I3twYfqf\nBr/LDHE/IFobOx4uFViYGVrtmyZHq1Y2yYh3Wog9FQL0Lm2V2LTqKFzLvkwjHGTk\nifY+vZXA2IDVXjeBy6ZpWxFyUS0RzAjRD3QxPUV5BnFKduyCjWOEvkBNBbXy21FD\nWzB62cAxr4HuNajYfR//CD8Rqn2NtPqYHdqKDbb3yRJNmOBvnJguN0b6CWOizMha\n4HuQ+KU8BkniJ0cTEtndU2FbLImgdBBgaPT+gJLSxvXdM1S4st3Z3ZISSvki5WRS\nTOa3sR/BTfmrco/59abKOq41+rewhc5E+IrxVIEB/eFb10aCBjjowWzAhbaetio=\n=a6HD\n-----END PGP SIGNATURE-----\n",
+              "payload": "tree b9cdf1661fe27d5e83a1ca158f2433f0d06c8ec2\nparent e3817e55658e9e46ee427cf75b5c3d080fc5dabc\nauthor Ali Gençay <gencay.ali@hotmail.com> 1679530001 -0700\ncommitter GitHub <noreply@github.com> 1679530001 -0700\n\nCreate CNAME"
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/47ca4254cd3840b3895c3a4702e3b441dc11c020",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/47ca4254cd3840b3895c3a4702e3b441dc11c020",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/47ca4254cd3840b3895c3a4702e3b441dc11c020/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "web-flow",
+          "id": 19864447,
+          "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+          "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/web-flow",
+          "html_url": "https://github.com/web-flow",
+          "followers_url": "https://api.github.com/users/web-flow/followers",
+          "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+          "organizations_url": "https://api.github.com/users/web-flow/orgs",
+          "repos_url": "https://api.github.com/users/web-flow/repos",
+          "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/web-flow/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/e3817e55658e9e46ee427cf75b5c3d080fc5dabc"
+          }
+      ]
+  },
+  {
+      "sha": "e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+      "node_id": "C_kwDOIkZy5NoAKGUzODE3ZTU1NjU4ZTllNDZlZTQyN2NmNzViNWMzZDA4MGZjNWRhYmM",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-22T18:15:34Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-22T18:15:34Z"
+          },
+          "message": "Added license agreement in Readme, so you don't copy paste without proper copyright notice",
+          "tree": {
+              "sha": "1697ffbb8c70e34feb5f4b9d5b1e1fc0d313319f",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/1697ffbb8c70e34feb5f4b9d5b1e1fc0d313319f"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/e3817e55658e9e46ee427cf75b5c3d080fc5dabc",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/e3817e55658e9e46ee427cf75b5c3d080fc5dabc/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/ce12cfef9b5c3021b77adc7cd1f6592f99426643"
+          }
+      ]
+  },
+  {
+      "sha": "ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+      "node_id": "C_kwDOIkZy5NoAKGNlMTJjZmVmOWI1YzMwMjFiNzdhZGM3Y2QxZjY1OTJmOTk0MjY2NDM",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-22T18:11:45Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-22T18:11:45Z"
+          },
+          "message": "Add license & copyright agreements",
+          "tree": {
+              "sha": "1c677eac9adc184737b89024c6a5fb7cec7c1aad",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/1c677eac9adc184737b89024c6a5fb7cec7c1aad"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/ce12cfef9b5c3021b77adc7cd1f6592f99426643",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ce12cfef9b5c3021b77adc7cd1f6592f99426643/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "f486f4a8315b3adac72d0fc93c43c3dac515f158",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f486f4a8315b3adac72d0fc93c43c3dac515f158",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f486f4a8315b3adac72d0fc93c43c3dac515f158"
+          }
+      ]
+  },
+  {
+      "sha": "f486f4a8315b3adac72d0fc93c43c3dac515f158",
+      "node_id": "C_kwDOIkZy5NoAKGY0ODZmNGE4MzE1YjNhZGFjNzJkMGZjOTNjNDNjM2RhYzUxNWYxNTg",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-20T18:42:55Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-20T18:42:55Z"
+          },
+          "message": "Replace logos",
+          "tree": {
+              "sha": "462331721843393362081948b5d69a56f694aa26",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/462331721843393362081948b5d69a56f694aa26"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/f486f4a8315b3adac72d0fc93c43c3dac515f158",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f486f4a8315b3adac72d0fc93c43c3dac515f158",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/f486f4a8315b3adac72d0fc93c43c3dac515f158",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/f486f4a8315b3adac72d0fc93c43c3dac515f158/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "ebc5e37b646ffd6373068ea22bb07f764f287db8",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ebc5e37b646ffd6373068ea22bb07f764f287db8",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/ebc5e37b646ffd6373068ea22bb07f764f287db8"
+          }
+      ]
+  },
+  {
+      "sha": "ebc5e37b646ffd6373068ea22bb07f764f287db8",
+      "node_id": "C_kwDOIkZy5NoAKGViYzVlMzdiNjQ2ZmZkNjM3MzA2OGVhMjJiYjA3Zjc2NGYyODdkYjg",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-20T18:26:22Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-20T18:26:22Z"
+          },
+          "message": "Add more How To and reference new marketplace extensions",
+          "tree": {
+              "sha": "cbce2375b8ce92dc7bdb1b413301707a8a50f4c4",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/cbce2375b8ce92dc7bdb1b413301707a8a50f4c4"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/ebc5e37b646ffd6373068ea22bb07f764f287db8",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ebc5e37b646ffd6373068ea22bb07f764f287db8",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/ebc5e37b646ffd6373068ea22bb07f764f287db8",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/ebc5e37b646ffd6373068ea22bb07f764f287db8/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": [
+          {
+              "sha": "8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+              "html_url": "https://github.com/gencay/vscode-chatgpt/commit/8fb62af0c28972b8b34768f79e91a2d37dabb41a"
+          }
+      ]
+  },
+  {
+      "sha": "8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+      "node_id": "C_kwDOIkZy5NoAKDhmYjYyYWYwYzI4OTcyYjhiMzQ3NjhmNzllOTFhMmQzN2RhYmI0MWE",
+      "commit": {
+          "author": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2022-12-06T17:25:54Z"
+          },
+          "committer": {
+              "name": "Ali Gençay",
+              "email": "gencay.ali@hotmail.com",
+              "date": "2023-03-18T14:19:49Z"
+          },
+          "message": "Open-source extension",
+          "tree": {
+              "sha": "851dbedd621ec0dba5918b6b549088e40c96938a",
+              "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/trees/851dbedd621ec0dba5918b6b549088e40c96938a"
+          },
+          "url": "https://api.github.com/repos/gencay/vscode-chatgpt/git/commits/8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+          "comment_count": 0,
+          "verification": {
+              "verified": false,
+              "reason": "unsigned",
+              "signature": null,
+              "payload": null
+          }
+      },
+      "url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+      "html_url": "https://github.com/gencay/vscode-chatgpt/commit/8fb62af0c28972b8b34768f79e91a2d37dabb41a",
+      "comments_url": "https://api.github.com/repos/gencay/vscode-chatgpt/commits/8fb62af0c28972b8b34768f79e91a2d37dabb41a/comments",
+      "author": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "committer": {
+          "login": "gencay",
+          "id": 1168485,
+          "node_id": "MDQ6VXNlcjExNjg0ODU=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/1168485?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/gencay",
+          "html_url": "https://github.com/gencay",
+          "followers_url": "https://api.github.com/users/gencay/followers",
+          "following_url": "https://api.github.com/users/gencay/following{/other_user}",
+          "gists_url": "https://api.github.com/users/gencay/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/gencay/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/gencay/subscriptions",
+          "organizations_url": "https://api.github.com/users/gencay/orgs",
+          "repos_url": "https://api.github.com/users/gencay/repos",
+          "events_url": "https://api.github.com/users/gencay/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/gencay/received_events",
+          "type": "User",
+          "site_admin": false
+      },
+      "parents": []
+  }
+]

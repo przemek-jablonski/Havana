@@ -21,6 +21,11 @@ public struct PrivateAccessTokenLoginView: View {
           // TODO: scope this to ViewState
           viewStore.send(.user(.userRequestedLoginUsingToken(token)))
         }
+
+        if viewStore.state == .loginInProgress {
+          ProgressView()
+            .transition(.opacity)
+        }
       }
     }
   }

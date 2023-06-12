@@ -35,6 +35,7 @@
 		1F8FE10129D4720A0038B33A /* ___VARIABLE_scene_name___Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "___VARIABLE_scene_name___Preview.swift"; sourceTree = "<group>"; };
 		1F8FE10229D4720A0038B33A /* TemplateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TemplateIcon.png; sourceTree = "<group>"; };
 		1F8FE10329D4720A0038B33A /* TemplateInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TemplateInfo.plist; sourceTree = "<group>"; };
+		1FC219A929E436A2009E84A9 /* .sourcery.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .sourcery.yml; sourceTree = "<group>"; };
 		1FF7DBBC2993161E001245CF /* HavanaiOSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaiOSAppDelegate.swift; sourceTree = "<group>"; };
 		1FF7DBC429931A7D001245CF /* EventsRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRecorder.swift; sourceTree = "<group>"; };
 		1FFA526429C76F19005FE727 /* HavanaAppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavanaAppReducer.swift; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 				1FFA526B29C90378005FE727 /* LICENSE */,
 				1FFA526D29C90379005FE727 /* README.md */,
 				1FFA526F29C9037B005FE727 /* .swiftlint.yml */,
+				1FC219A929E436A2009E84A9 /* .sourcery.yml */,
 				1F1E863F299000470091362C /* Frameworks */,
 				1F0AB5F7298F38E8008D146E /* Products */,
 			);

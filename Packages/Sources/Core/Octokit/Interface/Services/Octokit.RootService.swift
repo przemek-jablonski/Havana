@@ -46,7 +46,7 @@ extension Octokit.PrivateAccessTokenValidationError {
     }
   }
 
-  public static var random: Octokit.PrivateAccessTokenValidationError {
-    .remoteDeclaredPrivateAccessTokenInvalid(EmptyError())
+  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    .remoteDeclaredPrivateAccessTokenInvalid(GenericError.random())
   }
 }

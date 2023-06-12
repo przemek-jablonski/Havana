@@ -7,10 +7,10 @@ import PackageDescription
 
 // MARK: - Global Constraints
 
-let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.52.0")
+let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.54.0")
 let composableArchitecture = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
 
-let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.1")
+let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.2")
 let swiftUINavigation = Target.Dependency.product(name: "SwiftUINavigation", package: "swiftui-navigation")
 
 let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")
@@ -177,9 +177,27 @@ let octokitTests = Target.testTarget(
   name: "OctokitTests",
   dependencies: [
     casimir,
-    .byName(name: octokit.name) // TODO:
+    .byName(name: octokit.name), // TODO:
+    .byName(name: octokitLive.name) // TODO:
   ],
-  path: "Tests/Core/Octokit"
+  path: "Tests/Core/Octokit",
+  resources: [
+    .copy("Resources/events_1.json"),
+    .copy("Resources/events_2.json"),
+    .copy("Resources/events_3.json"),
+    .copy("Resources/events_4.json"),
+    .copy("Resources/events_5.json"),
+    .copy("Resources/events_6.json"),
+    .copy("Resources/events_7.json"),
+    .copy("Resources/events_8.json"),
+    .copy("Resources/events_9.json"),
+    .copy("Resources/events_10.json"),
+    .copy("Resources/events_11.json"),
+    .copy("Resources/events_12.json"),
+    .copy("Resources/events_13.json"),
+    .copy("Resources/events_14.json"),
+    .copy("Resources/events_15.json")
+  ]
 )
 
 let testTargets: [Target] = [

@@ -1,3 +1,4 @@
+import Casimir
 import Foundation
 
 public extension Octokit {
