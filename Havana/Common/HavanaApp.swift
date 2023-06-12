@@ -3,7 +3,10 @@ import SwiftUI
 
 @main
 internal struct HavanaApp: App {
-  @UIApplicationDelegateAdaptor(HavanaiOSAppDelegate.self) private var appDelegate
+  #if canImport(UIKit)
+  @UIApplicationDelegateAdaptor(HavanaiOSAppDelegate.self)
+  private var appDelegate
+  #endif
 
   internal var body: some Scene {
     WindowGroup {
