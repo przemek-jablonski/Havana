@@ -76,7 +76,7 @@ public struct FilledButtonStyle: ButtonStyle {
 }
 
 struct MotifButtonFilled_Previews: PreviewProvider {
-  static var previews: some View {
+  internal static var previews: some View {
     Motif.Button.Filled(
       image: "cube.transparent",
       title: "asdasdasd",
