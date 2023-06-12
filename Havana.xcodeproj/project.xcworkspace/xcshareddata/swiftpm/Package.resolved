@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "CombineExt",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineExt",
-        "state": {
-          "branch": null,
-          "revision": "aaf1a0981c05360000af972473034cb952be4ca0",
-          "version": "1.8.0"
-        }
-      },
-      {
         "package": "Entwine",
         "repositoryURL": "https://github.com/tcldr/Entwine.git",
         "state": {
@@ -107,15 +98,6 @@
           "branch": null,
           "revision": "db81007362f998654239021ca9308a264e59d3e2",
           "version": "0.7.2"
-        }
-      },
-      {
-        "package": "SwiftyBeaver",
-        "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
-        "state": {
-          "branch": null,
-          "revision": "12b5acf96d98f91d50de447369bd18df74600f1a",
-          "version": "1.9.6"
         }
       },
       {
