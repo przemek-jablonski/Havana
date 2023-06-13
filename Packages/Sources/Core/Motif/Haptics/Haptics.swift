@@ -5,7 +5,7 @@ public struct Haptics {
   /**
    Actions that can be performed on given haptic feedback type.
    */
-  enum Action {
+  public enum Action {
     /**
      Preheats and prepares the Taptic Engine so that it's ready for producing haptic feedback in the future.
      After calling `prepare`, the Engine will be live for a few seconds.
@@ -25,17 +25,17 @@ public struct Haptics {
   /**
    Light haptic feedback type to accompany operations such as user swipes.
    */
-  var lightNudge: (Action) -> ()
+  public var lightNudge: (Action) -> ()
 
   /**
    Light haptic feedback type for when user clicks a regular button.
    */
-  var lightClick: (Action) -> ()
+  public var lightClick: (Action) -> ()
 
   /**
    Heavy haptic feedback type for when user clicks an important / prominent button.
    */
-  var heavyClick: (Action) -> ()
+  public var heavyClick: (Action) -> ()
 }
 
 // TODO: parallax

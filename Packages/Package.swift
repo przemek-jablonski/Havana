@@ -90,7 +90,7 @@ let loginFeatureTests = Target.testTarget(
   name: "LoginFeatureTests",
   dependencies: [
     casimir,
-    .byName(name: loginFeature.name) // TODO:
+    .byName(name: loginFeature.name)
   ],
   path: "Sources/Features/Login/Tests"
 )
@@ -119,7 +119,7 @@ let activityFeedTests = Target.testTarget(
   name: "ActivityFeedTests",
   dependencies: [
     casimir,
-    .byName(name: activityFeedFeature.name) // TODO:
+    .byName(name: activityFeedFeature.name)
   ],
   path: "Sources/Features/ActivityFeed/Tests"
 )
@@ -149,7 +149,7 @@ let userContextTests = Target.testTarget(
   name: "UserContextTests",
   dependencies: [
     casimir,
-    .byName(name: userContextFeature.name) // TODO:
+    .byName(name: userContextFeature.name)
   ],
   path: "Sources/Features/UserContext/Tests"
 )
@@ -177,8 +177,8 @@ let octokitTests = Target.testTarget(
   name: "OctokitTests",
   dependencies: [
     casimir,
-    .byName(name: octokit.name), // TODO:
-    .byName(name: octokitLive.name) // TODO:
+    .byName(name: octokit.name),
+    .byName(name: octokitLive.name)
   ],
   path: "Tests/Core/Octokit",
   resources: [
@@ -265,6 +265,9 @@ private extension Array where Element == Target {
   }
 }
 
-private func +<Element>(left: Element, right: [Element]) -> [Element] {
+private func + <Element>(left: Element, right: [Element]) -> [Element] {
   [left] + right
 }
+
+// swiftlint:enable explicit_acl
+// swiftlint:enable explicit_top_level_acl

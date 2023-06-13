@@ -1,12 +1,12 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+public extension Octokit {
   /// GitHub apps are a new way to extend GitHub. They can be installed directly on
   /// organizations and user accounts and granted access to specific repositories. They come
   /// with granular permissions and built-in webhooks. GitHub apps are first class actors
   /// within GitHub.
-  public struct GithubApp: ModelProtocol {
+  struct GithubApp: ModelProtocol {
     public let clientId: String?
     public let clientSecret: String?
     public let createdAt: Date
@@ -31,7 +31,7 @@ extension Octokit {
     public let updatedAt: Date
     public let webhookSecret: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case clientId = "client_id"
       case clientSecret = "client_secret"
       case createdAt = "created_at"

@@ -12,15 +12,15 @@ public protocol OctokitLoginService {
   func isLoggedIn() async -> Result<Bool, Never>
 }
 
-extension Octokit {
-  public enum PrivateAccessTokenLoginError: ErrorProtocol {
+public extension Octokit {
+  enum PrivateAccessTokenLoginError: ErrorProtocol {
     case unableToStorePrivateAccessToken(Error)
     case remoteDeclaredPrivateAccessTokenInvalid(Error)
   }
 }
 
-extension Octokit.PrivateAccessTokenLoginError {
-  public static func == (
+public extension Octokit.PrivateAccessTokenLoginError {
+  static func == (
     lhs: Octokit.PrivateAccessTokenLoginError,
     rhs: Octokit.PrivateAccessTokenLoginError
   ) -> Bool {
@@ -34,7 +34,7 @@ extension Octokit.PrivateAccessTokenLoginError {
     }
   }
 
-  public static func random(
+  static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Octokit.PrivateAccessTokenLoginError {
     [

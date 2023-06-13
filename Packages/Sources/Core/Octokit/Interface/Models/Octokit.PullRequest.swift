@@ -1,15 +1,15 @@
 import Casimir
 import Foundation
 
-extension Octokit {
-  public struct PullRequest: ModelProtocol {
+public extension Octokit {
+  struct PullRequest: ModelProtocol {
     public let diffUrl: String?
     public let htmlUrl: String?
     public let mergedAt: Date?
     public let patchUrl: String?
     public let url: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case diffUrl = "diff_url"
       case htmlUrl = "html_url"
       case mergedAt = "merged_at"

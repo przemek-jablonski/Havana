@@ -1,9 +1,9 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+public extension Octokit {
   /// License Simple
-  public struct License: ModelProtocol {
+  struct License: ModelProtocol {
     public let htmlUrl: String?
     public let key: String
     public let name: String
@@ -11,7 +11,7 @@ extension Octokit {
     public let spdxId: String?
     public let url: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case htmlUrl = "html_url"
       case key = "key"
       case name = "name"

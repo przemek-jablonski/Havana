@@ -24,7 +24,7 @@
 //    //    changes
 //    //    thread
 //
-//    enum CodingKeys: String, CodingKey {
+//    internal enum CodingKeys: String, CodingKey {
 //      case id = "id"
 //      case action = "action"
 //      case assignee = "assignee"
@@ -79,7 +79,7 @@
 //    public let summary: String?
 //    public let title: String?
 //
-//    enum CodingKeys: String, CodingKey {
+//    internal enum CodingKeys: String, CodingKey {
 //      case action = "action"
 //      case htmlUrl = "html_url"
 //      case pageName = "page_name"

@@ -1,9 +1,9 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+public extension Octokit {
   /// A release.
-  public struct Release: ModelProtocol {
+  struct Release: ModelProtocol {
     public let assets: [Asset]
     public let assetsUrl: String
     /// A GitHub user.
@@ -34,7 +34,7 @@ extension Octokit {
     public let url: String
     public let zipballUrl: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case assets = "assets"
       case assetsUrl = "assets_url"
       case author = "author"
@@ -90,9 +90,9 @@ extension Octokit {
   }
 }
 
-extension Octokit.Release {
+public extension Octokit.Release {
   /// Data related to a release.
-  public struct Asset: ModelProtocol {
+  struct Asset: ModelProtocol {
     public let browserDownloadUrl: String
     public let contentType: String
     public let createdAt: Date
@@ -109,7 +109,7 @@ extension Octokit.Release {
     public let uploader: Octokit.UserBrief?
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case browserDownloadUrl = "browser_download_url"
       case contentType = "content_type"
       case createdAt = "created_at"
@@ -145,9 +145,9 @@ extension Octokit.Release {
   }
 }
 
-extension Octokit.Release.Asset {
+public extension Octokit.Release.Asset {
   /// State of the release asset.
-  public enum State: String, ModelProtocol {
+  enum State: String, ModelProtocol {
     case stateOpen = "open"
     case uploaded = "uploaded"
 

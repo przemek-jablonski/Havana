@@ -12,11 +12,11 @@ internal struct EventsDecoder_API_2022_11_28 {
 }
 
 extension EventsDecoder_API_2022_11_28: EventsDecoder {
-  func decodeEvents(from data: Data) async -> Result<[Octokit.Event], Never> {
+  internal func decodeEvents(from data: Data) async -> Result<[Octokit.Event], Never> {
     .success(.random()) // TODO: TODO
   }
 
-  func decodeEvent(from data: Data) async -> Result<Octokit.Event, EventsDecoderError> {
+  internal func decodeEvent(from data: Data) async -> Result<Octokit.Event, EventsDecoderError> {
     .success(.random()) // TODO: TODO
     //    decodeJsonDictionary(from: data)
   }

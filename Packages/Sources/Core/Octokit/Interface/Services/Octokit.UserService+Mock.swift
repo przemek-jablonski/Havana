@@ -5,6 +5,8 @@ public extension Octokit {
   struct UserServiceMock {}
 }
 
+// TODO: having dedicated mocks is backwards
+
 extension Octokit.UserServiceMock: Octokit.ServiceMock {
   public static func happyPath() -> Octokit.UserService {
     struct Mock: Octokit.UserService {

@@ -35,7 +35,7 @@ internal extension Color {
   internal static var placeholderText: Color { Color(uiColor: .placeholderText) }
 }
 
-struct Color_Previews: PreviewProvider {
+internal struct Color_Previews: PreviewProvider {
   internal static var previews: some View {
     Color.link
   }

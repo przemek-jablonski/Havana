@@ -32,8 +32,8 @@ public extension Octokit {
   }
 }
 
-extension Octokit.PrivateAccessTokenValidationError {
-  public static func == (
+public extension Octokit.PrivateAccessTokenValidationError {
+  static func == (
     lhs: Octokit.PrivateAccessTokenValidationError,
     rhs: Octokit.PrivateAccessTokenValidationError
   ) -> Bool {
@@ -46,7 +46,7 @@ extension Octokit.PrivateAccessTokenValidationError {
     }
   }
 
-  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+  static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
     .remoteDeclaredPrivateAccessTokenInvalid(GenericError.random())
   }
 }
