@@ -3,146 +3,6 @@ import Foundation
 
 // swiftlint:disable redundant_string_enum_value
 
-public extension Octokit.Event {
-  struct CommitCommentEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.CommitCommentEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct CreateEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.CreateEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct DeleteEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.DeleteEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct ForkEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.ForkEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct GollumEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.GollumEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct IssueCommentEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.IssueCommentEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct IssuesEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.IssuesEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct MemberEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.MemberEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct PublicEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.PublicEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct PullRequestEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.PullRequestEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct PushEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.PushEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct ReleaseEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.ReleaseEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct SponsorshipEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.SponsorshipEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
-public extension Octokit.Event {
-  struct WatchEvent: ModelProtocol {
-    public var id: UUID { payload.id }
-    public let payload: Octokit.Event.Payload.WatchEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(payload: .random())
-    }
-  }
-}
-
 public extension Octokit {
   enum Event: ModelProtocol {
     case commitCommentEvent(CommitCommentEvent)
@@ -159,6 +19,210 @@ public extension Octokit {
     case releaseEvent(ReleaseEvent)
     case sponsorshipEvent(SponsorshipEvent)
     case watchEvent(WatchEvent)
+  }
+}
+
+public extension Octokit.Event {
+  struct CommitCommentEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.CommitCommentEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct CreateEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.CreateEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct DeleteEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.DeleteEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct ForkEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.ForkEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct GollumEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.GollumEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct IssueCommentEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.IssueCommentEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct IssuesEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.IssuesEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct MemberEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.MemberEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct PublicEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.PublicEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct PullRequestEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.PullRequestEventPayload
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.PullRequestEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct PushEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.PushEventPayload
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.PushEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct ReleaseEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.ReleaseEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct SponsorshipEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.SponsorshipEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
+  }
+}
+
+public extension Octokit.Event {
+  struct WatchEvent: ModelProtocol {
+    public let id: String
+    public let payload: Octokit.Event.Payload.WatchEventPayload
+    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+      Self(
+        id: .random(),
+        payload: .random()
+      )
+    }
   }
 }
 
