@@ -26,7 +26,18 @@ public extension Octokit.Event {
   struct CommitCommentEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.CommitCommentEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.CommitCommentEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -39,7 +50,18 @@ public extension Octokit.Event {
   struct CreateEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.CreateEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.CreateEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -52,7 +74,18 @@ public extension Octokit.Event {
   struct DeleteEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.DeleteEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.DeleteEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -65,7 +98,18 @@ public extension Octokit.Event {
   struct ForkEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.ForkEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.ForkEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -78,7 +122,18 @@ public extension Octokit.Event {
   struct GollumEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.GollumEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.GollumEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -91,7 +146,18 @@ public extension Octokit.Event {
   struct IssueCommentEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.IssueCommentEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.IssueCommentEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -104,7 +170,18 @@ public extension Octokit.Event {
   struct IssuesEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.IssuesEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.IssuesEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -117,7 +194,18 @@ public extension Octokit.Event {
   struct MemberEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.MemberEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.MemberEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -130,7 +218,18 @@ public extension Octokit.Event {
   struct PublicEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.PublicEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.PublicEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -191,7 +290,18 @@ public extension Octokit.Event {
   struct ReleaseEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.ReleaseEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.ReleaseEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -204,7 +314,18 @@ public extension Octokit.Event {
   struct SponsorshipEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.SponsorshipEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.SponsorshipEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -217,7 +338,18 @@ public extension Octokit.Event {
   struct WatchEvent: ModelProtocol {
     public let id: String
     public let payload: Octokit.Event.Payload.WatchEventPayload
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+
+    public init(
+      id: String,
+      payload: Octokit.Event.Payload.WatchEventPayload
+    ) {
+      self.id = id
+      self.payload = payload
+    }
+
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         id: .random(),
         payload: .random()
@@ -268,6 +400,7 @@ public extension Octokit.Event {
   }
 }
 
+// TODO: why this stuff is here?
 public extension Octokit {
   /// Actor
   struct Actor: ModelProtocol {

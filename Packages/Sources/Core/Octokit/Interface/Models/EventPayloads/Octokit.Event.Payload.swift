@@ -338,7 +338,7 @@ public extension Octokit.Event.Payload {
     // TODO: changes
 
     /// The reason the pull request was removed from a merge queue if the action was dequeued.
-    public let reason: String
+    public let reason: String?
 
     internal enum CodingKeys: String, CodingKey {
       case action = "action"
@@ -447,7 +447,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct WatchEventPayload: ModelProtocol {
-    public var id = UUID()
+    public let id = UUID()
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
