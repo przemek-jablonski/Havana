@@ -18,7 +18,7 @@ public extension Octokit {
     public let reactions: Reactions?
     public let updatedAt: Date
     public let url: String
-    public let user: User?
+    public let user: UserBrief?
 
     internal enum CodingKeys: String, CodingKey {
       case authorAssociation = "author_association"

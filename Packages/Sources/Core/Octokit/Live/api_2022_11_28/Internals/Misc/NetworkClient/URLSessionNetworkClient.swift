@@ -49,7 +49,7 @@ extension URLSessionNetworkClient: NetworkClient {
     .mapError(NetworkClientError.networkRequestFailure)
     .flatMap { [jsonDecoder] response -> Result<ReturnType, NetworkClientError> in
       jsonDecoder
-        .decode(type, from: response.response)
+        .decode(type, using: response.response)
         .logIfDecodingFails(of: response.response)
         .mapError(NetworkClientError.responseDecodingFailure)
     }
