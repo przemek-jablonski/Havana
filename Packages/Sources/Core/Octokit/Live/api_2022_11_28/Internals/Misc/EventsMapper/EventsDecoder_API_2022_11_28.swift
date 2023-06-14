@@ -16,7 +16,7 @@ extension EventsDecoder_API_2022_11_28: EventsDecoder {
   internal func decodeEvents(from data: Data) async -> Result<[Octokit.Event], EventsDecoderError> {
     decodeJsonDictionary(from: data)
       .map { jsons in
-        jsons.map { json in
+        jsons.compactMap { json in
           let captured = try! decode(
             json: json,
             using: jsonDecoder
@@ -65,7 +65,7 @@ private extension EventsDecoder {
   func decode(
     json: [String: Any],
     using jsonDecoder: JSONDecoder
-  ) -> Result<Octokit.Event, EventsDecoderError> {
+  ) -> Result<Octokit.Event?, EventsDecoderError> {
     guard let eventId = json["id"] as? String else {
       return .failure(.unableToDecodeEventId(json))
     }
@@ -127,17 +127,20 @@ private extension EventsDecoder {
           .mapError { .unableToDecodeJsonIntoEventObject(json, $0) }
           .map { .pullRequestEvent(.init(id: eventId, payload: $0)) }
       case Octokit.EventType.pullRequestReview.string:
-        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReview")))
+//        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReview")))
+        return .success(nil)
 //        return jsonDecoder.decode(Octokit.Event.Payload.PullRequest.self, using: eventPayloadData)
 //          .mapError { .unableToDecodeJsonIntoEventObject(json, $0) }
 //          .map { .watchEvent(.init(id: eventId, payload: $0)) }
       case Octokit.EventType.pullRequestReviewComment.string:
-        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReviewComment")))
+//        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReviewComment")))
+        return .success(nil)
 //        return jsonDecoder.decode(Octokit.Event.Payload.Pull.self, using: eventPayloadData)
 //          .mapError { .unableToDecodeJsonIntoEventObject(json, $0) }
 //          .map { .watchEvent(.init(id: eventId, payload: $0)) }
       case Octokit.EventType.pullRequestReviewThread.string:
-        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReviewThread")))
+//        return .failure(EventsDecoderError.jsonDecodingFailure(GenericError(description: "pullRequestReviewThread")))
+        return .success(nil)
 //        return jsonDecoder.decode(Octokit.Event.Payload.PullRe.self, using: eventPayloadData)
 //          .mapError { .unableToDecodeJsonIntoEventObject(json, $0) }
 //          .map { .watchEvent(.init(id: eventId, payload: $0)) }
