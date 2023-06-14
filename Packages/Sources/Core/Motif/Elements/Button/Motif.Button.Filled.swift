@@ -1,7 +1,7 @@
 import SwiftUI
 
 public extension Motif.Button {
-  struct Filled: View {
+  internal struct Filled: View {
     //    public init(
     //      image: Motif.SFSymbol,
     //      title: String,
@@ -75,7 +75,7 @@ public struct FilledButtonStyle: ButtonStyle {
   }
 }
 
-struct MotifButtonFilled_Previews: PreviewProvider {
+internal struct MotifButtonFilled_Previews: PreviewProvider {
   internal static var previews: some View {
     Motif.Button.Filled(
       image: "cube.transparent",

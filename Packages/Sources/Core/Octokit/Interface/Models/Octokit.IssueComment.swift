@@ -23,7 +23,7 @@ public extension Octokit {
     public let url: String
     public let user: UserBrief?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case authorAssociation = "author_association"
       case body = "body"
       case bodyHtml = "body_html"

@@ -16,7 +16,7 @@ public extension Octokit {
     public let totalCount: Int?
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case plus1 = "+1"
       case minus1 = "-1"
       case confused = "confused"

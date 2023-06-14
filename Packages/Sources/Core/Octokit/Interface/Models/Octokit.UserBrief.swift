@@ -1,10 +1,32 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+public extension Octokit {
   /// Brief information set on given GitHub user.
-  public struct UserBrief: ModelProtocol {
-    internal init(avatarUrl: String, email: String? = nil, eventsUrl: String? = nil, followersUrl: String? = nil, followingUrl: String, gistsUrl: String, gravatarId: String? = nil, htmlUrl: String, id: Int, login: String, name: String? = nil, nodeId: String? = nil, organizationsUrl: String, receivedEventsUrl: String, reposUrl: String, siteAdmin: Bool, starredAt: String? = nil, starredUrl: String, subscriptionsUrl: String, type: String, url: String) {
+  struct UserBrief: ModelProtocol {
+    internal init(
+      avatarUrl: String,
+      email: String? = nil,
+      eventsUrl: String? = nil,
+      followersUrl: String? = nil,
+      followingUrl: String,
+      gistsUrl: String,
+      gravatarId: String? = nil,
+      htmlUrl: String,
+      id: Int,
+      login: String,
+      name: String? = nil,
+      nodeId: String? = nil,
+      organizationsUrl: String,
+      receivedEventsUrl: String,
+      reposUrl: String,
+      siteAdmin: Bool,
+      starredAt: String? = nil,
+      starredUrl: String,
+      subscriptionsUrl: String,
+      type: String,
+      url: String
+    ) {
       self.avatarUrl = avatarUrl
       self.email = email
       self.eventsUrl = eventsUrl

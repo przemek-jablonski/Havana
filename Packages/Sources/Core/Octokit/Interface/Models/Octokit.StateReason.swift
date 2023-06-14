@@ -1,8 +1,8 @@
 import Casimir
 import Foundation
 
-extension Octokit {
-  public enum StateReason: String, ModelProtocol {
+public extension Octokit {
+  enum StateReason: String, ModelProtocol {
     case completed = "completed"
     case notPlanned = "not_planned"
     case reopened = "reopened"

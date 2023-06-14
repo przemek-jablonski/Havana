@@ -1,6 +1,8 @@
 import Casimir
 import Foundation
 
+// swiftlint:disable redundant_string_enum_value
+
 public extension Octokit.Event {
   struct CommitCommentEvent: ModelProtocol {
     public var id: UUID { payload.id }
@@ -160,28 +162,29 @@ public extension Octokit {
   }
 }
 
-extension Octokit.Event {
-  public var id: String {
-    ""
-    //    switch self {
-    //      case .commitCommentEvent(let event): return event.id
-    //      case .createEvent(let event): return event.id
-    //      case .deleteEvent(let event): return event.id
-    //      case .forkEvent(let event): return event.id
-    //      case .gollumEvent(let event): return event.id
-    //      case .issueCommentEvent(let event): return event.id
-    //      case .issuesEvent(let event): return event.id
-    //      case .memberEvent(let event): return event.id
-    //      case .publicEvent(let event): return event.id
-    //      case .pullRequestEvent(let event): return event.id
-    //      case .pushEvent(let event): return event.id
-    //      case .releaseEvent(let event): return event.id
-    //      case .sponsorshipEvent(let event): return event.id
-    //      case .watchEvent(let event): return event.id
-    //    }
+public extension Octokit.Event {
+  var id: String {
+    switch self {
+      case .commitCommentEvent(let event): return event.id
+      case .createEvent(let event): return event.id
+      case .deleteEvent(let event): return event.id
+      case .forkEvent(let event): return event.id
+      case .gollumEvent(let event): return event.id
+      case .issueCommentEvent(let event): return event.id
+      case .issuesEvent(let event): return event.id
+      case .memberEvent(let event): return event.id
+      case .publicEvent(let event): return event.id
+      case .pullRequestEvent(let event): return event.id
+      case .pushEvent(let event): return event.id
+      case .releaseEvent(let event): return event.id
+      case .sponsorshipEvent(let event): return event.id
+      case .watchEvent(let event): return event.id
+    }
   }
 
-  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+  static func random(
+    _ randomNumberGenerator: inout RandomNumberGenerator
+  ) -> Self {
     [
       .commitCommentEvent(.random()),
       .createEvent(.random()),
@@ -201,9 +204,9 @@ extension Octokit.Event {
   }
 }
 
-extension Octokit {
+public extension Octokit {
   /// Actor
-  public struct Actor: ModelProtocol {
+  struct Actor: ModelProtocol {
     public let avatarUrl: String
     public let displayLogin: String?
     public let gravatarId: String?
@@ -211,7 +214,7 @@ extension Octokit {
     public let login: String
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case avatarUrl = "avatar_url"
       case displayLogin = "display_login"
       case gravatarId = "gravatar_id"
@@ -220,7 +223,9 @@ extension Octokit {
       case url = "url"
     }
 
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         avatarUrl: .random(),
         displayLogin: .random(),
@@ -233,20 +238,22 @@ extension Octokit {
   }
 }
 
-extension Octokit {
+public extension Octokit {
   /// Repo
-  public struct Repo: ModelProtocol {
+  struct Repo: ModelProtocol {
     public let id: Int
     public let name: String
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case id = "id"
       case name = "name"
       case url = "url"
     }
 
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Octokit.Repo {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Octokit.Repo {
       Self(
         id: .random(),
         name: .random(),
@@ -255,3 +262,5 @@ extension Octokit {
     }
   }
 }
+
+// swiftlint:enable redundant_string_enum_value

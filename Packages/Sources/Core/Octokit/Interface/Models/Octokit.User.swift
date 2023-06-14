@@ -1,6 +1,7 @@
 import Casimir
 import Foundation
 
+// swiftlint:disable discouraged_optional_boolean
 public extension Octokit {
   // MARK: - User
   struct User: ModelProtocol {
@@ -47,7 +48,7 @@ public extension Octokit {
     public let updatedAt: Date
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case avatarUrl = "avatar_url"
       case bio = "bio"
       case blog = "blog"
@@ -148,7 +149,7 @@ public extension Octokit {
     public let privateRepos: Int
     public let space: Int
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case collaborators = "collaborators"
       case name = "name"
       case privateRepos = "private_repos"
@@ -165,3 +166,4 @@ public extension Octokit {
     }
   }
 }
+// swiftlint:enable discouraged_optional_boolean

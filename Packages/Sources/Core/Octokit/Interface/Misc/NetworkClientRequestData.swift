@@ -42,6 +42,7 @@ public extension Octokit {
   }
 }
 
+// swiftlint:disable discouraged_optional_collection
 private func + (
   lhs: [String: String]?,
   rhs: [String: String]?
@@ -52,6 +53,7 @@ private func + (
   }
   return updated
 }
+// swiftlint:enable discouraged_optional_collection
 
 //// TODO: fill + to Casimir
 // private func +<Key: Hashable, Value>(

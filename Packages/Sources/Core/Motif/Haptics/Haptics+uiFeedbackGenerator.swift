@@ -2,8 +2,8 @@
 // TODO: support non-UIKit platforms as well (macOS, watchOS!)
 import UIKit
 
-internal extension Haptics {
-  static func uiFeedbackGenerator() -> Haptics {
+extension Haptics {
+  internal static func uiFeedbackGenerator() -> Haptics {
     let softFeedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
     let regularFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     let heavyFeedbackGenerator = UIImpactFeedbackGenerator(style: .rigid)

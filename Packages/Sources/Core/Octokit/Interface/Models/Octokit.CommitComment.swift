@@ -2,7 +2,6 @@ import Casimir
 import Foundation
 
 public extension Octokit {
-  /// Commit Comment
   // MARK: - CommitCommentElement
   struct CommitComment: ModelProtocol {
     /// How the author is associated with the repository.
@@ -21,7 +20,7 @@ public extension Octokit {
     public let url: String
     public let user: User?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case authorAssociation = "author_association"
       case body = "body"
       case commitId = "commit_id"

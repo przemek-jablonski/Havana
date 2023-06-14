@@ -1,6 +1,9 @@
 import Casimir
 import Foundation
 
+// swiftlint:disable redundant_string_enum_value
+// swiftlint:disable inclusive_language
+// swiftlint:disable file_length
 public extension Octokit.Event {
   enum Payload: ModelProtocol {
     case commitCommentEventPayload(CommitCommentEventPayload)
@@ -23,11 +26,10 @@ public extension Octokit.Event {
   }
 }
 
-extension Octokit.Event.Payload {
-}
+extension Octokit.Event.Payload {}
 
-extension Octokit.Event.Payload {
-  public var id: UUID {
+public extension Octokit.Event.Payload {
+  var id: UUID {
     switch self {
     case .commitCommentEventPayload(let payload): return payload.id
     case .createEventPayload(let payload): return payload.id
@@ -46,7 +48,7 @@ extension Octokit.Event.Payload {
     }
   }
 
-  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+  static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
     [
       .commitCommentEventPayload(.random()),
       .createEventPayload(.random()),
@@ -62,7 +64,8 @@ extension Octokit.Event.Payload {
       .releaseEventPayload(.random()),
       .sponsorshipEventPayload(.random()),
       .watchEventPayload(.random())
-    ].random()
+    ]
+    .random()
   }
 }
 
@@ -71,12 +74,12 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The action performed. Can be created.
-    let action: String
+    public let action: String
 
     /// The commit comment resource.
-    let comment: Octokit.CommitComment
+    public let comment: Octokit.CommitComment
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case comment = "comment"
     }
@@ -95,18 +98,18 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The git ref resource.
-    let ref: String
+    public let ref: String
 
     /// The type of Git ref object created in the repository. Can be either branch or tag.
-    let refType: String
+    public let refType: String
 
     /// The name of the repository's default branch (usually main).
-    let masterBranch: String
+    public let masterBranch: String
 
     /// The repository's current description.
-    let description: String
+    public let description: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case ref = "ref"
       case refType = "ref_type"
       case masterBranch = "master_branch"
@@ -129,12 +132,12 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The git ref resource.
-    let ref: String
+    public let ref: String
 
     /// The type of Git ref object created in the repository. Can be either branch or tag.
-    let refType: String
+    public let refType: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case ref = "ref"
       case refType = "ref_type"
     }
@@ -153,9 +156,9 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The created `Repository` resource.
-    let forkee: Octokit.Repository
+    public let forkee: Octokit.Repository
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case forkee = "forkee"
     }
 
@@ -172,9 +175,9 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The pages that were updated.
-    let pages: [String]
+    public let pages: [String]
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case pages = "pages"
     }
 
@@ -191,19 +194,19 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The action that was performed on the comment. Can be one of created, edited, or deleted.
-    let action: String
+    public let action: String
 
     /// The previous version of the body if the action was edited.
-    let changes: String?
+    public let changes: String?
     // let changes[body][from]:  string  /// The previous version of the body if the action was edited.
 
     /// The issue the comment belongs to.
-    let issue: Octokit.Issue
+    public let issue: Octokit.Issue
 
     /// The comment itself.
-    let comment: Octokit.IssueComment
+    public let comment: Octokit.IssueComment
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case changes = "changes"
       case issue = "issue"
@@ -226,23 +229,23 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The action that was performed.
-    let action: Action
+    public let action: Action
 
     /// The issue itself.
-    let issue: Octokit.Issue
+    public let issue: Octokit.Issue
 
     /// The changes to the issue if the action was edited.
-    let changes: String?
+    public let changes: String?
     // let changes[title][from]  string  The previous version of the title if the action was edited.
     // let changes[body][from]  string  The previous version of the body if the action was edited.
 
     /// The optional user who was assigned or unassigned from the issue.
-    let assignee: Octokit.UserBrief?
+    public let assignee: Octokit.UserBrief?
 
     /// The optional label that was added or removed from the issue.
-    let label: Octokit.Label
+    public let label: Octokit.Label
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case issue = "issue"
       case changes = "changes"
@@ -285,15 +288,15 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The action that was performed. Can be added to indicate a user accepted an invitation to a repository.
-    let action: String
+    public let action: String
 
     /// The user that was added.
-    let member: Octokit.UserBrief
+    public let member: Octokit.UserBrief
 
     /// The changes to the collaborator permissions if the action was edited.
-    let changes: String?
+    public let changes: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case member = "member"
       case changes = "changes"
@@ -338,7 +341,7 @@ public extension Octokit.Event.Payload {
     /// The reason the pull request was removed from a merge queue if the action was dequeued.
     public let reason: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case number = "number"
       case pullRequest = "pull_request"
@@ -385,7 +388,7 @@ public extension Octokit.Event.Payload {
 
     // TODO: commits  array  An array of commit objects describing the pushed commits. The array includes a maximum of 20 commits.
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case pushId = "push_id"
       case size = "size"
       case distinctSize = "distinct_size"
@@ -421,7 +424,7 @@ public extension Octokit.Event.Payload {
     // TODO: changes[body][from]  string  The previous version of the body if the action was edited.
     // TODO: changes[name][from]  string  The previous version of the name if the action was edited.
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case action = "action"
       case release = "release"
     }
@@ -456,3 +459,6 @@ public extension Octokit.Event.Payload {
     }
   }
 }
+// swiftlint:enable redundant_string_enum_value
+// swiftlint:enable inclusive_language
+// swiftlint:enable file_length

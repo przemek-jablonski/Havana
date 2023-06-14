@@ -8,6 +8,8 @@ internal final class JSONDecoderAPI_2022_11_28DecodingTestCase: XCTestCase {
 
   internal func test_decodingExampleEventsFile_doesntThrow_1() throws {
     XCTAssertNoThrow(try performDecoding(of: "events_1.json", to: Octokit.Event.self, using: JSONDecoder.forAPI_2022_11_28))
+
+    // TODO: test amount of errors
   }
 
   internal func test_decodingExampleEventsFile_doesntThrow_2() throws {

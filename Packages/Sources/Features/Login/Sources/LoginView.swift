@@ -46,7 +46,7 @@ public struct LoginView: ComposableView {
 }
 
 private extension View {
-  // swiftlint:disable_next function_parameter_count
+  // swiftlint:disable function_parameter_count
   func link<
     State: Equatable,
     Action: Equatable,
@@ -87,7 +87,6 @@ private extension View {
 }
 
 private extension NavigationLink {
-  // swiftlint:disable_next function_parameter_count
   init<
     State: Equatable,
     Action: Equatable,
@@ -125,6 +124,7 @@ private extension NavigationLink {
     )
   }
 }
+// swiftlint:enable function_parameter_count
 
 internal struct LoginViewPreviews: PreviewProvider {
   internal static var previews: some View {

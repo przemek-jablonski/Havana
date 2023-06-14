@@ -1,8 +1,10 @@
 import Casimir
 import Foundation
 
-extension Octokit {
-  public struct Milestone: ModelProtocol {
+// swiftlint:disable redundant_string_enum_value
+
+public extension Octokit {
+  struct Milestone: ModelProtocol {
     public let closedAt: Date?
     public let closedIssues: Int
     public let createdAt: Date
@@ -23,7 +25,7 @@ extension Octokit {
     public let updatedAt: Date
     public let url: String
 
-    public enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case closedAt = "closed_at"
       case closedIssues = "closed_issues"
       case createdAt = "created_at"
@@ -65,9 +67,9 @@ extension Octokit {
   }
 }
 
-extension Octokit.Milestone {
+public extension Octokit.Milestone {
   /// The state of the milestone.
-  public enum State: String, ModelProtocol {
+  enum State: String, ModelProtocol {
     case closed = "closed"
     case open = "open"
 
@@ -80,3 +82,4 @@ extension Octokit.Milestone {
     }
   }
 }
+// swiftlint:enable redundant_string_enum_value

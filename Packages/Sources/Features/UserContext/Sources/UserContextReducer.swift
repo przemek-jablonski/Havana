@@ -75,7 +75,6 @@ public struct UserContextReducer: ComposableReducer {
         )
         return .none
       case .local(._remoteReturnedUserDataResponse(.failure(let error))):
-        // TODO: error mapping
         state.user = .failure(error)
         return .none
       case .delegate:

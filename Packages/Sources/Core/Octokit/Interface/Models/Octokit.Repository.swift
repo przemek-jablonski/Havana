@@ -1,9 +1,15 @@
 import Casimir
 import Foundation
 
-extension Octokit {
+// swiftlint:disable redundant_string_enum_value
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
+// swiftlint:disable inclusive_language
+// swiftlint:disable discouraged_optional_boolean
+// swiftlint:disable discouraged_optional_collection
+public extension Octokit {
   /// Full Repository
-  public struct Repository: ModelProtocol {
+  struct Repository: ModelProtocol {
     public let allowAutoMerge: Bool?
     public let allowForking: Bool?
     public let allowMergeCommit: Bool?
@@ -337,11 +343,12 @@ extension Octokit {
         webCommitSignoffRequired: .random()
       )
     }
+    // swiftlint:enable function_body_length
   }
 }
 
-extension Octokit.Repository {
-  public struct Permissions: ModelProtocol {
+public extension Octokit.Repository {
+  struct Permissions: ModelProtocol {
     public let admin: Bool
     public let maintain: Bool?
     public let pull: Bool
@@ -369,15 +376,15 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
+public extension Octokit.Repository {
   /// Code of Conduct Simple
-  public struct CodeOfConduct: ModelProtocol {
+  struct CodeOfConduct: ModelProtocol {
     public let htmlUrl: String?
     public let key: String
     public let name: String
     public let url: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case htmlUrl = "html_url"
       case key = "key"
       case name = "name"
@@ -396,13 +403,13 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
-  public struct SecurityAndAnalysis: ModelProtocol {
+public extension Octokit.Repository {
+  struct SecurityAndAnalysis: ModelProtocol {
     public let advancedSecurity: AdvancedSecurity?
     public let secretScanning: SecretScanning?
     public let secretScanningPushProtection: SecretScanningPushProtection?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case advancedSecurity = "advanced_security"
       case secretScanning = "secret_scanning"
       case secretScanningPushProtection = "secret_scanning_push_protection"
@@ -419,11 +426,11 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
-  public struct AdvancedSecurity: ModelProtocol {
+public extension Octokit.Repository {
+  struct AdvancedSecurity: ModelProtocol {
     public let status: Status?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case status = "status"
     }
 
@@ -436,8 +443,8 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
-  public enum Status: String, ModelProtocol {
+public extension Octokit.Repository {
+  enum Status: String, ModelProtocol {
     case disabled = "disabled"
     case enabled = "enabled"
 
@@ -452,11 +459,11 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
-  public struct SecretScanning: ModelProtocol {
+public extension Octokit.Repository {
+  struct SecretScanning: ModelProtocol {
     public let status: Status?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case status = "status"
     }
 
@@ -469,11 +476,11 @@ extension Octokit.Repository {
   }
 }
 
-extension Octokit.Repository {
-  public struct SecretScanningPushProtection: ModelProtocol {
+public extension Octokit.Repository {
+  struct SecretScanningPushProtection: ModelProtocol {
     public let status: Status?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case status = "status"
     }
 
@@ -485,3 +492,9 @@ extension Octokit.Repository {
     }
   }
 }
+// swiftlint:enable redundant_string_enum_value
+// swiftlint:enable type_body_length
+// swiftlint:enable inclusive_language
+// swiftlint:enable discouraged_optional_boolean
+// swiftlint:enable discouraged_optional_collection
+// swiftlint:enable file_length

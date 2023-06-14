@@ -1,6 +1,7 @@
 import Casimir
 import Foundation
 
+// swiftlint:disable discouraged_optional_boolean
 public extension Octokit {
   struct Label: ModelProtocol {
     public let color: String?
@@ -11,7 +12,7 @@ public extension Octokit {
     public let nodeId: String?
     public let url: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
       case color = "color"
       case labelDefault = "label_default"
       case description = "description"
@@ -36,3 +37,4 @@ public extension Octokit {
     }
   }
 }
+// swiftlint:enabled discouraged_optional_boolean

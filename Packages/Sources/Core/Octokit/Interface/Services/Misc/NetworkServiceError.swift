@@ -7,8 +7,8 @@ public extension Octokit {
   }
 }
 
-extension Octokit.NetworkServiceError {
-  public static func == (lhs: Octokit.NetworkServiceError, rhs: Octokit.NetworkServiceError) -> Bool {
+public extension Octokit.NetworkServiceError {
+  static func == (lhs: Octokit.NetworkServiceError, rhs: Octokit.NetworkServiceError) -> Bool {
     switch (lhs, rhs) {
     case (.privateAccessTokenFetchingFailed, .privateAccessTokenFetchingFailed):
       return true
@@ -19,7 +19,7 @@ extension Octokit.NetworkServiceError {
     }
   }
 
-  public static func random(
+  static func random(
     _ randomNumberGenerator: inout RandomNumberGenerator
   ) -> Octokit.NetworkServiceError {
     [
