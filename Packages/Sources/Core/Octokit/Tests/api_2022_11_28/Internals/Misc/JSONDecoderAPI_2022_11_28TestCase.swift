@@ -8,7 +8,7 @@ internal final class JSONDecoderAPI_2022_11_28DecodingTestCase: XCTestCase {
 
   internal func test_decodingExampleEventsFile_doesntThrow_1() async throws {
     try await performDecoding(of: "events_1.json", to: Octokit.Event.self, using: JSONDecoder.forAPI_2022_11_28)
-//    await try performDecoding(of: "events_1.json", to: Octokit.Event.self, using: JSONDecoder.forAPI_2022_11_28)
+    //    await try performDecoding(of: "events_1.json", to: Octokit.Event.self, using: JSONDecoder.forAPI_2022_11_28)
     // TODO: test amount of items
   }
 
@@ -108,6 +108,6 @@ private extension XCTestCase {
 
     let asd = 2
 
-//    _ = try jsonDecoder.decode([TargetType].self, from: jsonData).get()
+    //    _ = try jsonDecoder.decode([TargetType].self, from: jsonData).get()
   }
 }

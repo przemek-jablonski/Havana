@@ -180,7 +180,8 @@ let octokitTests = Target.testTarget(
     .byName(name: octokit.name),
     .byName(name: octokitLive.name)
   ],
-  path: "Tests/Core/Octokit",
+  //  path: "Tests/Core/Octokit",
+  path: "Sources/Core/Octokit/Tests",
   resources: [
     .copy("Resources/events_1.json"),
     .copy("Resources/events_2.json"),

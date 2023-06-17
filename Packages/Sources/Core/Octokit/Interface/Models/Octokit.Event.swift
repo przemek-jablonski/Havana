@@ -361,20 +361,20 @@ public extension Octokit.Event {
 public extension Octokit.Event {
   var id: String {
     switch self {
-      case .commitCommentEvent(let event): return event.id
-      case .createEvent(let event): return event.id
-      case .deleteEvent(let event): return event.id
-      case .forkEvent(let event): return event.id
-      case .gollumEvent(let event): return event.id
-      case .issueCommentEvent(let event): return event.id
-      case .issuesEvent(let event): return event.id
-      case .memberEvent(let event): return event.id
-      case .publicEvent(let event): return event.id
-      case .pullRequestEvent(let event): return event.id
-      case .pushEvent(let event): return event.id
-      case .releaseEvent(let event): return event.id
-      case .sponsorshipEvent(let event): return event.id
-      case .watchEvent(let event): return event.id
+    case .commitCommentEvent(let event): return event.id
+    case .createEvent(let event): return event.id
+    case .deleteEvent(let event): return event.id
+    case .forkEvent(let event): return event.id
+    case .gollumEvent(let event): return event.id
+    case .issueCommentEvent(let event): return event.id
+    case .issuesEvent(let event): return event.id
+    case .memberEvent(let event): return event.id
+    case .publicEvent(let event): return event.id
+    case .pullRequestEvent(let event): return event.id
+    case .pushEvent(let event): return event.id
+    case .releaseEvent(let event): return event.id
+    case .sponsorshipEvent(let event): return event.id
+    case .watchEvent(let event): return event.id
     }
   }
 

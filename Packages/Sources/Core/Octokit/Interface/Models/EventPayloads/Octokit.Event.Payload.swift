@@ -231,7 +231,7 @@ public extension Octokit.Event.Payload {
     public let id = UUID()
 
     /// The action that was performed.
-//    public let action: Action
+    //    public let action: Action
     public let action: String
 
     /// The issue itself.
