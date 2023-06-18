@@ -2,10 +2,7 @@ import Octokit
 @testable import OctokitLive
 import XCTest
 
-internal final class JSONDecoderAPI_2022_11_28DecodingTestCase: XCTestCase {
-
-  // MARK: - Octokit.Event.self
-
+internal final class EventsDecoder_API_2022_11_28TestCase: XCTestCase {
   internal func test_decodingExampleEventsFile1_succeedsAndProducesCorrectAmountOfEvents() async throws {
     try await performDecodingOfEvents(
       from: "events_1.json",
@@ -140,28 +137,6 @@ internal final class JSONDecoderAPI_2022_11_28DecodingTestCase: XCTestCase {
       }
     )
   }
-
-  // MARK: - Octokit.Event.self
-
-  //  internal func test_decodingExampleEventsFile_doesntThrow_01() throws {
-  //    try performDecoding(of: "users_01.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28)
-  //  }
-  //
-  //  internal func test_decodingExampleEventsFile_doesntThrow_02() throws {
-  //    try performDecoding(of: "users_02.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28)
-  //  }
-  //
-  //  internal func test_decodingExampleEventsFile_doesntThrow_03() throws {
-  //    try performDecoding(of: "users_03.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28)
-  //  }
-  //
-  //  internal func test_decodingExampleEventsFile_doesntThrow_04() throws {
-  //    try performDecoding(of: "users_04.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28)
-  //  }
-  //
-  //  internal func test_decodingExampleEventsFile_doesntThrow_05() throws {
-  //    try performDecoding(of: "users_05.json", to: Octokit.User.self, using: JSONDecoder.forAPI_2022_11_28)
-  //  }
 }
 
 private extension XCTestCase {
@@ -178,6 +153,8 @@ private extension XCTestCase {
     )
     .decodeEvents(from: jsonData)
 
-    try assertions?(decodingResult)
+    try assertions?(decodingResult) ?? {
+      XCTAssertNil(decodingResult.error, "Decoding produced failure result.")
+    }()
   }
 }

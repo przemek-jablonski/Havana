@@ -56,8 +56,8 @@ public extension Octokit {
   }
 }
 
-extension Octokit.EventType {
-  public var string: String {
+public extension Octokit.EventType {
+  var string: String {
     switch self {
     case .commitComment: return "CommitCommentEvent"
     case .create: return "CreateEvent"
@@ -106,7 +106,7 @@ extension Octokit.EventType: ModelProtocol {
   }
 
   public var id: String {
-    self.string ?? ""
+    self.string
   }
 
   // swiftlint:disable:next cyclomatic_complexity

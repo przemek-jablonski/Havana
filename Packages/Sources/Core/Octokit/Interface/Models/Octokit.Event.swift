@@ -437,6 +437,7 @@ public extension Octokit {
 
 public extension Octokit {
   /// Repo
+  // TODO: Repo -> RepoBrief OR nest this in some other namespace
   struct Repo: ModelProtocol {
     public let id: Int
     public let name: String

@@ -1,9 +1,7 @@
-import Foundation
-import Octokit
-
-// TODO: remove
 import Casimir
 import Combine
+import Foundation
+import Octokit
 
 extension Octokit {
   internal struct LoginService_API_2022_11_28 {
