@@ -59,9 +59,9 @@ force_cast: warning
 force_unwrapping: error
 force_try: error
 
-no_magic_numbers:
-  excluded:
-    - ".*Test\\.swift"
+#no_magic_numbers:
+#  excluded:
+#    - ".*Test\\.swift"
 
 identifier_name:
   min_length: 3
