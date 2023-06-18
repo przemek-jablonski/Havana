@@ -57,7 +57,7 @@ public extension Octokit {
 }
 
 extension Octokit.EventType {
-  public var string: String? {
+  public var string: String {
     switch self {
     case .commitComment: return "CommitCommentEvent"
     case .create: return "CreateEvent"
@@ -76,7 +76,7 @@ extension Octokit.EventType {
     case .release: return "ReleaseEvent"
     case .sponsorship: return "SponsorshipEvent"
     case .watch: return "WatchEvent"
-    case .unknown: return nil
+    case .unknown(let unknown): return unknown
     }
   }
 }
