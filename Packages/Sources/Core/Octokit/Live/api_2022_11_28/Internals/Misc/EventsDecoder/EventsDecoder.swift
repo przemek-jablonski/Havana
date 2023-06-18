@@ -16,6 +16,7 @@ internal protocol EventsDecoder {
 }
 
 // TODO: this should be inside implementation class
+// TODO: also, this is leaked for global namespace
 internal enum EventsDecoderError: Error {
   case jsonIntoGenericDictionaryParsingFailure(Error)
   case jsonIntoGenericDictionaryTypeCastingFailure
@@ -26,4 +27,7 @@ internal enum EventsDecoderError: Error {
   case unableToDecodeEventPayload(_ json: [String: Any])
   case unableToSerializeEventPayload(_ json: [String: Any], _ underlyingError: Error)
   case unableToDecodeJsonIntoEventObject(_ json: [String: Any], _ underlyingError: Error)
+
+  case unsupportedEventType(_ type: String, _ json: [String: Any])
+  case unknownEventType(_ json: [String: Any])
 }
