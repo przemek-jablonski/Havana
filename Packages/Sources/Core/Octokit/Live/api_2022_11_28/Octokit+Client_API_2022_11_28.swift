@@ -4,7 +4,7 @@ public extension Octokit {
   /**
    Returns new instance of the `Octokit.Client` with configuration suitable for consuming `2022_11_28` API (latest).
    */
-  static var instance: Octokit.Client {
+  static var instance: Self {
     Octokit.Client_API_2022_11_28()
   }
 
