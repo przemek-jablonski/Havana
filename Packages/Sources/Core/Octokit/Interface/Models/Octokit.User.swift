@@ -3,7 +3,6 @@ import Foundation
 
 // swiftlint:disable discouraged_optional_boolean
 public extension Octokit {
-  // MARK: - User
   struct User: ModelProtocol {
     public let avatarUrl: String
     public let bio: String?
@@ -137,31 +136,6 @@ public extension Octokit {
         type: .random(),
         updatedAt: .random(),
         url: .random()
-      )
-    }
-  }
-
-  // MARK: - Plan
-  struct Plan: ModelProtocol {
-    public var id: String { name }
-    public let collaborators: Int
-    public let name: String
-    public let privateRepos: Int
-    public let space: Int
-
-    internal enum CodingKeys: String, CodingKey {
-      case collaborators = "collaborators"
-      case name = "name"
-      case privateRepos = "private_repos"
-      case space = "space"
-    }
-
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        collaborators: .random(),
-        name: .random(),
-        privateRepos: .random(),
-        space: .random()
       )
     }
   }

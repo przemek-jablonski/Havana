@@ -2,7 +2,6 @@ import Casimir
 import Foundation
 
 // swiftlint:disable redundant_string_enum_value
-
 public extension Octokit {
   struct Milestone: ModelProtocol {
     public let closedAt: Date?
@@ -15,12 +14,9 @@ public extension Octokit {
     public let id: Int
     public let labelsUrl: String
     public let nodeId: String?
-    /// The number of the milestone.
     public let number: Int
     public let openIssues: Int
-    /// The state of the milestone.
     public let state: State
-    /// The title of the milestone.
     public let title: String
     public let updatedAt: Date
     public let url: String
@@ -44,7 +40,9 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         closedAt: .random(),
         closedIssues: .random(),
@@ -63,22 +61,6 @@ public extension Octokit {
         updatedAt: .random(),
         url: .random()
       )
-    }
-  }
-}
-
-public extension Octokit.Milestone {
-  /// The state of the milestone.
-  enum State: String, ModelProtocol {
-    case closed = "closed"
-    case open = "open"
-
-    public var id: UUID { UUID() }
-
-    public static func random(
-      _ randomNumberGenerator: inout RandomNumberGenerator
-    ) -> Self {
-      [.closed, .open].random()
     }
   }
 }

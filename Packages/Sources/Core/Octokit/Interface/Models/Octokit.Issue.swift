@@ -6,14 +6,11 @@ import Foundation
 // swiftlint:disable identifier_name
 
 public extension Octokit {
-  /// Issues are a great way to keep track of tasks, enhancements, and bugs for your projects.
   struct Issue: ModelProtocol {
     public let activeLockReason: String?
     public let assignee: UserBrief?
     public let assignees: [UserBrief]?
-    /// How the author is associated with the repository.
     public let authorAssociation: AuthorRepositoryAssociation?
-    /// Contents of the issue
     public let body: String?
     public let bodyHtml: String?
     public let bodyText: String?
@@ -26,31 +23,22 @@ public extension Octokit {
     public let eventsUrl: String?
     public let htmlUrl: String?
     public let id: Int
-    /// Labels to associate with this issue; pass one or more label names to replace the set of
-    /// labels on this issue; send an empty array to clear all labels from the issue; note that
-    /// the labels are silently dropped for users without push access to the repository
-    public let labels: [LabelElement]
+    public let labels: [Label]
     public let labelsUrl: String?
     public let locked: Bool
     public let milestone: Milestone?
     public let nodeId: String?
-    /// Number uniquely identifying the issue within its repository
     public let number: Int
     public let performedViaGithubApp: GithubApp?
     public let pullRequest: PullRequest?
     public let reactions: Reactions?
-    /// A repository on GitHub.
     public let repository: Repository?
     public let repositoryUrl: String
-    /// State of the issue; either 'open' or 'closed'
     public let state: String
-    /// The reason for the current state
     public let stateReason: StateReason?
     public let timelineUrl: String?
-    /// Title of the issue
     public let title: String
     public let updatedAt: Date
-    /// URL for the issue
     public let url: String
     public let user: UserBrief?
 
@@ -131,146 +119,6 @@ public extension Octokit {
     }
   }
 }
-
-public enum LabelElement: ModelProtocol {
-  case labelClass(LabelClass)
-  case string(String)
-
-  public init(from decoder: Decoder) throws {
-    let container = try decoder.singleValueContainer()
-    if let x = try? container.decode(String.self) {
-      self = .string(x)
-      return
-    }
-    if let x = try? container.decode(LabelClass.self) {
-      self = .labelClass(x)
-      return
-    }
-    throw DecodingError.typeMismatch(LabelElement.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for LabelElement"))
-  }
-
-  public func encode(to encoder: Encoder) throws {
-    var container = encoder.singleValueContainer()
-    switch self {
-    case .labelClass(let x):
-      try container.encode(x)
-    case .string(let x):
-      try container.encode(x)
-    }
-  }
-
-  public var id: UUID { UUID() }
-
-  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-    [
-      .labelClass(.random()),
-      .string(.random())
-    ]
-    .random()
-  }
-}
-
-// TODO: this is unscoped!
-// MARK: - LabelClass
-public struct LabelClass: ModelProtocol {
-  public let color: String?
-  public let labelDefault: Bool?
-  public let description: String?
-  public let id: Int?
-  public let name: String?
-  public let nodeId: String?
-  public let url: String?
-
-  internal enum CodingKeys: String, CodingKey {
-    case color = "color"
-    case labelDefault = "default"
-    case description = "description"
-    case id = "id"
-    case name = "name"
-    case nodeId = "node_id"
-    case url = "url"
-  }
-
-  public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-    Self(
-      color: .random(),
-      labelDefault: .random(),
-      description: .random(),
-      id: .random(),
-      name: .random(),
-      nodeId: .random(),
-      url: .random()
-    )
-  }
-}
-
-public extension Octokit.Issue {
-  struct Owner: Codable {
-    public let avatarUrl: String?
-    public let eventsUrl: String?
-    public let followersUrl: String?
-    public let followingUrl: String?
-    public let gistsUrl: String?
-    public let gravatarId: String?
-    public let htmlUrl: String?
-    public let id: Int?
-    public let login: String?
-    public let nodeId: String?
-    public let organizationsUrl: String?
-    public let receivedEventsUrl: String?
-    public let reposUrl: String?
-    public let siteAdmin: Bool?
-    public let starredUrl: String?
-    public let subscriptionsUrl: String?
-    public let type: String?
-    public let url: String?
-
-    internal enum CodingKeys: String, CodingKey {
-      case avatarUrl = "avatar_url"
-      case eventsUrl = "events_url"
-      case followersUrl = "followers_url"
-      case followingUrl = "following_url"
-      case gistsUrl = "gists_url"
-      case gravatarId = "gravatar_id"
-      case htmlUrl = "html_url"
-      case id = "id"
-      case login = "login"
-      case nodeId = "node_id"
-      case organizationsUrl = "organizations_url"
-      case receivedEventsUrl = "received_events_url"
-      case reposUrl = "repos_url"
-      case siteAdmin = "site_admin"
-      case starredUrl = "starred_url"
-      case subscriptionsUrl = "subscriptions_url"
-      case type = "type"
-      case url = "url"
-    }
-
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        avatarUrl: .random(),
-        eventsUrl: .random(),
-        followersUrl: .random(),
-        followingUrl: .random(),
-        gistsUrl: .random(),
-        gravatarId: .random(),
-        htmlUrl: .random(),
-        id: .random(),
-        login: .random(),
-        nodeId: .random(),
-        organizationsUrl: .random(),
-        receivedEventsUrl: .random(),
-        reposUrl: .random(),
-        siteAdmin: .random(),
-        starredUrl: .random(),
-        subscriptionsUrl: .random(),
-        type: .random(),
-        url: .random()
-      )
-    }
-  }
-}
-
 // swiftlint:enable discouraged_optional_boolean
 // swiftlint:enable identifier_name
 // swiftlint:disable discouraged_optional_collection

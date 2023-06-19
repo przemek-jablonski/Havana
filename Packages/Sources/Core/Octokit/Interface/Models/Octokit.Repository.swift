@@ -16,7 +16,6 @@ public extension Octokit {
     public let allowRebaseMerge: Bool?
     public let allowSquashMerge: Bool?
     public let allowUpdateBranch: Bool?
-    /// Whether anonymous git access is allowed.
     public let anonymousAccessEnabled: Bool?
     public let archiveUrl: String
     public let archived: Bool
@@ -24,8 +23,7 @@ public extension Octokit {
     public let blobsUrl: String
     public let branchesUrl: String
     public let cloneUrl: String
-    /// Code of Conduct Simple
-    public let codeOfConduct: CodeOfConduct?
+    public let codeOfConduct: CodeOfConductBrief?
     public let collaboratorsUrl: String
     public let commentsUrl: String
     public let commitsUrl: String
@@ -37,7 +35,6 @@ public extension Octokit {
     public let deleteBranchOnMerge: Bool?
     public let deploymentsUrl: String
     public let description: String?
-    /// Returns whether or not this repository disabled.
     public let disabled: Bool
     public let downloadsUrl: String
     public let eventsUrl: String
@@ -344,152 +341,6 @@ public extension Octokit {
       )
     }
     // swiftlint:enable function_body_length
-  }
-}
-
-public extension Octokit.Repository {
-  struct Permissions: ModelProtocol {
-    public let admin: Bool
-    public let maintain: Bool?
-    public let pull: Bool
-    public let push: Bool
-    public let triage: Bool?
-
-    internal enum CodingKeys: String, CodingKey {
-      case admin = "admin"
-      case maintain = "maintain"
-      case pull = "pull"
-      case push = "push"
-      case triage = "triage"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        admin: .random(),
-        maintain: .random(),
-        pull: .random(),
-        push: .random(),
-        triage: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  /// Code of Conduct Simple
-  struct CodeOfConduct: ModelProtocol {
-    public let htmlUrl: String?
-    public let key: String
-    public let name: String
-    public let url: String
-
-    internal enum CodingKeys: String, CodingKey {
-      case htmlUrl = "html_url"
-      case key = "key"
-      case name = "name"
-      case url = "url"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        htmlUrl: .random(),
-        key: .random(),
-        name: .random(),
-        url: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  struct SecurityAndAnalysis: ModelProtocol {
-    public let advancedSecurity: AdvancedSecurity?
-    public let secretScanning: SecretScanning?
-    public let secretScanningPushProtection: SecretScanningPushProtection?
-
-    internal enum CodingKeys: String, CodingKey {
-      case advancedSecurity = "advanced_security"
-      case secretScanning = "secret_scanning"
-      case secretScanningPushProtection = "secret_scanning_push_protection"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        advancedSecurity: .random(),
-        secretScanning: .random(),
-        secretScanningPushProtection: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  struct AdvancedSecurity: ModelProtocol {
-    public let status: Status?
-
-    internal enum CodingKeys: String, CodingKey {
-      case status = "status"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        status: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  enum Status: String, ModelProtocol {
-    case disabled = "disabled"
-    case enabled = "enabled"
-
-    public var id: UUID { UUID() }
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      [
-        .disabled,
-        .enabled
-      ]
-      .random()
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  struct SecretScanning: ModelProtocol {
-    public let status: Status?
-
-    internal enum CodingKeys: String, CodingKey {
-      case status = "status"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        status: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit.Repository {
-  struct SecretScanningPushProtection: ModelProtocol {
-    public let status: Status?
-
-    internal enum CodingKeys: String, CodingKey {
-      case status = "status"
-    }
-
-    public let id = UUID()
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
-      Self(
-        status: .random()
-      )
-    }
   }
 }
 // swiftlint:enable redundant_string_enum_value

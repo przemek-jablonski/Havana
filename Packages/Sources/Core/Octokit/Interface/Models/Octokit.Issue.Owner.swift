@@ -1,33 +1,29 @@
 import Casimir
 import Foundation
 
-public extension Octokit {
-  struct UserBrief: ModelProtocol {
-    public let avatarUrl: String
-    public let email: String?
+public extension Octokit.Issue {
+  struct Owner: Codable {
+    public let avatarUrl: String?
     public let eventsUrl: String?
     public let followersUrl: String?
-    public let followingUrl: String
-    public let gistsUrl: String
+    public let followingUrl: String?
+    public let gistsUrl: String?
     public let gravatarId: String?
-    public let htmlUrl: String
-    public let id: Int
-    public let login: String
-    public let name: String?
+    public let htmlUrl: String?
+    public let id: Int?
+    public let login: String?
     public let nodeId: String?
-    public let organizationsUrl: String
-    public let receivedEventsUrl: String
-    public let reposUrl: String
-    public let siteAdmin: Bool
-    public let starredAt: String?
-    public let starredUrl: String
-    public let subscriptionsUrl: String
-    public let type: String
-    public let url: String
+    public let organizationsUrl: String?
+    public let receivedEventsUrl: String?
+    public let reposUrl: String?
+    public let siteAdmin: Bool?
+    public let starredUrl: String?
+    public let subscriptionsUrl: String?
+    public let type: String?
+    public let url: String?
 
     internal enum CodingKeys: String, CodingKey {
       case avatarUrl = "avatar_url"
-      case email = "email"
       case eventsUrl = "events_url"
       case followersUrl = "followers_url"
       case followingUrl = "following_url"
@@ -36,13 +32,11 @@ public extension Octokit {
       case htmlUrl = "html_url"
       case id = "id"
       case login = "login"
-      case name = "name"
       case nodeId = "node_id"
       case organizationsUrl = "organizations_url"
       case receivedEventsUrl = "received_events_url"
       case reposUrl = "repos_url"
       case siteAdmin = "site_admin"
-      case starredAt = "starred_at"
       case starredUrl = "starred_url"
       case subscriptionsUrl = "subscriptions_url"
       case type = "type"
@@ -54,7 +48,6 @@ public extension Octokit {
     ) -> Self {
       Self(
         avatarUrl: .random(),
-        email: .random(),
         eventsUrl: .random(),
         followersUrl: .random(),
         followingUrl: .random(),
@@ -63,13 +56,11 @@ public extension Octokit {
         htmlUrl: .random(),
         id: .random(),
         login: .random(),
-        name: .random(),
         nodeId: .random(),
         organizationsUrl: .random(),
         receivedEventsUrl: .random(),
         reposUrl: .random(),
         siteAdmin: .random(),
-        starredAt: .random(),
         starredUrl: .random(),
         subscriptionsUrl: .random(),
         type: .random(),
