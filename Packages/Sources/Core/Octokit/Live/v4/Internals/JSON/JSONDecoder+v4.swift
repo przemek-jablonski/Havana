@@ -1,7 +1,7 @@
 import Foundation
 
 extension JSONDecoder {
-  internal static var forAPI_2022_11_28: JSONDecoder {
+  internal static var v4: JSONDecoder {
     JSONDecoder(
       dateDecodingStrategy: .iso8601
     )

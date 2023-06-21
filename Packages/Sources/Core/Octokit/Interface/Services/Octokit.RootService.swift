@@ -9,15 +9,23 @@ public extension Octokit {
      However, if the `privateAccessToken` won't be passed at all to this method, then the request will succeed,
      as unauthorised users have permission to use this endpoint as well.
      */
-    public var apiUrls: (
+    public var root: (
       _ privateAccessToken: String?
     ) async throws -> Octokit.Hyperlinks
 
     /**
-     Validates the `privateAccessToken` against the Github's REST API.
+     Validates the `privateAccessToken` authenticity.
      */
-    public var validate: (
+    public var validateToken: (
       _ privateAccessToken: String
     ) async throws -> Void
+
+    public init(
+      root: @escaping (_ privateAccessToken: String?) async throws -> Octokit.Hyperlinks,
+      validateToken: @escaping (_ privateAccessToken: String) async throws -> Void
+    ) {
+      self.root = root
+      self.validateToken = validateToken
+    }
   }
 }

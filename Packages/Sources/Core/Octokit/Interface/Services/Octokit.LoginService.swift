@@ -9,5 +9,13 @@ extension Octokit {
       Checks if user is currently logged in.
      */
     public var isLoggedIn: () async throws -> Bool
+
+    public init(
+      login: @escaping (_ privateAccessToken: String) async throws -> Void,
+      isLoggedIn: @escaping () async throws -> Bool
+    ) {
+      self.login = login
+      self.isLoggedIn = isLoggedIn
+    }
   }
 }

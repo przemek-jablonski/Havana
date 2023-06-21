@@ -3,6 +3,12 @@ public extension Octokit {
     /**
      Fetches the user data for currently logged-in and authenticated user.
      */
-    var user: () async throws -> Octokit.User
+    public var user: () async throws -> Octokit.User
+
+    public init(
+      user: @escaping () async throws -> Octokit.User
+    ) {
+      self.user = user
+    }
   }
 }

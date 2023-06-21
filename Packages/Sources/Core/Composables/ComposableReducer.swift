@@ -1,5 +1,7 @@
 import ComposableArchitecture
 
+// TODO: remove this
+
 public protocol ComposableState: Equatable {}
 
 public protocol ComposableAction: Equatable {
