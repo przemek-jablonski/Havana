@@ -288,14 +288,8 @@ private extension XCTestCase {
     let jsonUrl = try XCTUnwrap(URL(fileURLWithPath: jsonPath))
     let jsonData = try Data(contentsOf: jsonUrl)
 
-    let decodingResult = JSONDecoder.forAPI_2022_11_28
-      .decode(
-        type,
-        using: jsonData
-      )
+    let decodingResult = JSONDecoder.v4.decode(type, using: jsonData)
 
-    try assertions?(decodingResult) ?? {
-      XCTAssertNil(decodingResult.error, "Decoding produced failure result.")
-    }()
+    try assertions?(decodingResult)
   }
 }
