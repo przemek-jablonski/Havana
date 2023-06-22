@@ -4,7 +4,7 @@ import Foundation
 // swiftlint:disable discouraged_optional_boolean
 public extension Octokit {
   struct User: ModelProtocol {
-    public let avatarUrl: String
+    public let avatarUrl: String?
     public let bio: String?
     public let blog: String?
     public let businessPlus: Bool?
@@ -14,31 +14,31 @@ public extension Octokit {
     public let diskUsage: Int?
     public let email: String?
     public let eventsUrl: String
-    public let followers: Int
-    public let followersUrl: String
-    public let following: Int
-    public let followingUrl: String
-    public let gistsUrl: String
+    public let followers: Int?
+    public let followersUrl: String?
+    public let following: Int?
+    public let followingUrl: String?
+    public let gistsUrl: String?
     public let gravatarId: String?
     public let hireable: Bool?
-    public let htmlUrl: String
+    public let htmlUrl: String?
     public let id: Int
     public let ldapDn: String?
     public let location: String?
     public let login: String
     public let name: String?
     public let nodeId: String?
-    public let organizationsUrl: String
+    public let organizationsUrl: String?
     public let ownedPrivateRepos: Int?
     public let plan: Plan?
     public let privateGists: Int?
     public let publicGists: Int
     public let publicRepos: Int
     public let receivedEventsUrl: String
-    public let reposUrl: String
-    public let siteAdmin: Bool
-    public let starredUrl: String
-    public let subscriptionsUrl: String
+    public let reposUrl: String?
+    public let siteAdmin: Bool?
+    public let starredUrl: String?
+    public let subscriptionsUrl: String?
     public let suspendedAt: Date?
     public let totalPrivateRepos: Int?
     public let twitterUsername: String?

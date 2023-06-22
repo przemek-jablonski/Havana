@@ -22,10 +22,10 @@ public extension Octokit.Issue {
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-        case .label(let label):
-          try container.encode(label)
-        case .string(let string):
-          try container.encode(string)
+      case .label(let label):
+        try container.encode(label)
+      case .string(let string):
+        try container.encode(string)
       }
     }
 
@@ -38,7 +38,7 @@ public extension Octokit.Issue {
         .label(.random()),
         .string(.random())
       ]
-        .random()
+      .random()
     }
   }
 }

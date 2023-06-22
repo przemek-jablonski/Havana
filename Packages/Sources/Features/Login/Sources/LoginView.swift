@@ -131,7 +131,12 @@ internal struct LoginViewPreviews: PreviewProvider {
     LoginView(
       Store(
         initialState: LoginReducer.State(),
-        reducer: LoginReducer(loginService: Octokit.LoginServiceMock.happyPath())
+        reducer: LoginReducer(
+          loginService: Octokit.LoginService(
+            login: { _ in },
+            isLoggedIn: { true }
+          )
+        )
       )
     )
   }

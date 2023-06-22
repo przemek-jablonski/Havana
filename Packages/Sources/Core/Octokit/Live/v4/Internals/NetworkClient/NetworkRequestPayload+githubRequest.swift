@@ -22,7 +22,7 @@ internal extension NetworkRequestPayload {
         "Authorization": token.map { "Bearer \($0)" },
         "X-GitHub-Api-Version": apiVersionHeaderValue
       ]
-        .compactMapValues { $0 },
+      .compactMapValues { $0 },
       queryItems: queryItems
     )
   }

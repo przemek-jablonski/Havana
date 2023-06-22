@@ -15,7 +15,7 @@ public extension Octokit.Repository {
         .disabled,
         .enabled
       ]
-        .random()
+      .random()
     }
   }
 }

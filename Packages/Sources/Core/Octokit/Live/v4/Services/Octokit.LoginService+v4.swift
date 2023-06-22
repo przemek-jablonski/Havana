@@ -16,7 +16,7 @@ internal extension Octokit.LoginService {
       },
       isLoggedIn: {
         do {
-          let _ = try await rootService.validateToken(
+          _ = try await rootService.validateToken(
             try secretsService.retrieve(.privateAccessToken)
           )
           return true

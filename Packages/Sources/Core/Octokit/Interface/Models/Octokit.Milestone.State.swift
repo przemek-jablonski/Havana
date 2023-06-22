@@ -15,7 +15,7 @@ public extension Octokit.Milestone {
         .closed,
         .open
       ]
-        .random()
+      .random()
     }
   }
 }

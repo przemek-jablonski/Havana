@@ -1,5 +1,5 @@
-import Foundation
 import Casimir
+import Foundation
 
 public extension Octokit.Issue.Label {
   struct Specific: ModelProtocol {

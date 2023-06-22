@@ -1,9 +1,11 @@
 import Octokit
 
 public extension Octokit {
-  static let shared = Octokit.v4
+  // swiftlint:disable identifier_name
+  static let v4 = Octokit.instance
+  // swiftlint:enable identifier_name
 
-  static var v4: Self {
+  static var instance: Self {
     let secretsService = SecretsService.keychain()
     let networkClient = URLSessionGithubNetworkClient()
 
@@ -36,7 +38,7 @@ public extension Octokit {
   }
 }
 
-//public extension Octokit {
+// public extension Octokit {
 //  struct v4: Octokit.Client {
 //
 //    internal static let shared: Octokit.Client = Octokit.Client_API_2022_11_28()
@@ -68,4 +70,4 @@ public extension Octokit {
 //      )
 //    }
 //  }
-//}
+// }

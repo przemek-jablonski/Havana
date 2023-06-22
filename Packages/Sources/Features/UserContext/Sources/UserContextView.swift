@@ -43,8 +43,8 @@ public struct UserContextView: ComposableView {
           }
         }
       }
-      .onAppear {
-        viewStore.send(.user(.lifecycle))
+      .task {
+        viewStore.send(.user(.task))
       }
     }
   }
@@ -76,7 +76,7 @@ public struct UserContextViewPreviews: PreviewProvider {
           selectedTab: .activity
         ),
         reducer: UserContextReducer(
-          userService: Octokit.UserServiceMock.happyPath()
+          userService: Octokit.UserService(user: { .random() })
         )._printChanges()
       )
     )
