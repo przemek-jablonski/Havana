@@ -1,12 +1,11 @@
 import Casimir
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 // import OctokitLive // TODO: importing implementations in features should not be possible, check in rest of the project
 
-public struct ActivityFeedReducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct ActivityFeedReducer: ReducerProtocol {
+  public struct State: Equatable {
     internal let user: Octokit.User
     internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
 
@@ -19,7 +18,7 @@ public struct ActivityFeedReducer: ComposableReducer {
     }
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
       case task
     }

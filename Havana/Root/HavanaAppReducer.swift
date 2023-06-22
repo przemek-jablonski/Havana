@@ -1,19 +1,18 @@
 import ComposableArchitecture
-import Composables
 import Foundation
 import LoginFeature
 import Octokit
 import OctokitLive
 import UserContextFeature
 
-public struct HavanaAppReducer: ComposableReducer {
-  public enum State: ComposableState {
+public struct HavanaAppReducer: ReducerProtocol {
+  public enum State: Equatable {
     case loading
     case login(LoginReducer.State)
     case userContext(UserContextReducer.State)
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
       case task
     }

@@ -1,12 +1,11 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 
-public struct UserContextReducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct UserContextReducer: ReducerProtocol {
+  public struct State: Equatable {
     public enum Tab: Int, Equatable {
       case activity
     }
@@ -26,7 +25,7 @@ public struct UserContextReducer: ComposableReducer {
     }
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
       case task
       case switchedTab(State.Tab)

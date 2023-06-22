@@ -1,11 +1,10 @@
 import Casimir
 import ComposableArchitecture
-import Composables
 import Octokit
 import SwiftUI
 import SwiftUINavigation
 
-public struct LoginView: ComposableView {
+public struct LoginView: View {
   public let store: StoreOf<LoginReducer>
 
   public init(
@@ -21,8 +20,8 @@ public struct LoginView: ComposableView {
           to: PrivateAccessTokenLoginView.init,
           drivenFrom: \.privateAccessTokenLogin,
           actions: LoginReducer.Action.privateAccessTokenLogin,
-          onRequested: .user(.requestedPrivateAccessTokenFlow(.show)),
-          onDismiss: .user(.requestedPrivateAccessTokenFlow(.hide)),
+          onRequested: .user(.requestedPrivateAccessTokenFlow(NavigationCommand.show)),
+          onDismiss: .user(.requestedPrivateAccessTokenFlow(NavigationCommand.hide)),
           viewStore: viewStore,
           store: store
         ) {
@@ -33,8 +32,8 @@ public struct LoginView: ComposableView {
           to: OAuthLoginView.init,
           drivenFrom: \.oAuthLogin,
           actions: LoginReducer.Action.oAuthLogin,
-          onRequested: .user(.requestedOAuthLoginFlow(.show)),
-          onDismiss: .user(.requestedOAuthLoginFlow(.hide)),
+          onRequested: .user(.requestedOAuthLoginFlow(NavigationCommand.show)),
+          onDismiss: .user(.requestedOAuthLoginFlow(NavigationCommand.hide)),
           viewStore: viewStore,
           store: store
         ) {

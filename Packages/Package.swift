@@ -56,20 +56,10 @@ let motif = Target.target(
   path: "Sources/Core/Motif"
 )
 
-let composables = Target.target(
-  name: "Composables",
-  dependencies: [
-    casimir,
-    composableArchitecture
-  ],
-  path: "Sources/Core/Composables"
-)
-
 let coreTargets: [Target] = [
   octokit,
   octokitLive,
-  motif,
-  composables
+  motif
 ]
 
 // MARK: - Feature Targets definitions and assembly
@@ -77,7 +67,6 @@ let coreTargets: [Target] = [
 let loginFeature = Target.target(
   name: "LoginFeature",
   dependencies: [
-    composables.dependency,
     composableArchitecture,
     octokit.dependency,
     motif.dependency,
@@ -106,7 +95,6 @@ let loginFeaturePreview = Target.executableTarget(
 let activityFeedFeature = Target.target(
   name: "ActivityFeedFeature",
   dependencies: [
-    composables.dependency,
     composableArchitecture,
     octokit.dependency,
     motif.dependency,
@@ -135,7 +123,6 @@ let activityFeedPreview = Target.executableTarget(
 let userContextFeature = Target.target(
   name: "UserContextFeature",
   dependencies: [
-    composables.dependency,
     composableArchitecture,
     activityFeedFeature.dependency,
     octokit.dependency,

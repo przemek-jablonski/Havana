@@ -1,8 +1,7 @@
 import ComposableArchitecture
-import Composables
 import SwiftUI
 
-public struct ___VARIABLE_scene_name___View: ComposableView {
+public struct ___VARIABLE_scene_name___View {
   public let store: StoreOf<___VARIABLE_scene_name___Reducer>
 
   public init(

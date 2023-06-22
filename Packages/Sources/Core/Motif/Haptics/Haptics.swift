@@ -5,7 +5,7 @@ public struct Haptics {
   /**
    Actions that can be performed on given haptic feedback type.
    */
-  public enum Action {
+  public enum Action: Equatable {
     /**
      Preheats and prepares the Taptic Engine so that it's ready for producing haptic feedback in the future.
      After calling `prepare`, the Engine will be live for a few seconds.

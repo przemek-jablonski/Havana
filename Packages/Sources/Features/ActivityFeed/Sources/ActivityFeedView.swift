@@ -1,9 +1,8 @@
 import ComposableArchitecture
-import Composables
 import Octokit
 import SwiftUI
 
-public struct ActivityFeedView: ComposableView {
+public struct ActivityFeedView: View {
   public let store: StoreOf<ActivityFeedReducer>
 
   public init(
