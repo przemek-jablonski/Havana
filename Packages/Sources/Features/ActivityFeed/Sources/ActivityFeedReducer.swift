@@ -1,12 +1,11 @@
 import Casimir
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 // import OctokitLive // TODO: importing implementations in features should not be possible, check in rest of the project
 
-public struct ActivityFeedReducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct ActivityFeedReducer: ReducerProtocol {
+  public struct State: Equatable {
     internal let user: Octokit.User
     internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
 
@@ -19,13 +18,13 @@ public struct ActivityFeedReducer: ComposableReducer {
     }
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
-      case lifecycle
+      case task
     }
 
     public enum Local: Equatable {
-      case _remoteReturnedUserPublicEvents(Result<[Octokit.Event], Octokit.NetworkServiceError>)
+      case _remoteReturnedUserPublicEvents(TaskResult<[Octokit.Event]>)
     }
 
     public enum Delegate: Equatable {}
@@ -38,6 +37,7 @@ public struct ActivityFeedReducer: ComposableReducer {
   private let userService: Octokit.UserService
 
   public init(
+    // TODO: move to @Dependency
     userService: Octokit.UserService
   ) {
     self.userService = userService
@@ -46,18 +46,20 @@ public struct ActivityFeedReducer: ComposableReducer {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.lifecycle):
-        return .task { [login = state.user.login] in
-          .local(
-            ._remoteReturnedUserPublicEvents(
-              await userService.events(
-                username: login,
-                page: 0
-              )
-            )
-          )
-        }
-
+      case .user(.task):
+        return .none
+      //          return .run { send in
+      //            send(
+      //              .local(
+      //                ._remoteReturnedUserPublicEvents(
+      //                  await userService.events(
+      //                    username: login,
+      //                    page: 0
+      //                  )
+      //                )
+      //              )
+      //            )
+      //          }
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):
         state.publicEvents = .loaded(IdentifiedArrayOf(uniqueElements: events))
         return .none

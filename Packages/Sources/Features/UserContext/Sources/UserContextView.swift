@@ -1,15 +1,10 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
-import Composables
 import Octokit
 import SwiftUI
 
-public struct UserContextView: ComposableView {
-
-  //  public struct ViewState {
-  //    let selectedTab: UserContextReducer.State.Tab
-  //  }
+public struct UserContextView: View {
 
   public let store: StoreOf<UserContextReducer>
 
@@ -26,25 +21,25 @@ public struct UserContextView: ComposableView {
           selection:
             viewStore.binding(
               get: \.selectedTab,
-              send: { Action.user(.switchedTab($0)) }
+              send: { UserContextReducer.Action.user(.switchedTab($0)) }
             )
         ) {
           IfLetStore(
             store.scope(
               state: \.activityFeed,
-              action: Action.activityFeed
+              action: UserContextReducer.Action.activityFeed
             )
           ) {
             ActivityFeedView($0)
               .tabItem {
                 Text("Activity")
               }
-              .tag(State.Tab.activity)
+              .tag(UserContextReducer.State.Tab.activity)
           }
         }
       }
-      .onAppear {
-        viewStore.send(.user(.lifecycle))
+      .task {
+        viewStore.send(.user(.task))
       }
     }
   }
@@ -76,7 +71,7 @@ public struct UserContextViewPreviews: PreviewProvider {
           selectedTab: .activity
         ),
         reducer: UserContextReducer(
-          userService: Octokit.UserServiceMock.happyPath()
+          userService: Octokit.UserService(user: { .random() })
         )._printChanges()
       )
     )

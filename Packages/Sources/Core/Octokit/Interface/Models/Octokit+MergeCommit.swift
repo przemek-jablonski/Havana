@@ -13,7 +13,9 @@ public extension Octokit {
     case prTitle = "PR_TITLE"
 
     public var id: UUID { UUID() }
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       [
         .blank,
         .prBody,
@@ -41,7 +43,9 @@ public extension Octokit {
     case prTitle = "PR_TITLE"
 
     public var id: UUID { UUID() }
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       [
         .mergeMessage,
         .prTitle
@@ -63,7 +67,9 @@ public extension Octokit {
     case prBody = "PR_BODY"
 
     public var id: UUID { UUID() }
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       [
         .blank,
         .commitMessages,
@@ -85,7 +91,9 @@ public extension Octokit {
     case prTitle = "PR_TITLE"
 
     public var id: UUID { UUID() }
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       [
         .commitOrPrTitle,
         .prTitle

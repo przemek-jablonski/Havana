@@ -2,61 +2,11 @@ import Casimir
 import Foundation
 
 public extension Octokit {
-  /// Brief information set on given GitHub user.
   struct UserBrief: ModelProtocol {
-    internal init(
-      avatarUrl: String,
-      email: String? = nil,
-      eventsUrl: String? = nil,
-      followersUrl: String? = nil,
-      followingUrl: String,
-      gistsUrl: String,
-      gravatarId: String? = nil,
-      htmlUrl: String,
-      id: Int,
-      login: String,
-      name: String? = nil,
-      nodeId: String? = nil,
-      organizationsUrl: String,
-      receivedEventsUrl: String,
-      reposUrl: String,
-      siteAdmin: Bool,
-      starredAt: String? = nil,
-      starredUrl: String,
-      subscriptionsUrl: String,
-      type: String,
-      url: String
-    ) {
-      self.avatarUrl = avatarUrl
-      self.email = email
-      self.eventsUrl = eventsUrl
-      self.followersUrl = followersUrl
-      self.followingUrl = followingUrl
-      self.gistsUrl = gistsUrl
-      self.gravatarId = gravatarId
-      self.htmlUrl = htmlUrl
-      self.id = id
-      self.login = login
-      self.name = name
-      self.nodeId = nodeId
-      self.organizationsUrl = organizationsUrl
-      self.receivedEventsUrl = receivedEventsUrl
-      self.reposUrl = reposUrl
-      self.siteAdmin = siteAdmin
-      self.starredAt = starredAt
-      self.starredUrl = starredUrl
-      self.subscriptionsUrl = subscriptionsUrl
-      self.type = type
-      self.url = url
-    }
-
     public let avatarUrl: String
     public let email: String?
-    //    public let eventsUrl: String
     public let eventsUrl: String?
-    //    public let followersUrl: String
     public let followersUrl: String?
-
     public let followingUrl: String
     public let gistsUrl: String
     public let gravatarId: String?
@@ -99,32 +49,9 @@ public extension Octokit {
       case url = "url"
     }
 
-    public init(from decoder: Decoder) throws {
-      let container: KeyedDecodingContainer<Octokit.UserBrief.CodingKeys> = try decoder.container(keyedBy: Octokit.UserBrief.CodingKeys.self)
-      self.avatarUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.avatarUrl)
-      self.email = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.email)
-      self.eventsUrl = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.eventsUrl)
-      self.followersUrl = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.followersUrl)
-      self.followingUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.followingUrl)
-      self.gistsUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.gistsUrl)
-      self.gravatarId = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.gravatarId)
-      self.htmlUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.htmlUrl)
-      self.id = try container.decode(Int.self, forKey: Octokit.UserBrief.CodingKeys.id)
-      self.login = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.login)
-      self.name = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.name)
-      self.nodeId = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.nodeId)
-      self.organizationsUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.organizationsUrl)
-      self.receivedEventsUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.receivedEventsUrl)
-      self.reposUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.reposUrl)
-      self.siteAdmin = try container.decode(Bool.self, forKey: Octokit.UserBrief.CodingKeys.siteAdmin)
-      self.starredAt = try container.decodeIfPresent(String.self, forKey: Octokit.UserBrief.CodingKeys.starredAt)
-      self.starredUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.starredUrl)
-      self.subscriptionsUrl = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.subscriptionsUrl)
-      self.type = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.type)
-      self.url = try container.decode(String.self, forKey: Octokit.UserBrief.CodingKeys.url)
-    }
-
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         avatarUrl: .random(),
         email: .random(),

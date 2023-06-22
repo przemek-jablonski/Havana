@@ -2,7 +2,6 @@ import Casimir
 import Foundation
 
 public extension Octokit {
-  // MARK: - CommitCommentElement
   struct CommitComment: ModelProtocol {
     /// How the author is associated with the repository.
     public let authorAssociation: AuthorRepositoryAssociation?

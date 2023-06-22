@@ -1,14 +1,13 @@
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 
-public struct ___VARIABLE_scene_name___Reducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct ___VARIABLE_scene_name___Reducer: ReducerProtocol {
+  public struct State: Equatable {
     public init() {}
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {}
 
     public enum Local: Equatable {}

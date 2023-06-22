@@ -2,7 +2,6 @@ import Casimir
 import Foundation
 
 public extension Octokit {
-  // MARK: - Hyperlinks
   struct Hyperlinks: ModelProtocol {
     public let id = UUID()
     public let authorizationsUrl: String?

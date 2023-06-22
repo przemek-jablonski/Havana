@@ -1,9 +1,8 @@
 import ComposableArchitecture
-import Composables
 import Octokit
 import SwiftUI
 
-public struct ActivityFeedView: ComposableView {
+public struct ActivityFeedView: View {
   public let store: StoreOf<ActivityFeedReducer>
 
   public init(
@@ -39,7 +38,7 @@ public struct ActivityFeedView: ComposableView {
         }
       }
       .task {
-        viewStore.send(.user(.lifecycle))
+        viewStore.send(.user(.task))
       }
     }
   }
@@ -77,8 +76,6 @@ public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View
   }
 }
 
-// private extension View
-
 internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
@@ -88,7 +85,7 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
           publicEvents: .loading
         ),
         reducer: ActivityFeedReducer(
-          userService: Octokit.UserServiceMock.happyPath()
+          userService: Octokit.UserService(user: { .random() }) // TODO: to dependency + preview
         )
       )
     )

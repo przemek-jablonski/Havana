@@ -10,14 +10,15 @@ public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
      */
     case tokenInputForm
     /**
-     Login service is performing the logging-in process.
+     Login service is actively performing the logging-in process.
      */
     case loginInProgress
 
     /**
-     Logging in failed. User is presented with opportunity to input the token again and the
+     Logging in has failed. User is presented with opportunity to input the token again and the
      */
     case tokenInputRetry(failureReason: TokenInputRetryReason)
+
     public enum TokenInputRetryReason {
       case genericError
     }
@@ -34,7 +35,7 @@ public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
     }
 
     public enum Local: Equatable {
-      case _remoteReturnedLoginResponse(Result<Void, Octokit.PrivateAccessTokenLoginError>)
+      case _receivedLoginResult(TaskResult<None>)
     }
 
     public enum Delegate: Equatable {
@@ -57,52 +58,28 @@ public struct PrivateAccessTokenLoginReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce { state, action in
       switch action {
-      //        case .user():
-      //          return .none
-      //        case .local():
-      //          return .none
-      //        case .delegate():
-      //          return .none
       case .user(.userRequestedLoginUsingToken(let token)):
         state = .loginInProgress
-        return .task {
-          .local(
-            ._remoteReturnedLoginResponse(
-              await loginService.login(using: token)
+        return .run { send in
+          await send(
+            .local(
+              ._receivedLoginResult(
+                TaskResult {
+                  try await loginService.login(token)
+                }
+              )
             )
           )
         }
-      case .local(._remoteReturnedLoginResponse(.success)):
+      case .local(._receivedLoginResult(.success)):
         state = .loginSuccessful
         return .send(.delegate(.userLoggedInSuccessfully))
-      case .local(._remoteReturnedLoginResponse(.failure)):
+      case .local(._receivedLoginResult(.failure)):
         state = .tokenInputRetry(failureReason: .genericError)
         return .none
       case .delegate(.userLoggedInSuccessfully):
         return .none
       }
-    }
-  }
-}
-
-public extension PrivateAccessTokenLoginReducer.Action.Local {
-  static func == (
-    lhs: PrivateAccessTokenLoginReducer.Action.Local,
-    rhs: PrivateAccessTokenLoginReducer.Action.Local
-  ) -> Bool {
-    switch (lhs, rhs) {
-    case (
-      ._remoteReturnedLoginResponse(.success),
-      ._remoteReturnedLoginResponse(.success)
-    ):
-      return true
-    case (
-      ._remoteReturnedLoginResponse(.failure(let lhsError)),
-      ._remoteReturnedLoginResponse(.failure(let rhsError))
-    ):
-      return lhsError == rhsError
-    default:
-      return false
     }
   }
 }

@@ -29,7 +29,9 @@ public extension Octokit {
       case url = "url"
     }
 
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         plus1: .random(),
         minus1: .random(),

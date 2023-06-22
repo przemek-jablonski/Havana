@@ -2,8 +2,8 @@ import Casimir
 import Foundation
 
 public extension Octokit {
-  /// License Simple
   struct License: ModelProtocol {
+    public let id = UUID()
     public let htmlUrl: String?
     public let key: String
     public let name: String
@@ -20,9 +20,9 @@ public extension Octokit {
       case url = "url"
     }
 
-    public let id = UUID()
-
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         htmlUrl: .random(),
         key: .random(),

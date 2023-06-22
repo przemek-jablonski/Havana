@@ -1,12 +1,11 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 
-public struct UserContextReducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct UserContextReducer: ReducerProtocol {
+  public struct State: Equatable {
     public enum Tab: Int, Equatable {
       case activity
     }
@@ -26,14 +25,14 @@ public struct UserContextReducer: ComposableReducer {
     }
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
-      case lifecycle
+      case task
       case switchedTab(State.Tab)
     }
 
     public enum Local: Equatable {
-      case _remoteReturnedUserDataResponse(Result<Octokit.User, Octokit.NetworkServiceError>)
+      case _remoteReturnedUserDataResponse(TaskResult<Octokit.User>)
     }
 
     public enum Delegate: Equatable {}
@@ -56,12 +55,16 @@ public struct UserContextReducer: ComposableReducer {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.lifecycle):
+      case .user(.task):
         state.user = .loading
-        return .task {
-          .local(
-            ._remoteReturnedUserDataResponse(
-              await userService.user()
+        return .run { send in
+          await send(
+            .local(
+              ._remoteReturnedUserDataResponse(
+                TaskResult {
+                  try await userService.user()
+                }
+              )
             )
           )
         }

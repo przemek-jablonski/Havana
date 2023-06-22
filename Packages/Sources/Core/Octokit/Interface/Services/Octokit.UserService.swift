@@ -1,23 +1,14 @@
 public extension Octokit {
-  typealias UserService = OctokitUserService
-}
+  struct UserService {
+    /**
+     Fetches the user data for currently logged-in and authenticated user.
+     */
+    public var user: () async throws -> Octokit.User
 
-public protocol OctokitUserService {
-  func user() async -> Result<Octokit.User, Octokit.NetworkServiceError>
-
-  /**
-   List all events, both public and private for the authenticated user.
-   */
-  func events(
-    username: String,
-    page: Int
-  ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError>
-
-  /**
-   List "received" events (events that you've received by watching repos and following users), both public and private for the authenticated user.
-   */
-  func receivedEvents(
-    username: String,
-    page: Int
-  ) async -> Result<[Octokit.Event], Octokit.NetworkServiceError>
+    public init(
+      user: @escaping () async throws -> Octokit.User
+    ) {
+      self.user = user
+    }
+  }
 }

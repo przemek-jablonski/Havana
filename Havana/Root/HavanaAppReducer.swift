@@ -1,25 +1,24 @@
 import ComposableArchitecture
-import Composables
 import Foundation
 import LoginFeature
 import Octokit
 import OctokitLive
 import UserContextFeature
 
-public struct HavanaAppReducer: ComposableReducer {
-  public enum State: ComposableState {
+public struct HavanaAppReducer: ReducerProtocol {
+  public enum State: Equatable {
     case loading
     case login(LoginReducer.State)
     case userContext(UserContextReducer.State)
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
-      case lifecycle
+      case task
     }
 
     public enum Local: Equatable {
-      case _userCredentialsCheckDone(Result<Bool, Never>)
+      case _userLoginCheckResult(_ isLoggedIn: Bool)
     }
 
     public enum Delegate: Equatable {}
@@ -36,25 +35,21 @@ public struct HavanaAppReducer: ComposableReducer {
   private var userService: Octokit.UserService
 
   public init() {
-    self.loginService = Octokit.instance.loginService
-    self.userService = Octokit.instance.userService // TODO: wrap it all up in some DI container
+    self.loginService = Octokit.v4.loginService()
+    self.userService = Octokit.v4.userService() // TODO: wrap it all up in some DI container
   }
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.lifecycle):
-        return .task {
-          .local(
-            ._userCredentialsCheckDone(
-              await loginService.isLoggedIn()
-            )
-          )
+      case .user(.task):
+        return .run { send in
+          await send(.local(._userLoginCheckResult(await loginService.isLoggedIn())))
         }
-      case .local(._userCredentialsCheckDone(.success(true))), .login(.delegate(.userLoggedInSuccessfully)):
+      case .local(._userLoginCheckResult(true)), .login(.delegate(.userLoggedInSuccessfully)):
         state = .userContext(UserContextReducer.State())
         return .none
-      case .local(._userCredentialsCheckDone(.success(false))):
+      case .local(._userLoginCheckResult(false)):
         state = .login(LoginReducer.State())
         return .none
       case .delegate:

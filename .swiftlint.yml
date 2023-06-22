@@ -31,16 +31,15 @@ opt_in_rules:
 - legacy_random
 - local_doc_comment
 - lower_acl_than_parent
-#- missing_docs
+#- missing_docs # only for library targets
 - multiline_arguments
 - multiline_function_chains
 - multiline_parameters
 - multiline_parameters_brackets
-#- no_magic_numbers
+- no_magic_numbers
 - redundant_optional_initialization
 - sorted_first_last
 - sorted_imports
-#- static_operator #this is a bit dumb
 - strong_iboutlet
 - toggle_bool
 - unavailable_function
@@ -88,3 +87,6 @@ type_name:
 line_length: 190
 
 indentation: 2
+
+excluded:
+  - Casimir

@@ -1,10 +1,10 @@
+import Casimir
 import ComposableArchitecture
-import Composables
 import Foundation
 import Octokit
 
-public struct LoginReducer: ComposableReducer {
-  public struct State: ComposableState {
+public struct LoginReducer: ReducerProtocol {
+  public struct State: Equatable {
     public var privateAccessTokenLogin: PrivateAccessTokenLoginReducer.State?
     public var oAuthLogin: OAuthLoginReducer.State?
 
@@ -17,7 +17,7 @@ public struct LoginReducer: ComposableReducer {
     }
   }
 
-  public enum Action: ComposableAction {
+  public enum Action: Equatable {
     public enum User: Equatable {
       case requestedPrivateAccessTokenFlow(NavigationCommand)
       case requestedOAuthLoginFlow(NavigationCommand)

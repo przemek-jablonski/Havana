@@ -8,6 +8,7 @@ public extension Octokit {
     public let mergedAt: Date?
     public let patchUrl: String?
     public let url: String?
+    public let id = UUID()
 
     internal enum CodingKeys: String, CodingKey {
       case diffUrl = "diff_url"
@@ -16,8 +17,6 @@ public extension Octokit {
       case patchUrl = "patch_url"
       case url = "url"
     }
-
-    public let id = UUID()
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator

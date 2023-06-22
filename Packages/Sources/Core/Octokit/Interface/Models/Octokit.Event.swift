@@ -2,7 +2,6 @@ import Casimir
 import Foundation
 
 // swiftlint:disable redundant_string_enum_value
-
 public extension Octokit {
   enum Event: ModelProtocol {
     case commitCommentEvent(CommitCommentEvent)
@@ -399,66 +398,4 @@ public extension Octokit.Event {
     ].random()
   }
 }
-
-// TODO: why this stuff is here?
-public extension Octokit {
-  /// Actor
-  struct Actor: ModelProtocol {
-    public let avatarUrl: String
-    public let displayLogin: String?
-    public let gravatarId: String?
-    public let id: Int
-    public let login: String
-    public let url: String
-
-    internal enum CodingKeys: String, CodingKey {
-      case avatarUrl = "avatar_url"
-      case displayLogin = "display_login"
-      case gravatarId = "gravatar_id"
-      case id = "id"
-      case login = "login"
-      case url = "url"
-    }
-
-    public static func random(
-      _ randomNumberGenerator: inout RandomNumberGenerator
-    ) -> Self {
-      Self(
-        avatarUrl: .random(),
-        displayLogin: .random(),
-        gravatarId: .random(),
-        id: .random(),
-        login: .random(),
-        url: .random()
-      )
-    }
-  }
-}
-
-public extension Octokit {
-  /// Repo
-  // TODO: Repo -> RepoBrief OR nest this in some other namespace
-  struct Repo: ModelProtocol {
-    public let id: Int
-    public let name: String
-    public let url: String
-
-    internal enum CodingKeys: String, CodingKey {
-      case id = "id"
-      case name = "name"
-      case url = "url"
-    }
-
-    public static func random(
-      _ randomNumberGenerator: inout RandomNumberGenerator
-    ) -> Octokit.Repo {
-      Self(
-        id: .random(),
-        name: .random(),
-        url: .random()
-      )
-    }
-  }
-}
-
 // swiftlint:enable redundant_string_enum_value
