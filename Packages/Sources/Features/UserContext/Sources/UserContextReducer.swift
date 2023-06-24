@@ -10,7 +10,7 @@ public struct UserContextReducer: ReducerProtocol {
       case activity
     }
 
-    internal var user: Loadable<Octokit.User>?
+    internal var user: Loadable<Octokit.User> = .loading
     internal var activityFeed: ActivityFeedReducer.State?
     internal var selectedTab: Tab
 

@@ -2,6 +2,7 @@ import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
 import Octokit
+import Motif
 import SwiftUI
 
 public struct UserContextView: View {
@@ -16,7 +17,7 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      with(loaded: viewStore.user) { _ in
+      WithLoading(data: viewStore.user) { user in
         TabView(
           selection:
             viewStore.binding(
@@ -41,24 +42,6 @@ public struct UserContextView: View {
       .task {
         await viewStore.send(.user(.userNavigatedToUserContext)).finish()
       }
-    }
-  }
-}
-
-// TODO: move to Motif
-private extension View {
-  @ViewBuilder
-  func with<Content: View>(
-    loaded user: Loadable<Octokit.User>?,
-    content: (Octokit.User) -> Content
-  ) -> some View {
-    switch user {
-    case .none, .some(.loading):
-      ProgressView()
-    case .some(.failure(let error)):
-      Text(error.localizedDescription)
-    case .some(.loaded(let user)):
-      content(user)
     }
   }
 }

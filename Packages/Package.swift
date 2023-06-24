@@ -55,6 +55,9 @@ let octokitLive = Target.target(
 
 let motif = Target.target(
   name: "Motif",
+  dependencies: [
+    casimir
+  ],
   path: "Sources/Core/Motif"
 )
 
