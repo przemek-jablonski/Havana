@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import Foundation
 import Octokit
 
 extension Octokit: DependencyKey {
@@ -6,15 +7,22 @@ extension Octokit: DependencyKey {
     let secretsService = SecretsService.keychain()
     let networkClient = URLSessionGithubNetworkClient()
 
+    let jsonDecoder = JSONDecoder.v4
+
     let rootService = Octokit.RootService.v4(
       secretsService: secretsService,
       networkClient: networkClient
+    )
+
+    let eventsDecoder = EventsDecoder.v4(
+      jsonDecoder: jsonDecoder
     )
 
     return Self(
       eventsService: {
         Octokit.EventsService.v4(
           secretsService: secretsService,
+          eventsDecoder: eventsDecoder,
           networkClient: networkClient
         )
       },

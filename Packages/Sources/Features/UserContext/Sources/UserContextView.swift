@@ -21,7 +21,7 @@ public struct UserContextView: View {
           selection:
             viewStore.binding(
               get: \.selectedTab,
-              send: { UserContextReducer.Action.user(.switchedTab($0)) }
+              send: { UserContextReducer.Action.user(.userSwitchedTab($0)) }
             )
         ) {
           IfLetStore(
@@ -39,12 +39,13 @@ public struct UserContextView: View {
         }
       }
       .task {
-        await viewStore.send(.user(.task)).finish()
+        await viewStore.send(.user(.userNavigatedToUserContext)).finish()
       }
     }
   }
 }
 
+// TODO: move to Motif
 private extension View {
   @ViewBuilder
   func with<Content: View>(

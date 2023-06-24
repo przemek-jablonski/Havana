@@ -13,7 +13,7 @@ public struct HavanaAppReducer: ReducerProtocol {
 
   public enum Action: Equatable {
     public enum User: Equatable {
-      case task
+      case userOpenedTheApp
     }
 
     public enum Local: Equatable {
@@ -37,11 +37,13 @@ public struct HavanaAppReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.task):
+      case .user(.userOpenedTheApp):
         return .run { send in
           await send(
-            .local(._userLoginCheckResult(
-                    await loginService.isLoggedIn())
+            .local(
+              ._userLoginCheckResult(
+                await loginService.isLoggedIn()
+              )
             )
           )
         }

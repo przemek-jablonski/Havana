@@ -35,7 +35,7 @@ internal struct HavanaAppView: View {
           }
         }
         .task {
-          viewStore.send(.user(.task)) // TODO: make sure that this is actually cancelled
+          viewStore.send(.user(.userOpenedTheApp))
         }
       }
     }

@@ -6,4 +6,8 @@ internal protocol GithubNetworkClient {
   func request<ReturnType: Decodable>(
     resource: GithubResource
   ) async throws -> ReturnType
+
+  func request(
+    resource: GithubResource
+  ) async throws -> Data
 }

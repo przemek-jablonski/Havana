@@ -18,28 +18,17 @@ public struct ActivityFeedView: View {
         for: viewStore.publicEvents,
         loadingView: { ProgressView() },
         failureView: { _ in Text("Error") }
-      ) { publicEvents in
+      ) { events in
         List {
-          ForEach(publicEvents.elements) { _ in
+          ForEach(events) { event in
             VStack {
-              // TODO: TODO
-              //              publicEvent.createdAt.map { createdAt in
-              //                Text(createdAt.formatted())
-              //                  .font(.caption)
-              //              }
-
-              //              Text(publicEvent.actor.login)
-              //
-              //              Text(String(describing: publicEvent.type))
-              //
-              //              Text(publicEvent.repo.name)
-
+              Text(String(describing: event))
             }
           }
         }
       }
       .task {
-        viewStore.send(.user(.task))
+        viewStore.send(.user(.userNavigatedToActivityFeed))
       }
     }
   }
