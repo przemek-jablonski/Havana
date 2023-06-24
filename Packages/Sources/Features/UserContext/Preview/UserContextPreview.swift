@@ -9,6 +9,7 @@ internal struct UserContextPreview: App {
     WindowGroup("UserContextPreview") {
       NavigationStack {
         UserContextViewPreviews.preview
+
       }
     }
   }

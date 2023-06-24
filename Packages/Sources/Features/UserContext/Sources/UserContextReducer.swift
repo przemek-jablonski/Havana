@@ -41,7 +41,7 @@ public struct UserContextReducer: ReducerProtocol {
     case activityFeed(ActivityFeedReducer.Action)
   }
 
-  @Dependency(\.octokitUserService)
+  @Dependency(\.userService)
   private var userService: Octokit.UserService
 
   public init() {}
@@ -84,9 +84,7 @@ public struct UserContextReducer: ReducerProtocol {
       \.activityFeed,
       action: /Action.activityFeed
     ) {
-      ActivityFeedReducer(
-        userService: userService
-      )
+      ActivityFeedReducer()
     }
   }
 }

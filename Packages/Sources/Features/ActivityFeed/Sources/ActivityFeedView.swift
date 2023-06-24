@@ -80,18 +80,14 @@ public struct LoadingView<
   }
 }
 
+#if DEBUG
 internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
-      Store(
-        initialState: ActivityFeedReducer.State(
-          user: .random(),
-          publicEvents: .loading
-        ),
-        reducer: ActivityFeedReducer(
-          userService: Octokit.UserService(user: { .random() }) // TODO: to dependency + preview
-        )
-      )
+      Store(initialState: .init(user: .random(), publicEvents: .loading)) {
+        ActivityFeedReducer()
+      }
     )
   }
 }
+#endif

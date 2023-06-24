@@ -16,28 +16,27 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      with(loaded: viewStore.user) { user in
-        Text(user.name ?? "-")
-        //        TabView(
-        //          selection:
-        //            viewStore.binding(
-        //              get: \.selectedTab,
-        //              send: { UserContextReducer.Action.user(.switchedTab($0)) }
-        //            )
-        //        ) {
-        //          IfLetStore(
-        //            store.scope(
-        //              state: \.activityFeed,
-        //              action: UserContextReducer.Action.activityFeed
-        //            )
-        //          ) {
-        //            ActivityFeedView($0)
-        //              .tabItem {
-        //                Text("Activity")
-        //              }
-        //              .tag(UserContextReducer.State.Tab.activity)
-        //          }
-        //        }
+      with(loaded: viewStore.user) { _ in
+        TabView(
+          selection:
+            viewStore.binding(
+              get: \.selectedTab,
+              send: { UserContextReducer.Action.user(.switchedTab($0)) }
+            )
+        ) {
+          IfLetStore(
+            store.scope(
+              state: \.activityFeed,
+              action: UserContextReducer.Action.activityFeed
+            )
+          ) {
+            ActivityFeedView($0)
+              .tabItem {
+                Text("Activity")
+              }
+              .tag(UserContextReducer.State.Tab.activity)
+          }
+        }
       }
       .task {
         await viewStore.send(.user(.task)).finish()

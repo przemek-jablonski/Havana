@@ -58,17 +58,17 @@ public extension DependencyValues {
     set { self[Octokit.self] = newValue }
   }
 
-  var octokitEventsService: Octokit.EventsService {
+  var eventsService: Octokit.EventsService {
     get { self[Octokit.EventsService.self] }
     set { self[Octokit.EventsService.self] = newValue }
   }
 
-  var octokitLoginService: Octokit.LoginService {
+  var loginService: Octokit.LoginService {
     get { self[Octokit.LoginService.self] }
     set { self[Octokit.LoginService.self] = newValue }
   }
 
-  var octokitUserService: Octokit.UserService {
+  var userService: Octokit.UserService {
     get { self[Octokit.UserService.self] }
     set { self[Octokit.UserService.self] = newValue }
   }

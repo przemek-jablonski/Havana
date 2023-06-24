@@ -28,10 +28,10 @@ public struct HavanaAppReducer: ReducerProtocol {
     case userContext(UserContextReducer.Action)
   }
 
-  @Dependency(\.octokitLoginService)
+  @Dependency(\.loginService)
   private var loginService
 
-  @Dependency(\.octokitUserService)
+  @Dependency(\.userService)
   private var userService
 
   public var body: some ReducerProtocolOf<Self> {

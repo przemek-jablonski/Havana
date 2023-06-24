@@ -34,14 +34,10 @@ public struct ActivityFeedReducer: ReducerProtocol {
     case delegate(Delegate)
   }
 
-  private let userService: Octokit.UserService
+  @Dependency(\.userService)
+  private var userService: Octokit.UserService
 
-  public init(
-    // TODO: move to @Dependency
-    userService: Octokit.UserService
-  ) {
-    self.userService = userService
-  }
+  public init() {}
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
