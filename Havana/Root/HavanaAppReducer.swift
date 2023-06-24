@@ -2,7 +2,6 @@ import ComposableArchitecture
 import Foundation
 import LoginFeature
 import Octokit
-import OctokitLive
 import UserContextFeature
 
 public struct HavanaAppReducer: ReducerProtocol {
@@ -22,29 +21,29 @@ public struct HavanaAppReducer: ReducerProtocol {
     }
 
     public enum Delegate: Equatable {}
-
     case user(User)
     case local(Local)
     case delegate(Delegate)
-
     case login(LoginReducer.Action)
     case userContext(UserContextReducer.Action)
   }
 
-  private var loginService: Octokit.LoginService
-  private var userService: Octokit.UserService
+  @Dependency(\.octokitLoginService)
+  private var loginService
 
-  public init() {
-    self.loginService = Octokit.v4.loginService()
-    self.userService = Octokit.v4.userService() // TODO: wrap it all up in some DI container
-  }
+  @Dependency(\.octokitUserService)
+  private var userService
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
       case .user(.task):
         return .run { send in
-          await send(.local(._userLoginCheckResult(await loginService.isLoggedIn())))
+          await send(
+            .local(._userLoginCheckResult(
+                    await loginService.isLoggedIn())
+            )
+          )
         }
       case .local(._userLoginCheckResult(true)), .login(.delegate(.userLoggedInSuccessfully)):
         state = .userContext(UserContextReducer.State())
@@ -72,9 +71,7 @@ public struct HavanaAppReducer: ReducerProtocol {
       /State.userContext,
       action: /Action.userContext
     ) {
-      UserContextReducer(
-        userService: userService
-      )
+      UserContextReducer()
     }
   }
 }

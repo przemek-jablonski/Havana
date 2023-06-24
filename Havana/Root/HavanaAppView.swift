@@ -4,12 +4,10 @@ import SwiftUI
 import UserContextFeature
 
 internal struct HavanaAppView: View {
-  private let store: StoreOf<HavanaAppReducer> = Store(
-    initialState: .loading,
-    reducer: HavanaAppReducer()._printChanges()
-  )
-
-  internal init() {}
+  private let store = Store(initialState: .loading) {
+    HavanaAppReducer()
+      ._printChanges()
+  }
 
   internal var body: some View {
     NavigationView {

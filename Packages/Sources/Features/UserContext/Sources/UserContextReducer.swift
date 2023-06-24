@@ -10,16 +10,14 @@ public struct UserContextReducer: ReducerProtocol {
       case activity
     }
 
-    internal var user: LoadableData<Octokit.User>?
+    internal var user: Loadable<Octokit.User>?
     internal var activityFeed: ActivityFeedReducer.State?
     internal var selectedTab: Tab
 
     public init(
-      user: LoadableData<Octokit.User>? = nil,
       activityFeed: ActivityFeedReducer.State? = nil,
       selectedTab: UserContextReducer.State.Tab = .activity
     ) {
-      self.user = user
       self.activityFeed = activityFeed
       self.selectedTab = selectedTab
     }
@@ -36,7 +34,6 @@ public struct UserContextReducer: ReducerProtocol {
     }
 
     public enum Delegate: Equatable {}
-
     case user(User)
     case local(Local)
     case delegate(Delegate)
@@ -44,13 +41,10 @@ public struct UserContextReducer: ReducerProtocol {
     case activityFeed(ActivityFeedReducer.Action)
   }
 
-  private let userService: Octokit.UserService
+  @Dependency(\.octokitUserService)
+  private var userService: Octokit.UserService
 
-  public init(
-    userService: Octokit.UserService
-  ) {
-    self.userService = userService
-  }
+  public init() {}
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in

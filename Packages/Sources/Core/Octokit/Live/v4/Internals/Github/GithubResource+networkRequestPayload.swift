@@ -1,7 +1,7 @@
 import Foundation
 
-internal extension GithubResource {
-  var networkRequestPayload: NetworkRequestPayload {
+extension GithubResource {
+  internal var networkRequestPayload: NetworkRequestPayload {
     switch self {
     case .root(let privateAccessToken):
       return .githubRequest(

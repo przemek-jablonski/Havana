@@ -1,3 +1,4 @@
+import Casimir
 import ComposableArchitecture
 import Octokit
 import SwiftUI
@@ -44,28 +45,31 @@ public struct ActivityFeedView: View {
   }
 }
 
-import Casimir
-
-public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View, LoadedView: View>: View {
-  internal let loadableData: LoadableData<Model>
+public struct LoadingView<
+  Model: Equatable,
+  LoadingView: View,
+  FailureView: View,
+  LoadedView: View
+>: View {
+  internal let loadable: Loadable<Model>
   internal let loadingView: () -> LoadingView
   internal let failureView: (Error) -> FailureView
   internal let loadedView: (Model) -> LoadedView
 
   public init(
-    for loadableData: LoadableData<Model>,
+    for loadable: Loadable<Model>,
     loadingView: @escaping () -> LoadingView,
     failureView: @escaping (Error) -> FailureView,
     loadedView: @escaping (Model) -> LoadedView
   ) {
-    self.loadableData = loadableData
+    self.loadable = loadable
     self.loadingView = loadingView
     self.failureView = failureView
     self.loadedView = loadedView
   }
 
   public var body: some View {
-    switch loadableData {
+    switch loadable {
     case .loading:
       loadingView()
     case .failure(let error):

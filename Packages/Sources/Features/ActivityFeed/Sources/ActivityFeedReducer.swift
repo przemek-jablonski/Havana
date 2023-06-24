@@ -7,11 +7,11 @@ import Octokit
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
+    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
 
     public init(
       user: Octokit.User,
-      publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
+      publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
     ) {
       self.user = user
       self.publicEvents = publicEvents

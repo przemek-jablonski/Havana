@@ -14,9 +14,7 @@ internal struct ActivityFeedPreview: App {
               user: .random(),
               publicEvents: .loading
             ),
-            reducer: ActivityFeedReducer(
-              userService: Octokit.UserServiceMock.happyPath()
-            )._printChanges()
+            reducer: ActivityFeedReducer(userService: Octokit)._printChanges()
           )
         )
       }

@@ -1,53 +1,41 @@
 import ComposableArchitecture
 
 extension Octokit: TestDependencyKey {
-  public static var testValue: Self {
-    Self(
-      eventsService: unimplemented("\(Self.self).eventsService"),
-      loginService: unimplemented("\(Self.self).loginService"),
-      userService: unimplemented("\(Self.self).userService")
-    )
-  }
+  public static let testValue = Self(
+    eventsService: unimplemented("\(Self.self).eventsService"),
+    loginService: unimplemented("\(Self.self).loginService"),
+    userService: unimplemented("\(Self.self).userService")
+  )
 
-  public static var previewValue: Self {
-    Self(
-      eventsService: { .previewValue },
-      loginService: { .previewValue },
-      userService: { .previewValue }
-    )
-  }
+  public static let previewValue = Self(
+    eventsService: { .previewValue },
+    loginService: { .previewValue },
+    userService: { .previewValue }
+  )
 }
 
 extension Octokit.EventsService: TestDependencyKey {
-  public static var testValue: Self {
-    Self(
-      allPublicEvents: unimplemented("\(Self.self).allPublicEvents"),
-      userEvents: unimplemented("\(Self.self).userEvents")
-    )
-  }
+  public static let testValue = Self(
+    allPublicEvents: unimplemented("\(Self.self).allPublicEvents"),
+    userEvents: unimplemented("\(Self.self).userEvents")
+  )
 
-  public static var previewValue: Self {
-    Self(
-      allPublicEvents: { _ in .random() },
-      userEvents: { _, _ in .random() }
-    )
-  }
+  public static let previewValue = Self(
+    allPublicEvents: { _ in .random() },
+    userEvents: { _, _ in .random() }
+  )
 }
 
 extension Octokit.LoginService: TestDependencyKey {
-  public static var testValue: Self {
-    Self(
-      login: unimplemented("\(Self.self).login"),
-      isLoggedIn: unimplemented("\(Self.self).isLoggedIn")
-    )
-  }
+  public static let testValue = Self(
+    login: unimplemented("\(Self.self).login"),
+    isLoggedIn: unimplemented("\(Self.self).isLoggedIn")
+  )
 
-  public static var previewValue: Self {
-    Self(
-      login: { _ in },
-      isLoggedIn: { .random() }
-    )
-  }
+  public static let previewValue = Self(
+    login: { _ in },
+    isLoggedIn: { .random() }
+  )
 }
 
 extension Octokit.UserService: TestDependencyKey {
