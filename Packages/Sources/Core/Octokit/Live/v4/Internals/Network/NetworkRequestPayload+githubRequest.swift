@@ -8,11 +8,11 @@ internal extension NetworkRequestPayload {
   /**
    Convenience function for constructing `NetworkRequestPayload` with Github's `v4` API data (baseUrl, headers) prefilled for convenience.
    */
-  static func githubRequest(
+  internal static func githubRequest(
     endpoint: String,
     httpMethod: String,
     token: String?,
-    queryItems: [String: String]? = [:]
+    queryItems: [String: String] = [:]
   ) -> Self {
     self.init(
       url: "\(baseUrl)\(endpoint)",

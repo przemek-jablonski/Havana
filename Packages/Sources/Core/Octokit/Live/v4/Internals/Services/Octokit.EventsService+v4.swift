@@ -3,8 +3,8 @@ import Octokit
 
 private let paginationEventsCount = 30
 
-internal extension Octokit.EventsService {
-  static func v4(
+extension Octokit.EventsService {
+  internal static func v4(
     secretsService: SecretsService,
     networkClient: GithubNetworkClient
   ) -> Self {

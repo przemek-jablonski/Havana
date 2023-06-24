@@ -4,7 +4,7 @@ import KeychainAccess
 private let octokitKeychainEntry = "com.octokit.keychain"
 
 internal extension SecretsService {
-  static func keychain(
+  internal static func keychain(
     keychain: Keychain = Keychain(service: octokitKeychainEntry)
   ) -> Self {
     Self(

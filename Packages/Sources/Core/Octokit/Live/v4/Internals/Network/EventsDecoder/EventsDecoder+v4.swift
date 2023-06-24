@@ -2,10 +2,10 @@ import Casimir
 import Foundation
 import Octokit
 
-internal extension EventsDecoder {
-  typealias Json = [String: Any]
+extension EventsDecoder {
+  internal typealias Json = [String: Any]
 
-  enum DecodingError: Error {
+  internal enum DecodingError: Error {
     case unableToSerializeJsonData
     case unableToDecodeEventId(_ json: Json)
     case unableToDecodeEventType(_ json: Json)
@@ -14,7 +14,7 @@ internal extension EventsDecoder {
     case unknownEventType(_ json: Json)
   }
 
-  static func v4(
+  internal static func v4(
     jsonDecoder: JSONDecoder
   ) -> Self {
     Self(

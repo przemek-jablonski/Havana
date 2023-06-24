@@ -2,7 +2,6 @@ import Foundation
 import Octokit
 
 internal struct URLSessionGithubNetworkClient: GithubNetworkClient {
-
   private let urlSession: URLSession
   private let jsonEncoder: JSONEncoder
   private let jsonDecoder: JSONDecoder

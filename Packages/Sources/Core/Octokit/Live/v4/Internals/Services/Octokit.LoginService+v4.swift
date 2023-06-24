@@ -3,8 +3,8 @@ import Combine
 import Foundation
 import Octokit
 
-internal extension Octokit.LoginService {
-  static func v4(
+extension Octokit.LoginService {
+  internal static func v4(
     secretsService: SecretsService,
     rootService: Octokit.RootService,
     networkClient: GithubNetworkClient
