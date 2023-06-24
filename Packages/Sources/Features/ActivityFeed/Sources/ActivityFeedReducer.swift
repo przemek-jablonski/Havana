@@ -2,16 +2,15 @@ import Casimir
 import ComposableArchitecture
 import Foundation
 import Octokit
-// import OctokitLive // TODO: importing implementations in features should not be possible, check in rest of the project
 
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
+    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
 
     public init(
       user: Octokit.User,
-      publicEvents: LoadableData<IdentifiedArrayOf<Octokit.Event>>
+      publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
     ) {
       self.user = user
       self.publicEvents = publicEvents
@@ -20,7 +19,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
 
   public enum Action: Equatable {
     public enum User: Equatable {
-      case task
+      case userNavigatedToActivityFeed
     }
 
     public enum Local: Equatable {
@@ -34,32 +33,29 @@ public struct ActivityFeedReducer: ReducerProtocol {
     case delegate(Delegate)
   }
 
-  private let userService: Octokit.UserService
+  @Dependency(\.eventsService)
+  private var eventsService: Octokit.EventsService
 
-  public init(
-    // TODO: move to @Dependency
-    userService: Octokit.UserService
-  ) {
-    self.userService = userService
-  }
+  public init() {}
 
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { state, action in
       switch action {
-      case .user(.task):
-        return .none
-      //          return .run { send in
-      //            send(
-      //              .local(
-      //                ._remoteReturnedUserPublicEvents(
-      //                  await userService.events(
-      //                    username: login,
-      //                    page: 0
-      //                  )
-      //                )
-      //              )
-      //            )
-      //          }
+      case .user(.userNavigatedToActivityFeed):
+        return .run { [username = state.user.login] send in
+          await send(
+            .local(
+              ._remoteReturnedUserPublicEvents(
+                TaskResult {
+                  try await eventsService.userEvents(
+                    username,
+                    0
+                  )
+                }
+              )
+            )
+          )
+        }
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):
         state.publicEvents = .loaded(IdentifiedArrayOf(uniqueElements: events))
         return .none

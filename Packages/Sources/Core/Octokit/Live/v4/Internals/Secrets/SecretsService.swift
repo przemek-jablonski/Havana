@@ -5,12 +5,12 @@ internal struct SecretsService {
     case privateAccessToken
   }
 
-  var store: (
+  internal var store: (
     _ entry: Entry,
     _ value: String
   ) async throws -> ()
 
-  var retrieve: (
+  internal var retrieve: (
     _ entry: Entry
   ) async throws -> (String)
 }

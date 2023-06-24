@@ -23,7 +23,9 @@ internal enum GithubResource {
        )
 
   /**
-   These are events that you've received by watching repos and following users. If you are authenticated as the given user, you will see private events. Otherwise, you'll only see public events.
+   These are events that you've received by watching repos and following users.
+   If you are authenticated as the given user, you will see private events.
+   Otherwise, you'll only see public events.
    */
   case userEvents(
         _ username: String,

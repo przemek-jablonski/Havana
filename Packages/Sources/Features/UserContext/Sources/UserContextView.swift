@@ -16,12 +16,12 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      with(loaded: viewStore.user) {
+      with(loaded: viewStore.user) { _ in
         TabView(
           selection:
             viewStore.binding(
               get: \.selectedTab,
-              send: { UserContextReducer.Action.user(.switchedTab($0)) }
+              send: { UserContextReducer.Action.user(.userSwitchedTab($0)) }
             )
         ) {
           IfLetStore(
@@ -39,25 +39,26 @@ public struct UserContextView: View {
         }
       }
       .task {
-        viewStore.send(.user(.task))
+        await viewStore.send(.user(.userNavigatedToUserContext)).finish()
       }
     }
   }
 }
 
+// TODO: move to Motif
 private extension View {
   @ViewBuilder
   func with<Content: View>(
-    loaded user: LoadableData<Octokit.User>?,
-    content: () -> Content
+    loaded user: Loadable<Octokit.User>?,
+    content: (Octokit.User) -> Content
   ) -> some View {
     switch user {
     case .none, .some(.loading):
       ProgressView()
     case .some(.failure(let error)):
       Text(error.localizedDescription)
-    case .some(.loaded):
-      content()
+    case .some(.loaded(let user)):
+      content(user)
     }
   }
 }
@@ -66,14 +67,9 @@ private extension View {
 public struct UserContextViewPreviews: PreviewProvider {
   public static var preview: some View {
     UserContextView(
-      Store(
-        initialState: UserContextReducer.State(
-          selectedTab: .activity
-        ),
-        reducer: UserContextReducer(
-          userService: Octokit.UserService(user: { .random() })
-        )._printChanges()
-      )
+      Store(initialState: UserContextReducer.State()) {
+        UserContextReducer()
+      }
     )
   }
 

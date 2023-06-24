@@ -36,7 +36,8 @@ let supportedPlatforms: [SupportedPlatform] = [
 let octokit = Target.target(
   name: "Octokit",
   dependencies: [
-    casimir // TODO: this could be removed
+    casimir,
+    composableArchitecture
   ],
   path: "Sources/Core/Octokit/Interface"
 )
@@ -44,7 +45,8 @@ let octokit = Target.target(
 let octokitLive = Target.target(
   name: "OctokitLive",
   dependencies: [
-    casimir, // TODO: this could be removed
+    casimir,
+    composableArchitecture,
     octokit.dependency,
     keychainAccess
   ],

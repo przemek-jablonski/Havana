@@ -4,7 +4,7 @@ import SwiftUI
 public struct OAuthLoginReducer: ReducerProtocol {
   public struct State: Equatable {}
   public enum Action: Equatable {
-    case onAppear
+    case userNavigatedToOAuthLogin
   }
 
   public var body: some ReducerProtocolOf<Self> {

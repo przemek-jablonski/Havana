@@ -13,11 +13,10 @@ internal struct ActivityFeedPreview: App {
             initialState: ActivityFeedReducer.State(
               user: .random(),
               publicEvents: .loading
-            ),
-            reducer: ActivityFeedReducer(
-              userService: Octokit.UserServiceMock.happyPath()
-            )._printChanges()
-          )
+            )
+          ) {
+            ActivityFeedReducer()
+          }
         )
       }
     }

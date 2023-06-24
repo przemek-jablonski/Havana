@@ -1,8 +1,8 @@
 import Foundation
 import Octokit
 
-internal extension Octokit.UserService {
-  static func v4(
+extension Octokit.UserService {
+  internal static func v4(
     secretsService: SecretsService,
     networkClient: GithubNetworkClient
   ) -> Self {

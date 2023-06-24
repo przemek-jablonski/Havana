@@ -4,12 +4,10 @@ import SwiftUI
 import UserContextFeature
 
 internal struct HavanaAppView: View {
-  private let store: StoreOf<HavanaAppReducer> = Store(
-    initialState: .loading,
-    reducer: HavanaAppReducer()._printChanges()
-  )
-
-  internal init() {}
+  private let store = Store(initialState: .loading) {
+    HavanaAppReducer()
+      ._printChanges()
+  }
 
   internal var body: some View {
     NavigationView {
@@ -37,7 +35,7 @@ internal struct HavanaAppView: View {
           }
         }
         .task {
-          viewStore.send(.user(.task)) // TODO: make sure that this is actually cancelled
+          viewStore.send(.user(.userOpenedTheApp))
         }
       }
     }

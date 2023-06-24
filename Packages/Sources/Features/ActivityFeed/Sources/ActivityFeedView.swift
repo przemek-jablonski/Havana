@@ -1,3 +1,4 @@
+import Casimir
 import ComposableArchitecture
 import Octokit
 import SwiftUI
@@ -17,55 +18,47 @@ public struct ActivityFeedView: View {
         for: viewStore.publicEvents,
         loadingView: { ProgressView() },
         failureView: { _ in Text("Error") }
-      ) { publicEvents in
+      ) { events in
         List {
-          ForEach(publicEvents.elements) { _ in
+          ForEach(events) { event in
             VStack {
-              // TODO: TODO
-              //              publicEvent.createdAt.map { createdAt in
-              //                Text(createdAt.formatted())
-              //                  .font(.caption)
-              //              }
-
-              //              Text(publicEvent.actor.login)
-              //
-              //              Text(String(describing: publicEvent.type))
-              //
-              //              Text(publicEvent.repo.name)
-
+              Text(String(describing: event))
             }
           }
         }
       }
       .task {
-        viewStore.send(.user(.task))
+        viewStore.send(.user(.userNavigatedToActivityFeed))
       }
     }
   }
 }
 
-import Casimir
-
-public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View, LoadedView: View>: View {
-  internal let loadableData: LoadableData<Model>
+public struct LoadingView<
+  Model: Equatable,
+  LoadingView: View,
+  FailureView: View,
+  LoadedView: View
+>: View {
+  internal let loadable: Loadable<Model>
   internal let loadingView: () -> LoadingView
   internal let failureView: (Error) -> FailureView
   internal let loadedView: (Model) -> LoadedView
 
   public init(
-    for loadableData: LoadableData<Model>,
+    for loadable: Loadable<Model>,
     loadingView: @escaping () -> LoadingView,
     failureView: @escaping (Error) -> FailureView,
     loadedView: @escaping (Model) -> LoadedView
   ) {
-    self.loadableData = loadableData
+    self.loadable = loadable
     self.loadingView = loadingView
     self.failureView = failureView
     self.loadedView = loadedView
   }
 
   public var body: some View {
-    switch loadableData {
+    switch loadable {
     case .loading:
       loadingView()
     case .failure(let error):
@@ -76,18 +69,14 @@ public struct LoadingView<Model: Equatable, LoadingView: View, FailureView: View
   }
 }
 
+#if DEBUG
 internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
-      Store(
-        initialState: ActivityFeedReducer.State(
-          user: .random(),
-          publicEvents: .loading
-        ),
-        reducer: ActivityFeedReducer(
-          userService: Octokit.UserService(user: { .random() }) // TODO: to dependency + preview
-        )
-      )
+      Store(initialState: .init(user: .random(), publicEvents: .loading)) {
+        ActivityFeedReducer()
+      }
     )
   }
 }
+#endif

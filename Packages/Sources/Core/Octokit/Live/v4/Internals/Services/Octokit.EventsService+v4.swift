@@ -3,9 +3,10 @@ import Octokit
 
 private let paginationEventsCount = 30
 
-internal extension Octokit.EventsService {
-  static func v4(
+extension Octokit.EventsService {
+  internal static func v4(
     secretsService: SecretsService,
+    eventsDecoder: EventsDecoder,
     networkClient: GithubNetworkClient
   ) -> Self {
     Self(
@@ -19,12 +20,14 @@ internal extension Octokit.EventsService {
         )
       },
       userEvents: { username, page in
-        try await networkClient.request(
-          resource: .userEvents(
-            username,
-            paginationEventsCount,
-            page,
-            try secretsService.retrieve(.privateAccessToken)
+        try await eventsDecoder.decodeEvents(
+          try await networkClient.request(
+            resource: .userEvents(
+              username,
+              paginationEventsCount,
+              page,
+              try secretsService.retrieve(.privateAccessToken)
+            )
           )
         )
       }
