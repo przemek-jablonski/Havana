@@ -10,8 +10,8 @@ public struct WithLoading<LoadedView: View, Data: Equatable>: View {
   private let loadingPrompt: String?
 
   public init(
-    data : Loadable<Data>,
-    loadingPrompt: String? = nil, // TODO: loading prompt should be mandatory to include 
+    data: Loadable<Data>,
+    loadingPrompt: String? = nil, // TODO: loading prompt should be mandatory to include
     @ViewBuilder loadedView: @escaping (_ loaded: Data) -> LoadedView
   ) {
     self.data = data
@@ -21,16 +21,16 @@ public struct WithLoading<LoadedView: View, Data: Equatable>: View {
 
   public var body: some View {
     switch data {
-      case .loading:
-        ProgressView {
-          if let loadingPrompt {
-            Text(loadingPrompt)
-          }
+    case .loading:
+      ProgressView {
+        if let loadingPrompt {
+          Text(loadingPrompt)
         }
-      case .failure(let error):
-        Text(error.localizedDescription)
-      case .loaded(let model):
-        loadedView(model)
+      }
+    case .failure(let error):
+      Text(error.localizedDescription)
+    case .loaded(let model):
+      loadedView(model)
     }
   }
 }
@@ -64,7 +64,6 @@ internal struct LoadingView_Previews: PreviewProvider {
     Label(string, systemImage: "paperplane.circle.fill")
       .padding()
       .background(Color.random)
-      .cornerRadius(8)
   }
 }
 #endif
