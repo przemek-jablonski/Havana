@@ -1,7 +1,7 @@
 import Casimir
 import ComposableArchitecture
-import Octokit
 import Motif
+import Octokit
 import SwiftUI
 
 public struct ActivityFeedView: View {
@@ -42,3 +42,13 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
   }
 }
 #endif
+
+///
+/// - event description                                              more
+/// - author circular avatar (`release.author.avatarUrl`), xxx
+/// - repository name (`release.htmlUrl -> extract`) xxxx
+/// - tag (icon) name (1.1.0-alpha02) `release.name`
+/// - draft / prerelease `release.draft / release.prerelease`
+/// - body (cut to first x letters / "no description" if nil)  `release.body`
+///
+/// - timestamp (relative)

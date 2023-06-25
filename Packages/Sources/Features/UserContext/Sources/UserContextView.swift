@@ -1,8 +1,8 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
-import Octokit
 import Motif
+import Octokit
 import SwiftUI
 
 public struct UserContextView: View {
@@ -17,7 +17,7 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      WithLoading(data: viewStore.user) { user in
+      WithLoading(data: viewStore.user) { _ in
         TabView(
           selection:
             viewStore.binding(
