@@ -3,22 +3,41 @@ import Motif
 import Octokit
 import SwiftUI
 
+// TODO: public and private repos
+// TODO: regular and pro users
+// TODO: licence
+// TODO: WatchEvent's payload is UNIMPLEMENTED IN OCTOKIT!
+
+
 internal enum EventView {}
 
 extension EventView {
   internal struct Release: View {
-    internal var event: Octokit.Event.ReleaseEvent
+    internal var event: Octokit.Event.Payload.ReleaseEventPayload
     internal let formatter: RelativeDateTimeFormatter
+    // TODO: where is the REPO NAME?!
     internal var body: some View {
       EventCard(
         header: {
-          EventHeader(
-            Image(systemName: "shippingbox"),
-            .green,
-            "NEW RELEASE from xxx"
-          )
+          HStack(alignment: .center, spacing: 0) {
+            Image(systemName: "shippingbox")
+              .symbolRenderingMode(.hierarchical)
+              .padding(.trailing, 4)
+              .foregroundColor(.green)
+
+            Text("RELEASE ")
+              .foregroundColor(.green)
+            +
+            Text("from ")
+            +
+            Text("a_github_user")
+              .font(.system(.caption2, design: .monospaced))
+          }
+          .maxWidth(.infinity, alignment: .leading)
+          .font(.caption)
+          .opacity(0.66)
         },
-        content: { [release = event.payload.release] in
+        content: { [release = event.release] in
           VStack {
             HStack(alignment: .lastTextBaseline) {
               Image(systemName: "tag")
@@ -57,15 +76,69 @@ extension EventView {
           .maxWidth(.infinity, alignment: .leading)
 
         },
-        footer: { [release = event.payload.release] in
+        footer: { [release = event.release] in
           HStack(alignment: .center) {
-            Text(
-              formatter.localizedString(for: release.publishedAt,
-                                        relativeTo: .now)
-            )
-            .font(.caption)
+            Text(formatter.localizedString(for: release.publishedAt, relativeTo: .now))
+              .font(.caption)
+              .opacity(0.66)
           }
-          .maxWidth(.infinity, alignment: .trailing) // maybe this in line with header?
+          .maxWidth(.infinity, alignment: .trailing)
+        }
+      )
+    }
+  }
+}
+
+extension EventView {
+  internal struct Fork: View {
+    internal var event: Octokit.Event.Payload.ForkEventPayload
+    internal let formatter: RelativeDateTimeFormatter
+    internal var body: some View {
+      EventCard(
+        header: { [repository = event.forkee] in
+          HStack(alignment: .center, spacing: 0) {
+            Image(systemName: "square.on.square.dashed")
+              .symbolRenderingMode(.hierarchical)
+              .padding(.trailing, 4)
+              .foregroundColor(.blue)
+
+            Text("some_githubs_user/a_very_super_repo")
+              .font(.system(.caption2, design: .monospaced))
+            +
+            Text(" FORKED")
+              .foregroundColor(.blue)
+          }
+          .maxWidth(.infinity, alignment: .leading)
+          .font(.caption)
+          .opacity(0.66)
+        },
+        content: { [repository = event.forkee] in
+          VStack {
+            HStack {
+              Image(systemName: "circle.fill")
+              VStack(alignment: .leading) {
+                Text("a_very_super_repo")
+                  .font(.system(.body, design: .monospaced))
+                Text("this_another_guys_github")
+                  .font(.system(.caption2, design: .monospaced))
+                  .opacity(0.66)
+              }
+            }
+            .maxWidth(.infinity, alignment: .leading)
+            .padding(.bottom)
+
+            Text("A librar")
+              .maxWidth(.infinity, alignment: .leading)
+              .lineLimit(3)
+          }
+        },
+        footer: { [repository = event.forkee] in
+          HStack(alignment: .center) {
+            Text(formatter.localizedString(for: repository.createdAt, relativeTo: .now))
+              .font(.caption)
+              .opacity(0.66)
+          }
+          .maxWidth(.infinity, alignment: .trailing)
         }
       )
     }
@@ -110,13 +183,13 @@ private struct EventHeader: View {
   }
 }
 
-private struct EventCard<Content: View, Footer: View>: View {
-  private var header: () -> EventHeader
+private struct EventCard<Header: View, Content: View, Footer: View>: View {
+  private var header: () -> Header
   private var content: () -> Content
   private var footer: () -> Footer
 
   internal init(
-    @ViewBuilder header: @escaping () -> EventHeader,
+    @ViewBuilder header: @escaping () -> Header,
     @ViewBuilder content: @escaping () -> Content,
     @ViewBuilder footer: @escaping () -> Footer
   ) {
@@ -141,8 +214,12 @@ internal struct EventViewPreviews: PreviewProvider {
     NavigationView {
       Group {
         List {
+          Button(label: EventView.Release(
+            event: .random(),
+            formatter: RelativeDateTimeFormatter()
+          )) {}
           ForEach(0..<20, id: \.self) { _ in
-            Button(label: EventView.Release(
+            Button(label: EventView.Fork(
               event: .random(),
               formatter: RelativeDateTimeFormatter()
             )) {}
