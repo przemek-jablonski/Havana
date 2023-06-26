@@ -73,7 +73,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct CommitCommentEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action performed. Can be created.
     public let action: String?
@@ -97,7 +97,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct CreateEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The git ref resource.
     public let ref: String?
@@ -131,7 +131,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct DeleteEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The git ref resource.
     public let ref: String
@@ -155,7 +155,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct ForkEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The created `Repository` resource.
     public let forkee: Octokit.Repository
@@ -174,7 +174,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct GollumEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The pages that were updated.
     public let pages: [String]
@@ -193,7 +193,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct IssueCommentEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed on the comment. Can be one of created, edited, or deleted.
     public let action: String
@@ -228,7 +228,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct IssuesEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed.
     //    public let action: Action
@@ -288,7 +288,7 @@ public extension Octokit.Event.Payload.IssuesEventPayload {
 
 public extension Octokit.Event.Payload {
   struct MemberEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be added to indicate a user accepted an invitation to a repository.
     public let action: String
@@ -317,7 +317,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct PublicEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
@@ -327,7 +327,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct PullRequestEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be one of opened, edited, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled, and synchronize.
     public let action: String
@@ -367,7 +367,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct PushEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// Unique identifier for the push.
     public let pushId: Int
@@ -413,7 +413,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct ReleaseEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be published.
     public let action: String
@@ -440,7 +440,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct SponsorshipEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
@@ -450,7 +450,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct WatchEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()

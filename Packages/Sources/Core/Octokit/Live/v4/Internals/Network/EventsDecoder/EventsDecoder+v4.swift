@@ -143,7 +143,7 @@ extension EventsDecoder {
             from: try JSONSerialization.data(withJSONObject: json)
           )
         )
-      case nil:
+      case nil: // `nil` meaning that this json object didn't had a field with this key at all.
         throw EventsDecoder.DecodingError.unableToDecodeEventType(json)
       default:
         throw EventsDecoder.DecodingError.unknownEventType(json)
