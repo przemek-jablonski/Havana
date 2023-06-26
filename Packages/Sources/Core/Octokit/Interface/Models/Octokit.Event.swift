@@ -22,7 +22,7 @@ public extension Octokit {
 }
 
 public extension Octokit.Event {
-  struct CommitCommentEvent: ModelProtocol {
+  struct CommitCommentEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -72,7 +72,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct CreateEvent: ModelProtocol {
+  struct CreateEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -122,7 +122,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct DeleteEvent: ModelProtocol {
+  struct DeleteEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -172,7 +172,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct ForkEvent: ModelProtocol {
+  struct ForkEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -222,7 +222,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct GollumEvent: ModelProtocol {
+  struct GollumEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -272,7 +272,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct IssueCommentEvent: ModelProtocol {
+  struct IssueCommentEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -322,7 +322,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct IssuesEvent: ModelProtocol {
+  struct IssuesEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -372,7 +372,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct MemberEvent: ModelProtocol {
+  struct MemberEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -422,7 +422,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct PublicEvent: ModelProtocol {
+  struct PublicEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -472,7 +472,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct PullRequestEvent: ModelProtocol {
+  struct PullRequestEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -522,7 +522,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct PushEvent: ModelProtocol {
+  struct PushEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -572,7 +572,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct ReleaseEvent: ModelProtocol {
+  struct ReleaseEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -622,7 +622,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct SponsorshipEvent: ModelProtocol {
+  struct SponsorshipEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -672,7 +672,7 @@ public extension Octokit.Event {
 }
 
 public extension Octokit.Event {
-  struct WatchEvent: ModelProtocol {
+  struct WatchEvent: EventProtocol, ModelProtocol {
     public let id: String
     public let actor: Octokit.Event.Actor
     public let createdAt: Date
@@ -718,48 +718,6 @@ public extension Octokit.Event {
         repository: .random()
       )
     }
-  }
-}
-
-public extension Octokit.Event {
-  var id: String {
-    switch self {
-    case .commitCommentEvent(let event): return event.id
-    case .createEvent(let event): return event.id
-    case .deleteEvent(let event): return event.id
-    case .forkEvent(let event): return event.id
-    case .gollumEvent(let event): return event.id
-    case .issueCommentEvent(let event): return event.id
-    case .issuesEvent(let event): return event.id
-    case .memberEvent(let event): return event.id
-    case .publicEvent(let event): return event.id
-    case .pullRequestEvent(let event): return event.id
-    case .pushEvent(let event): return event.id
-    case .releaseEvent(let event): return event.id
-    case .sponsorshipEvent(let event): return event.id
-    case .watchEvent(let event): return event.id
-    }
-  }
-
-  static func random(
-    _ randomNumberGenerator: inout RandomNumberGenerator
-  ) -> Self {
-    [
-      .commitCommentEvent(.random()),
-      .createEvent(.random()),
-      .deleteEvent(.random()),
-      .forkEvent(.random()),
-      .gollumEvent(.random()),
-      .issueCommentEvent(.random()),
-      .issuesEvent(.random()),
-      .memberEvent(.random()),
-      .publicEvent(.random()),
-      .pullRequestEvent(.random()),
-      .pushEvent(.random()),
-      .releaseEvent(.random()),
-      .sponsorshipEvent(.random()),
-      .watchEvent(.random())
-    ].random()
   }
 }
 // swiftlint:enable redundant_string_enum_value
