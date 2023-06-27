@@ -18,17 +18,26 @@ public struct ActivityFeedView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       WithLoading(data: viewStore.publicEvents) { events in
-        List {
-          ForEach(events) { event in
-            eventView(
-              event: event,
-              formatter: formatter
-            )
+        NavigationView {
+          List {
+            ForEach(events) { event in
+              eventView(
+                event: event,
+                formatter: formatter
+              )
+            }
+            .listRowSeparator(.hidden)
           }
+          .listStyle(.plain)
+          .navigationTitle("Events")
         }
       }
       .task {
-        viewStore.send(.user(.userNavigatedToActivityFeed))
+        viewStore.send(
+          .user(
+            .userNavigatedToActivityFeed
+          )
+        )
       }
     }
   }
@@ -41,42 +50,43 @@ private extension View {
     formatter: RelativeDateTimeFormatter
   ) -> some View {
     switch event {
-//    case .commitCommentEvent(let event):
-//      return Text("commitCommentEvent")
-//    case .createEvent(let event):
-//      Text("createEvent")
-//    case .deleteEvent(let event):
-//      Text("deleteEvent")
+    case .commitCommentEvent:
+      Text("commitCommentEvent")
+    case .createEvent:
+      Text("createEvent")
+    case .deleteEvent:
+      Text("deleteEvent")
     case .forkEvent(let event):
-        EventView.Fork(
+      EventView.Fork(
         event: event,
         formatter: formatter
       )
-//    case .gollumEvent(let event):
-//      Text("gollumEvent")
-//    case .issueCommentEvent(let event):
-//      Text("issueCommentEvent")
-//    case .issuesEvent(let event):
-//      Text("issuesEvent")
-//    case .memberEvent(let event):
-//      Text("memberEvent")
-//    case .publicEvent(let event):
-//      Text("publicEvent")
-//    case .pullRequestEvent(let event):
-//      Text("pullRequestEvent")
-//    case .pushEvent(let event):
-//      Text("pushEvent")
+    case .gollumEvent:
+      Text("gollumEvent")
+    case .issueCommentEvent:
+      Text("issueCommentEvent")
+    case .issuesEvent:
+      Text("issuesEvent")
+    case .memberEvent:
+      Text("memberEvent")
+    case .publicEvent:
+      Text("publicEvent")
+    case .pullRequestEvent:
+      Text("pullRequestEvent")
+    case .pushEvent:
+      Text("pushEvent")
     case .releaseEvent(let event):
       EventView.Release(
         event: event,
         formatter: formatter
       )
-//    case .sponsorshipEvent(let event):
-//      Text("sponsorshipEvent")
-//    case .watchEvent(let event):
-//      Text("watchEvent")
-      default:
-        Text("asdf")
+    case .sponsorshipEvent:
+      Text("sponsorshipEvent")
+    case .watchEvent(let event):
+      EventView.Watch(
+        event: event,
+        formatter: formatter
+      )
     }
   }
 }
@@ -88,7 +98,11 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
       Store(
         initialState: .init(
           user: .random(),
-          publicEvents: .loaded(Octokit.Event.randoms())
+          publicEvents: .loaded(
+            .init(
+              uniqueElements: Octokit.Event.randoms()
+            )
+          )
         )
       ) {
         ActivityFeedReducer()

@@ -18,13 +18,13 @@ internal extension EventView {
             .font(.caption)
             .maxWidth(.infinity, alignment: .leading)
 
-          //        Divider()
+          Divider()
 
           content()
             .font(.body)
             .maxWidth(.infinity, alignment: .leading)
 
-          //        Divider()
+          Divider()
 
           footer()
             .font(.caption)
@@ -34,41 +34,3 @@ internal extension EventView {
     }
   }
 }
-//
-// private extension View {
-//  @ViewBuilder
-//  func header<
-//    HeaderImage: View,
-//    HeaderText: View
-//  >(
-//    icon: () -> HeaderImage,
-//    text: () -> HeaderText
-//  ) -> some View {
-//    HStack(alignment: .lastTextBaseline, spacing: 0) {
-//      icon()
-//        .symbolRenderingMode(.hierarchical)
-//        .font(.caption)
-//        .padding(.trailing, 4) // TODO: ScaledMetric
-//
-//      text()
-//        .font(.caption)
-//        .opacity(0.66)
-//    }
-//    .maxWidth(.infinity, alignment: .leading)
-//  }
-// }
-//
-// private extension View {
-//  @ViewBuilder
-//  func footer(
-//    for event: any OctokitEventProtocol,
-//    formatter: RelativeDateTimeFormatter
-//  ) -> some View {
-//    HStack(alignment: .lastTextBaseline) {
-//      Text(formatter.localizedString(for: event.createdAt, relativeTo: .now))
-//        .font(.caption)
-//        .opacity(0.66)
-//    }
-//    .maxWidth(.infinity, alignment: .trailing)
-//  }
-// }

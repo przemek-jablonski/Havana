@@ -131,9 +131,9 @@ extension EventView {
           HStack {
             Image(systemName: "circle.fill")
             VStack(alignment: .leading) {
-              Text("a_very_super_repo")
+              Text(forkee.fullName)
                 .font(.system(.body, design: .monospaced))
-              Text("this_another_guys_github")
+              Text(forkee.owner.name ?? forkee.owner.login)
                 .font(.system(.caption2, design: .monospaced))
                 .opacity(0.66)
             }
@@ -141,7 +141,7 @@ extension EventView {
           .maxWidth(.infinity, alignment: .leading)
           .padding(.bottom)
 
-          Text("A librar")
+          Text(forkee.description ?? forkee.url)
             .maxWidth(.infinity, alignment: .leading)
             .lineLimit(3)
         }
@@ -158,53 +158,52 @@ extension EventView {
         )
       }
     }
-    //      EventCard(
-    //        header: { [repository = event.forkee] in
-    //          HStack(alignment: .center, spacing: 0) {
-    //            Image(systemName: "square.on.square.dashed")
-    //              .symbolRenderingMode(.hierarchical)
-    //              .padding(.trailing, 4)
-    //              .foregroundColor(.blue)
-    //
-    //            Text("some_githubs_user/a_very_super_repo")
-    //              .font(.system(.caption2, design: .monospaced))
-    //            +
-    //            Text(" FORKED")
-    //              .foregroundColor(.blue)
-    //          }
-    //          .maxWidth(.infinity, alignment: .leading)
-    //          .font(.caption)
-    //          .opacity(0.66)
-    //        },
-    //        content: { [repository = event.forkee] in
-    //          VStack {
-    //            HStack {
-    //              Image(systemName: "circle.fill")
-    //              VStack(alignment: .leading) {
-    //                Text("a_very_super_repo")
-    //                  .font(.system(.body, design: .monospaced))
-    //                Text("this_another_guys_github")
-    //                  .font(.system(.caption2, design: .monospaced))
-    //                  .opacity(0.66)
-    //              }
-    //            }
-    //            .maxWidth(.infinity, alignment: .leading)
-    //            .padding(.bottom)
-    //
-    //            Text("A librar")
-    //              .maxWidth(.infinity, alignment: .leading)
-    //              .lineLimit(3)
-    //          }
-    //        },
-    //        footer: { [repository = event.forkee] in
-    //          HStack(alignment: .center) {
-    //            Text(formatter.localizedString(for: repository.createdAt, relativeTo: .now))
-    //              .font(.caption)
-    //              .opacity(0.66)
-    //          }
-    //          .maxWidth(.infinity, alignment: .trailing)
-    //        }
-    //      )
+  }
+}
+
+extension EventView {
+  internal struct Watch: View {
+    internal var event: Octokit.Event.WatchEvent
+    internal let formatter: RelativeDateTimeFormatter
+
+    internal var body: some View {
+      EventView.Card {
+        VStack {
+          Text(event.actor.login)
+          Text(event.repository.name)
+        }
+        //        VStack {
+        //          HStack {
+        //            Image(systemName: "circle.fill")
+        //            VStack(alignment: .leading) {
+        //              Text(forkee.fullName)
+        //                .fontDesign(.monospaced)
+        //                .font(.system(.body, design: .monospaced))
+        //              Text(forkee.owner.name ?? forkee.owner.login)
+        //                .font(.system(.caption2, design: .monospaced))
+        //                .opacity(0.66)
+        //            }
+        //          }
+        //          .maxWidth(.infinity, alignment: .leading)
+        //          .padding(.bottom)
+        //
+        //          Text(forkee.description ?? forkee.url)
+        //            .maxWidth(.infinity, alignment: .leading)
+        //            .lineLimit(3)
+        //        }
+      } header: {
+        EventHeadlineView(
+          color: .blue,
+          icon: "person.2",
+          name: "WATCH"
+        )
+      } footer: {
+        EventFooterView(
+          date: event.createdAt,
+          formatter: formatter
+        )
+      }
+    }
   }
 }
 
@@ -212,21 +211,19 @@ extension EventView {
 internal struct EventViewPreviews: PreviewProvider {
   internal static var previews: some View {
     NavigationView {
-        List {
-//          Button(label:
-                  EventView.Release(
+      List {
+        EventView.Release(
+          event: .random(),
+          formatter: RelativeDateTimeFormatter()
+        )
+        ForEach(0..<20, id: \.self) { _ in
+          Button(label: EventView.Fork(
             event: .random(),
             formatter: RelativeDateTimeFormatter()
-          )
-//          ) {}
-          ForEach(0..<20, id: \.self) { _ in
-            Button(label: EventView.Fork(
-              event: .random(),
-              formatter: RelativeDateTimeFormatter()
-            )) {}
-          }
-          .listRowSeparator(.hidden)
+          )) {}
         }
+        .listRowSeparator(.hidden)
+      }
       .listStyle(.plain)
       .navigationTitle("Events")
     }
