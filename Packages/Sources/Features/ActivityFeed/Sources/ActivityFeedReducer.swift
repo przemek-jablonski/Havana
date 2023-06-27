@@ -6,11 +6,12 @@ import Octokit
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
+//    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
+    internal var publicEvents: Loadable<Array<Octokit.Event>>
 
     public init(
       user: Octokit.User,
-      publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
+      publicEvents: Loadable<Array<Octokit.Event>>
     ) {
       self.user = user
       self.publicEvents = publicEvents
@@ -57,7 +58,8 @@ public struct ActivityFeedReducer: ReducerProtocol {
           )
         }
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):
-        state.publicEvents = .loaded(IdentifiedArrayOf(uniqueElements: events))
+//        state.publicEvents = .loaded(IdentifiedArrayOf(uniqueElements: events))
+          state.publicEvents = .loaded(events)
         return .none
 
       case .local(._remoteReturnedUserPublicEvents(.failure(let error))):

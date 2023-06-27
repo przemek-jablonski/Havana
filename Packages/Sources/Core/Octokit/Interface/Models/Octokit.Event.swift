@@ -55,7 +55,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -104,7 +103,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -155,7 +153,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -204,7 +201,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -255,7 +251,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -304,7 +299,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -355,7 +349,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -404,7 +397,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -455,7 +447,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -504,7 +495,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -555,7 +545,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -604,7 +593,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
@@ -655,7 +643,6 @@ public extension Octokit.Event {
       case repository = "repo"
     }
 
-
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
     ) -> Self {
@@ -704,7 +691,6 @@ public extension Octokit.Event {
       case payload = "payload"
       case repository = "repo"
     }
-
 
     public static func random(
       _ randomNumberGenerator: inout RandomNumberGenerator
