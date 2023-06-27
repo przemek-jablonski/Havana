@@ -174,7 +174,7 @@ let octokitTests = Target.testTarget(
   ],
   path: "Sources/Core/Octokit/Tests",
   resources: [
-    // at the time of writing this project SPM is not capable of wildcarding paths, so...
+    // at the time of writing this project SPM is not capable of wildcarding paths, sooo...
     .copy("Resources/commit_04.json"),
     .copy("Resources/commit_05.json"),
     .copy("Resources/commit_06.json"),

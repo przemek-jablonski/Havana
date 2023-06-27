@@ -5,8 +5,10 @@ import SwiftUI
  Container view that wraps over passed in`content` to provide a card-like background.
  */
 public struct CardView<Content: View>: View {
-  private let cardCornerRadius = 8.cgFloat
-  private let cardBorderWidth = 1.cgFloat
+  @ScaledMetric private var cardCornerRadius = 8.cgFloat
+  @ScaledMetric private var cardBorderWidth = 1.cgFloat
+  @ScaledMetric private var verticalPadding = 12.cgFloat
+  @ScaledMetric private var horizontalPadding = 16.cgFloat
 
   private var content: () -> Content
 
@@ -18,13 +20,13 @@ public struct CardView<Content: View>: View {
 
   public var body: some View {
     content()
-      .padding()
+      .padding(.vertical, verticalPadding)
+      .padding(.horizontal, horizontalPadding)
       .background(
         ZStack {
           fill(
             cornerRadius: cardCornerRadius
           )
-
           stroke(
             cornerRadius: cardCornerRadius - cardBorderWidth,
             lineWidth: cardBorderWidth

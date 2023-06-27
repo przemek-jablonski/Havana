@@ -1,7 +1,7 @@
 import Casimir
 import Foundation
 
-internal protocol OctokitEventProtocol: Identifiable {
+public protocol OctokitEventProtocol: Identifiable {
   associatedtype Payload: ModelProtocol
   var id: String { get }
   var actor: Octokit.Event.Actor { get }
@@ -108,6 +108,25 @@ public extension Octokit.Event {
       case .releaseEvent(let event): return event.repository
       case .sponsorshipEvent(let event): return event.repository
       case .watchEvent(let event): return event.repository
+    }
+  }
+
+  var data: any OctokitEventProtocol {
+    switch self {
+      case .commitCommentEvent(let event): return event
+      case .createEvent(let event): return event
+      case .deleteEvent(let event): return event
+      case .forkEvent(let event): return event
+      case .gollumEvent(let event): return event
+      case .issueCommentEvent(let event): return event
+      case .issuesEvent(let event): return event
+      case .memberEvent(let event): return event
+      case .publicEvent(let event): return event
+      case .pullRequestEvent(let event): return event
+      case .pushEvent(let event): return event
+      case .releaseEvent(let event): return event
+      case .sponsorshipEvent(let event): return event
+      case .watchEvent(let event): return event
     }
   }
 

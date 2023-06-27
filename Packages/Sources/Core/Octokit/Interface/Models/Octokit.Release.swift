@@ -27,10 +27,6 @@ public extension Octokit {
     public let url: String
     public let zipballUrl: String?
 
-    public var repositoryName: String? {
-      htmlUrl.url?.pathComponents.safeGet(index: 2)
-    }
-
     internal enum CodingKeys: String, CodingKey {
       case assets = "assets"
       case assetsUrl = "assets_url"
