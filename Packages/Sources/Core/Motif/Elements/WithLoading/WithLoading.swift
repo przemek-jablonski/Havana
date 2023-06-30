@@ -20,25 +20,50 @@ public struct WithLoading<LoadedView: View, Data: Equatable>: View {
   }
 
   public var body: some View {
-    switch data {
-    case .loading:
-      ProgressView {
-        if let loadingPrompt {
-          Text(loadingPrompt)
-        }
-      }
-    case .failure(let error):
-      Text(error.localizedDescription)
-    case .loaded(let model):
-      loadedView(model)
+    if case Loadable.loading = data {
+      loadingView()
     }
+
+    if case Loadable.failure(let error) = data {
+      errorView(error)
+    }
+
+    if case Loadable.loaded(let data) = data {
+      loadedView(data)
+    }
+  }
+}
+
+private extension WithLoading {
+  @ViewBuilder
+  func loadingView() -> some View {
+    ProgressView {
+      if let loadingPrompt {
+        Text(loadingPrompt)
+      }
+    }
+  }
+
+  @ViewBuilder
+  func errorView(_ error: Error) -> some View {
+    Text(error.localizedDescription)
   }
 }
 
 #if DEBUG
 internal struct LoadingView_Previews: PreviewProvider {
+  @State static var content = Loadable<String>.loading
   internal static var previews: some View {
     Group {
+      if #available(iOS 16.0, *) {
+        WithLoading(data: content) { loaded in
+          loadedView(loaded)
+        }.task {
+          try? await Task.sleep(for: .seconds(2))
+          content = .loaded("Loaded!")
+        }
+      }
+
       WithLoading(data: Loadable<String>.loaded(.random())) { loaded in
         loadedView(loaded)
       }

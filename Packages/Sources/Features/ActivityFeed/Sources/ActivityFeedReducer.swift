@@ -6,14 +6,13 @@ import Octokit
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
+    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
 
     public init(
-      user: Octokit.User,
-      publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>>
+      user: Octokit.User
     ) {
       self.user = user
-      self.publicEvents = publicEvents
+      self.publicEvents = .loading
     }
   }
 
@@ -33,8 +32,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
     case delegate(Delegate)
   }
 
-  @Dependency(\.eventsService)
-  private var eventsService: Octokit.EventsService
+  @Dependency(\.eventsService) private var eventsService: Octokit.EventsService
 
   public init() {}
 

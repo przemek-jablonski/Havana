@@ -17,30 +17,30 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      WithLoading(data: viewStore.user) { _ in
-        TabView(
-          selection:
-            viewStore.binding(
-              get: \.selectedTab,
-              send: { UserContextReducer.Action.user(.userSwitchedTab($0)) }
-            )
+      //      WithLoading(data: viewStore.user) { _ in
+      TabView(
+        selection:
+          viewStore.binding(
+            get: \.selectedTab,
+            send: { UserContextReducer.Action.user(.userSwitchedTab($0)) }
+          )
+      ) {
+        IfLetStore(
+          store.scope(
+            state: \.activityFeed,
+            action: UserContextReducer.Action.activityFeed
+          )
         ) {
-          IfLetStore(
-            store.scope(
-              state: \.activityFeed,
-              action: UserContextReducer.Action.activityFeed
-            )
-          ) {
-            ActivityFeedView($0)
-              .tabItem {
-                Text("Activity")
-              }
-              .tag(UserContextReducer.State.Tab.activity)
-          }
+          ActivityFeedView($0)
+            .tabItem {
+              Text("Activity")
+            }
+            .tag(UserContextReducer.State.Tab.activity)
         }
       }
+      //      }
       .task {
-        await viewStore.send(.user(.userNavigatedToUserContext)).finish()
+        viewStore.send(.user(.userNavigatedToUserContext))
       }
     }
   }

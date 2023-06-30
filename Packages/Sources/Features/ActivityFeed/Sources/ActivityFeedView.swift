@@ -18,19 +18,19 @@ public struct ActivityFeedView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       WithLoading(data: viewStore.publicEvents) { events in
-        NavigationView {
-          List {
-            ForEach(events) { event in
-              eventView(
-                event: event,
-                formatter: formatter
-              )
-            }
-            .listRowSeparator(.hidden)
+        List {
+          ForEach(events) { event in
+            eventView(
+              event: event,
+              formatter: formatter
+            )
+            .padding()
           }
-          .listStyle(.plain)
-          .navigationTitle("Events")
+          .listRowSeparator(.hidden)
+          .listRowInsets(.zero)
         }
+        .listStyle(.plain)
+        .navigationTitle("Events")
       }
       .task {
         viewStore.send(
@@ -80,6 +80,23 @@ private extension View {
         event: event,
         formatter: formatter
       )
+      .contextMenu {
+        NavigationLink(Label("Release Notes", systemImage: "list.dash"), destination: Text("asdasd"))
+        NavigationLink("navi") {
+          Text("loooo;")
+        }
+
+        Button(label: Label("Release Notes", systemImage: "list.dash")) { }
+        // maybe actual repo name instead of static "Repository" string?
+        Button(label: Label(event.repository.name, systemImage: "folder")) { }
+        // maybe actual user name instead of static "User" string?
+        Button(label: Label(event.actor.displayLogin, systemImage: "person")) { }
+        Button {
+          // Add this item to a list of favorites.
+        } label: {
+          Label("Add to Favorites", systemImage: "heart")
+        }
+      }
     case .sponsorshipEvent:
       Text("sponsorshipEvent")
     case .watchEvent(let event):
@@ -96,17 +113,9 @@ internal struct ActivityFeedViewPreviews: PreviewProvider {
   internal static var previews: some View {
     ActivityFeedView(
       Store(
-        initialState: .init(
-          user: .random(),
-          publicEvents: .loaded(
-            .init(
-              uniqueElements: Octokit.Event.randoms()
-            )
-          )
-        )
-      ) {
-        ActivityFeedReducer()
-      }
+        initialState: .init(user: .random()),
+        reducer: { ActivityFeedReducer() }
+      )
     )
   }
 }

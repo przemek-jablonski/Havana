@@ -64,10 +64,7 @@ public struct UserContextReducer: ReducerProtocol {
         return .none
       case .local(._remoteReturnedUserDataResponse(.success(let user))):
         state.user = .loaded(user)
-        state.activityFeed = ActivityFeedReducer.State(
-          user: user,
-          publicEvents: .loading
-        )
+        state.activityFeed = ActivityFeedReducer.State(user: user)
         return .none
       case .local(._remoteReturnedUserDataResponse(.failure(let error))):
         state.user = .failure(error)
