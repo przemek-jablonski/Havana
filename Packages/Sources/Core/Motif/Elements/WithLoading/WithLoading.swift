@@ -5,31 +5,39 @@ import SwiftUI
  View that morphs it's content depending on the `data` state (switches between displaying "loading" view, "error" view and the actual content).
  */
 public struct WithLoading<LoadedView: View, Data: Equatable>: View {
-  private let data: Loadable<Data>
-  private let loadedView: (_ loaded: Data) -> LoadedView
+  private var data: Loadable<Data>
   private let loadingPrompt: String?
+  private let loadedView: (_ loaded: Data) -> LoadedView
+  private let task: (() async -> ())?
+  @State private var isFirstTaskLaunched = false
 
   public init(
     data: Loadable<Data>,
     loadingPrompt: String? = nil, // TODO: loading prompt should be mandatory to include
-    @ViewBuilder loadedView: @escaping (_ loaded: Data) -> LoadedView
+    @ViewBuilder loadedView: @escaping (_ loaded: Data) -> LoadedView,
+    task: (() async -> ())? = nil
   ) {
     self.data = data
     self.loadingPrompt = loadingPrompt
     self.loadedView = loadedView
+    self.task = task
   }
 
   public var body: some View {
-    if case Loadable.loading = data {
-      loadingView()
+    Group {
+      if case Loadable.loading = data {
+        loadingView()
+      } else if case Loadable.failure(let error) = data {
+        errorView(error)
+      } else if case Loadable.loaded(let data) = data {
+        loadedView(data)
+      }
     }
-
-    if case Loadable.failure(let error) = data {
-      errorView(error)
-    }
-
-    if case Loadable.loaded(let data) = data {
-      loadedView(data)
+    .task {
+      if !isFirstTaskLaunched {
+        isFirstTaskLaunched = true
+        await task?()
+      }
     }
   }
 }
@@ -52,18 +60,8 @@ private extension WithLoading {
 
 #if DEBUG
 internal struct LoadingView_Previews: PreviewProvider {
-  @State static var content = Loadable<String>.loading
   internal static var previews: some View {
     Group {
-      if #available(iOS 16.0, *) {
-        WithLoading(data: content) { loaded in
-          loadedView(loaded)
-        }.task {
-          try? await Task.sleep(for: .seconds(2))
-          content = .loaded("Loaded!")
-        }
-      }
-
       WithLoading(data: Loadable<String>.loaded(.random())) { loaded in
         loadedView(loaded)
       }

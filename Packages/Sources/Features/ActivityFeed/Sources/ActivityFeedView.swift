@@ -32,13 +32,20 @@ public struct ActivityFeedView: View {
         .listStyle(.plain)
         .navigationTitle("Events")
       }
-      .task {
+      task: {
         viewStore.send(
           .user(
             .userNavigatedToActivityFeed
           )
         )
       }
+      //      .task {
+      //        viewStore.send(
+      //          .user(
+      //            .userNavigatedToActivityFeed
+      //          )
+      //        )
+      //      }
     }
   }
 }
