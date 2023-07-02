@@ -8,6 +8,8 @@ public struct ActivityFeedReducer: ReducerProtocol {
     internal let user: Octokit.User
     internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
 
+    internal var test: Loadable<[Octokit.Event]> = .loading
+
     public init(
       user: Octokit.User
     ) {
@@ -51,7 +53,8 @@ public struct ActivityFeedReducer: ReducerProtocol {
                   )
                 }
               )
-            )
+            ),
+            animation: .default
           )
         }
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):

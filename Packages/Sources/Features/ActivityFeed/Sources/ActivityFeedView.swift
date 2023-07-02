@@ -17,35 +17,12 @@ public struct ActivityFeedView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      WithLoading(data: viewStore.publicEvents) { events in
-        List {
-          ForEach(events) { event in
-            eventView(
-              event: event,
-              formatter: formatter
-            )
-            .padding()
-          }
-          .listRowSeparator(.hidden)
-          .listRowInsets(.zero)
-        }
-        .listStyle(.plain)
-        .navigationTitle("Events")
+      WithLoaded(viewStore.publicEvents) { event in
+        eventView(event, formatter: formatter)
       }
-      task: {
-        viewStore.send(
-          .user(
-            .userNavigatedToActivityFeed
-          )
-        )
+      .task {
+        viewStore.send(.user(.userNavigatedToActivityFeed))
       }
-      //      .task {
-      //        viewStore.send(
-      //          .user(
-      //            .userNavigatedToActivityFeed
-      //          )
-      //        )
-      //      }
     }
   }
 }
@@ -53,7 +30,7 @@ public struct ActivityFeedView: View {
 private extension View {
   @ViewBuilder
   func eventView(
-    event: Octokit.Event,
+    _ event: Octokit.Event,
     formatter: RelativeDateTimeFormatter
   ) -> some View {
     switch event {
@@ -95,9 +72,9 @@ private extension View {
 
         Button(label: Label("Release Notes", systemImage: "list.dash")) { }
         // maybe actual repo name instead of static "Repository" string?
-        Button(label: Label(event.repository.name, systemImage: "folder")) { }
+        //            Button(label: Label(event.repository.name, systemImage: "folder")) { }
         // maybe actual user name instead of static "User" string?
-        Button(label: Label(event.actor.displayLogin, systemImage: "person")) { }
+        //            Button(label: Label(event.actor.displayLogin, systemImage: "person")) { }
         Button {
           // Add this item to a list of favorites.
         } label: {

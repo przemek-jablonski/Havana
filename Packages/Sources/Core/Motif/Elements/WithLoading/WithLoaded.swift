@@ -10,7 +10,7 @@ public struct WithLoaded<
   LoadedView: View
 >: View where Container.Element == Model {
 
-  private let placeholdersCount = 20
+  private let placeholdersCount = 10
 
   private var loadables: Loadable<Container>
   private var loadedView: (_ element: Model) -> LoadedView
@@ -30,6 +30,8 @@ public struct WithLoaded<
           ForEach((0..<placeholdersCount).map { _ in Model.random() }) { model in
             loadedView(model)
           }
+          .listRowSeparator(.hidden)
+          .listRowInsets(.zero)
           .redacted(reason: .placeholder)
         }
 
@@ -37,8 +39,11 @@ public struct WithLoaded<
           ForEach(loaded) { element in
             loadedView(element)
           }
+          .listRowSeparator(.hidden)
+          .listRowInsets(.zero)
         }
       }
+      .listStyle(.plain)
 
       if case Loadable.failure(let error) = loadables {
         VStack {
