@@ -2,7 +2,7 @@ import Casimir
 import SwiftUI
 
 /**
- List that morphs it's content depending on the `data` state (switches between displaying "loading" view, "error" view and the actual content).
+ List that morphs it's content depending on the data state passed as input (switches between displaying "loading" view, "error" view and the actual content).
  */
 public struct WithLoaded<
   Model: ModelProtocol,
@@ -52,43 +52,9 @@ public struct WithLoaded<
         }
         .padding()
         .padding(.vertical)
-        .foregroundColor(.secondary)
+        .foregroundStyle(.secondary)
         .background(.ultraThinMaterial)
       }
     }
   }
 }
-
-//// TODO: does 'DEBUG' work
-// #if DEBUG
-// internal struct LoadingView_Previews: PreviewProvider {
-//  internal static var previews: some View {
-//    Group {
-//      WithLoaded(Loadable<String>.loaded(.random())) { loaded in
-//        loadedView(loaded)
-//      }
-//
-//      WithLoaded(Loadable<String>.loading) { loaded in
-//        loadedView(loaded)
-//      }
-//
-//      WithLoaded(Loadable<String>.loading, loadingPrompt: .random()) { loaded in
-//        loadedView(loaded)
-//      }
-//
-//      WithLoaded(Loadable<String>.failure(GenericError(description: .random()))) { loaded in
-//        loadedView(loaded)
-//      }
-//    }
-//  }
-//
-//  @ViewBuilder
-//  private static func loadedView(
-//    _ string: String
-//  ) -> some View {
-//    Label(string, systemImage: "paperplane.circle.fill")
-//      .padding()
-//      .background(Color.random)
-//  }
-// }
-// #endif
