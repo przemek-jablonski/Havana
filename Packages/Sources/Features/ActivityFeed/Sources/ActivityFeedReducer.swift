@@ -21,13 +21,22 @@ public struct ActivityFeedReducer: ReducerProtocol {
   public enum Action: Equatable {
     public enum User: Equatable {
       case userNavigatedToActivityFeed
+      case userRequestedReleaseDetails(_ release: Octokit.Event.ReleaseEvent.ID)
+      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository.ID)
+      case userRequestedActorDetails(_ actor: Octokit.Event.Actor.ID)
+      case userRequestedRepositoryStarred(_ repository: Octokit.Event.Repository.ID)
     }
 
     public enum Local: Equatable {
       case _remoteReturnedUserPublicEvents(TaskResult<[Octokit.Event]>)
     }
 
-    public enum Delegate: Equatable {}
+    public enum Delegate: Equatable {
+      case userRequestedReleaseDetails(_ release: Octokit.Event.ReleaseEvent.ID)
+      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository.ID)
+      case userRequestedActorDetails(_ actor: Octokit.Event.Actor.ID)
+      case userRequestedRepositoryStarred(_ repository: Octokit.Event.Repository.ID)
+    }
 
     case user(User)
     case local(Local)
@@ -57,6 +66,20 @@ public struct ActivityFeedReducer: ReducerProtocol {
             animation: .default
           )
         }
+
+      case .user(.userRequestedReleaseDetails(let release)):
+        return .send(.delegate(.userRequestedReleaseDetails(release)))
+
+      case .user(.userRequestedRepositoryDetails(let repository)):
+        return .send(.delegate(.userRequestedRepositoryDetails(repository)))
+
+      case .user(.userRequestedActorDetails(let actor)):
+        return .send(.delegate(.userRequestedActorDetails(actor)))
+
+      // TODO: handle starring the repository
+      case .user(.userRequestedRepositoryStarred(let repository)):
+        return .none
+
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):
         state.publicEvents = .loaded(.init(uniqueElements: events))
         return .none
@@ -65,7 +88,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
         state.publicEvents = .failure(error)
         return .none
 
-      case .user, .delegate:
+      case .delegate:
         return .none
       }
     }

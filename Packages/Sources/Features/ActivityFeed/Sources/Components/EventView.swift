@@ -10,41 +10,6 @@ import SwiftUI
 
 internal enum EventView {}
 
-internal struct EventHeadlineView: View {
-  internal let color: Color
-  internal let icon: String
-  internal let name: String
-
-  internal var body: some View {
-    HStack(alignment: .lastTextBaseline, spacing: 0) {
-      Image(systemName: icon)
-        .symbolRenderingMode(.hierarchical)
-        .font(.caption)
-        .foregroundColor(color)
-        .padding(.trailing, 4) // TODO: ScaledMetric
-
-      Text(name)
-        .font(.caption)
-        .foregroundColor(color)
-    }
-    .maxWidth(.infinity, alignment: .leading)
-  }
-}
-
-internal struct EventFooterView: View {
-  internal let date: Date
-  internal let formatter: RelativeDateTimeFormatter
-
-  internal var body: some View {
-    HStack(alignment: .lastTextBaseline, spacing: 0) {
-      Text(formatter.localizedString(for: date, relativeTo: .now))
-        .font(.caption)
-        .opacity(0.66)
-    }
-    .maxWidth(.infinity, alignment: .trailing)
-  }
-}
-
 extension EventView {
   internal struct Release: View {
     internal let event: Octokit.Event.ReleaseEvent
@@ -67,11 +32,25 @@ extension EventView {
           //              // TODO: attributed string
         }
       } header: {
-        EventHeadlineView(
-          color: .green,
-          icon: "shippingbox",
-          name: "NEW RELEASE"
-        )
+        HStack(alignment: .lastTextBaseline) {
+          Image(systemName: Motif.Icon.release.systemName)
+            .symbolRenderingMode(.hierarchical)
+            .font(.caption)
+            .foregroundStyle(.primary)
+            .foregroundColor(.green)
+
+          Text("RELEASE")
+            .font(.caption)
+            .foregroundStyle(.primary)
+            .foregroundColor(.green)
+
+          Text("in")
+
+          Image(systemName: Motif.Icon.repository.systemName)
+
+          Text(event.repository.name)
+        }
+        .maxWidth(.infinity, alignment: .leading)
       } footer: {
         EventFooterView(
           date: event.createdAt,
@@ -204,6 +183,42 @@ extension EventView {
         )
       }
     }
+  }
+}
+
+internal struct EventHeadlineView: View {
+  internal let color: Color
+  internal let icon: String
+  internal let name: String
+
+  internal var body: some View {
+    HStack(alignment: .lastTextBaseline, spacing: 0) {
+      Image(systemName: icon)
+        .symbolRenderingMode(.hierarchical)
+        .font(.caption)
+        .foregroundColor(color)
+        .padding(.trailing, 4) // TODO: ScaledMetric
+        .foregroundStyle(.secondary)
+
+      Text(name)
+        .font(.caption)
+        .foregroundColor(color)
+    }
+    .maxWidth(.infinity, alignment: .leading)
+  }
+}
+
+internal struct EventFooterView: View {
+  internal let date: Date
+  internal let formatter: RelativeDateTimeFormatter
+
+  internal var body: some View {
+    HStack(alignment: .lastTextBaseline, spacing: 0) {
+      Text(formatter.localizedString(for: date, relativeTo: .now))
+        .font(.caption)
+        .opacity(0.66)
+    }
+    .maxWidth(.infinity, alignment: .trailing)
   }
 }
 

@@ -18,7 +18,11 @@ public struct ActivityFeedView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       WithLoaded(viewStore.publicEvents) { event in
-        eventView(event, formatter: formatter)
+        eventView(
+          viewStore: viewStore,
+          event,
+          formatter
+        )
       }
       .task {
         viewStore.send(.user(.userNavigatedToActivityFeed))
@@ -30,8 +34,9 @@ public struct ActivityFeedView: View {
 private extension View {
   @ViewBuilder
   func eventView(
+    viewStore: ViewStoreOf<ActivityFeedReducer>,
     _ event: Octokit.Event,
-    formatter: RelativeDateTimeFormatter
+    _ formatter: RelativeDateTimeFormatter
   ) -> some View {
     switch event {
     case .commitCommentEvent:
@@ -65,20 +70,20 @@ private extension View {
         formatter: formatter
       )
       .contextMenu {
-        NavigationLink(Label("Release Notes", systemImage: "list.dash"), destination: Text("asdasd"))
-        NavigationLink("navi") {
-          Text("loooo;")
+        Button(label: Label(event.payload.release.tagName, icon: .releaseNotes)) {
+          viewStore.send(.user(.userRequestedReleaseDetails(event.id)))
         }
 
-        Button(label: Label("Release Notes", systemImage: "list.dash")) { }
-        // maybe actual repo name instead of static "Repository" string?
-        //            Button(label: Label(event.repository.name, systemImage: "folder")) { }
-        // maybe actual user name instead of static "User" string?
-        //            Button(label: Label(event.actor.displayLogin, systemImage: "person")) { }
-        Button {
-          // Add this item to a list of favorites.
-        } label: {
-          Label("Add to Favorites", systemImage: "heart")
+        Button(label: Label(event.repository.name, icon: .repository)) {
+          viewStore.send(.user(.userRequestedRepositoryDetails(event.repository.id)))
+        }
+
+        Button(label: Label(event.actor.login, icon: .author)) {
+          viewStore.send(.user(.userRequestedActorDetails(event.actor.id)))
+        }
+
+        Button(label: Label("Star Repository", icon: .star)) {
+          viewStore.send(.user(.userRequestedRepositoryStarred(event.repository.id)))
         }
       }
     case .sponsorshipEvent:
