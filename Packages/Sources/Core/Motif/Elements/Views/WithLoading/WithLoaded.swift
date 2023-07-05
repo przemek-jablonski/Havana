@@ -31,7 +31,6 @@ public struct WithLoaded<
             loadedView(model)
           }
           .listRowSeparator(.hidden)
-          .listRowInsets(.zero)
           .redacted(reason: .placeholder)
         }
 
@@ -40,7 +39,6 @@ public struct WithLoaded<
             loadedView(element)
           }
           .listRowSeparator(.hidden)
-          .listRowInsets(.zero)
         }
       }
       .listStyle(.plain)

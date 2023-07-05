@@ -30,6 +30,7 @@ internal struct HavanaAppView: View {
           }
 
           Default {
+            // TODO: should be an error
             ProgressView()
               .transition(.opacity)
           }

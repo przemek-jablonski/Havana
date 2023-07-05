@@ -27,7 +27,7 @@ let globalDependencies: [Package.Dependency] = [
 ]
 
 let supportedPlatforms: [SupportedPlatform] = [
-  .iOS(.v15),
+  .iOS(.v16),
   .macOS(.v13)
 ]
 
@@ -83,7 +83,6 @@ let loginFeature = Target.target(
 let loginFeatureTests = Target.testTarget(
   name: "LoginFeatureTests",
   dependencies: [
-    casimir,
     .byName(name: loginFeature.name)
   ],
   path: "Sources/Features/Login/Tests"
@@ -97,11 +96,38 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
+let releaseDetailsFeature = Target.target(
+  name: "ReleaseDetailsFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/ReleaseDetails/Sources"
+)
+
+let releaseDetailsTests = Target.testTarget(
+  name: "ReleaseDetailsTests",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Tests"
+)
+
+let releaseDetailsPreview = Target.executableTarget(
+  name: "ReleaseDetailsPreview",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Preview"
+)
+
 let activityFeedFeature = Target.target(
   name: "ActivityFeedFeature",
   dependencies: [
     composableArchitecture,
     octokit.dependency,
+    releaseDetailsFeature.dependency,
     motif.dependency,
     swiftUINavigation
   ],
@@ -111,7 +137,6 @@ let activityFeedFeature = Target.target(
 let activityFeedTests = Target.testTarget(
   name: "ActivityFeedTests",
   dependencies: [
-    casimir,
     .byName(name: activityFeedFeature.name)
   ],
   path: "Sources/Features/ActivityFeed/Tests"
@@ -140,7 +165,6 @@ let userContextFeature = Target.target(
 let userContextTests = Target.testTarget(
   name: "UserContextTests",
   dependencies: [
-    casimir,
     .byName(name: userContextFeature.name)
   ],
   path: "Sources/Features/UserContext/Tests"
@@ -160,7 +184,9 @@ let featureTargets: [Target] = [
   userContextFeature,
   userContextPreview,
   activityFeedFeature,
-  activityFeedPreview
+  activityFeedPreview,
+  releaseDetailsFeature,
+  releaseDetailsPreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -244,7 +270,8 @@ let testTargets: [Target] = [
   octokitTests,
   userContextTests,
   loginFeatureTests,
-  activityFeedTests
+  activityFeedTests,
+  releaseDetailsTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

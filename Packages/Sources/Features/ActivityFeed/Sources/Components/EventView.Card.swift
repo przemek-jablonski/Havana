@@ -15,7 +15,6 @@ internal extension EventView {
       CardView {
         VStack {
           header()
-            .font(.caption)
             .maxWidth(.infinity, alignment: .leading)
 
           Divider()

@@ -2,13 +2,13 @@ import Casimir
 import ComposableArchitecture
 import Foundation
 import Octokit
+import ReleaseDetailsFeature
 
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
     internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
-
-    internal var test: Loadable<[Octokit.Event]> = .loading
+    @PresentationState internal var navigation: Navigation.State?
 
     public init(
       user: Octokit.User
@@ -21,29 +21,26 @@ public struct ActivityFeedReducer: ReducerProtocol {
   public enum Action: Equatable {
     public enum User: Equatable {
       case userNavigatedToActivityFeed
-      case userRequestedReleaseDetails(_ release: Octokit.Event.ReleaseEvent.ID)
-      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository.ID)
-      case userRequestedActorDetails(_ actor: Octokit.Event.Actor.ID)
-      case userRequestedRepositoryStarred(_ repository: Octokit.Event.Repository.ID)
+      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
+      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository)
+      case userRequestedActorDetails(_ actor: Octokit.Event.Actor)
+      case userRequestedRepositoryStarred(_ repositoryId: Octokit.Event.Repository.ID)
     }
 
     public enum Local: Equatable {
       case _remoteReturnedUserPublicEvents(TaskResult<[Octokit.Event]>)
     }
 
-    public enum Delegate: Equatable {
-      case userRequestedReleaseDetails(_ release: Octokit.Event.ReleaseEvent.ID)
-      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository.ID)
-      case userRequestedActorDetails(_ actor: Octokit.Event.Actor.ID)
-      case userRequestedRepositoryStarred(_ repository: Octokit.Event.Repository.ID)
-    }
+    public enum Delegate: Equatable {}
 
     case user(User)
     case local(Local)
     case delegate(Delegate)
+    case _navigation(PresentationAction<Navigation.Action>)
   }
 
-  @Dependency(\.eventsService) private var eventsService: Octokit.EventsService
+  @Dependency(\.eventsService)
+  private var eventsService: Octokit.EventsService
 
   public init() {}
 
@@ -68,16 +65,21 @@ public struct ActivityFeedReducer: ReducerProtocol {
         }
 
       case .user(.userRequestedReleaseDetails(let release)):
-        return .send(.delegate(.userRequestedReleaseDetails(release)))
+        state.navigation = .releaseDetails(
+          .init(
+            release: release.payload.release
+          )
+        )
+        return .none
 
-      case .user(.userRequestedRepositoryDetails(let repository)):
-        return .send(.delegate(.userRequestedRepositoryDetails(repository)))
+      case .user(.userRequestedRepositoryDetails):
+        return .none
 
-      case .user(.userRequestedActorDetails(let actor)):
-        return .send(.delegate(.userRequestedActorDetails(actor)))
+      case .user(.userRequestedActorDetails):
+        return .none
 
       // TODO: handle starring the repository
-      case .user(.userRequestedRepositoryStarred(let repository)):
+      case .user(.userRequestedRepositoryStarred):
         return .none
 
       case .local(._remoteReturnedUserPublicEvents(.success(let events))):
@@ -88,9 +90,18 @@ public struct ActivityFeedReducer: ReducerProtocol {
         state.publicEvents = .failure(error)
         return .none
 
+      case ._navigation:
+        return .none
+
       case .delegate:
         return .none
       }
+    }
+    .ifLet(
+      \.$navigation,
+      action: /Action._navigation
+    ) {
+      ActivityFeedReducer.Navigation()
     }
   }
 }

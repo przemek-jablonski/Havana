@@ -8,6 +8,10 @@ import SwiftUI
 // TODO: licence
 // TODO: WatchEvent's payload is UNIMPLEMENTED IN OCTOKIT!
 
+//              // TODO: style as real URL
+//              // TODO: cut to x lines
+//              // TODO: attributed string
+
 internal enum EventView {}
 
 extension EventView {
@@ -26,31 +30,19 @@ extension EventView {
           releaseBody(for: release)
             .padding(.bottom, 4)
             .maxWidth(.infinity, alignment: .leading)
-            .opacity(0.66)
-          //              // TODO: style as real URL
-          //              // TODO: cut to x lines
-          //              // TODO: attributed string
         }
       } header: {
-        HStack(alignment: .lastTextBaseline) {
-          Image(systemName: Motif.Icon.release.systemName)
-            .symbolRenderingMode(.hierarchical)
-            .font(.caption)
-            .foregroundStyle(.primary)
+        HStack {
+          Label("RELEASE", icon: .release)
             .foregroundColor(.green)
-
-          Text("RELEASE")
-            .font(.caption)
-            .foregroundStyle(.primary)
-            .foregroundColor(.green)
-
           Text("in")
-
-          Image(systemName: Motif.Icon.repository.systemName)
-
-          Text(event.repository.name)
+          Label(event.repository.name, icon: .repository)
+            .font(.caption.monospaced())
         }
-        .maxWidth(.infinity, alignment: .leading)
+        .lineLimit(1)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+
       } footer: {
         EventFooterView(
           date: event.createdAt,

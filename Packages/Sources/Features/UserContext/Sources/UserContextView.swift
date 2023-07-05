@@ -17,7 +17,6 @@ public struct UserContextView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      //      WithLoading(data: viewStore.user) { _ in
       TabView(
         selection:
           viewStore.binding(
@@ -38,7 +37,6 @@ public struct UserContextView: View {
             .tag(UserContextReducer.State.Tab.activity)
         }
       }
-      //      }
       .task {
         viewStore.send(.user(.userNavigatedToUserContext))
       }

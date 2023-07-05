@@ -2,7 +2,9 @@ import Casimir
 import ComposableArchitecture
 import Motif
 import Octokit
+import ReleaseDetailsFeature
 import SwiftUI
+import SwiftUINavigation
 
 public struct ActivityFeedView: View {
   public let store: StoreOf<ActivityFeedReducer>
@@ -16,22 +18,32 @@ public struct ActivityFeedView: View {
   }
 
   public var body: some View {
-    WithViewStore(store) { viewStore in
-      WithLoaded(viewStore.publicEvents) { event in
-        eventView(
-          viewStore: viewStore,
-          event,
-          formatter
-        )
-      }
-      .task {
-        viewStore.send(.user(.userNavigatedToActivityFeed))
+    NavigationStack {
+      WithViewStore(store) { viewStore in
+        WithLoaded(viewStore.publicEvents) { event in
+          eventView(
+            viewStore: viewStore,
+            event,
+            formatter
+          )
+        }
+        .navigationTitle("Events")
+        .task {
+          viewStore.send(.user(.userNavigatedToActivityFeed))
+        }
+        .navigationDestination(
+          store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
+          state: /ActivityFeedReducer.Navigation.State.releaseDetails,
+          action: ActivityFeedReducer.Navigation.Action.releaseDetails
+        ) {
+          ReleaseDetailsView($0)
+        }
       }
     }
   }
 }
 
-private extension View {
+private extension ActivityFeedView {
   @ViewBuilder
   func eventView(
     viewStore: ViewStoreOf<ActivityFeedReducer>,
@@ -71,15 +83,15 @@ private extension View {
       )
       .contextMenu {
         Button(label: Label(event.payload.release.tagName, icon: .releaseNotes)) {
-          viewStore.send(.user(.userRequestedReleaseDetails(event.id)))
+          viewStore.send(.user(.userRequestedReleaseDetails(event)))
         }
 
         Button(label: Label(event.repository.name, icon: .repository)) {
-          viewStore.send(.user(.userRequestedRepositoryDetails(event.repository.id)))
+          viewStore.send(.user(.userRequestedRepositoryDetails(event.repository)))
         }
 
         Button(label: Label(event.actor.login, icon: .author)) {
-          viewStore.send(.user(.userRequestedActorDetails(event.actor.id)))
+          viewStore.send(.user(.userRequestedActorDetails(event.actor)))
         }
 
         Button(label: Label("Star Repository", icon: .star)) {
