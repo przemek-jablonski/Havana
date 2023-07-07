@@ -137,6 +137,77 @@ internal final class EventsDecoder_API_2022_11_28TestCase: XCTestCase {
       }
     )
   }
+
+  internal func test_decodingExampleEventsFile16_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_16.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 100)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile17_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_17.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 62)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile18_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_18.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 95)
+      }
+    )
+  }
+  internal func test_decodingExampleEventsFile19_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_19.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 100)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile20_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_20.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 100)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile21_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_21.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 100)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile22_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_22.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 63)
+      }
+    )
+  }
+
+  internal func test_decodingExampleEventsFile23_succeedsAndProducesCorrectAmountOfEvents() async throws {
+    try await performDecodingOfEvents(
+      from: "events_23.json",
+      assert: { decoded in
+        XCTAssertEqual(decoded.count, 24)
+      }
+    )
+  }
 }
 
 private extension XCTestCase {

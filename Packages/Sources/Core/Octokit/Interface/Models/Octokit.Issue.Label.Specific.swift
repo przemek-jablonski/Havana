@@ -21,7 +21,9 @@ public extension Octokit.Issue.Label {
       case url = "url"
     }
 
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         color: .random(),
         labelDefault: .random(),

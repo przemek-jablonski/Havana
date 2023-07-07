@@ -7,9 +7,7 @@ extension EventsDecoder {
 
   internal enum DecodingError: Error {
     case unableToSerializeJsonData
-    case unableToDecodeEventId(_ json: Json)
     case unableToDecodeEventType(_ json: Json)
-    case unableToDecodeEventPayload(_ json: Json)
     case unsupportedEventType(_ type: String, _ json: Json)
     case unknownEventType(_ json: Json)
   }
@@ -19,13 +17,17 @@ extension EventsDecoder {
   ) -> Self {
     Self(
       decodeEvents: { raw in
-        (try JSONSerialization.jsonObject(with: raw) as? [Json] ?? { throw DecodingError.unableToSerializeJsonData }())
-          .compactMap { json in
-            try? decode(
-              json: json,
-              using: jsonDecoder
-            )
-          }
+        (
+          try JSONSerialization.jsonObject(with: raw) as? [Json] ?? {
+            throw DecodingError.unableToSerializeJsonData
+          }()
+        )
+        .compactMap { json in
+          try? decode(
+            json: json,
+            using: jsonDecoder
+          )
+        }
       }
     )
   }
@@ -36,119 +38,75 @@ extension EventsDecoder {
     json: Json,
     using jsonDecoder: JSONDecoder
   ) throws -> Octokit.Event? {
-    guard let eventId = json["id"] as? String else {
-      throw DecodingError.unableToDecodeEventId(json)
-    }
-
-    guard let eventType = json["type"] as? String else {
-      throw DecodingError.unableToDecodeEventType(json)
-    }
-
-    guard let eventPayload = json["payload"] as? [String: Any] else {
-      throw DecodingError.unableToDecodeEventPayload(json)
-    }
-
-    let eventPayloadData = try JSONSerialization.data(withJSONObject: eventPayload)
-
-    switch eventType {
+    switch json["type"] as? String {
     case Octokit.EventType.commitComment.string:
       return .commitCommentEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.CommitCommentEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.CommitCommentEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.create.string:
       return .createEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.CreateEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.CreateEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.delete.string:
       return .deleteEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.DeleteEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.DeleteEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.fork.string:
       return .forkEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.ForkEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.ForkEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.gollum.string:
       return .gollumEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.GollumEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.GollumEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.issueComment.string:
       return .issueCommentEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.IssueCommentEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.IssueCommentEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.issues.string:
       return .issuesEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.IssuesEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.IssuesEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.member.string:
       return .memberEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.MemberEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.MemberEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.public.string:
       return .publicEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.PublicEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.PublicEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.pullRequest.string:
       return .pullRequestEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.PullRequestEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.PullRequestEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.pullRequestReview.string:
@@ -159,44 +117,34 @@ extension EventsDecoder {
       throw EventsDecoder.DecodingError.unsupportedEventType(Octokit.EventType.pullRequestReviewThread.string, json)
     case Octokit.EventType.push.string:
       return .pushEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.PushEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.PushEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.release.string:
       return .releaseEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.ReleaseEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.ReleaseEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.sponsorship.string:
       return .sponsorshipEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.SponsorshipEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.SponsorshipEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
     case Octokit.EventType.watch.string:
       return .watchEvent(
-        .init(
-          id: eventId,
-          payload: try jsonDecoder.decode(
-            Octokit.Event.Payload.WatchEventPayload.self,
-            from: eventPayloadData
-          )
+        try jsonDecoder.decode(
+          Octokit.Event.WatchEvent.self,
+          from: try JSONSerialization.data(withJSONObject: json)
         )
       )
+    case nil: // `nil` meaning that this json object didn't had a field with this key at all.
+      throw EventsDecoder.DecodingError.unableToDecodeEventType(json)
     default:
       throw EventsDecoder.DecodingError.unknownEventType(json)
     }

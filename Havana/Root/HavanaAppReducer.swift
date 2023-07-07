@@ -53,11 +53,7 @@ public struct HavanaAppReducer: ReducerProtocol {
       case .local(._userLoginCheckResult(false)):
         state = .login(LoginReducer.State())
         return .none
-      case .delegate:
-        return .none
-      case .login:
-        return .none
-      case .userContext:
+      case .delegate, .login, .userContext:
         return .none
       }
     }

@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-public struct ___VARIABLE_scene_name___View {
+public struct ___VARIABLE_scene_name___View: View {
   public let store: StoreOf<___VARIABLE_scene_name___Reducer>
 
   public init(
@@ -24,9 +24,11 @@ public struct ___VARIABLE_scene_name___ViewPreviews: PreviewProvider {
   public static var preview: some View {
     ___VARIABLE_scene_name___View(
       Store(
-        initialState: ___VARIABLE_scene_name___Reducer.State(),
-        reducer: ___VARIABLE_scene_name___Reducer()._printChanges()
-      )
+        initialState: ___VARIABLE_scene_name___Reducer.State()
+      ) {
+        ___VARIABLE_scene_name___Reducer()
+          ._printChanges()
+      }
     )
   }
 

@@ -27,7 +27,7 @@ let globalDependencies: [Package.Dependency] = [
 ]
 
 let supportedPlatforms: [SupportedPlatform] = [
-  .iOS(.v15),
+  .iOS(.v16),
   .macOS(.v13)
 ]
 
@@ -55,6 +55,9 @@ let octokitLive = Target.target(
 
 let motif = Target.target(
   name: "Motif",
+  dependencies: [
+    casimir
+  ],
   path: "Sources/Core/Motif"
 )
 
@@ -80,7 +83,6 @@ let loginFeature = Target.target(
 let loginFeatureTests = Target.testTarget(
   name: "LoginFeatureTests",
   dependencies: [
-    casimir,
     .byName(name: loginFeature.name)
   ],
   path: "Sources/Features/Login/Tests"
@@ -94,11 +96,38 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
+let releaseDetailsFeature = Target.target(
+  name: "ReleaseDetailsFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/ReleaseDetails/Sources"
+)
+
+let releaseDetailsTests = Target.testTarget(
+  name: "ReleaseDetailsTests",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Tests"
+)
+
+let releaseDetailsPreview = Target.executableTarget(
+  name: "ReleaseDetailsPreview",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Preview"
+)
+
 let activityFeedFeature = Target.target(
   name: "ActivityFeedFeature",
   dependencies: [
     composableArchitecture,
     octokit.dependency,
+    releaseDetailsFeature.dependency,
     motif.dependency,
     swiftUINavigation
   ],
@@ -108,7 +137,6 @@ let activityFeedFeature = Target.target(
 let activityFeedTests = Target.testTarget(
   name: "ActivityFeedTests",
   dependencies: [
-    casimir,
     .byName(name: activityFeedFeature.name)
   ],
   path: "Sources/Features/ActivityFeed/Tests"
@@ -137,7 +165,6 @@ let userContextFeature = Target.target(
 let userContextTests = Target.testTarget(
   name: "UserContextTests",
   dependencies: [
-    casimir,
     .byName(name: userContextFeature.name)
   ],
   path: "Sources/Features/UserContext/Tests"
@@ -157,7 +184,9 @@ let featureTargets: [Target] = [
   userContextFeature,
   userContextPreview,
   activityFeedFeature,
-  activityFeedPreview
+  activityFeedPreview,
+  releaseDetailsFeature,
+  releaseDetailsPreview
 ]
 
 // MARK: - Testing Targets definitions and assembly
@@ -171,7 +200,7 @@ let octokitTests = Target.testTarget(
   ],
   path: "Sources/Core/Octokit/Tests",
   resources: [
-    // at the time of writing this project SPM is not capable of wildcarding paths, so...
+    // at the time of writing this project SPM is not capable of wildcarding paths, sooo...
     .copy("Resources/commit_04.json"),
     .copy("Resources/commit_05.json"),
     .copy("Resources/commit_06.json"),
@@ -193,6 +222,14 @@ let octokitTests = Target.testTarget(
     .copy("Resources/events_13.json"),
     .copy("Resources/events_14.json"),
     .copy("Resources/events_15.json"),
+    .copy("Resources/events_16.json"),
+    .copy("Resources/events_17.json"),
+    .copy("Resources/events_18.json"),
+    .copy("Resources/events_19.json"),
+    .copy("Resources/events_20.json"),
+    .copy("Resources/events_21.json"),
+    .copy("Resources/events_22.json"),
+    .copy("Resources/events_23.json"),
     .copy("Resources/issue_comments_01.json"),
     .copy("Resources/issue_comments_02.json"),
     .copy("Resources/issue_comments_03.json"),
@@ -233,7 +270,8 @@ let testTargets: [Target] = [
   octokitTests,
   userContextTests,
   loginFeatureTests,
-  activityFeedTests
+  activityFeedTests,
+  releaseDetailsTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

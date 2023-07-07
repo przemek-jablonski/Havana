@@ -1,8 +1,6 @@
 import Casimir
 import Foundation
 
-// TODO: reintroduce proper ID (where applicable)
-
 // swiftlint:disable redundant_string_enum_value
 // swiftlint:disable inclusive_language
 // swiftlint:disable file_length
@@ -72,8 +70,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   A comment has been made on a commit.
+   */
   struct CommitCommentEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action performed. Can be created.
     public let action: String?
@@ -96,8 +97,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   A Git branch or tag is created.
+   */
   struct CreateEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The git ref resource.
     public let ref: String?
@@ -130,11 +134,14 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   A Git branch or tag is deleted.
+   */
   struct DeleteEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The git ref resource.
-    public let ref: String
+    public let ref: String?
 
     /// The type of Git ref object created in the repository. Can be either branch or tag.
     public let refType: String
@@ -154,8 +161,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   A user forks a repository.
+   */
   struct ForkEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The created `Repository` resource.
     public let forkee: Octokit.Repository
@@ -173,8 +183,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   A wiki page is created or updated.
+   */
   struct GollumEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The pages that were updated.
     public let pages: [String]
@@ -192,8 +205,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   Activity related to an issue or pull request comment. The type of activity is specified in the action property of the payload object.
+   */
   struct IssueCommentEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed on the comment. Can be one of created, edited, or deleted.
     public let action: String
@@ -227,8 +243,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   Activity related to an issue. The type of activity is specified in the action property of the payload object.
+   */
   struct IssuesEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed.
     //    public let action: Action
@@ -288,7 +307,7 @@ public extension Octokit.Event.Payload.IssuesEventPayload {
 
 public extension Octokit.Event.Payload {
   struct MemberEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be added to indicate a user accepted an invitation to a repository.
     public let action: String
@@ -316,8 +335,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   When a private repository is made public.
+   */
   struct PublicEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
@@ -327,7 +349,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct PullRequestEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be one of opened, edited, closed, reopened, assigned, unassigned, review_requested, review_request_removed, labeled, unlabeled, and synchronize.
     public let action: String
@@ -366,8 +388,11 @@ public extension Octokit.Event.Payload {
 // PullRequestReviewThreadEvent
 
 public extension Octokit.Event.Payload {
+  /**
+   One or more commits are pushed to a repository branch or tag.
+   */
   struct PushEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// Unique identifier for the push.
     public let pushId: Int
@@ -413,7 +438,7 @@ public extension Octokit.Event.Payload {
 
 public extension Octokit.Event.Payload {
   struct ReleaseEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     /// The action that was performed. Can be published.
     public let action: String
@@ -439,8 +464,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   Activity related to a sponsorship listing.
+   */
   struct SponsorshipEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()
@@ -449,8 +477,11 @@ public extension Octokit.Event.Payload {
 }
 
 public extension Octokit.Event.Payload {
+  /**
+   When someone stars a repository. The type of activity is specified in the action property of the payload object.
+   */
   struct WatchEventPayload: ModelProtocol {
-    public let id = UUID()
+    public var id: UUID { UUID() }
 
     public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
       Self()

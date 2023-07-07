@@ -18,7 +18,7 @@ public extension Octokit {
     public let name: String?
     public let nodeId: String?
     public let prerelease: Bool
-    public let publishedAt: Date?
+    public let publishedAt: Date
     public let reactions: Reactions?
     public let tagName: String
     public let tarballUrl: String?
