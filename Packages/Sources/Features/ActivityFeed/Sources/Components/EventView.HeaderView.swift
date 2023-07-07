@@ -1,3 +1,4 @@
+import Motif
 import SwiftUI
 
 extension EventView {
@@ -6,8 +7,8 @@ extension EventView {
     internal enum TextType: Hashable {
       case avatar
       case username(String)
-      case action(String, Color)
-      case regular(String)
+      case action(String, Motif.Icon, Color)
+      case text(String)
     }
 
     internal let texts: [TextType]
@@ -49,10 +50,10 @@ extension EventView.HeaderView {
     case .username(let username):
       Text(username.uppercased())
         .foregroundStyle(.primary)
-    case .action(let action, let color):
-      Text(action.uppercased(), icon: .star)
+    case .action(let action, let icon, let color):
+      Text(action.uppercased(), icon: icon)
         .foregroundColor(color)
-    case .regular(let string):
+    case .text(let string):
       Text(string)
     }
   }

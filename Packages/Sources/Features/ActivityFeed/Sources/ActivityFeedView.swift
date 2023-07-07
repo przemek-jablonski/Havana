@@ -79,8 +79,11 @@ private extension ActivityFeedView {
       Text("issueCommentEvent")
     case .issuesEvent:
       Text("issuesEvent")
-    case .memberEvent:
-      Text("memberEvent")
+    case .memberEvent(let event):
+      EventView.Member(
+        event: event,
+        formatter: formatter
+      )
     case .publicEvent:
       Text("publicEvent")
     case .pullRequestEvent:

@@ -13,10 +13,20 @@ public extension Motif {
     case organisation
     case releaseNotes
     case tag
+    case issue
+    case commit
+    case pullRequest
 
     // MARK: - Actions
     case star
     case more
+    case joinedProject
+    case comment
+    case contribution
+    case delete
+    case wiki
+    case `public`
+    case sponsorship
   }
 }
 

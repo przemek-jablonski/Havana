@@ -59,6 +59,8 @@ public extension Image {
     self.init(
       systemName: icon.systemName
     )
+    // TODO: add rendering mode everywhere
+    //    .renderingMode(.hierarchical)
   }
 }
 
