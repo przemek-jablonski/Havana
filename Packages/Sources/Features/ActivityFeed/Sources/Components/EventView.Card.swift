@@ -13,21 +13,26 @@ internal extension EventView {
     internal var footer: () -> Footer
     internal var body: some View {
       CardView {
-        VStack {
+        VStack(alignment: .leading) {
           header()
-            .maxWidth(.infinity, alignment: .leading)
+            .font(.caption)
+            .lineLimit(1)
+            .minimumScaleFactor(0.85)
+            .foregroundStyle(.secondary)
 
           Divider()
 
           content()
             .font(.body)
-            .maxWidth(.infinity, alignment: .leading)
+            .foregroundStyle(.primary)
 
           Divider()
 
           footer()
             .font(.caption)
-            .maxWidth(.infinity, alignment: .trailing)
+            .lineLimit(1)
+            .minimumScaleFactor(0.85)
+            .foregroundStyle(.secondary)
         }
       }
     }

@@ -12,9 +12,11 @@ public extension Motif {
     case author
     case organisation
     case releaseNotes
+    case tag
 
     // MARK: - Actions
     case star
+    case more
   }
 }
 

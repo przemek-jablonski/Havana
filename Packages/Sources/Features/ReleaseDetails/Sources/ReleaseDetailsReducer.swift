@@ -4,9 +4,9 @@ import Octokit
 
 public struct ReleaseDetailsReducer: ReducerProtocol {
   public struct State: Equatable {
-    internal var release: Octokit.Release
+    internal var release: Octokit.Event.ReleaseEvent
 
-    public init(release: Octokit.Release) {
+    public init(release: Octokit.Event.ReleaseEvent) {
       self.release = release
     }
   }

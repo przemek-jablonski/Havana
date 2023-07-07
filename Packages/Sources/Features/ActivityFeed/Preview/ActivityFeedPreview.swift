@@ -10,6 +10,7 @@ internal struct ActivityFeedPreview: App {
       ActivityFeedView(
         Store(initialState: ActivityFeedReducer.State(user: .random())) {
           ActivityFeedReducer()
+            ._printChanges()
         }
       )
     }
@@ -32,12 +33,12 @@ private struct PreviewScene<Content: View>: Scene {
 
   var body: some Scene {
     WindowGroup(windowName) {
-      NavigationSplitView(
-        columnVisibility: .constant(.detailOnly),
-        sidebar: { EmptyView() }
-      ) {
-        content()
-      }
+      //      NavigationSplitView(
+      //        columnVisibility: .constant(.detailOnly),
+      //        sidebar: { EmptyView() }
+      //      ) {
+      content()
+      //      }
     }
   }
 }
@@ -48,17 +49,6 @@ extension Octokit.EventsService: DependencyKey {
       allPublicEvents: unimplemented(),
       userEvents: { _, _ in
         [
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
-          Octokit.Event.releaseEvent(.random()),
           Octokit.Event.releaseEvent(.random()),
           Octokit.Event.releaseEvent(.random())
         ]

@@ -18,18 +18,14 @@ public struct ActivityFeedView: View {
   }
 
   public var body: some View {
-    NavigationStack {
-      WithViewStore(store) { viewStore in
+    WithViewStore(store) { viewStore in
+      NavigationStack {
         WithLoaded(viewStore.publicEvents) { event in
           eventView(
             viewStore: viewStore,
             event,
             formatter
           )
-        }
-        .navigationTitle("Events")
-        .task {
-          viewStore.send(.user(.userNavigatedToActivityFeed))
         }
         .navigationDestination(
           store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
@@ -38,12 +34,27 @@ public struct ActivityFeedView: View {
         ) {
           ReleaseDetailsView($0)
         }
+        .navigationTitle("Events")
+      }
+      .task {
+        viewStore.send(.user(.userNavigatedToActivityFeed))
       }
     }
   }
 }
 
 private extension ActivityFeedView {
+  //  struct EventView: View {
+  //
+  //    private let viewStore: ViewStoreOf<ActivityFeedReducer>
+  //    private let event: Octokit.Event,
+  //    private let formatter: RelativeDateTimeFormatter
+  //
+  //    var body: some View {
+  //
+  //    }
+  //  }
+
   @ViewBuilder
   func eventView(
     viewStore: ViewStoreOf<ActivityFeedReducer>,
@@ -77,15 +88,17 @@ private extension ActivityFeedView {
     case .pushEvent:
       Text("pushEvent")
     case .releaseEvent(let event):
-      EventView.Release(
-        event: event,
-        formatter: formatter
-      )
-      .contextMenu {
-        Button(label: Label(event.payload.release.tagName, icon: .releaseNotes)) {
+      Button(
+        label: EventView.Release(
+          event: event,
+          formatter: formatter
+        ),
+        action: {
           viewStore.send(.user(.userRequestedReleaseDetails(event)))
         }
-
+      )
+      .buttonStyle(.plain)
+      .contextMenu {
         Button(label: Label(event.repository.name, icon: .repository)) {
           viewStore.send(.user(.userRequestedRepositoryDetails(event.repository)))
         }

@@ -1,13 +1,6 @@
 import SwiftUI
 
 public extension Label where Title == Text, Icon == Image {
-
-  /// Creates a label with an icon image and a title generated from a
-  /// localized string.
-  ///
-  /// - Parameters:
-  ///    - titleKey: A title generated from a localized string.
-  ///    - icon: One of the icons from the Motif Design System
   init(
     _ titleKey: LocalizedStringKey,
     icon: Motif.Icon
@@ -18,18 +11,63 @@ public extension Label where Title == Text, Icon == Image {
     )
   }
 
-  /// Creates a label with an icon image and a title generated from a string.
-  ///
-  /// - Parameters:
-  ///    - title: A string used as the label's title.
-  ///    - icon: One of the icons from the Motif Design System
-  init<S>(
+  init<S: StringProtocol>(
     _ title: S,
     icon: Motif.Icon
-  ) where S: StringProtocol {
+  ) {
     self.init(
       title,
       systemImage: icon.systemName
     )
+  }
+}
+
+public extension Button {
+  init(
+    _ titleKey: LocalizedStringKey,
+    icon: Motif.Icon,
+    action: @escaping () -> Void
+  ) where Label == SwiftUI.Label<Text, Image> {
+    self.init(
+      label: Label(
+        titleKey,
+        icon: icon
+      ),
+      action: action
+    )
+  }
+
+  init<S: StringProtocol>(
+    _ title: S,
+    icon: Motif.Icon,
+    action: @escaping () -> Void
+  ) where Label == SwiftUI.Label<Text, Image> {
+    self.init(
+      label: Label(
+        title,
+        icon: icon
+      ),
+      action: action
+    )
+  }
+}
+
+public extension Image {
+  init(
+    icon: Motif.Icon
+  ) {
+    self.init(
+      systemName: icon.systemName
+    )
+  }
+}
+
+public extension Text {
+  init<S: StringProtocol>(
+    _ title: S,
+    icon: Motif.Icon
+  ) {
+    // TODO: RTL support
+    self = Text(Image(icon: icon)) + Text(" ").font(.system(size: 4)) + Text(title)
   }
 }

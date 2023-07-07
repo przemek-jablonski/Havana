@@ -13,7 +13,6 @@ import SwiftUI
 //              // TODO: attributed string
 
 internal enum EventView {}
-
 extension EventView {
   internal struct Release: View {
     internal let event: Octokit.Event.ReleaseEvent
@@ -22,26 +21,21 @@ extension EventView {
     // TODO: where is the REPO NAME?!
     internal var body: some View {
       EventView.Card { [release = event.payload.release] in
-        VStack {
+        VStack(alignment: .leading) {
+          HStack(alignment: .firstTextBaseline) {
+            Image(systemName: "circle.fill")
+            Text(event.actor.displayLogin)
+          }
           releaseTag(for: release, color: .green)
-            .maxWidth(.infinity, alignment: .leading)
-            .padding(.bottom, 4)
-
           releaseBody(for: release)
-            .padding(.bottom, 4)
-            .maxWidth(.infinity, alignment: .leading)
         }
       } header: {
-        HStack {
-          Label("RELEASE", icon: .release)
-            .foregroundColor(.green)
-          Text("in")
-          Label(event.repository.name, icon: .repository)
-            .font(.caption.monospaced())
-        }
-        .lineLimit(1)
-        .font(.caption)
-        .foregroundStyle(.secondary)
+        Text("RELEASE", icon: .release)
+          .foregroundColor(.green)
+          +
+          Text(" in ")
+          +
+          Text(event.repository.displayName, icon: .repository)
 
       } footer: {
         EventFooterView(
@@ -53,44 +47,6 @@ extension EventView {
   }
 }
 
-private extension View {
-  @ViewBuilder
-  func releaseTag(
-    for release: Octokit.Release,
-    color: Color
-  ) -> some View {
-    HStack(alignment: .lastTextBaseline) {
-      Image(systemName: "tag")
-        .foregroundColor(color)
-        .font(.callout)
-
-      Text(release.name ?? release.tagName)
-        .lineLimit(1)
-        .font(.system(.callout, design: .monospaced))
-
-      if release.draft {
-        Text("DRAFT")
-          .font(.caption2)
-          .foregroundColor(.yellow)
-      }
-    }
-    .maxWidth(.infinity, alignment: .leading)
-  }
-
-  @ViewBuilder
-  func releaseBody(
-    for release: Octokit.Release
-  ) -> some View {
-    if let body = release.body {
-      Text(body)
-        .lineLimit(1)
-
-    } else {
-      Text(release.htmlUrl)
-    }
-  }
-}
-
 extension EventView {
   internal struct Fork: View {
     internal var event: Octokit.Event.ForkEvent
@@ -98,19 +54,11 @@ extension EventView {
 
     internal var body: some View {
       EventView.Card { [forkee = event.payload.forkee] in
-        VStack {
-          HStack {
-            Image(systemName: "circle.fill")
-            VStack(alignment: .leading) {
-              Text(forkee.fullName)
-                .font(.system(.body, design: .monospaced))
-              Text(forkee.owner.name ?? forkee.owner.login)
-                .font(.system(.caption2, design: .monospaced))
-                .opacity(0.66)
-            }
-          }
-          .maxWidth(.infinity, alignment: .leading)
-          .padding(.bottom)
+        VStack(alignment: .leading) {
+          repositoryView(
+            repositoryLongName: forkee.fullName,
+            repositoryOwner: forkee.owner.name ?? forkee.owner.login // TODO: to intermediate model
+          )
 
           Text(forkee.description ?? forkee.url)
             .maxWidth(.infinity, alignment: .leading)
@@ -211,6 +159,62 @@ internal struct EventFooterView: View {
         .opacity(0.66)
     }
     .maxWidth(.infinity, alignment: .trailing)
+  }
+}
+
+private extension View {
+  @ViewBuilder
+  func releaseTag(
+    for release: Octokit.Release,
+    color: Color
+  ) -> some View {
+    HStack(alignment: .lastTextBaseline) {
+      Image(icon: .tag)
+        .foregroundColor(color)
+        .font(.callout)
+
+      // TODO: to intermittent model
+      Text(release.name.ifEmpty(replaceWith: release.tagName))
+        .lineLimit(1)
+        .font(.system(.callout, design: .monospaced))
+
+      if release.draft {
+        Text("DRAFT")
+          .font(.caption2)
+          .foregroundColor(.yellow)
+      }
+    }
+    .maxWidth(.infinity, alignment: .leading)
+  }
+
+  @ViewBuilder
+  func releaseBody(
+    for release: Octokit.Release
+  ) -> some View {
+    if let body = release.body {
+      Text(body)
+        .lineLimit(1)
+
+    } else {
+      Text(release.htmlUrl)
+    }
+  }
+
+  @ViewBuilder
+  func repositoryView(
+    repositoryLongName: String,
+    repositoryOwner: String
+  ) -> some View {
+    HStack {
+      Image(systemName: "circle.fill") // TODO: owner avatar
+      VStack(alignment: .leading) {
+        Text(repositoryLongName)
+          .font(.caption)
+        Text(repositoryOwner)
+          .font(.caption)
+          .foregroundStyle(.secondary)
+      }
+    }
   }
 }
 

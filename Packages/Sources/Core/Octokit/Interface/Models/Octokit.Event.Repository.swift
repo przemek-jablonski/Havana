@@ -6,6 +6,10 @@ public extension Octokit.Event {
     public let name: String
     public let url: String
 
+    public var displayName: String {
+      name.split(separator: "/").last?.string ?? name
+    }
+
     enum CodingKeys: String, CodingKey {
       case id = "id"
       case name = "name"

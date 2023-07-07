@@ -65,11 +65,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
         }
 
       case .user(.userRequestedReleaseDetails(let release)):
-        state.navigation = .releaseDetails(
-          .init(
-            release: release.payload.release
-          )
-        )
+        state.navigation = .releaseDetails(.init(release: release))
         return .none
 
       case .user(.userRequestedRepositoryDetails):
