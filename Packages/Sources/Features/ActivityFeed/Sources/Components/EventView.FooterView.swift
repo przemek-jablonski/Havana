@@ -2,7 +2,7 @@ import Casimir
 import SwiftUI
 
 extension EventView {
-  internal struct EventFooterView: View {
+  internal struct FooterView: View {
 
     internal let date: Date
     internal let formatter: RelativeDateTimeFormatter

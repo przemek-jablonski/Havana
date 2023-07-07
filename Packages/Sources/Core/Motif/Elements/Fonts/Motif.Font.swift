@@ -1,8 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Przemyslaw Jablonski on 06/07/2023.
-//
-
-import Foundation
+public extension Motif {
+  enum Font {
+    case title
+    case body
+    case caption
+  }
+}

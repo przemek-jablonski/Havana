@@ -4,11 +4,11 @@ public extension Motif {
   enum Icon: CaseIterable {
     // MARK: - Events
     case release
-    case fork
     case watch
 
     // MARK: - Objects
     case repository
+    case fork
     case author
     case organisation
     case releaseNotes

@@ -14,7 +14,7 @@ public struct ActivityFeedView: View {
     _ store: StoreOf<ActivityFeedReducer>
   ) {
     self.store = store
-    self.formatter = RelativeDateTimeFormatter()
+    self.formatter = RelativeDateTimeFormatter(dateTimeStyle: .named, unitsStyle: .full, locale: .autoupdatingCurrent, calendar: .autoupdatingCurrent)
   }
 
   public var body: some View {

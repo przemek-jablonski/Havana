@@ -10,6 +10,10 @@ public extension Octokit.Event {
       name.split(separator: "/").last?.string ?? name
     }
 
+    public var displayAuthor: String? {
+      name.split(separator: "/").first?.string
+    }
+
     enum CodingKeys: String, CodingKey {
       case id = "id"
       case name = "name"

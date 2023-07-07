@@ -61,7 +61,7 @@ public struct ReleaseDetailsView: View {
             )
           }
         }
-        .navigationTitle(viewStore.release.payload.release.name ?? viewStore.release.payload.release.tagName)
+        .navigationTitle(viewStore.release.payload.release.tagName)
       }
       .toolbar {
         ToolbarItemGroup {

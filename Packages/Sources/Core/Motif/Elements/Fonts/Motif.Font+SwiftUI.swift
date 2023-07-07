@@ -1,8 +1,9 @@
+// import SwiftUI
 //
-//  File.swift
-//  
-//
-//  Created by Przemyslaw Jablonski on 06/07/2023.
-//
-
-import Foundation
+// public extension Text {
+//  func font(
+//    motif font: Motif.Font
+//  ) -> Self {
+//    self.font(font.font)
+//  }
+// }

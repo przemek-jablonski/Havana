@@ -68,6 +68,6 @@ public extension Text {
     icon: Motif.Icon
   ) {
     // TODO: RTL support
-    self = Text(Image(icon: icon)) + Text(" ").font(.system(size: 4)) + Text(title)
+    self = Text(Image(icon: icon)) + Text(" ") + Text(title)
   }
 }
