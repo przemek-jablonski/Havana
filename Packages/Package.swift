@@ -122,11 +122,38 @@ let releaseDetailsPreview = Target.executableTarget(
   path: "Sources/Features/ReleaseDetails/Preview"
 )
 
+let exploreFeedFeature = Target.target(
+  name: "ExploreFeedFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/ExploreFeed/Sources"
+)
+
+let exploreFeedTests = Target.testTarget(
+  name: "ExploreFeedTests",
+  dependencies: [
+    .byName(name: exploreFeedFeature.name)
+  ],
+  path: "Sources/Features/ExploreFeed/Tests"
+)
+
+let exploreFeedPreview = Target.executableTarget(
+  name: "ExploreFeedPreview",
+  dependencies: [
+    .byName(name: exploreFeedFeature.name)
+  ],
+  path: "Sources/Features/ExploreFeed/Preview"
+)
+
 let activityFeedFeature = Target.target(
   name: "ActivityFeedFeature",
   dependencies: [
     composableArchitecture,
     octokit.dependency,
+    exploreFeedFeature.dependency,
     releaseDetailsFeature.dependency,
     motif.dependency,
     swiftUINavigation
@@ -170,21 +197,14 @@ let userContextTests = Target.testTarget(
   path: "Sources/Features/UserContext/Tests"
 )
 
-let userContextPreview = Target.executableTarget(
-  name: "UserContextPreview",
-  dependencies: [
-    .byName(name: userContextFeature.name)
-  ],
-  path: "Sources/Features/UserContext/Preview"
-)
-
 let featureTargets: [Target] = [
   loginFeature,
   loginFeaturePreview,
   userContextFeature,
-  userContextPreview,
   activityFeedFeature,
   activityFeedPreview,
+  exploreFeedFeature,
+  exploreFeedPreview,
   releaseDetailsFeature,
   releaseDetailsPreview
 ]
@@ -271,6 +291,7 @@ let testTargets: [Target] = [
   userContextTests,
   loginFeatureTests,
   activityFeedTests,
+  exploreFeedTests,
   releaseDetailsTests
 ]
 
