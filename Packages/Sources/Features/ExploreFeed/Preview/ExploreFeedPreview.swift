@@ -1,6 +1,6 @@
 #if DEBUG
-import ExploreFeedFeature
 import ComposableArchitecture
+import ExploreFeedFeature
 import SwiftUI
 
 @main

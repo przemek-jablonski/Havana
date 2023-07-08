@@ -1,6 +1,7 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
+import ExploreFeedFeature
 import Motif
 import Octokit
 import SwiftUI
@@ -32,7 +33,24 @@ public struct UserContextView: View {
         ) {
           ActivityFeedView($0)
             .tabItem {
+              Image(systemName: "person.3.fill")
+                .symbolRenderingMode(.hierarchical)
               Text("Activity")
+            }
+            .tag(UserContextReducer.State.Tab.activity)
+        }
+
+        IfLetStore(
+          store.scope(
+            state: \.exploreFeed,
+            action: UserContextReducer.Action.exploreFeed
+          )
+        ) {
+          ExploreFeedView($0)
+            .tabItem {
+              Image(systemName: "globe.europe.africa")
+                .symbolRenderingMode(.hierarchical)
+              Text("Explore")
             }
             .tag(UserContextReducer.State.Tab.activity)
         }

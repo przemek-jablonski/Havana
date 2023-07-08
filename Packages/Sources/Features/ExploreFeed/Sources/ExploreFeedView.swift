@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import SwiftUI
 
-public struct ExploreFeedView {
+public struct ExploreFeedView: View {
   public let store: StoreOf<ExploreFeedReducer>
 
   public init(

@@ -1,17 +1,21 @@
 import ActivityFeedFeature
 import Casimir
 import ComposableArchitecture
+import ExploreFeedFeature
 import Foundation
 import Octokit
 
+// TODO: here add user display
 public struct UserContextReducer: ReducerProtocol {
   public struct State: Equatable {
     public enum Tab: Int, Equatable {
+      case explore
       case activity
     }
 
     internal var user: Loadable<Octokit.User> = .loading
     internal var activityFeed: ActivityFeedReducer.State?
+    internal var exploreFeed: ExploreFeedReducer.State?
     internal var selectedTab: Tab
 
     public init(
@@ -37,6 +41,7 @@ public struct UserContextReducer: ReducerProtocol {
     case delegate(Delegate)
 
     case activityFeed(ActivityFeedReducer.Action)
+    case exploreFeed(ExploreFeedReducer.Action)
   }
 
   @Dependency(\.userService)
@@ -62,9 +67,12 @@ public struct UserContextReducer: ReducerProtocol {
         }
       case .user(.userSwitchedTab(.activity)):
         return .none
+      case .user(.userSwitchedTab(.explore)):
+        return .none
       case .local(._remoteReturnedUserDataResponse(.success(let user))):
         state.user = .loaded(user)
-        state.activityFeed = ActivityFeedReducer.State(user: user)
+        state.activityFeed = .init(user: user)
+        state.exploreFeed = .init()
         return .none
       case .local(._remoteReturnedUserDataResponse(.failure(let error))):
         state.user = .failure(error)
@@ -73,13 +81,23 @@ public struct UserContextReducer: ReducerProtocol {
         return .none
       case .activityFeed:
         return .none
+      case .exploreFeed:
+        return .none
       }
     }
+
     .ifLet(
       \.activityFeed,
       action: /Action.activityFeed
     ) {
       ActivityFeedReducer()
+    }
+
+    .ifLet(
+      \.exploreFeed,
+      action: /Action.exploreFeed
+    ) {
+      ExploreFeedReducer()
     }
   }
 }
