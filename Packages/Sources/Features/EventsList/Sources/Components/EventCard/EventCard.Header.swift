@@ -45,16 +45,16 @@ extension EventCard.Header {
     for text: TextType
   ) -> some View {
     switch text {
-      case .avatar:
-        Text(Image(systemName: "circle")).font(.body)
-      case .username(let username):
-        Text(username.uppercased())
-          .foregroundStyle(.primary)
-      case .action(let action, let icon, let color):
-        Text(action.uppercased(), icon: icon)
-          .foregroundColor(color)
-      case .text(let string):
-        Text(string)
+    case .avatar:
+      Text(Image(systemName: "circle")).font(.body)
+    case .username(let username):
+      Text(username.uppercased())
+        .foregroundStyle(.primary)
+    case .action(let action, let icon, let color):
+      Text(action.uppercased(), icon: icon)
+        .foregroundColor(color)
+    case .text(let string):
+      Text(string)
     }
   }
 }

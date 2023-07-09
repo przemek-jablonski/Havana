@@ -1,5 +1,6 @@
 import Casimir
 import ComposableArchitecture
+import EventsListFeature
 import Foundation
 import Octokit
 import ReleaseDetailsFeature
@@ -7,14 +8,13 @@ import ReleaseDetailsFeature
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var publicEvents: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
+    internal var eventsList: EventsListReducer.State = .init()
     @PresentationState internal var navigation: Navigation.State?
 
     public init(
       user: Octokit.User
     ) {
       self.user = user
-      self.publicEvents = .loading
     }
   }
 
@@ -36,7 +36,9 @@ public struct ActivityFeedReducer: ReducerProtocol {
     case user(User)
     case local(Local)
     case delegate(Delegate)
+
     case _navigation(PresentationAction<Navigation.Action>)
+    case eventsList(EventsListReducer.Action)
   }
 
   @Dependency(\.eventsService)
@@ -48,8 +50,8 @@ public struct ActivityFeedReducer: ReducerProtocol {
     Reduce<State, Action> { state, action in
       switch action {
       case .user(.userNavigatedToActivityFeed):
-        return .run { [username = state.user.login, publicEvents = state.publicEvents] send in
-          if publicEvents.isNotLoaded {
+        return .run { [username = state.user.login, eventsList = state.eventsList.events] send in
+          if eventsList.isNotLoaded {
             await send(
               .local(
                 ._remoteReturnedUserPublicEvents(
@@ -66,6 +68,14 @@ public struct ActivityFeedReducer: ReducerProtocol {
           }
         }
 
+      case .local(._remoteReturnedUserPublicEvents(.success(let events))):
+        state.eventsList.events = .loaded(.init(uniqueElements: events))
+        return .none
+
+      case .local(._remoteReturnedUserPublicEvents(.failure(let error))):
+        state.eventsList.events = .failure(error)
+        return .none
+
       case .user(.userRequestedReleaseDetails(let release)):
         state.navigation = .releaseDetails(.init(release: release))
         return .none
@@ -80,18 +90,13 @@ public struct ActivityFeedReducer: ReducerProtocol {
       case .user(.userRequestedRepositoryStarred):
         return .none
 
-      case .local(._remoteReturnedUserPublicEvents(.success(let events))):
-        state.publicEvents = .loaded(.init(uniqueElements: events))
-        return .none
-
-      case .local(._remoteReturnedUserPublicEvents(.failure(let error))):
-        state.publicEvents = .failure(error)
+      case .delegate:
         return .none
 
       case ._navigation:
         return .none
 
-      case .delegate:
+      case .eventsList:
         return .none
       }
     }
@@ -100,6 +105,13 @@ public struct ActivityFeedReducer: ReducerProtocol {
       action: /Action._navigation
     ) {
       ActivityFeedReducer.Navigation()
+    }
+
+    Scope(
+      state: \.eventsList,
+      action: /Action.eventsList
+    ) {
+      EventsListReducer()
     }
   }
 }

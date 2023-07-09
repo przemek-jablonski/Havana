@@ -5,7 +5,7 @@ import Octokit
 
 public struct EventsListReducer: ReducerProtocol {
   public struct State: Equatable {
-    internal var events: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
+    public var events: Loadable<IdentifiedArrayOf<Octokit.Event>> = .loading
     public init() {}
   }
 
