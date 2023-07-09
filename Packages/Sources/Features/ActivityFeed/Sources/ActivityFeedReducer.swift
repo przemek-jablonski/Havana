@@ -48,20 +48,22 @@ public struct ActivityFeedReducer: ReducerProtocol {
     Reduce<State, Action> { state, action in
       switch action {
       case .user(.userNavigatedToActivityFeed):
-        return .run { [username = state.user.login] send in
-          await send(
-            .local(
-              ._remoteReturnedUserPublicEvents(
-                TaskResult {
-                  try await eventsService.userEvents(
-                    username,
-                    0
-                  )
-                }
-              )
-            ),
-            animation: .default
-          )
+        return .run { [username = state.user.login, publicEvents = state.publicEvents] send in
+          if publicEvents.isNotLoaded {
+            await send(
+              .local(
+                ._remoteReturnedUserPublicEvents(
+                  TaskResult {
+                    try await eventsService.userEvents(
+                      username,
+                      0
+                    )
+                  }
+                )
+              ),
+              animation: .default
+            )
+          }
         }
 
       case .user(.userRequestedReleaseDetails(let release)):

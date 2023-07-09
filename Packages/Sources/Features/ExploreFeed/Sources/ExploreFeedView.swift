@@ -11,9 +11,12 @@ public struct ExploreFeedView: View {
   }
 
   public var body: some View {
-    WithViewStore(store) { _ in
+    WithViewStore(store) { viewStore in
       Text("ExploreFeed")
         .font(.title)
+        .task {
+          viewStore.send(.user(.userNavigatedToExploreFeed))
+        }
     }
   }
 }

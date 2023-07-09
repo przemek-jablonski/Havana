@@ -1,5 +1,6 @@
 import Casimir
 import ComposableArchitecture
+import EventsListFeature
 import Motif
 import Octokit
 import ReleaseDetailsFeature
@@ -14,7 +15,12 @@ public struct ActivityFeedView: View {
     _ store: StoreOf<ActivityFeedReducer>
   ) {
     self.store = store
-    self.formatter = RelativeDateTimeFormatter(dateTimeStyle: .named, unitsStyle: .full, locale: .autoupdatingCurrent, calendar: .autoupdatingCurrent)
+    self.formatter = RelativeDateTimeFormatter(
+      dateTimeStyle: .named,
+      unitsStyle: .full,
+      locale: .autoupdatingCurrent,
+      calendar: .autoupdatingCurrent
+    )
   }
 
   public var body: some View {
@@ -44,17 +50,6 @@ public struct ActivityFeedView: View {
 }
 
 private extension ActivityFeedView {
-  //  struct EventView: View {
-  //
-  //    private let viewStore: ViewStoreOf<ActivityFeedReducer>
-  //    private let event: Octokit.Event,
-  //    private let formatter: RelativeDateTimeFormatter
-  //
-  //    var body: some View {
-  //
-  //    }
-  //  }
-
   @ViewBuilder
   func eventView(
     viewStore: ViewStoreOf<ActivityFeedReducer>,
