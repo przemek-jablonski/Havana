@@ -7,7 +7,7 @@ public extension Motif.Icon {
   var systemName: String {
     switch self {
     case .release: return "shippingbox.fill"
-    case .fork: return "square.on.square.dashed"
+    case .fork: return "square.filled.on.square"
     case .watch: return "star"
 
     case .repository: return "folder"

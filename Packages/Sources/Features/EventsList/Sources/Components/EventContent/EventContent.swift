@@ -3,18 +3,33 @@ import Motif
 import Octokit
 import SwiftUI
 
-internal enum EventView {}
+internal enum EventContent {}
 
-extension EventView {
-  internal struct Release: View {
+internal protocol EventContentProtocol {
+  associatedtype Event: OctokitEventProtocol
+  var event: Event { get }
+  var formatter: RelativeDateTimeFormatter { get }
+  var icon: Motif.Icon { get }
+  var color: Motif.Color { get }
+}
+
+extension EventContent {
+  internal struct Release: View, EventContentProtocol {
     internal let event: Octokit.Event.ReleaseEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.release
+    internal let color = Motif.Color.release
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("created new"), .action("Release", .release, .green)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("created new"),
+          .action("Release", icon, color)
+        ]
       ) { [release = event.payload.release] in
         VStack(alignment: .leading) {
           RepositoryView(
@@ -47,16 +62,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Fork: View {
+extension EventContent {
+  internal struct Fork: View, EventContentProtocol {
     internal var event: Octokit.Event.ForkEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.fork
+    internal let color = Motif.Color.fork
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("created a"), .action("Fork", .fork, .purple)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("created a"),
+          .action("Fork", icon, color)
+        ]
       ) { [forkee = event.payload.forkee] in
         VStack(alignment: .leading) {
           RepositoryView(
@@ -83,16 +105,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Watch: View {
+extension EventContent {
+  internal struct Watch: View, EventContentProtocol {
     internal var event: Octokit.Event.WatchEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.watch
+    internal let color = Motif.Color.watch
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .action("Starred", .star, .yellow), .text("a repository")]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .action("Starred", icon, color),
+          .text("a repository")
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -104,16 +133,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Member: View {
+extension EventContent {
+  internal struct Member: View, EventContentProtocol {
     internal var event: Octokit.Event.MemberEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.joinedProject
+    internal let color = Motif.Color.member
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .action("Joined", .joinedProject, .blue), .text("as contributor")]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .action("Joined", icon, color),
+          .text("as contributor")
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -125,16 +161,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct CommitComment: View {
+extension EventContent {
+  internal struct CommitComment: View, EventContentProtocol {
     internal var event: Octokit.Event.CommitCommentEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.commit
+    internal let color = Motif.Color.commit
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .action("Commented", .comment, .pink), .text("on commit")]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .action("Commented", icon, color),
+          .text("on commit")
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -155,16 +198,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Create: View {
+extension EventContent {
+  internal struct Create: View, EventContentProtocol {
     internal var event: Octokit.Event.CreateEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.contribution
+    internal let color = Motif.Color.create
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("made a"), .action("Contribution", .contribution, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("made a"),
+          .action("Contribution", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -172,16 +222,17 @@ extension EventView {
             description: event.payload.description
           )
 
-          Text(event.payload.refType)
+          Text("New \(event.payload.refType): ")
             .padding(.vertical, 4)
             .padding(.horizontal)
             .lineLimit(3)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(.primary)
             .multilineTextAlignment(.leading)
             .maxWidth(.infinity, alignment: .leading)
 
           if let ref = event.payload.ref {
-            Text(ref)
+            Text(": \(ref)")
+              .monospaced()
               .padding(.vertical, 4)
               .padding(.horizontal)
               .lineLimit(3)
@@ -195,16 +246,24 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Delete: View {
+extension EventContent {
+  internal struct Delete: View, EventContentProtocol {
     internal var event: Octokit.Event.DeleteEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.delete
+    internal let color = Motif.Color.delete
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("has"), .action("Deletion", .delete, .pink), .text("an object")]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("has"),
+          .action("Deleted", icon, color),
+          .text("an object")
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -234,16 +293,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Wiki: View {
+extension EventContent {
+  internal struct Wiki: View, EventContentProtocol {
     internal var event: Octokit.Event.GollumEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.wiki
+    internal let color = Motif.Color.wiki
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("updated"), .action("Wiki", .wiki, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("updated"),
+          .action("Wiki", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -255,16 +321,24 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct IssueComment: View {
+extension EventContent {
+  internal struct IssueComment: View, EventContentProtocol {
     internal var event: Octokit.Event.IssueCommentEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.issue
+    internal let color = Motif.Color.issue
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("commented on an"), .action("Issue", .issue, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("commented on an"),
+          .action("Issue", icon, color
+          )
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -296,16 +370,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Issue: View {
+extension EventContent {
+  internal struct Issue: View, EventContentProtocol {
     internal var event: Octokit.Event.IssuesEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.issue
+    internal let color = Motif.Color.issue
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("updated an"), .action("Issue", .issue, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("updated an"),
+          .action("Issue", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -337,16 +418,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Public: View {
+extension EventContent {
+  internal struct Public: View, EventContentProtocol {
     internal var event: Octokit.Event.PublicEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.public
+    internal let color = Motif.Color.public
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("made a repo"), .action("Public", .public, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("made a repo"),
+          .action("Public", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -358,16 +446,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct CommitPush: View {
+extension EventContent {
+  internal struct CommitPush: View, EventContentProtocol {
     internal var event: Octokit.Event.PushEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.commit
+    internal let color = Motif.Color.commit
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("pushed some"), .action("Commits", .commit, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("pushed some"),
+          .action("Commits", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -379,16 +474,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct PullRequest: View {
+extension EventContent {
+  internal struct PullRequest: View, EventContentProtocol {
     internal var event: Octokit.Event.PullRequestEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.pullRequest
+    internal let color = Motif.Color.pullRequest
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("created a"), .action("Pull Request", .pullRequest, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("created a"),
+          .action("Pull Request", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -400,16 +502,23 @@ extension EventView {
   }
 }
 
-extension EventView {
-  internal struct Sponsorship: View {
+extension EventContent {
+  internal struct Sponsorship: View, EventContentProtocol {
     internal var event: Octokit.Event.SponsorshipEvent
     internal let formatter: RelativeDateTimeFormatter
+    internal let icon = Motif.Icon.sponsorship
+    internal let color = Motif.Color.sponsorship
 
     internal var body: some View {
-      EventView.Card(
+      EventCard(
         date: event.createdAt,
         formatter,
-        header: [.avatar, .username(event.actor.login), .text("became a"), .action("Sponsor", .sponsorship, .pink)]
+        header: [
+          .avatar,
+          .username(event.actor.login),
+          .text("became a"),
+          .action("Sponsor", icon, color)
+        ]
       ) {
         VStack(alignment: .leading) {
           RepositoryView(
@@ -426,20 +535,20 @@ internal struct EventViewPreviews: PreviewProvider {
   internal static var previews: some View {
     NavigationView {
       List {
-        EventView.CommitComment(
+        EventContent.CommitComment(
           event: .random(),
           formatter: RelativeDateTimeFormatter()
         )
-        EventView.Release(
+        EventContent.Release(
           event: .random(),
           formatter: RelativeDateTimeFormatter()
         )
-        EventView.Member(
+        EventContent.Member(
           event: .random(),
           formatter: RelativeDateTimeFormatter()
         )
         ForEach(0..<20, id: \.self) { _ in
-          Button(label: EventView.Fork(
+          Button(label: EventContent.Fork(
             event: .random(),
             formatter: RelativeDateTimeFormatter()
           )) {}

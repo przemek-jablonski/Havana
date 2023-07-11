@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-extension EventView {
+extension EventContent {
   internal struct RepositoryView: View {
 
     internal var name: String
@@ -10,20 +10,14 @@ extension EventView {
 
     internal var body: some View {
       VStack(alignment: .leading) {
-        repositoryHeadline(
-          name,
-          author
-        )
-
-        repositoryDescription(
-          description
-        )
+        repositoryHeadline(name, author)
+        repositoryDescription(description)
       }
     }
   }
 }
 
-extension EventView.RepositoryView {
+extension EventContent.RepositoryView {
   @ViewBuilder
   private func repositoryHeadline(
     _ name: String,

@@ -1,8 +1,8 @@
 import Casimir
 import SwiftUI
 
-extension EventView {
-  internal struct FooterView: View {
+extension EventCard {
+  internal struct Footer: View {
 
     internal let date: Date
     internal let formatter: RelativeDateTimeFormatter

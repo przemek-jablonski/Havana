@@ -19,6 +19,10 @@ let keychainAccess = Target.Dependency.product(name: "KeychainAccess", package: 
 let casimirRemote = Package.Dependency.package(path: "../Casimir")
 let casimir = Target.Dependency.product(name: "Casimir", package: "Casimir")
 
+// ##############################################################
+// MARK: - REMOTE DEPENDENCIES ASSEMBLY
+// ##############################################################
+
 let globalDependencies: [Package.Dependency] = [
   composableArchitectureRemote,
   swiftUINavigationRemote,
@@ -26,12 +30,16 @@ let globalDependencies: [Package.Dependency] = [
   keychainAccessRemote
 ]
 
+// ##############################################################
+// MARK: - PLATFORM SUPPORT
+// ##############################################################
+
 let supportedPlatforms: [SupportedPlatform] = [
   .iOS(.v16),
   .macOS(.v13)
 ]
 
-// MARK: - Core Targets definitions and assembly
+// MARK: - Octokit internal library
 
 let octokit = Target.target(
   name: "Octokit",
@@ -52,144 +60,6 @@ let octokitLive = Target.target(
   ],
   path: "Sources/Core/Octokit/Live"
 )
-
-let motif = Target.target(
-  name: "Motif",
-  dependencies: [
-    casimir
-  ],
-  path: "Sources/Core/Motif"
-)
-
-let coreTargets: [Target] = [
-  octokit,
-  octokitLive,
-  motif
-]
-
-// MARK: - Feature Targets definitions and assembly
-
-let loginFeature = Target.target(
-  name: "LoginFeature",
-  dependencies: [
-    composableArchitecture,
-    octokit.dependency,
-    motif.dependency,
-    swiftUINavigation
-  ],
-  path: "Sources/Features/Login/Sources"
-)
-
-let loginFeatureTests = Target.testTarget(
-  name: "LoginFeatureTests",
-  dependencies: [
-    .byName(name: loginFeature.name)
-  ],
-  path: "Sources/Features/Login/Tests"
-)
-
-let loginFeaturePreview = Target.executableTarget(
-  name: "LoginPreview",
-  dependencies: [
-    .byName(name: loginFeature.name)
-  ],
-  path: "Sources/Features/Login/Preview"
-)
-
-let releaseDetailsFeature = Target.target(
-  name: "ReleaseDetailsFeature",
-  dependencies: [
-    composableArchitecture,
-    octokit.dependency,
-    motif.dependency
-  ],
-  path: "Sources/Features/ReleaseDetails/Sources"
-)
-
-let releaseDetailsTests = Target.testTarget(
-  name: "ReleaseDetailsTests",
-  dependencies: [
-    .byName(name: releaseDetailsFeature.name)
-  ],
-  path: "Sources/Features/ReleaseDetails/Tests"
-)
-
-let releaseDetailsPreview = Target.executableTarget(
-  name: "ReleaseDetailsPreview",
-  dependencies: [
-    .byName(name: releaseDetailsFeature.name)
-  ],
-  path: "Sources/Features/ReleaseDetails/Preview"
-)
-
-let activityFeedFeature = Target.target(
-  name: "ActivityFeedFeature",
-  dependencies: [
-    composableArchitecture,
-    octokit.dependency,
-    releaseDetailsFeature.dependency,
-    motif.dependency,
-    swiftUINavigation
-  ],
-  path: "Sources/Features/ActivityFeed/Sources"
-)
-
-let activityFeedTests = Target.testTarget(
-  name: "ActivityFeedTests",
-  dependencies: [
-    .byName(name: activityFeedFeature.name)
-  ],
-  path: "Sources/Features/ActivityFeed/Tests"
-)
-
-let activityFeedPreview = Target.executableTarget(
-  name: "ActivityFeedPreview",
-  dependencies: [
-    .byName(name: activityFeedFeature.name)
-  ],
-  path: "Sources/Features/ActivityFeed/Preview"
-)
-
-let userContextFeature = Target.target(
-  name: "UserContextFeature",
-  dependencies: [
-    composableArchitecture,
-    activityFeedFeature.dependency,
-    octokit.dependency,
-    motif.dependency,
-    swiftUINavigation
-  ],
-  path: "Sources/Features/UserContext/Sources"
-)
-
-let userContextTests = Target.testTarget(
-  name: "UserContextTests",
-  dependencies: [
-    .byName(name: userContextFeature.name)
-  ],
-  path: "Sources/Features/UserContext/Tests"
-)
-
-let userContextPreview = Target.executableTarget(
-  name: "UserContextPreview",
-  dependencies: [
-    .byName(name: userContextFeature.name)
-  ],
-  path: "Sources/Features/UserContext/Preview"
-)
-
-let featureTargets: [Target] = [
-  loginFeature,
-  loginFeaturePreview,
-  userContextFeature,
-  userContextPreview,
-  activityFeedFeature,
-  activityFeedPreview,
-  releaseDetailsFeature,
-  releaseDetailsPreview
-]
-
-// MARK: - Testing Targets definitions and assembly
 
 let octokitTests = Target.testTarget(
   name: "OctokitTests",
@@ -266,12 +136,224 @@ let octokitTests = Target.testTarget(
   ]
 )
 
+// MARK: - Motif internal library
+
+let motif = Target.target(
+  name: "Motif",
+  dependencies: [
+    casimir
+  ],
+  path: "Sources/Core/Motif"
+)
+
+// ##############################################################
+// MARK: - INTERNAL LIBRARIES ASSEMBLY
+// ##############################################################
+
+let coreTargets: [Target] = [
+  octokit,
+  octokitLive,
+  motif
+]
+
+// MARK: - Login feature
+
+let loginFeature = Target.target(
+  name: "LoginFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/Login/Sources"
+)
+
+let loginFeatureTests = Target.testTarget(
+  name: "LoginFeatureTests",
+  dependencies: [
+    .byName(name: loginFeature.name)
+  ],
+  path: "Sources/Features/Login/Tests"
+)
+
+let loginFeaturePreview = Target.executableTarget(
+  name: "LoginPreview",
+  dependencies: [
+    .byName(name: loginFeature.name)
+  ],
+  path: "Sources/Features/Login/Preview"
+)
+
+// MARK: - Events List feature
+
+let eventsListFeature = Target.target(
+  name: "EventsListFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/EventsList/Sources"
+)
+
+let eventsListTests = Target.testTarget(
+  name: "EventsListTests",
+  dependencies: [
+    .byName(name: eventsListFeature.name)
+  ],
+  path: "Sources/Features/EventsList/Tests"
+)
+
+let eventsListPreview = Target.executableTarget(
+  name: "EventsListPreview",
+  dependencies: [
+    .byName(name: eventsListFeature.name)
+  ],
+  path: "Sources/Features/EventsList/Preview"
+)
+
+// MARK: - Release Details feature
+
+let releaseDetailsFeature = Target.target(
+  name: "ReleaseDetailsFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/ReleaseDetails/Sources"
+)
+
+let releaseDetailsTests = Target.testTarget(
+  name: "ReleaseDetailsTests",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Tests"
+)
+
+let releaseDetailsPreview = Target.executableTarget(
+  name: "ReleaseDetailsPreview",
+  dependencies: [
+    .byName(name: releaseDetailsFeature.name)
+  ],
+  path: "Sources/Features/ReleaseDetails/Preview"
+)
+
+// MARK: - Explore Feed feature
+
+let exploreFeedFeature = Target.target(
+  name: "ExploreFeedFeature",
+  dependencies: [
+    composableArchitecture,
+    eventsListFeature.dependency,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/ExploreFeed/Sources"
+)
+
+let exploreFeedTests = Target.testTarget(
+  name: "ExploreFeedTests",
+  dependencies: [
+    .byName(name: exploreFeedFeature.name)
+  ],
+  path: "Sources/Features/ExploreFeed/Tests"
+)
+
+let exploreFeedPreview = Target.executableTarget(
+  name: "ExploreFeedPreview",
+  dependencies: [
+    .byName(name: exploreFeedFeature.name)
+  ],
+  path: "Sources/Features/ExploreFeed/Preview"
+)
+
+// MARK: - Activity Feed feature
+
+let activityFeedFeature = Target.target(
+  name: "ActivityFeedFeature",
+  dependencies: [
+    composableArchitecture,
+    eventsListFeature.dependency,
+    octokit.dependency,
+    releaseDetailsFeature.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/ActivityFeed/Sources"
+)
+
+let activityFeedTests = Target.testTarget(
+  name: "ActivityFeedTests",
+  dependencies: [
+    .byName(name: activityFeedFeature.name)
+  ],
+  path: "Sources/Features/ActivityFeed/Tests"
+)
+
+let activityFeedPreview = Target.executableTarget(
+  name: "ActivityFeedPreview",
+  dependencies: [
+    .byName(name: activityFeedFeature.name)
+  ],
+  path: "Sources/Features/ActivityFeed/Preview"
+)
+
+// MARK: - User Context feature
+
+let userContextFeature = Target.target(
+  name: "UserContextFeature",
+  dependencies: [
+    composableArchitecture,
+    activityFeedFeature.dependency,
+    exploreFeedFeature.dependency,
+    octokit.dependency,
+    motif.dependency,
+    swiftUINavigation
+  ],
+  path: "Sources/Features/UserContext/Sources"
+)
+
+let userContextTests = Target.testTarget(
+  name: "UserContextTests",
+  dependencies: [
+    .byName(name: userContextFeature.name)
+  ],
+  path: "Sources/Features/UserContext/Tests"
+)
+
+// ##############################################################
+// MARK: - FEATURE LIBRARIES ASSEMBLY
+// ##############################################################
+
+let featureTargets: [Target] = [
+  activityFeedFeature,
+  activityFeedPreview,
+  eventsListFeature,
+  eventsListPreview,
+  exploreFeedFeature,
+  exploreFeedPreview,
+  loginFeature,
+  loginFeaturePreview,
+  releaseDetailsFeature,
+  releaseDetailsPreview,
+  userContextFeature
+]
+
+// ##############################################################
+// MARK: - TEST LIBRARIES ASSEMBLY
+// ##############################################################
+
 let testTargets: [Target] = [
   octokitTests,
-  userContextTests,
-  loginFeatureTests,
   activityFeedTests,
-  releaseDetailsTests
+  eventsListTests,
+  exploreFeedTests,
+  loginFeatureTests,
+  releaseDetailsTests,
+  userContextTests
 ]
 
 // MARK: - Umbrella product and all targets assembly

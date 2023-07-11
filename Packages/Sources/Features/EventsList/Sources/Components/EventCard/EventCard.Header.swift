@@ -1,13 +1,13 @@
 import Motif
 import SwiftUI
 
-extension EventView {
-  internal struct HeaderView: View {
+extension EventCard {
+  internal struct Header: View {
 
     internal enum TextType: Hashable {
       case avatar
       case username(String)
-      case action(String, Motif.Icon, Color)
+      case action(String, Motif.Icon, Motif.Color)
       case text(String)
     }
 
@@ -30,16 +30,14 @@ extension EventView {
         alignment: .center
       ) {
         ForEach(texts, id: \.self) { text in
-          view(
-            for: text
-          )
+          view(for: text)
         }
       }
     }
   }
 }
 
-extension EventView.HeaderView {
+extension EventCard.Header {
   @ViewBuilder
   func view(
     for text: TextType
@@ -52,7 +50,7 @@ extension EventView.HeaderView {
         .foregroundStyle(.primary)
     case .action(let action, let icon, let color):
       Text(action.uppercased(), icon: icon)
-        .foregroundColor(color)
+        .foregroundColor(color.color)
     case .text(let string):
       Text(string)
     }
