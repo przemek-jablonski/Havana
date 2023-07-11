@@ -27,21 +27,6 @@ public struct UserContextView: View {
       ) {
         IfLetStore(
           store.scope(
-            state: \.activityFeed,
-            action: UserContextReducer.Action.activityFeed
-          )
-        ) {
-          ActivityFeedView($0)
-            .tabItem {
-              Image(systemName: "person.3.fill")
-                .symbolRenderingMode(.hierarchical)
-              Text("Activity")
-            }
-            .tag(UserContextReducer.State.Tab.activity)
-        }
-
-        IfLetStore(
-          store.scope(
             state: \.exploreFeed,
             action: UserContextReducer.Action.exploreFeed
           )
@@ -51,6 +36,21 @@ public struct UserContextView: View {
               Image(systemName: "globe.europe.africa")
                 .symbolRenderingMode(.hierarchical)
               Text("Explore")
+            }
+            .tag(UserContextReducer.State.Tab.explore)
+        }
+
+        IfLetStore(
+          store.scope(
+            state: \.activityFeed,
+            action: UserContextReducer.Action.activityFeed
+          )
+        ) {
+          ActivityFeedView($0)
+            .tabItem {
+              Image(systemName: "person.3.fill")
+                .symbolRenderingMode(.hierarchical)
+              Text("Activity")
             }
             .tag(UserContextReducer.State.Tab.activity)
         }

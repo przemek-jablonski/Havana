@@ -247,6 +247,7 @@ let exploreFeedFeature = Target.target(
   name: "ExploreFeedFeature",
   dependencies: [
     composableArchitecture,
+    eventsListFeature.dependency,
     octokit.dependency,
     motif.dependency
   ],
@@ -275,8 +276,8 @@ let activityFeedFeature = Target.target(
   name: "ActivityFeedFeature",
   dependencies: [
     composableArchitecture,
+    eventsListFeature.dependency,
     octokit.dependency,
-    exploreFeedFeature.dependency,
     releaseDetailsFeature.dependency,
     motif.dependency,
     swiftUINavigation
@@ -307,6 +308,7 @@ let userContextFeature = Target.target(
   dependencies: [
     composableArchitecture,
     activityFeedFeature.dependency,
+    exploreFeedFeature.dependency,
     octokit.dependency,
     motif.dependency,
     swiftUINavigation

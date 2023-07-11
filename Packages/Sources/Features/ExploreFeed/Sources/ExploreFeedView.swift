@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import EventsListFeature
 import SwiftUI
 
 public struct ExploreFeedView: View {
@@ -12,11 +13,15 @@ public struct ExploreFeedView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      Text("ExploreFeed")
-        .font(.title)
-        .task {
-          viewStore.send(.user(.userNavigatedToExploreFeed))
-        }
+      EventsListView(
+        store.scope(
+          state: \.eventsList,
+          action: ExploreFeedReducer.Action.eventsList
+        )
+      )
+      .task {
+        viewStore.send(.user(.userNavigatedToExploreFeed))
+      }
     }
   }
 }

@@ -23,6 +23,14 @@ public struct EventsListView: View {
     WithViewStore(store) { viewStore in
       WithLoaded(viewStore.events) { event in
         eventContents(for: event, viewStore: viewStore)
+        //        Button(
+        //          label: eventContents(for: event, viewStore: viewStore)
+        //        ) {
+        //          viewStore.send(.user(.userClickedOnEvent(event)))
+        //        }
+        //        .contextMenu {
+        //
+        //        }
       }
     }
   }
@@ -35,34 +43,28 @@ private extension EventsListView {
     viewStore: ViewStoreOf<EventsListReducer>
   ) -> some View {
     switch event {
-    case .commitCommentEvent:
-      Text("commitCommentEvent")
-    case .createEvent:
-      Text("createEvent")
-    case .deleteEvent:
-      Text("deleteEvent")
+    case .commitCommentEvent(let event):
+      EventContent.CommitComment(event: event, formatter: formatter)
+    case .createEvent(let event):
+      EventContent.Create(event: event, formatter: formatter)
+    case .deleteEvent(let event):
+      EventContent.Delete(event: event, formatter: formatter)
     case .forkEvent(let event):
-      EventContent.Fork(
-        event: event,
-        formatter: formatter
-      )
-    case .gollumEvent:
-      Text("gollumEvent")
-    case .issueCommentEvent:
-      Text("issueCommentEvent")
-    case .issuesEvent:
-      Text("issuesEvent")
+      EventContent.Fork(event: event, formatter: formatter)
+    case .gollumEvent(let event):
+      EventContent.Wiki(event: event, formatter: formatter)
+    case .issueCommentEvent(let event):
+      EventContent.IssueComment(event: event, formatter: formatter)
+    case .issuesEvent(let event):
+      EventContent.Issue(event: event, formatter: formatter)
     case .memberEvent(let event):
-      EventContent.Member(
-        event: event,
-        formatter: formatter
-      )
-    case .publicEvent:
-      Text("publicEvent")
-    case .pullRequestEvent:
-      Text("pullRequestEvent")
-    case .pushEvent:
-      Text("pushEvent")
+      EventContent.Member(event: event, formatter: formatter)
+    case .publicEvent(let event):
+      EventContent.Public(event: event, formatter: formatter)
+    case .pullRequestEvent(let event):
+      EventContent.PullRequest(event: event, formatter: formatter)
+    case .pushEvent(let event):
+      EventContent.CommitPush(event: event, formatter: formatter)
     case .releaseEvent(let event):
       Button(
         label: EventContent.Release(
@@ -87,13 +89,10 @@ private extension EventsListView {
           viewStore.send(.user(.userRequestedRepositoryStarred(event.repository.id)))
         }
       }
-    case .sponsorshipEvent:
-      Text("sponsorshipEvent")
+    case .sponsorshipEvent(let event):
+      EventContent.Sponsorship(event: event, formatter: formatter)
     case .watchEvent(let event):
-      EventContent.Watch(
-        event: event,
-        formatter: formatter
-      )
+      EventContent.Watch(event: event, formatter: formatter)
     }
   }
 }

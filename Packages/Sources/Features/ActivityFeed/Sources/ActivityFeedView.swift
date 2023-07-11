@@ -41,86 +41,22 @@ public struct ActivityFeedView: View {
   }
 }
 
-// private extension ActivityFeedView {
-//  @ViewBuilder
-//  func eventView(
-//    viewStore: ViewStoreOf<ActivityFeedReducer>,
-//    _ event: Octokit.Event,
-//    _ formatter: RelativeDateTimeFormatter
-//  ) -> some View {
-//    switch event {
-//    case .commitCommentEvent:
-//      Text("commitCommentEvent")
-//    case .createEvent:
-//      Text("createEvent")
-//    case .deleteEvent:
-//      Text("deleteEvent")
-//    case .forkEvent(let event):
-//      EventView.Fork(
-//        event: event,
-//        formatter: formatter
-//      )
-//    case .gollumEvent:
-//      Text("gollumEvent")
-//    case .issueCommentEvent:
-//      Text("issueCommentEvent")
-//    case .issuesEvent:
-//      Text("issuesEvent")
-//    case .memberEvent(let event):
-//      EventView.Member(
-//        event: event,
-//        formatter: formatter
-//      )
-//    case .publicEvent:
-//      Text("publicEvent")
-//    case .pullRequestEvent:
-//      Text("pullRequestEvent")
-//    case .pushEvent:
-//      Text("pushEvent")
-//    case .releaseEvent(let event):
-//      Button(
-//        label: EventView.Release(
-//          event: event,
-//          formatter: formatter
-//        ),
-//        action: {
-//          viewStore.send(.user(.userRequestedReleaseDetails(event)))
-//        }
-//      )
-//      .buttonStyle(.plain)
-//      .contextMenu {
-//        Button(label: Label(event.repository.name, icon: .repository)) {
-//          viewStore.send(.user(.userRequestedRepositoryDetails(event.repository)))
-//        }
-//
-//        Button(label: Label(event.actor.login, icon: .author)) {
-//          viewStore.send(.user(.userRequestedActorDetails(event.actor)))
-//        }
-//
-//        Button(label: Label("Star Repository", icon: .star)) {
-//          viewStore.send(.user(.userRequestedRepositoryStarred(event.repository.id)))
-//        }
-//      }
-//    case .sponsorshipEvent:
-//      Text("sponsorshipEvent")
-//    case .watchEvent(let event):
-//      EventView.Watch(
-//        event: event,
-//        formatter: formatter
-//      )
-//    }
-//  }
-// }
-
 #if DEBUG
 internal struct ActivityFeedViewPreviews: PreviewProvider {
-  internal static var previews: some View {
+  /// Primary preview for `ActivityFeedView`, shared with standalone preview app as well.
+  public static var preview: some View {
     ActivityFeedView(
       Store(
-        initialState: .init(user: .random()),
-        reducer: { ActivityFeedReducer() }
+        initialState: ActivityFeedReducer.State(
+          user: .random()
+        ),
+        reducer: ActivityFeedReducer()._printChanges()
       )
     )
+  }
+
+  public static var previews: some View {
+    preview
   }
 }
 #endif

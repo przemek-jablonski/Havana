@@ -26,12 +26,13 @@ public struct WithLoaded<
   public var body: some View {
     ZStack {
       List {
-        if loadables.isLoading {
-          ForEach((0..<placeholdersCount).map { _ in Model.random() }) { model in
+        if loadables.isLoading || loadables.isFailure {
+          ForEach((0..<placeholdersCount).map { _ in Model.random() }.unique()) { model in
             loadedView(model)
           }
           .listRowSeparator(.hidden)
           .redacted(reason: .placeholder)
+          .opacity(0.50)
         }
 
         if case Loadable.loaded(let loaded) = loadables {
@@ -53,6 +54,29 @@ public struct WithLoaded<
         .foregroundStyle(.secondary)
         .background(.ultraThinMaterial)
       }
+
+      if case Loadable.loading = loadables {
+        VStack {
+          ProgressView()
+        }
+        .padding(64)
+        .padding(.horizontal)
+        .foregroundStyle(.secondary)
+        .background(.ultraThinMaterial)
+        .cornerRadius(8)
+        .shadow(radius: 12)
+      }
     }
   }
 }
+
+// #if DEBUG
+// internal struct WithLoadedPreviews: PreviewProvider {
+//  struct TestModel:
+//  static var previews: some View {
+//    WithLoaded(Loadable<String>.loading) { element in
+//      Text(element)
+//    }
+//  }
+// }
+// #endif

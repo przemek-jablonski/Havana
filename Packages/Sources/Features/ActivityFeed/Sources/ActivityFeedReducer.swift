@@ -8,7 +8,7 @@ import ReleaseDetailsFeature
 public struct ActivityFeedReducer: ReducerProtocol {
   public struct State: Equatable {
     internal let user: Octokit.User
-    internal var eventsList: EventsListReducer.State = .init()
+    internal var eventsList = EventsListReducer.State()
     @PresentationState internal var navigation: Navigation.State?
 
     public init(
@@ -21,14 +21,10 @@ public struct ActivityFeedReducer: ReducerProtocol {
   public enum Action: Equatable {
     public enum User: Equatable {
       case userNavigatedToActivityFeed
-      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
-      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository)
-      case userRequestedActorDetails(_ actor: Octokit.Event.Actor)
-      case userRequestedRepositoryStarred(_ repositoryId: Octokit.Event.Repository.ID)
     }
 
     public enum Local: Equatable {
-      case _remoteReturnedUserPublicEvents(TaskResult<[Octokit.Event]>)
+      case _remoteReturnedUserEvents(TaskResult<[Octokit.Event]>)
     }
 
     public enum Delegate: Equatable {}
@@ -54,7 +50,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
           if eventsList.isNotLoaded {
             await send(
               .local(
-                ._remoteReturnedUserPublicEvents(
+                ._remoteReturnedUserEvents(
                   TaskResult {
                     try await eventsService.userEvents(
                       username,
@@ -68,26 +64,12 @@ public struct ActivityFeedReducer: ReducerProtocol {
           }
         }
 
-      case .local(._remoteReturnedUserPublicEvents(.success(let events))):
+      case .local(._remoteReturnedUserEvents(.success(let events))):
         state.eventsList.events = .loaded(.init(uniqueElements: events))
         return .none
 
-      case .local(._remoteReturnedUserPublicEvents(.failure(let error))):
+      case .local(._remoteReturnedUserEvents(.failure(let error))):
         state.eventsList.events = .failure(error)
-        return .none
-
-      case .user(.userRequestedReleaseDetails(let release)):
-        state.navigation = .releaseDetails(.init(release: release))
-        return .none
-
-      case .user(.userRequestedRepositoryDetails):
-        return .none
-
-      case .user(.userRequestedActorDetails):
-        return .none
-
-      // TODO: handle starring the repository
-      case .user(.userRequestedRepositoryStarred):
         return .none
 
       case .delegate:
@@ -96,7 +78,11 @@ public struct ActivityFeedReducer: ReducerProtocol {
       case ._navigation:
         return .none
 
-      case .eventsList:
+      case .eventsList(.delegate(.userRequestedReleaseDetails(let event))):
+        state.navigation = .releaseDetails(.init(release: event))
+        return .none
+
+      case .eventsList(.user), .eventsList(.local):
         return .none
       }
     }

@@ -11,11 +11,13 @@ extension Octokit.EventsService {
   ) -> Self {
     Self(
       allPublicEvents: { page in
-        try await networkClient.request(
-          resource: .allPublicEvents(
-            paginationEventsCount,
-            page,
-            try secretsService.retrieve(.privateAccessToken)
+        try await eventsDecoder.decodeEvents(
+          try await networkClient.request(
+            resource: .allPublicEvents(
+              paginationEventsCount,
+              page,
+              try secretsService.retrieve(.privateAccessToken)
+            )
           )
         )
       },

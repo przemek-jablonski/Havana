@@ -11,6 +11,7 @@ public struct EventsListReducer: ReducerProtocol {
 
   public enum Action: Equatable {
     public enum User: Equatable {
+      //      case userClickedOnEvent(_ event: Octokit.Event)
       case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
       case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository)
       case userRequestedActorDetails(_ actor: Octokit.Event.Actor)
@@ -19,7 +20,9 @@ public struct EventsListReducer: ReducerProtocol {
 
     public enum Local: Equatable {}
 
-    public enum Delegate: Equatable {}
+    public enum Delegate: Equatable {
+      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
+    }
 
     case user(User)
     case local(Local)
@@ -31,7 +34,19 @@ public struct EventsListReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { _, action in
       switch action {
-      case .user, .local, .delegate:
+      //      case .user(.userClickedOnEvent):
+      //        return .none
+      case .user(.userRequestedReleaseDetails(let event)):
+        return .send(.delegate(.userRequestedReleaseDetails(event)))
+      case .user(.userRequestedRepositoryDetails):
+        return .none
+      case .user(.userRequestedActorDetails):
+        return .none
+      case .user(.userRequestedRepositoryStarred):
+        return .none
+      case .local:
+        return .none
+      case .delegate:
         return .none
       }
     }
