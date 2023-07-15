@@ -10,7 +10,7 @@ import PackageDescription
 let composableArchitectureRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.54.0")
 let composableArchitecture = Target.Dependency.product(name: "ComposableArchitecture", package: "swift-composable-architecture")
 
-let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.2")
+let swiftUINavigationRemote = Package.Dependency.package(url: "https://github.com/pointfreeco/swiftui-navigation", exact: "0.7.2") // TODO: remove this - ships with TCA already
 let swiftUINavigation = Target.Dependency.product(name: "SwiftUINavigation", package: "swiftui-navigation")
 
 let keychainAccessRemote = Package.Dependency.package(url: "https://github.com/kishikawakatsumi/KeychainAccess", exact: "4.2.2")
@@ -185,34 +185,6 @@ let loginFeaturePreview = Target.executableTarget(
   path: "Sources/Features/Login/Preview"
 )
 
-// MARK: - Events List feature
-
-let eventsListFeature = Target.target(
-  name: "EventsListFeature",
-  dependencies: [
-    composableArchitecture,
-    octokit.dependency,
-    motif.dependency
-  ],
-  path: "Sources/Features/EventsList/Sources"
-)
-
-let eventsListTests = Target.testTarget(
-  name: "EventsListTests",
-  dependencies: [
-    .byName(name: eventsListFeature.name)
-  ],
-  path: "Sources/Features/EventsList/Tests"
-)
-
-let eventsListPreview = Target.executableTarget(
-  name: "EventsListPreview",
-  dependencies: [
-    .byName(name: eventsListFeature.name)
-  ],
-  path: "Sources/Features/EventsList/Preview"
-)
-
 // MARK: - Release Details feature
 
 let releaseDetailsFeature = Target.target(
@@ -239,6 +211,63 @@ let releaseDetailsPreview = Target.executableTarget(
     .byName(name: releaseDetailsFeature.name)
   ],
   path: "Sources/Features/ReleaseDetails/Preview"
+)
+
+// MARK: - Events List feature
+
+let eventsListFeature = Target.target(
+  name: "EventsListFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency,
+    releaseDetailsFeature.dependency
+  ],
+  path: "Sources/Features/EventsList/Sources"
+)
+
+let eventsListTests = Target.testTarget(
+  name: "EventsListTests",
+  dependencies: [
+    .byName(name: eventsListFeature.name)
+  ],
+  path: "Sources/Features/EventsList/Tests"
+)
+
+let eventsListPreview = Target.executableTarget(
+  name: "EventsListPreview",
+  dependencies: [
+    .byName(name: eventsListFeature.name)
+  ],
+  path: "Sources/Features/EventsList/Preview"
+)
+
+// MARK: - Repository View feature
+
+let repositoryViewFeature = Target.target(
+  name: "RepositoryViewFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/RepositoryView/Sources"
+)
+
+let repositoryViewTests = Target.testTarget(
+  name: "RepositoryViewTests",
+  dependencies: [
+    .byName(name: repositoryViewFeature.name)
+  ],
+  path: "Sources/Features/RepositoryView/Tests"
+)
+
+let repositoryViewPreview = Target.executableTarget(
+  name: "RepositoryViewPreview",
+  dependencies: [
+    .byName(name: repositoryViewFeature.name)
+  ],
+  path: "Sources/Features/RepositoryView/Preview"
 )
 
 // MARK: - Explore Feed feature
@@ -339,6 +368,8 @@ let featureTargets: [Target] = [
   loginFeaturePreview,
   releaseDetailsFeature,
   releaseDetailsPreview,
+  repositoryViewFeature,
+  repositoryViewPreview,
   userContextFeature
 ]
 
@@ -353,6 +384,7 @@ let testTargets: [Target] = [
   exploreFeedTests,
   loginFeatureTests,
   releaseDetailsTests,
+  repositoryViewTests,
   userContextTests
 ]
 

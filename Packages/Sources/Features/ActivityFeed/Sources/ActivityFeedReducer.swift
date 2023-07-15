@@ -33,7 +33,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
     case local(Local)
     case delegate(Delegate)
 
-    case _navigation(PresentationAction<Navigation.Action>)
+    case _navigation(PresentationAction<Navigation.Action>) // TODO: remove
     case eventsList(EventsListReducer.Action)
   }
 
@@ -78,11 +78,11 @@ public struct ActivityFeedReducer: ReducerProtocol {
       case ._navigation:
         return .none
 
-      case .eventsList(.delegate(.userRequestedReleaseDetails(let event))):
-        state.navigation = .releaseDetails(.init(release: event))
-        return .none
+      //      case .eventsList(.delegate(.userRequestedReleaseDetails(let event))):
+      //        state.navigation = .releaseDetails(.init(release: event))
+      //        return .none
 
-      case .eventsList(.user), .eventsList(.local):
+      case .eventsList:
         return .none
       }
     }

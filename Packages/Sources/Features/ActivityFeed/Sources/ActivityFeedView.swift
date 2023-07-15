@@ -5,7 +5,6 @@ import Motif
 import Octokit
 import ReleaseDetailsFeature
 import SwiftUI
-import SwiftUINavigation
 
 public struct ActivityFeedView: View {
   public let store: StoreOf<ActivityFeedReducer>
@@ -19,23 +18,24 @@ public struct ActivityFeedView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       NavigationStack {
-        EventsListView(
-          store.scope(
-            state: \.eventsList,
-            action: ActivityFeedReducer.Action.eventsList
+        NavigationTitle("Following") {
+          EventsListView(
+            store.scope(
+              state: \.eventsList,
+              action: ActivityFeedReducer.Action.eventsList
+            )
           )
-        )
-        .navigationDestination(
-          store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
-          state: /ActivityFeedReducer.Navigation.State.releaseDetails,
-          action: ActivityFeedReducer.Navigation.Action.releaseDetails
-        ) {
-          ReleaseDetailsView($0)
+          .navigationDestination(
+            store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
+            state: /ActivityFeedReducer.Navigation.State.releaseDetails,
+            action: ActivityFeedReducer.Navigation.Action.releaseDetails
+          ) {
+            ReleaseDetailsView($0)
+          }
         }
-        .navigationTitle("Events")
-      }
-      .task {
-        viewStore.send(.user(.userNavigatedToActivityFeed))
+        .task {
+          viewStore.send(.user(.userNavigatedToActivityFeed))
+        }
       }
     }
   }
