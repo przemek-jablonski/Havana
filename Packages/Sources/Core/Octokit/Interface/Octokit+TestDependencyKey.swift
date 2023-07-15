@@ -4,13 +4,15 @@ extension Octokit: TestDependencyKey {
   public static let testValue = Self(
     eventsService: unimplemented("\(Self.self).eventsService"),
     loginService: unimplemented("\(Self.self).loginService"),
-    userService: unimplemented("\(Self.self).userService")
+    userService: unimplemented("\(Self.self).userService"),
+    repositoryService: unimplemented("\(Self.self).repositoryService")
   )
 
   public static let previewValue = Self(
     eventsService: { .previewValue },
     loginService: { .previewValue },
-    userService: { .previewValue }
+    userService: { .previewValue },
+    repositoryService: { .previewValue }
   )
 }
 
@@ -52,6 +54,20 @@ extension Octokit.UserService: TestDependencyKey {
   }
 }
 
+extension Octokit.RepositoryService: TestDependencyKey {
+  public static var testValue: Self {
+    Self(
+      repository: unimplemented("\(Self.self).repository")
+    )
+  }
+
+  public static var previewValue: Self {
+    Self(
+      repository: { _ in .random() }
+    )
+  }
+}
+
 public extension DependencyValues {
   var octokit: Octokit {
     get { self[Octokit.self] }
@@ -71,5 +87,10 @@ public extension DependencyValues {
   var userService: Octokit.UserService {
     get { self[Octokit.UserService.self] }
     set { self[Octokit.UserService.self] = newValue }
+  }
+
+  var repositoryService: Octokit.RepositoryService {
+    get { self[Octokit.RepositoryService.self] }
+    set { self[Octokit.RepositoryService.self] = newValue }
   }
 }

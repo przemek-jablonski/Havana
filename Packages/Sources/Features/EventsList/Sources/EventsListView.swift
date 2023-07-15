@@ -2,6 +2,7 @@ import ComposableArchitecture
 import Motif
 import Octokit
 import ReleaseDetailsFeature
+import RepositoryViewFeature
 import SwiftUI
 
 public struct EventsListView: View {
@@ -39,6 +40,13 @@ public struct EventsListView: View {
           action: EventsListReducer.Navigation.Action.releaseDetails
         ) { store in
           ReleaseDetailsView(store)
+        }
+        .navigationDestination(
+          store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
+          state: /EventsListReducer.Navigation.State.repository,
+          action: EventsListReducer.Navigation.Action.repository
+        ) { store in
+          RepositoryView(store)
         }
       }
     }

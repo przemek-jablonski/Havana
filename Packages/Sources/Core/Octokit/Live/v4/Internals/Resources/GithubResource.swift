@@ -35,6 +35,11 @@ internal enum GithubResource {
         _ page: Int = 1,
         _ privateAccessToken: String
        )
+
+  case repository(
+        _ fullName: String,
+        _ privateAccessToken: String?
+       )
 }
 
 extension GithubResource {
@@ -82,6 +87,16 @@ extension GithubResource {
           "per_page": eventsPerPage.string,
           "page": page.string
         ]
+      )
+
+    case .repository(
+      let fullName,
+      let privateAccessToken
+    ):
+      return .githubRequest(
+        endpoint: "/repos/\(fullName)",
+        httpMethod: "GET",
+        token: privateAccessToken
       )
     }
   }

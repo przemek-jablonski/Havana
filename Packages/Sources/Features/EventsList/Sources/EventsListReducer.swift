@@ -65,7 +65,15 @@ public struct EventsListReducer: ReducerProtocol {
       case .user(.userClickedOnEvent(.sponsorshipEvent(let event))):
         return .none
       case .user(.userClickedOnEvent(.watchEvent(let event))):
-        return .none
+        state.navigation = .repository(
+          .init(
+            fullName: event.repository.name,
+            displayName: event.repository.displayName
+          )
+        )
+        return .run { send in
+          await send(._navigation(.presented(.repository(.user(.userNavigatedToRepositoryView)))))
+        }
       case .local:
         return .none
       case .delegate:
@@ -74,7 +82,6 @@ public struct EventsListReducer: ReducerProtocol {
         return .none
       }
     }
-
     .ifLet(\.$navigation, action: /Action._navigation) {
       EventsListReducer.Navigation()
     }

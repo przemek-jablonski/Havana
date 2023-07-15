@@ -1,5 +1,6 @@
 import Casimir
 import ComposableArchitecture
+import Motif
 import SwiftUI
 
 public struct RepositoryView: View {
@@ -13,9 +14,8 @@ public struct RepositoryView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      NavigationTitle(viewStore.repository.name) { [repository = viewStore.repository] in
-        Text(repository.fullName)
-          .monospaced()
+      NavigationTitle(viewStore.displayName.ifEmpty(replaceWith: viewStore.fullName)) { [repository = viewStore.repository] in
+        Text(String(describing: repository))
       }
     }
   }
@@ -27,7 +27,10 @@ public struct RepositoryViewViewPreviews: PreviewProvider {
   public static var preview: some View {
     RepositoryView(
       Store(
-        initialState: .init(repository: .random())
+        initialState: .init(
+          fullName: .random(),
+          displayName: .random()
+        )
       ) {
         RepositoryReducer()
           ._printChanges()
