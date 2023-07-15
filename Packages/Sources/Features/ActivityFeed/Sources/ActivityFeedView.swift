@@ -4,6 +4,7 @@ import EventsListFeature
 import Motif
 import Octokit
 import ReleaseDetailsFeature
+import RepositoryViewFeature
 import SwiftUI
 
 public struct ActivityFeedView: View {
@@ -31,6 +32,13 @@ public struct ActivityFeedView: View {
             action: ActivityFeedReducer.Navigation.Action.releaseDetails
           ) {
             ReleaseDetailsView($0)
+          }
+          .navigationDestination(
+            store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
+            state: /ActivityFeedReducer.Navigation.State.repository,
+            action: ActivityFeedReducer.Navigation.Action.repository
+          ) {
+            RepositoryView($0)
           }
         }
         .task {

@@ -34,20 +34,6 @@ public struct EventsListView: View {
             viewStore: viewStore
           )
         }
-        .navigationDestination(
-          store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
-          state: /EventsListReducer.Navigation.State.releaseDetails,
-          action: EventsListReducer.Navigation.Action.releaseDetails
-        ) { store in
-          ReleaseDetailsView(store)
-        }
-        .navigationDestination(
-          store: self.store.scope(state: \.$navigation, action: { ._navigation($0) }),
-          state: /EventsListReducer.Navigation.State.repository,
-          action: EventsListReducer.Navigation.Action.repository
-        ) { store in
-          RepositoryView(store)
-        }
       }
     }
   }

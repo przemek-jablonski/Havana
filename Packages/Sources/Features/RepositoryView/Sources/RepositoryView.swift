@@ -17,6 +17,9 @@ public struct RepositoryView: View {
       NavigationTitle(viewStore.displayName.ifEmpty(replaceWith: viewStore.fullName)) { [repository = viewStore.repository] in
         Text(String(describing: repository))
       }
+      .task {
+        viewStore.send(.user(.userNavigatedToRepositoryView))
+      }
     }
   }
 }
