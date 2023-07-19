@@ -57,13 +57,17 @@ extension Octokit.UserService: TestDependencyKey {
 extension Octokit.RepositoryService: TestDependencyKey {
   public static var testValue: Self {
     Self(
-      repository: unimplemented("\(Self.self).repository")
+      repository: unimplemented("\(Self.self).repository"),
+      readme: unimplemented("\(Self.self).repository"),
+      languages: unimplemented("\(Self.self).languages")
     )
   }
 
   public static var previewValue: Self {
     Self(
-      repository: { _ in .random() }
+      repository: { _ in .random() },
+      readme: { _ in .random() },
+      languages: { _ in .random() }
     )
   }
 }

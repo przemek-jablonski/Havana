@@ -237,7 +237,9 @@ public extension Octokit {
     }
 
     // swiftlint:disable function_body_length
-    public static func random(_ randomNumberGenerator: inout RandomNumberGenerator) -> Self {
+    public static func random(
+      _ randomNumberGenerator: inout RandomNumberGenerator
+    ) -> Self {
       Self(
         allowAutoMerge: .random(),
         allowForking: .random(),

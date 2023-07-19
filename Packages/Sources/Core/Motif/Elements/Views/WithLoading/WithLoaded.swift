@@ -1,6 +1,5 @@
 import Casimir
 import SwiftUI
-
 /**
  List that morphs it's content depending on the data state passed as input (switches between displaying "loading" view, "error" view and the actual content).
  */

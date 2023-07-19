@@ -64,5 +64,9 @@ extension Octokit.UserService: DependencyKey {
 
 extension Octokit.RepositoryService: DependencyKey {
   public static let liveValue = Octokit.liveValue.repositoryService()
-  public static let previewValue = Self(repository: { _ in .random() })
+  public static let previewValue = Self(
+    repository: { _ in .random() },
+    readme: { _ in .random() },
+    languages: { _ in .random() }
+  )
 }

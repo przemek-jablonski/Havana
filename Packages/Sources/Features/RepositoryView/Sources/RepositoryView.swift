@@ -1,6 +1,7 @@
 import Casimir
 import ComposableArchitecture
 import Motif
+import Octokit
 import SwiftUI
 
 public struct RepositoryView: View {
@@ -15,11 +16,46 @@ public struct RepositoryView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       NavigationTitle(viewStore.displayName.ifEmpty(replaceWith: viewStore.fullName)) { [repository = viewStore.repository] in
-        Text(String(describing: repository))
+        content(repository)
+        //        switch repository {
+        //          case .loading:
+        //            Text(String(describing: repository))
+        //          case .failure:
+        //            Text(String(describing: repository))
+        //          case .loaded(let repository):
+        //            Text(String(describing: repository))
+        //        }
       }
       .task {
         viewStore.send(.user(.userNavigatedToRepositoryView))
       }
+    }
+  }
+
+  @ViewBuilder
+  private func content(_ repository: Loadable<Octokit.Repository>) -> some View {
+    switch repository {
+    case .loading:
+      Text(String(describing: repository))
+    case .failure:
+      Text(String(describing: repository))
+    case .loaded(let repository):
+      Text(String(describing: repository))
+    // fullName
+    // name
+    // owner
+    // description
+    // forks / forksCount ?
+    // stars
+    // watchers
+    // topics array
+    // visibility
+    // homepage
+    // LANGUAGE (?) / languages to download
+    // main branch
+    // archived
+    // allows
+
     }
   }
 }

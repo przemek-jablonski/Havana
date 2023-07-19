@@ -38,13 +38,7 @@ public struct EventsListReducer: ReducerProtocol {
       switch action {
       case .user(.userClickedOnEvent(let event)):
         return .run { send in
-          await send(
-            .delegate(
-              .userClickedOnEvent(
-                event
-              )
-            )
-          )
+          await send(.delegate(.userClickedOnEvent(event)))
         }
       case .local:
         return .none
