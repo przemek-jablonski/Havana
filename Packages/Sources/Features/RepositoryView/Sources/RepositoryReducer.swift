@@ -6,7 +6,7 @@ import Octokit
 public struct RepositoryReducer: ReducerProtocol {
   public struct State: Equatable {
     internal var repository: Loadable<Octokit.Repository>
-    internal var readme: Loadable<Octokit.Repository.Readme?>
+    internal var readme: Loadable<Octokit.Repository.Readme>
     internal var languages: Loadable<[Octokit.Repository.Language]>
     internal let fullName: String
     internal let displayName: String?

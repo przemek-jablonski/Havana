@@ -11,12 +11,12 @@ public extension Octokit.Repository {
     /**
      Name of the language used (eg. `swift`, `python` etc).
      */
-    let name: String
+    public let name: String
 
     /**
      Amount of bytes that are in repository written in given language.
      */
-    let bytes: Int
+    public let bytes: Int
 
     public init(name: String, bytes: Int) {
       self.name = name

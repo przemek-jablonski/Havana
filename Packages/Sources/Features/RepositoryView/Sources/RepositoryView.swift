@@ -15,16 +15,12 @@ public struct RepositoryView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      NavigationTitle(viewStore.displayName.ifEmpty(replaceWith: viewStore.fullName)) { [repository = viewStore.repository] in
-        content(repository)
-        //        switch repository {
-        //          case .loading:
-        //            Text(String(describing: repository))
-        //          case .failure:
-        //            Text(String(describing: repository))
-        //          case .loaded(let repository):
-        //            Text(String(describing: repository))
-        //        }
+      NavigationTitle(viewStore.displayName.ifEmpty(replaceWith: viewStore.fullName)) {
+        List {
+          content(viewStore.repository)
+          content(viewStore.languages)
+          content(viewStore.readme)
+        }
       }
       .task {
         viewStore.send(.user(.userNavigatedToRepositoryView))
@@ -40,14 +36,54 @@ public struct RepositoryView: View {
     case .failure:
       Text(String(describing: repository))
     case .loaded(let repository):
-      Text(String(describing: repository))
-    // fullName
-    // name
-    // owner
-    // description
-    // forks / forksCount ?
-    // stars
-    // watchers
+      //      List {
+      Section {
+        HStack {
+          Image(systemName: "circle")
+          Text(repository.owner.login)
+        }
+        Text(repository.fullName)
+          .font(.title)
+          .foregroundStyle(.primary)
+
+        if let description = repository.description {
+          Text(description)
+            .foregroundStyle(.secondary)
+        }
+
+        Text("Stars: \(repository.stargazersCount.string)")
+        Text("Forks: \(repository.forksCount)")
+        Text("Watchers: \(repository.watchersCount)")
+
+        if let topics = repository.topics {
+          Text(topics.joined(separator: ", "))
+        }
+
+        if repository.visibility == "public" {
+          HStack {
+            Image(icon: .public)
+            Text("Public")
+          }
+        }
+
+        if repository.visibility == "private" {
+          HStack {
+            Image(icon: .private)
+            Text("Private")
+          }
+        }
+
+        if let homepage = repository.homepage, let homepageUrl = URL(string: homepage) {
+          Link(homepage, destination: homepageUrl)
+        }
+      }
+
+    //        // TODO: limit to x entries
+    //        Section("Files") {
+    //
+    //        }
+    //      }
+
     // topics array
     // visibility
     // homepage
@@ -56,6 +92,39 @@ public struct RepositoryView: View {
     // archived
     // allows
 
+    }
+  }
+
+  @ViewBuilder
+  private func content(
+    _ languages: Loadable<[Octokit.Repository.Language]>
+  ) -> some View {
+    if case Loadable.loaded(let languages) = languages {
+      Section("Languages") {
+        ForEach(languages) { language in
+          Text(String(describing: language))
+        }
+      }
+    }
+  }
+
+  @ViewBuilder
+  private func content(
+    _ readme: Loadable<Octokit.Repository.Readme>
+  ) -> some View {
+    if case Loadable.loaded(let readme) = readme {
+      Section {
+        if
+          let data = Data(base64Encoded: readme.content, options: .ignoreUnknownCharacters),
+          let content = try? String(data: data, encoding: .utf8).markdown {
+          Text(content)
+        }
+      } header: {
+        HStack {
+          Image(icon: .file)
+          Text(readme.name).monospaced()
+        }
+      }
     }
   }
 }
