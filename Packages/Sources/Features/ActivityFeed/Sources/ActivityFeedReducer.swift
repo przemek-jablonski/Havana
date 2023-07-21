@@ -52,10 +52,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
               .local(
                 ._remoteReturnedUserEvents(
                   TaskResult {
-                    try await eventsService.userEvents(
-                      username,
-                      0
-                    )
+                    try await eventsService.userEvents(username, 0)
                   }
                 )
               ),
@@ -78,11 +75,16 @@ public struct ActivityFeedReducer: ReducerProtocol {
       case ._navigation:
         return .none
 
-      case .eventsList(.delegate(.userRequestedReleaseDetails(let event))):
-        state.navigation = .releaseDetails(.init(release: event))
+      case .eventsList(.delegate(.userClickedOnEvent(let event))):
+        state.navigation = .repository(
+          .init(
+            fullName: event.repository.name,
+            displayName: event.repository.displayName
+          )
+        )
         return .none
 
-      case .eventsList(.user), .eventsList(.local):
+      case .eventsList:
         return .none
       }
     }

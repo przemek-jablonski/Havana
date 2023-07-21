@@ -1,3 +1,4 @@
+import Casimir
 import ComposableArchitecture
 import EventsListFeature
 import SwiftUI
@@ -13,14 +14,18 @@ public struct ExploreFeedView: View {
 
   public var body: some View {
     WithViewStore(store) { viewStore in
-      EventsListView(
-        store.scope(
-          state: \.eventsList,
-          action: ExploreFeedReducer.Action.eventsList
-        )
-      )
-      .task {
-        viewStore.send(.user(.userNavigatedToExploreFeed))
+      NavigationStack {
+        NavigationTitle("Explore") {
+          EventsListView(
+            store.scope(
+              state: \.eventsList,
+              action: ExploreFeedReducer.Action.eventsList
+            )
+          )
+        }
+        .task {
+          viewStore.send(.user(.userNavigatedToExploreFeed))
+        }
       }
     }
   }

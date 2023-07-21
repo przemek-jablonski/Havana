@@ -8,7 +8,7 @@ internal extension NetworkRequestPayload {
   /**
    Convenience function for constructing `NetworkRequestPayload` with Github's `v4` API data (baseUrl, headers) prefilled for convenience.
    */
-  internal static func githubRequest(
+  static func githubRequest(
     endpoint: String,
     httpMethod: String,
     token: String?,

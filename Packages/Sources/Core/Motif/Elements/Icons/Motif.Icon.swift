@@ -8,6 +8,7 @@ public extension Motif {
 
     // MARK: - Objects
     case repository
+    case file
     case fork
     case author
     case organisation
@@ -25,8 +26,11 @@ public extension Motif {
     case contribution
     case delete
     case wiki
-    case `public`
     case sponsorship
+
+    // MARK: - Properties
+    case `public`
+    case `private`
   }
 }
 

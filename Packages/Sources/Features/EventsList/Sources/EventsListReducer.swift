@@ -2,6 +2,7 @@ import Casimir
 import ComposableArchitecture
 import Foundation
 import Octokit
+import ReleaseDetailsFeature
 
 public struct EventsListReducer: ReducerProtocol {
   public struct State: Equatable {
@@ -11,17 +12,18 @@ public struct EventsListReducer: ReducerProtocol {
 
   public enum Action: Equatable {
     public enum User: Equatable {
-      //      case userClickedOnEvent(_ event: Octokit.Event)
-      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
-      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository)
-      case userRequestedActorDetails(_ actor: Octokit.Event.Actor)
-      case userRequestedRepositoryStarred(_ repositoryId: Octokit.Event.Repository.ID)
+      case userClickedOnEvent(_ event: Octokit.Event)
+      //      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
+      //      case userRequestedRepositoryDetails(_ repository: Octokit.Event.Repository)
+      //      case userRequestedActorDetails(_ actor: Octokit.Event.Actor)
+      //      case userRequestedRepositoryStarred(_ repositoryId: Octokit.Event.Repository.ID)
     }
 
     public enum Local: Equatable {}
 
     public enum Delegate: Equatable {
-      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
+      case userClickedOnEvent(_ event: Octokit.Event)
+      //      case userRequestedReleaseDetails(_ event: Octokit.Event.ReleaseEvent)
     }
 
     case user(User)
@@ -34,16 +36,10 @@ public struct EventsListReducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { _, action in
       switch action {
-      //      case .user(.userClickedOnEvent):
-      //        return .none
-      case .user(.userRequestedReleaseDetails(let event)):
-        return .send(.delegate(.userRequestedReleaseDetails(event)))
-      case .user(.userRequestedRepositoryDetails):
-        return .none
-      case .user(.userRequestedActorDetails):
-        return .none
-      case .user(.userRequestedRepositoryStarred):
-        return .none
+      case .user(.userClickedOnEvent(let event)):
+        return .run { send in
+          await send(.delegate(.userClickedOnEvent(event)))
+        }
       case .local:
         return .none
       case .delegate:

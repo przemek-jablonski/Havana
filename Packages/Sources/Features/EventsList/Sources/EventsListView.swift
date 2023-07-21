@@ -1,6 +1,8 @@
 import ComposableArchitecture
 import Motif
 import Octokit
+import ReleaseDetailsFeature
+import RepositoryViewFeature
 import SwiftUI
 
 public struct EventsListView: View {
@@ -22,15 +24,16 @@ public struct EventsListView: View {
   public var body: some View {
     WithViewStore(store) { viewStore in
       WithLoaded(viewStore.events) { event in
-        eventContents(for: event, viewStore: viewStore)
-        //        Button(
-        //          label: eventContents(for: event, viewStore: viewStore)
-        //        ) {
-        //          viewStore.send(.user(.userClickedOnEvent(event)))
-        //        }
-        //        .contextMenu {
-        //
-        //        }
+        Button(label: eventContents(for: event, viewStore: viewStore)) {
+          viewStore.send(.user(.userClickedOnEvent(event)))
+        }
+        .buttonStyle(.plain)
+        .contextMenu {
+          eventContextMenu(
+            for: event,
+            viewStore: viewStore
+          )
+        }
       }
     }
   }
@@ -66,33 +69,59 @@ private extension EventsListView {
     case .pushEvent(let event):
       EventContent.CommitPush(event: event, formatter: formatter)
     case .releaseEvent(let event):
-      Button(
-        label: EventContent.Release(
-          event: event,
-          formatter: formatter
-        ),
-        action: {
-          viewStore.send(.user(.userRequestedReleaseDetails(event)))
-        }
-      )
-      .buttonStyle(.plain)
-      .contextMenu {
-        Button(label: Label(event.repository.name, icon: .repository)) {
-          viewStore.send(.user(.userRequestedRepositoryDetails(event.repository)))
-        }
-
-        Button(label: Label(event.actor.login, icon: .author)) {
-          viewStore.send(.user(.userRequestedActorDetails(event.actor)))
-        }
-
-        Button(label: Label("Star Repository", icon: .star)) {
-          viewStore.send(.user(.userRequestedRepositoryStarred(event.repository.id)))
-        }
-      }
+      EventContent.Release(event: event, formatter: formatter)
     case .sponsorshipEvent(let event):
       EventContent.Sponsorship(event: event, formatter: formatter)
     case .watchEvent(let event):
       EventContent.Watch(event: event, formatter: formatter)
+    }
+  }
+
+  @ViewBuilder
+  func eventContextMenu(
+    for event: Octokit.Event,
+    viewStore: ViewStoreOf<EventsListReducer>
+  ) -> some View {
+    switch event {
+    case .commitCommentEvent(let event):
+      EmptyView()
+    case .createEvent(let event):
+      EmptyView()
+    case .deleteEvent(let event):
+      EmptyView()
+    case .forkEvent(let event):
+      EmptyView()
+    case .gollumEvent(let event):
+      EmptyView()
+    case .issueCommentEvent(let event):
+      EmptyView()
+    case .issuesEvent(let event):
+      EmptyView()
+    case .memberEvent(let event):
+      EmptyView()
+    case .publicEvent(let event):
+      EmptyView()
+    case .pullRequestEvent(let event):
+      EmptyView()
+    case .pushEvent(let event):
+      EmptyView()
+    case .releaseEvent(let event):
+      Button(label: Label("Star Repository", icon: .star)) {
+        //            viewStore.send(.user(.userRequestedRepositoryStarred(event.repository.id)))
+      }
+
+      Button(label: Label(event.repository.name, icon: .repository)) {
+        //            viewStore.send(.user(.userRequestedRepositoryDetails(event.repository)))
+      }
+
+      Button(label: Label(event.actor.login, icon: .author)) {
+        //            viewStore.send(.user(.userRequestedActorDetails(event.actor)))
+      }
+
+    case .sponsorshipEvent(let event):
+      EmptyView()
+    case .watchEvent(let event):
+      EmptyView()
     }
   }
 }

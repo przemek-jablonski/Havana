@@ -35,6 +35,21 @@ internal enum GithubResource {
         _ page: Int = 1,
         _ privateAccessToken: String
        )
+
+  case repository(
+        _ fullName: String,
+        _ privateAccessToken: String?
+       )
+
+  case repositoryReadme(
+        _ fullName: String,
+        _ privateAccessToken: String?
+       )
+
+  case repositoryLanguages(
+        _ fullName: String,
+        _ privateAccessToken: String?
+       )
 }
 
 extension GithubResource {
@@ -82,6 +97,36 @@ extension GithubResource {
           "per_page": eventsPerPage.string,
           "page": page.string
         ]
+      )
+
+    case .repository(
+      let fullName,
+      let privateAccessToken
+    ):
+      return .githubRequest(
+        endpoint: "/repos/\(fullName)",
+        httpMethod: "GET",
+        token: privateAccessToken
+      )
+
+    case .repositoryReadme(
+      let fullName,
+      let privateAccessToken
+    ):
+      return .githubRequest(
+        endpoint: "/repos/\(fullName)/readme",
+        httpMethod: "GET",
+        token: privateAccessToken
+      )
+
+    case .repositoryLanguages(
+      let fullName,
+      let privateAccessToken
+    ):
+      return .githubRequest(
+        endpoint: "/repos/\(fullName)/languages",
+        httpMethod: "GET",
+        token: privateAccessToken
       )
     }
   }

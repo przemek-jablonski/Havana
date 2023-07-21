@@ -24,8 +24,7 @@ public struct ___VARIABLE_scene_name___Reducer: ReducerProtocol {
   public var body: some ReducerProtocolOf<Self> {
     Reduce<State, Action> { _, action in
       switch action {
-      case .user, .local, .delegate:
-        return .none
+      // ...
       }
     }
   }

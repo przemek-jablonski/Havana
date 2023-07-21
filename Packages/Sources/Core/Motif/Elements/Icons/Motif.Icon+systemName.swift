@@ -8,9 +8,10 @@ public extension Motif.Icon {
     switch self {
     case .release: return "shippingbox.fill"
     case .fork: return "square.filled.on.square"
-    case .watch: return "star"
+    case .watch: return "star.fill"
 
     case .repository: return "folder"
+    case .file: return "doc"
     case .author: return "person"
     case .organisation: return "building"
     case .releaseNotes: return "note.text"
@@ -23,11 +24,13 @@ public extension Motif.Icon {
     case .more: return "ellipsis"
     case .joinedProject: return "person.2.fill"
     case .comment: return "bubble.left.fill"
-    case .contribution: return "square.stack.3d.up"
+    case .contribution: return "square.stack.3d.up.fill"
     case .delete: return "delete.left.fill"
     case .wiki: return "books.vertical.fill"
-    case .`public`: return "lock.open.fill"
     case .sponsorship: return "dollarsign.square.fill"
+
+    case .`public`: return "lock.open.fill"
+    case .`private`: return "lock.fill"
     }
   }
 }
