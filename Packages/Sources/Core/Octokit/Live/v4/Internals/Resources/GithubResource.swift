@@ -38,17 +38,23 @@ internal enum GithubResource {
 
   case repository(
         _ fullName: String,
-        _ privateAccessToken: String?
+        _ privateAccessToken: String
        )
 
   case repositoryReadme(
         _ fullName: String,
-        _ privateAccessToken: String?
+        _ privateAccessToken: String
        )
 
   case repositoryLanguages(
         _ fullName: String,
-        _ privateAccessToken: String?
+        _ privateAccessToken: String
+       )
+
+  case repositoryContents(
+        _ fullName: String,
+        _ path: String,
+        _ privateAccessToken: String
        )
 }
 
@@ -125,6 +131,17 @@ extension GithubResource {
     ):
       return .githubRequest(
         endpoint: "/repos/\(fullName)/languages",
+        httpMethod: "GET",
+        token: privateAccessToken
+      )
+
+    case .repositoryContents(
+      let fullName,
+      let path,
+      let privateAccessToken
+    ):
+      return .githubRequest(
+        endpoint: "/repos/\(fullName)/contents\(path)",
         httpMethod: "GET",
         token: privateAccessToken
       )

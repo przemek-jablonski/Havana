@@ -59,7 +59,8 @@ extension Octokit.RepositoryService: TestDependencyKey {
     Self(
       repository: unimplemented("\(Self.self).repository"),
       readme: unimplemented("\(Self.self).repository"),
-      languages: unimplemented("\(Self.self).languages")
+      languages: unimplemented("\(Self.self).languages"),
+      content: unimplemented("\(Self.self).content")
     )
   }
 
@@ -67,7 +68,8 @@ extension Octokit.RepositoryService: TestDependencyKey {
     Self(
       repository: { _ in .random() },
       readme: { _ in .random() },
-      languages: { _ in .random() }
+      languages: { _ in .random() },
+      content: { _, _ in .random() }
     )
   }
 }

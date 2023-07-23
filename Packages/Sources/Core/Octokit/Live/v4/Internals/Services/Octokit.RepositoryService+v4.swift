@@ -36,6 +36,15 @@ extension Octokit.RepositoryService {
         return dictionary.map { (key: String, value: Int) in
           Octokit.Repository.Language(name: key, bytes: value)
         }
+      },
+      content: { fullName, path in
+        try await networkClient.request(
+          resource: .repositoryContents(
+            fullName,
+            path,
+            try secretsService.retrieve(.privateAccessToken)
+          )
+        )
       }
     )
   }

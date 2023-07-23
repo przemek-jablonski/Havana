@@ -67,6 +67,7 @@ extension Octokit.RepositoryService: DependencyKey {
   public static let previewValue = Self(
     repository: { _ in .random() },
     readme: { _ in .random() },
-    languages: { _ in .random() }
+    languages: { _ in .random() },
+    content: { _, _ in .random() }
   )
 }
