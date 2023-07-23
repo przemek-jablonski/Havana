@@ -16,14 +16,10 @@ internal extension RepositoryExplorerView {
       HStack {
         if entity.type == "file" { // TODO: presentation logic in view
           Image(icon: .file)
-            .imageScale(.medium)
-            .monospaced()
         }
 
         if entity.type == "dir" { // TODO: presentation logic in view
           Image(icon: .directory)
-            .imageScale(.medium)
-            .monospaced()
         }
 
         Text(entity.name)

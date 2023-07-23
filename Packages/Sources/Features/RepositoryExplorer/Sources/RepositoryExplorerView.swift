@@ -36,8 +36,22 @@ public struct RepositoryExplorerView: View {
           Text(error.localizedDescription)
         }
       }
+      .toolbar {
+        ToolbarItem(placement: .principal) {
+          if viewStore.path == "/" {
+            Text(viewStore.repository.name + viewStore.path)
+          } else {
+            Text("/" + viewStore.path)
+          }
+        }
+      }
       .task {
         viewStore.send(.user(.userNavigatedToRepositoryExplorer))
+      }
+      .navigationDestination(
+        store: self.store.scope(state: \.$repositoryExplorer, action: { ._repositoryExplorer($0) })
+      ) { store in
+        RepositoryExplorerView(store)
       }
     }
   }
@@ -56,7 +70,10 @@ public struct RepositoryExplorerViewPreviews: PreviewProvider {
   public static var preview: some View {
     RepositoryExplorerView(
       Store(
-        initialState: RepositoryExplorerReducer.State(repository: .random())
+        initialState: RepositoryExplorerReducer.State(
+          repository: .random(),
+          path: .random()
+        )
       ) {
         RepositoryExplorerReducer()
           ._printChanges()

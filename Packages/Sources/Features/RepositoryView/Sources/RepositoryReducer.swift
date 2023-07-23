@@ -92,9 +92,9 @@ public struct RepositoryReducer: ReducerProtocol {
 
       case .user(.userRequestedRepositoryFiles):
         if let repository = state.repository.loaded() {
-          state.repositoryExplorer = .init(repository: repository)
+          state.repositoryExplorer = .init(repository: repository, path: "/")
         } else {
-          // TODO: ERROR
+          // TODO: LOG ERROR
         }
         return .none
 

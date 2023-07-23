@@ -6,12 +6,16 @@ import Octokit
 public struct RepositoryExplorerReducer: ReducerProtocol {
   public struct State: Equatable {
     internal var repository: Octokit.Repository
+    internal var path: String
     internal var contents: Loadable<[Octokit.Repository.Entity]> = .loading
+    @PresentationState internal var repositoryExplorer: RepositoryExplorerReducer.State?
 
     public init(
-      repository: Octokit.Repository
+      repository: Octokit.Repository,
+      path: String
     ) {
       self.repository = repository
+      self.path = path
     }
   }
 
@@ -30,6 +34,7 @@ public struct RepositoryExplorerReducer: ReducerProtocol {
     case user(User)
     case local(Local)
     case delegate(Delegate)
+    case _repositoryExplorer(PresentationAction<RepositoryExplorerReducer.Action>)
   }
 
   public init() {}
@@ -41,12 +46,15 @@ public struct RepositoryExplorerReducer: ReducerProtocol {
     Reduce<State, Action> { state, action in
       switch action {
       case .user(.userNavigatedToRepositoryExplorer):
-        return .run { [repository = state.repository] send in
+        return .run { [repository = state.repository, path = state.path] send in
           await send(
             .local(
               ._remoteReturnedRepositoryContents(
                 TaskResult {
-                  try await repositoryService.content(repository.fullName, "/")
+                  try await repositoryService.content(
+                    repository.fullName,
+                    path
+                  )
                 }
               )
             )
@@ -54,6 +62,10 @@ public struct RepositoryExplorerReducer: ReducerProtocol {
         }
 
       case .user(.userRequestedContentsOf(let entity)):
+        state.repositoryExplorer = .init(
+          repository: state.repository,
+          path: entity.path
+        )
         return .none
 
       case .local(._remoteReturnedRepositoryContents(.success(let contents))):
@@ -63,7 +75,16 @@ public struct RepositoryExplorerReducer: ReducerProtocol {
       case .local(._remoteReturnedRepositoryContents(.failure(let error))):
         state.contents = .failure(error)
         return .none
+
+      case ._repositoryExplorer:
+        return .none
       }
+    }
+    .ifLet(
+      \.$repositoryExplorer,
+      action: /Action._repositoryExplorer
+    ) {
+      RepositoryExplorerReducer()
     }
   }
 }

@@ -36,9 +36,6 @@ public struct RepositoryView: View {
       }
       .navigationDestination(
         store: self.store.scope(state: \.$repositoryExplorer, action: { ._repositoryExplorer($0) })
-        //        ,
-        //        state: /RepositoryReducer.State._repositoryExplorer,
-        //        action: RepositoryReducer.Action._repositoryExplorer
       ) { store in
         RepositoryExplorerView(store)
       }
