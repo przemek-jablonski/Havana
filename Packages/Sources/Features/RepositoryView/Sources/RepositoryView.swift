@@ -2,6 +2,7 @@ import Casimir
 import ComposableArchitecture
 import Motif
 import Octokit
+import RepositoryExplorerFeature
 import SwiftUI
 
 public struct RepositoryView: View {
@@ -19,11 +20,22 @@ public struct RepositoryView: View {
         List {
           content(viewStore.repository)
           content(viewStore.languages)
+          Button {
+            viewStore.send(.user(.userRequestedRepositoryFiles))
+          } label: {
+            Text("Files")
+          }
+
           content(viewStore.readme)
         }
       }
       .task {
         viewStore.send(.user(.userNavigatedToRepositoryView))
+      }
+      .navigationDestination(
+        store: self.store.scope(state: \.$repositoryExplorer, action: { ._repositoryExplorer($0) })
+      ) { store in
+        RepositoryExplorerView(store)
       }
     }
   }

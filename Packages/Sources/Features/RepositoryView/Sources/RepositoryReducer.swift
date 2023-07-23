@@ -2,14 +2,16 @@ import Casimir
 import ComposableArchitecture
 import Foundation
 import Octokit
+import RepositoryExplorerFeature
 
 public struct RepositoryReducer: ReducerProtocol {
   public struct State: Equatable {
+    internal let fullName: String
+    internal let displayName: String?
     internal var repository: Loadable<Octokit.Repository>
     internal var readme: Loadable<Octokit.Repository.Readme>
     internal var languages: Loadable<[Octokit.Repository.Language]>
-    internal let fullName: String
-    internal let displayName: String?
+    @PresentationState internal var repositoryExplorer: RepositoryExplorerReducer.State?
 
     public init(
       fullName: String,
@@ -26,6 +28,7 @@ public struct RepositoryReducer: ReducerProtocol {
   public enum Action: Equatable {
     public enum User: Equatable {
       case userNavigatedToRepositoryView
+      case userRequestedRepositoryFiles
     }
 
     public enum Local: Equatable {
@@ -39,6 +42,7 @@ public struct RepositoryReducer: ReducerProtocol {
     case user(User)
     case local(Local)
     case delegate(Delegate)
+    case _repositoryExplorer(PresentationAction<RepositoryExplorerReducer.Action>)
   }
 
   public init() {}
@@ -86,6 +90,10 @@ public struct RepositoryReducer: ReducerProtocol {
           }
         )
 
+      case .user(.userRequestedRepositoryFiles):
+        state.repositoryExplorer = .init()
+        return .none
+
       case .local(._remoteReturnedRepository(let result)):
         switch result {
         case .success(let repository):
@@ -111,6 +119,9 @@ public struct RepositoryReducer: ReducerProtocol {
         case .failure(let error):
           state.languages = .failure(error)
         }
+        return .none
+
+      case ._repositoryExplorer:
         return .none
       }
     }

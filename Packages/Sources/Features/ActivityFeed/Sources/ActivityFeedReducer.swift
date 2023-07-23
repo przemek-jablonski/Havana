@@ -76,12 +76,7 @@ public struct ActivityFeedReducer: ReducerProtocol {
         return .none
 
       case .eventsList(.delegate(.userClickedOnEvent(let event))):
-        state.navigation = .repository(
-          .init(
-            fullName: event.repository.name,
-            displayName: event.repository.displayName
-          )
-        )
+        state.navigation = navigation(for: event)
         return .none
 
       case .eventsList:
@@ -100,6 +95,25 @@ public struct ActivityFeedReducer: ReducerProtocol {
       action: /Action.eventsList
     ) {
       EventsListReducer()
+    }
+  }
+
+  private func navigation(for event: Octokit.Event) -> Navigation.State {
+    switch event {
+    case .forkEvent(let event):
+      return .repository(
+        .init(
+          fullName: event.payload.forkee.fullName,
+          displayName: event.payload.forkee.name
+        )
+      )
+    default:
+      return .repository(
+        .init(
+          fullName: event.repository.name,
+          displayName: event.repository.displayName
+        )
+      )
     }
   }
 }

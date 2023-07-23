@@ -242,6 +242,34 @@ let eventsListPreview = Target.executableTarget(
   path: "Sources/Features/EventsList/Preview"
 )
 
+// MARK: - Repository Explorer feature
+
+let repositoryExplorerFeature = Target.target(
+  name: "RepositoryExplorerFeature",
+  dependencies: [
+    composableArchitecture,
+    octokit.dependency,
+    motif.dependency
+  ],
+  path: "Sources/Features/RepositoryExplorer/Sources"
+)
+
+let repositoryExplorerTests = Target.testTarget(
+  name: "RepositoryExplorerTests",
+  dependencies: [
+    .byName(name: repositoryExplorerFeature.name)
+  ],
+  path: "Sources/Features/RepositoryExplorer/Tests"
+)
+
+let repositoryExplorerPreview = Target.executableTarget(
+  name: "RepositoryExplorerPreview",
+  dependencies: [
+    .byName(name: repositoryExplorerFeature.name)
+  ],
+  path: "Sources/Features/RepositoryExplorer/Preview"
+)
+
 // MARK: - Repository View feature
 
 let repositoryViewFeature = Target.target(
@@ -249,7 +277,8 @@ let repositoryViewFeature = Target.target(
   dependencies: [
     composableArchitecture,
     octokit.dependency,
-    motif.dependency
+    motif.dependency,
+    repositoryExplorerFeature.dependency
   ],
   path: "Sources/Features/RepositoryView/Sources"
 )
@@ -368,6 +397,8 @@ let featureTargets: [Target] = [
   loginFeaturePreview,
   releaseDetailsFeature,
   releaseDetailsPreview,
+  repositoryExplorerFeature,
+  repositoryExplorerPreview,
   repositoryViewFeature,
   repositoryViewPreview,
   userContextFeature
@@ -384,6 +415,7 @@ let testTargets: [Target] = [
   exploreFeedTests,
   loginFeatureTests,
   releaseDetailsTests,
+  repositoryExplorerTests,
   repositoryViewTests,
   userContextTests
 ]

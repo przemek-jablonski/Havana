@@ -2,7 +2,6 @@ import ComposableArchitecture
 import Motif
 import Octokit
 import ReleaseDetailsFeature
-import RepositoryViewFeature
 import SwiftUI
 
 public struct EventsListView: View {
