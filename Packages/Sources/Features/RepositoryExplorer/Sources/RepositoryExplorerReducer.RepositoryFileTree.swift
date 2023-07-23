@@ -1,8 +1,10 @@
+// import Casimir
 //
-//  File.swift
-//  
+// internal extension RepositoryExplorerReducer {
+//  /**
+//   Represents the file tree, that is contents of the repository.
+//   */
+//  struct RepositoryFileTree: ModelProtocol {
 //
-//  Created by Przemyslaw Jablonski on 23/07/2023.
-//
-
-import Foundation
+//  }
+// }

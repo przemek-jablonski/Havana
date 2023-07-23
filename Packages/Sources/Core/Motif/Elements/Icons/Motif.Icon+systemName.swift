@@ -12,6 +12,7 @@ public extension Motif.Icon {
 
     case .repository: return "folder"
     case .file: return "doc"
+    case .directory: return "folder"
     case .author: return "person"
     case .organisation: return "building"
     case .releaseNotes: return "note.text"
@@ -31,6 +32,7 @@ public extension Motif.Icon {
 
     case .`public`: return "lock.open.fill"
     case .`private`: return "lock.fill"
+    case .linkChevron: return "chevron.forward"
     }
   }
 }

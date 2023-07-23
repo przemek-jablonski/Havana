@@ -9,6 +9,7 @@ public extension Motif {
     // MARK: - Objects
     case repository
     case file
+    case directory
     case fork
     case author
     case organisation
@@ -31,6 +32,9 @@ public extension Motif {
     // MARK: - Properties
     case `public`
     case `private`
+
+    // MARK: - UI Miscellaneous
+    case linkChevron
   }
 }
 

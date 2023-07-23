@@ -91,7 +91,11 @@ public struct RepositoryReducer: ReducerProtocol {
         )
 
       case .user(.userRequestedRepositoryFiles):
-        state.repositoryExplorer = .init()
+        if let repository = state.repository.loaded() {
+          state.repositoryExplorer = .init(repository: repository)
+        } else {
+          // TODO: ERROR
+        }
         return .none
 
       case .local(._remoteReturnedRepository(let result)):
@@ -124,6 +128,12 @@ public struct RepositoryReducer: ReducerProtocol {
       case ._repositoryExplorer:
         return .none
       }
+    }
+    .ifLet(
+      \.$repositoryExplorer,
+      action: /Action._repositoryExplorer
+    ) {
+      RepositoryExplorerReducer()
     }
   }
 }

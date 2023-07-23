@@ -1,4 +1,6 @@
 import ComposableArchitecture
+import Motif
+import Octokit
 import SwiftUI
 
 public struct RepositoryExplorerView: View {
@@ -11,13 +13,35 @@ public struct RepositoryExplorerView: View {
   }
 
   public var body: some View {
-    WithViewStore(store) { _ in
-      Text("RepositoryExplorer")
-        .font(.title)
+    WithViewStore(store) { viewStore in
+      List {
+        switch viewStore.contents {
+        case .loaded(let entities):
+          ForEach(entities) { entity in
+            Button {
+              viewStore.send(.user(.userRequestedContentsOf(entity)))
+            } label: {
+              RepositoryEntityView(entity)
+            }
+          }
+
+        case .loading:
+          // TODO: get the exact number of "redacted"s from the Config somewhere (in /Motif perhaps)
+          ForEach(Octokit.Repository.Entity.randoms()) { entity in
+            RepositoryEntityView(entity)
+          }
+          .redacted(reason: .placeholder)
+
+        case .failure(let error):
+          Text(error.localizedDescription)
+        }
+      }
+      .task {
+        viewStore.send(.user(.userNavigatedToRepositoryExplorer))
+      }
     }
   }
 }
-
 //      .toolbar {
 //        ToolbarItem(placement: .principal) {
 //          Text("Nav Title")
@@ -32,7 +56,7 @@ public struct RepositoryExplorerViewPreviews: PreviewProvider {
   public static var preview: some View {
     RepositoryExplorerView(
       Store(
-        initialState: RepositoryExplorerReducer.State()
+        initialState: RepositoryExplorerReducer.State(repository: .random())
       ) {
         RepositoryExplorerReducer()
           ._printChanges()
